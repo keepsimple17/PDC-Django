@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'static_precompiler',
+    #'django-static-precompiler',
     'compressor',
     'html5lib',
     'PDC.principal',
