@@ -86,8 +86,12 @@ WSGI_APPLICATION = 'PDC.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'port4lfo_crm-pdc',
+        'USER': 'port4lfo_crm-pdc',
+        'PASSWORD': 'ASFADAS2017',
+        'HOST': '177.85.98.245',
+        'PORT': '3306',
     }
 }
 
