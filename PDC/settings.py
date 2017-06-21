@@ -25,7 +25,7 @@ SECRET_KEY = '-0$eqvx%(xo0j6r@)77s^2+#_+#9bsbxir*-6m5c%zh$h*gp_5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1','portaldocandidato.br-web.com']
 
 
 # Application definition
@@ -84,6 +84,7 @@ WSGI_APPLICATION = 'PDC.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+#todo Colocar configuracao em arquivo externo com .gitignore
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -132,21 +133,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_ROOT = '/static'
+STATIC_ROOT = '/static/'
 
 STATIC_URL = '/static/'
 
-PROJECT_DIR='./PDC/'
+PROJECT_DIR='/PDC/'
 
 STATICFILES_DIRS = (
     ('assets', os.path.join(PROJECT_DIR, 'static')),
     os.path.join(BASE_DIR, "static"),
     os.path.join(PROJECT_ROOT, 'static').replace('\\', '/'),
-    "/PDC/static/",
+    "/PDC/static/","/PDC/PDC/static"
 )
 
 
-PROJECT_DIR='./PDC/'
+#PROJECT_DIR='./PDC/'
 
 
 # adicionando pre_compiler para arquivos .less do ProUI pixelCave

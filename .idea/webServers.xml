@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="aaa716c4-ffd5-4458-a6a3-d4022fc738f9" name="PDC - Homehost" url="http://www.portaldocandidato.br-web.com/">
+        <fileTransfer host="ftp.portaldocandidato.br-web.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
