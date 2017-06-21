@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="PDC - Homehost">
+  <component name="PublishConfigData" serverName="PDC - Homehost" uploadOnCheckin="aaa716c4-ffd5-4458-a6a3-d4022fc738f9">
     <serverData>
       <paths name="PDC - Homehost">
         <serverdata>
           <mappings>
-            <mapping deploy="/public_html" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/PDC" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/devLocal/templates_base" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="PDC - Homehost" />
   </component>
 </project>
