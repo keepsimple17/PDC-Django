@@ -25,7 +25,7 @@ SECRET_KEY = '-0$eqvx%(xo0j6r@)77s^2+#_+#9bsbxir*-6m5c%zh$h*gp_5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','portaldocandidato.br-web.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'static_precompiler',
-    #'django-static-precompiler',
+    #'static_precompiler',
+    'django-static-precompiler',
     'compressor',
     'html5lib',
     'PDC.principal',
@@ -84,15 +84,10 @@ WSGI_APPLICATION = 'PDC.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-#todo Colocar configuracao em arquivo externo com .gitignore
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'port4lfo_crm-pdc',
-        'USER': 'port4lfo_crm-pdc',
-        'PASSWORD': 'ASFADAS2017',
-        'HOST': '177.85.98.245',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -133,21 +128,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_ROOT = '/static/'
+STATIC_ROOT = '/static'
 
-STATIC_URL = '/PDC/static/'
+STATIC_URL = '/static/'
 
-PROJECT_DIR='/PDC/'
+PROJECT_DIR='./PDC/'
 
 STATICFILES_DIRS = (
     ('assets', os.path.join(PROJECT_DIR, 'static')),
     os.path.join(BASE_DIR, "static"),
     os.path.join(PROJECT_ROOT, 'static').replace('\\', '/'),
-    "/PDC/static/","/PDC/PDC/static"
+    "/PDC/static/",
 )
 
 
-#PROJECT_DIR='./PDC/'
+PROJECT_DIR='./PDC/'
 
 
 # adicionando pre_compiler para arquivos .less do ProUI pixelCave
