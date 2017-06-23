@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #'django-static-precompiler',
     'compressor',
     'html5lib',
+    'crispy_forms',
     'PDC.principal',
 ]
 

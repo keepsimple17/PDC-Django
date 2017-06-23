@@ -16,11 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 #from PDC.principal.views import home
+from django.contrib.auth import views
 from PDC.principal import urls as urlsPrincipal
 
 urlpatterns = [
-
-    #url(r'^$', home, name='home'),
+    url(r'^login/$', views.login, {'template_name': 'login.html'},'django.contrib.auth.views.login'),
     url(r'^', include(urlsPrincipal, namespace="principal")),  # para organizar as Urls dos proj/apps em pastas
     url(r'^admin/', include(admin.site.urls)),
 ]
