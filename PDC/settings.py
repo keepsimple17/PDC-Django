@@ -25,7 +25,7 @@ SECRET_KEY = '-0$eqvx%(xo0j6r@)77s^2+#_+#9bsbxir*-6m5c%zh$h*gp_5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','portaldocandidato.br-web.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','portaldocandidato.br-web.com', 'www.portaldocandidato.br-web.com']
 
 
 # Application definition
@@ -167,3 +167,6 @@ STATIC_PRECOMPILER_COMPILERS = (
         "global_vars": {"link-color": "red"},
     }),
 )
+
+
+LOGIN_REDIRECT_URL = '/' # It means home view

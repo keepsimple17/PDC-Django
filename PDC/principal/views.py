@@ -19,7 +19,6 @@ from .forms import UserLoginForm
 
 #to no allow to an view without authenticating
 @login_required(login_url="login/")
-
 def login_view(request):
     title = "Login PDC"
     form = UserLoginForm(request.POST or None)
@@ -31,9 +30,7 @@ def login_view(request):
 def register_view(request):
     return render(request, 'register.html',{})
 
-def logout(request):
-    return render(request, 'logout',{})
-
+@login_required(login_url="login/")
 def home(request):
     #return HttpResponse('CRM PDC')
     return render(request, 'home.html')
