@@ -130,7 +130,7 @@
                                 <li class="divider"></li>
                                 <li>
                                     <a href="page_ready_lock_screen.html"><i class="fa fa-lock fa-fw pull-right"></i> Lock Account</a>
-                                    <a href="/logout"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                                    <a href="http://{{ request.get_host }}{{ request.get_full_path }}logout"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
                                 </li>
                                 <li class="dropdown-header text-center">Activity</li>
                                 <li>
@@ -339,7 +339,10 @@
                                                 <div class="timeline-time"><small>just now</small></div>
                                                 <div class="timeline-content">
                                                     <p class="push-bit"><a href="page_ready_user_profile.html"><strong>Jordan Carter</strong></a></p>
-                                                    <p class="push-bit">The trip was an amazing and a life changing experience!!</p>
+                                                    <p class="push-bit">{{ request.get_host }}</p>
+                                                    <p class="push-bit">>{{ request.get_full_path }}</p>
+                                                    <p class="push-bit">>{{ request.META.HTTP_NAME }}</p>
+                                                    <p class="push-bit">>{{ request.base_dir }}</p>
                                                     <p class="push-bit"><a href="page_ready_article.html" class="btn btn-xs btn-primary"><i class="fa fa-file"></i> Read the article</a></p>
                                                     <div class="row push">
                                                         <div class="col-sm-6 col-md-4">
