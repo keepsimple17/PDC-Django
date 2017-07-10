@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'PDC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'portaldocandid01',
-        'USER': 'portaldocandid01',
+        'NAME': 'port4lfo_crm-pdc',
+        'USER': 'port4lfo_crm-pdc',
         'PASSWORD': 'ASFADAS2017',
-        'HOST': 'mysql.portaldocandidato.inf.br',
+        'HOST': '177.85.98.245',
         'PORT': '3306',
     }
 }
