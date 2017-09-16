@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^login/$', views.login, {'template_name': 'login.html', 'authentication_form':LoginForm},'django.contrib.auth.views.login', ),
     url(r'^logout/$', views.logout,{'next_page':'/login'}),
     url(r'^', include(urlsPrincipal, namespace="principal")),  # para organizar as Urls dos proj/apps em pastas
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls ),
 ]

@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="aaa716c4-ffd5-4458-a6a3-d4022fc738f9" name="PDC - Homehost" url="http://www.portaldocandidato.br-web.com/">
-        <fileTransfer host="ftp.portaldocandidato.br-web.com" port="21">
+        <fileTransfer host="ftp.portaldocandidato.br-web.com" port="21" password="dfeedfcbdfd9dfccdfcbdfcedfcbdfd9df98df9adf9bdf9d" username="port4lfo">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

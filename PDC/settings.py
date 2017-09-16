@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'html5lib',
     'crispy_forms',
     'PDC.principal',
+    'PDC.accounts',
 ]
 
 MIDDLEWARE = [
@@ -170,3 +171,5 @@ STATIC_PRECOMPILER_COMPILERS = (
 
 
 LOGIN_REDIRECT_URL = '/' # It means home view
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'PDC', 'media')
