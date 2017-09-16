@@ -18,3 +18,9 @@ class Conta(models.Model):
     image = models.ImageField(
         upload_to='images', verbose_name='Imagem'
     )
+
+    created_at = models.DateTimeField(
+        'Criado em', auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField('Atualizado em', auto_now_add=True)
