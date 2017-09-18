@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf4ca55b-9dbd-4ea4-a742-32c40cda080f" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/PDC.iml" afterPath="$PROJECT_DIR$/.idea/PDC.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
@@ -12,6 +13,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PDC/accounts/models.py" afterPath="$PROJECT_DIR$/PDC/accounts/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PDC/settings.py" afterPath="$PROJECT_DIR$/PDC/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PDC/urls.py" afterPath="$PROJECT_DIR$/PDC/urls.py" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PDC/settings.py" afterPath="$PROJECT_DIR$/PDC/settings.py" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
     </list>
     <ignored path="PDC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,24 +54,35 @@
         <entry file="file://$PROJECT_DIR$/PDC/principal/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
+<<<<<<< HEAD
               <caret line="147" column="42" selection-start-line="147" selection-start-column="42" selection-end-line="147" selection-end-column="42" />
+=======
+              <caret line="132" column="45" selection-start-line="132" selection-start-column="45" selection-end-line="132" selection-end-column="52" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PDC/principal/urls.py">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PDC/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="90">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="4095">
+              <caret line="273" column="82" selection-start-line="273" selection-start-column="82" selection-end-line="273" selection-end-column="82" />
+              <folding />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PDC/principal/views.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -74,6 +90,15 @@
               <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
+=======
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PDC/principal/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
               </folding>
             </state>
           </provider>
@@ -82,9 +107,17 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PDC/principal/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="990">
               <caret line="66" column="73" selection-start-line="66" selection-start-column="73" selection-end-line="66" selection-end-column="73" />
               <folding />
+=======
+            <state relative-caret-position="345">
+              <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#55#0" expanded="true" />
+              </folding>
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
             </state>
           </provider>
         </entry>
@@ -92,15 +125,22 @@
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PDC/principal/forms.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="45">
               <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="990">
+              <caret line="66" column="73" selection-start-line="66" selection-start-column="73" selection-end-line="66" selection-end-column="73" />
+              <folding />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PDC/settings.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -129,10 +169,21 @@
             <state relative-caret-position="405">
               <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
               <folding />
+=======
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PDC/principal/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PDC/accounts/admin.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -151,6 +202,16 @@
             <state relative-caret-position="190">
               <caret line="345" column="0" selection-start-line="345" selection-start-column="0" selection-end-line="345" selection-end-column="0" />
               <folding />
+=======
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PDC/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#305#1" expanded="false" />
+              </folding>
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
             </state>
           </provider>
         </entry>
@@ -211,15 +272,23 @@
         <option value="$PROJECT_DIR$/PDC/templates/head.html" />
         <option value="$PROJECT_DIR$/PDC/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/PDC/principal/views.py" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/PDC/urls.py" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
         <option value="$PROJECT_DIR$/PDC/principal/templates/home.html" />
         <option value="$PROJECT_DIR$/PDC/principal/templates/login.html" />
         <option value="$PROJECT_DIR$/PDC/principal/forms.py" />
         <option value="$PROJECT_DIR$/PDC/templates/base.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/accounts/models.py" />
         <option value="$PROJECT_DIR$/PDC/settings.py" />
         <option value="$PROJECT_DIR$/PDC/accounts/models.py" />
         <option value="$PROJECT_DIR$/PDC/urls.py" />
         <option value="$PROJECT_DIR$/PDC/accounts/admin.py" />
+=======
+        <option value="$PROJECT_DIR$/PDC/settings.py" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
       </list>
     </option>
   </component>
@@ -229,10 +298,17 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="27" />
     <option name="y" value="23" />
     <option name="width" value="1564" />
     <option name="height" value="940" />
+=======
+    <option name="x" value="105" />
+    <option name="y" value="184" />
+    <option name="width" value="1266" />
+    <option name="height" value="700" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -259,7 +335,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scratches" />
+=======
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -268,6 +347,7 @@
               <option name="myItemId" value="PDC" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+<<<<<<< HEAD
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -292,6 +372,8 @@
               <option name="myItemId" value="PDC" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+=======
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -302,6 +384,7 @@
               <option name="myItemId" value="PDC" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+<<<<<<< HEAD
             <PATH_ELEMENT>
               <option name="myItemId" value="PDC" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -310,6 +393,8 @@
               <option name="myItemId" value="accounts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+=======
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -324,6 +409,7 @@
               <option name="myItemId" value="PDC" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+<<<<<<< HEAD
             <PATH_ELEMENT>
               <option name="myItemId" value="accounts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -335,6 +421,12 @@
           </PATH>
         </subPane>
       </pane>
+=======
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -350,6 +442,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+<<<<<<< HEAD
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="81" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="106" />
@@ -366,6 +459,8 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="576" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+=======
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -722,6 +817,7 @@
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1505510136379</updated>
+<<<<<<< HEAD
     </task>
     <task id="LOCAL-00008" summary="Atualizado DB para homehost">
       <created>1505515153754</created>
@@ -736,6 +832,8 @@
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
       <updated>1505591838024</updated>
+=======
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
     </task>
     <option name="localTasksCounter" value="10" />
     <option name="createChangelist" value="false" />
@@ -743,11 +841,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="27" y="23" width="1564" height="940" extended-state="0" />
+=======
+    <frame x="105" y="184" width="1266" height="700" extended-state="0" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5559157" sideWeight="0.49532712" order="7" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11084906" sideWeight="0.5394218" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32539684" sideWeight="0.46977124" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -756,6 +859,16 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1346912" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3256579" sideWeight="0.5269608" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3256579" sideWeight="0.4730392" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901135" sideWeight="0.4969697" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25657895" sideWeight="0.46969697" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16503268" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924837" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -828,11 +941,41 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
+<<<<<<< HEAD
       <option name="time" value="3" />
+=======
+      <option name="time" value="2" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/PDC/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="86" column="60" selection-start-line="86" selection-start-column="60" selection-end-line="86" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#305#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devLocal/mysql_ext.cnf" />
+    <entry file="file://$PROJECT_DIR$/PDC/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PDC/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -944,6 +1087,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+<<<<<<< HEAD
+=======
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PDC/principal/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
         </state>
       </provider>
     </entry>
@@ -994,6 +1147,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+<<<<<<< HEAD
+=======
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/fa0d5ec/7622edfc-aa14-43f5-aca7-547e4630b488/port4lfo_crm-pdc.Articuladores" />
+    <entry file="file://$PROJECT_DIR$/PDC/settings.org16617">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2489">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
         </state>
       </provider>
     </entry>
@@ -1078,6 +1242,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PDC/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="4095">
           <caret line="273" column="82" selection-start-line="273" selection-start-column="82" selection-end-line="273" selection-end-column="82" />
           <folding />
@@ -1088,12 +1253,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+=======
+        <state relative-caret-position="323">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/PDC/principal/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1108,12 +1278,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="66" column="73" selection-start-line="66" selection-start-column="73" selection-end-line="66" selection-end-column="73" />
+=======
+    <entry file="file://$PROJECT_DIR$/PDC/principal/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="132" column="45" selection-start-line="132" selection-start-column="45" selection-end-line="132" selection-end-column="52" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PDC/principal/forms.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="45">
           <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
           <folding>
@@ -1133,10 +1310,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="147" column="42" selection-start-line="147" selection-start-column="42" selection-end-line="147" selection-end-column="42" />
+=======
+        <state relative-caret-position="4095">
+          <caret line="273" column="82" selection-start-line="273" selection-start-column="82" selection-end-line="273" selection-end-column="82" />
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7622edfc-aa14-43f5-aca7-547e4630b488/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1158,11 +1340,21 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+=======
+    <entry file="file://$PROJECT_DIR$/PDC/principal/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/envs/pdc/lib/python3.6/site-packages/django/core/management/base.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="190">
           <caret line="345" column="0" selection-start-line="345" selection-start-column="0" selection-end-line="345" selection-end-column="0" />
           <folding />
@@ -1202,6 +1394,49 @@
         <state relative-caret-position="405">
           <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
           <folding />
+=======
+        <state relative-caret-position="345">
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PDC/principal/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="66" column="73" selection-start-line="66" selection-start-column="73" selection-end-line="66" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7622edfc-aa14-43f5-aca7-547e4630b488/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PDC/principal/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PDC/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#305#1" expanded="false" />
+          </folding>
+>>>>>>> 0613c78c4cabbacf112eda178438a527412bed70
         </state>
       </provider>
     </entry>
