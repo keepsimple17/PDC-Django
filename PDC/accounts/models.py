@@ -6,14 +6,13 @@ class ContaManager(models.Manager):
     def search(self, query):
         return self.get_queryset().filter(
             models.Q(nome__icontains=query) | models.Q(email__icontains=query)
-
+        )
 
 class EquipeManager(models.Manager):
     def search(self, query):
         return self.get_queryset().filter(
             models.Q(nome__icontains=query) | models.Q(emailEquipe__icontains=query)
         )
-
 
 class Conta(models.Model):
 
@@ -68,16 +67,16 @@ class Equipe(models.Model):
     Celular = models.CharField('Celular', max_length=12, blank=True)
     slug = models.SlugField('Atalho', blank=True)
     Obs = models.TextField('Observação', blank=True, null=True)
-    NivelAcessoMembro = models.IntegerField('Nivel de Acesso', max_length=11)
+    NivelAcessoMembro = models.IntegerField('Nivel de Acesso')
     created_at = models.DateTimeField(
         'Data de Entrada', auto_created=True
     )
     updated_at = models.DateTimeField(
         'Atualizado em', auto_now_add=True
     )
-    AcessoGestCamp = models.PositiveSmallIntegerField('Acesso Gestao Campanha',max_length=4)
-    AcessoGestFin = models.PositiveSmallIntegerField('Acesso Gestao Financeira', max_length=4)
-    AcessoGestGab = models.PositiveSmallIntegerField('Acesso Gestao Gabinete', max_length=4)
+    AcessoGestCamp = models.PositiveSmallIntegerField('Acesso Gestao Campanha')
+    AcessoGestFin = models.PositiveSmallIntegerField('Acesso Gestao Financeira')
+    AcessoGestGab = models.PositiveSmallIntegerField('Acesso Gestao Gabinete')
     Role = models.CharField('Função', max_length=60)
 
     objects = EquipeManager()
