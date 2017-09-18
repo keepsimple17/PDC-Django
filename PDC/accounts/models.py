@@ -43,6 +43,11 @@ class Conta(models.Model):
     def __str__(self):
         return self.nome
 
+    class Meta:
+        verbose_name = "Conta"
+        verbose_name_plural = "Contas"
+        ordering = ['nome']
+
 
 
 class Equipe(models.Model):
@@ -66,6 +71,7 @@ class Equipe(models.Model):
     Telefone = models.CharField('Telefone', max_length=12,null=True, blank=True)
     Celular = models.CharField('Celular', max_length=12, blank=True)
     slug = models.SlugField('Atalho', blank=True)
+    candidato = models.CharField('Candidato', max_length=60, blank=True, null=True)
     Obs = models.TextField('Observação', blank=True, null=True)
     NivelAcessoMembro = models.IntegerField('Nivel de Acesso')
     created_at = models.DateTimeField(
@@ -83,3 +89,8 @@ class Equipe(models.Model):
 
     def __str__(self):
         return self.nome
+
+    class Meta:
+        verbose_name = "Equipe"
+        verbose_name_plural = "Membros"
+        ordering = ['nome']
