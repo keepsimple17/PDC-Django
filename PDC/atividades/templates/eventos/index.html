@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Eventos</title>
-</head>
-<body>
-<center><h1>Eventos</h1></center>
-</body>
-</html>
+{% extends "base.html" %}
+{% load compile_static %}
+{% load static %}
+{% block content %}
+        <!-- Page content -->
+        <div id="page-content">
+            <!-- Blank Header -->
+            <div class="content-header">
+                <div class="header-section">
+                    <h1>
+                        <i class="gi gi-brush"></i>Eventos<br><small>Relação de Atidades &amp; Eventos </small>
+                    </h1>
+                </div>
+            </div>
+            <ul class="breadcrumb breadcrumb-top">
+                <li>PDC</li>
+                <li>Atividade</li>
+                <li><a href="">Eventos</a></li>
+            </ul>
+            <!-- END Blank Header -->
+
+            <!-- Example Block -->
+            <div class="block">
+                <!-- Example Title -->
+                <div class="block-title">
+                    <h2>Block Title</h2>
+                </div>
+                <!-- END Example Title -->
+
+                <!-- Example Content -->
+                <p>Your content..</p>
+                <!-- END Example Content -->
+            </div>
+            <!-- END Example Block -->
+        </div>
+        <!-- END Page Content -->
+{% endblock %}
