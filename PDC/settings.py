@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'PDC.principal',
     'PDC.accounts',
+    'PDC.atividades',
 ]
 
 MIDDLEWARE = [

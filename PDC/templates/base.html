@@ -248,7 +248,7 @@
                     <div class="sidebar-content">
                         <!-- Brand -->
                         <a href="index.html" class="sidebar-brand">
-                            <i class="gi gi-flash"></i><strong>Pro</strong>UI
+                            <i class="gi gi-group"></i><strong>PDC</strong> Controle
                         </a>
                         <!-- END Brand -->
 
@@ -256,7 +256,7 @@
                         <div class="sidebar-section sidebar-user clearfix">
                             <div class="sidebar-user-avatar">
                                 <a href="page_ready_user_profile.html">
-                                    <img src="{% static 'img/placeholders/avatars/avatar2.jpg' %}" alt="avatar">
+                                    <img src="{% static 'img/placeholders/avatars/unknown-avatar.png' %}" alt="avatar">
                                 </a>
                             </div>
                             <div class="sidebar-user-name">John Doe</div>
@@ -458,40 +458,39 @@
                                  </ul>
                             </li>
                             <li>
-                                <a href="#"><i class="gi gi-building sidebar-nav-icon"></i>Comitês</a>
+                                <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-building sidebar-nav-icon"></i>Campanha</a>
+                                <ul>
+                                     <li>
+                                        <a href="#"><i class="gi gi-book sidebar-nav-icon"></i>Ações</a>
+                                    </li>
+                                     <li>
+                                        <a href="#"><i class="gi gi-heart sidebar-nav-icon"></i>Agenda</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="gi gi-group sidebar-nav-icon"></i>Equipe</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="gi gi-notes_2 sidebar-nav-icon"></i>Metas</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="gi gi-roundabout sidebar-nav-icon"></i>Mobilização</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="gi gi-lightbulb sidebar-nav-icon"></i>Idéias</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="#"><i class="gi gi gi-nameplate sidebar-nav-icon"></i>Equipe</a>
+                                <a href="#"><i class="gi gi gi-nameplate sidebar-nav-icon"></i>Credenciais</a>
                             </li>
 
                         </ul>
                         <!-- END Sidebar Navigation -->
 
                         <!-- Sidebar Notifications -->
-                        <div class="sidebar-header">
-                            <span class="sidebar-header-options clearfix">
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Refresh"><i class="gi gi-refresh"></i></a>
-                            </span>
-                            <span class="sidebar-header-title">Atividade</span>
-                        </div>
-                        <div class="sidebar-section">
-                            <div class="alert alert-success alert-alt">
-                                <small>5 min ago</small><br>
-                                <i class="fa fa-thumbs-up fa-fw"></i> You had a new sale ($10)
-                            </div>
-                            <div class="alert alert-info alert-alt">
-                                <small>10 min ago</small><br>
-                                <i class="fa fa-arrow-up fa-fw"></i> Upgraded to Pro plan
-                            </div>
-                            <div class="alert alert-warning alert-alt">
-                                <small>3 hours ago</small><br>
-                                <i class="fa fa-exclamation fa-fw"></i> Running low on space<br><strong>18GB in use</strong> 2GB left
-                            </div>
-                            <div class="alert alert-danger alert-alt">
-                                <small>Yesterday</small><br>
-                                <i class="fa fa-bug fa-fw"></i> <a href="javascript:void(0)"><strong>New bug submitted</strong></a>
-                            </div>
-                        </div>
+
+                        {% block atividade %} {% endblock %}
+
                         <!-- END Sidebar Notifications -->
                     </div>
                     <!-- END Sidebar Content -->
