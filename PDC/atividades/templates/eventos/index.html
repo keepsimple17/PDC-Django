@@ -150,7 +150,7 @@
                     </div>
                     <ul class="nav nav-tabs" data-toggle="tabs">
                         <li class="active"><a href="#tickets-list">Lista de Eventos</a></li>
-                        <li><a href="#tickets-single">#Candidato XXX</a></li>
+                        <li><a href="#tickets-single">#Candidato XXX</a>  {{ tiposOrigem.1 }}</li>
                     </ul>
                 </div>
                 <!-- END Tickets Title -->
@@ -185,7 +185,7 @@
 
                                         {% for evento in eventos %}
                                             <tr>
-                                                <td class="text-center">{{ evento.origem }}</td>
+                                                <td class="text-center">{{tiposOrigem.0}}</td>
                                                 <td> {{ evento.Importancia  }}  </td>
                                                 <td>
                                                     <strong>{{ evento.title }}</strong><br>

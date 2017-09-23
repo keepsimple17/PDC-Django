@@ -18,6 +18,8 @@ from django.contrib import admin
 #from PDC.principal.views import home
 from django.contrib.auth import views
 from PDC.principal import urls as urlsPrincipal
+from django.conf import settings
+from django.conf.urls.static import static
 
 from PDC.principal.forms import LoginForm
 
@@ -29,3 +31,6 @@ urlpatterns = [
     url(r'^atividade/', include('PDC.atividades.urls', namespace="atividades")),
     url(r'^admin/', admin.site.urls ),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -24,7 +24,8 @@ class Evento(models.Model):
     title = models.CharField('Evento', max_length=30)
     slug = models.SlugField('atalho', blank=True)
     reference = models.CharField('end_reference', max_length=40, blank=True, null=True)
-    mensagem = models.CharField('Mensagem Evento', max_length=60, blank=True, null=True)
+    mensagem = models.TextField('Mensagem Evento - resumo', blank=True, null=True)
+    about = models.TextField('Sobre o Evento', blank=True)
 
     objects = EventoManager()
 
@@ -39,3 +40,4 @@ class Evento(models.Model):
         verbose_name = "Atividade"
         verbose_name_plural = "Eventos"
         ordering = ['Importancia']
+
