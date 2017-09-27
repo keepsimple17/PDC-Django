@@ -188,13 +188,22 @@
                                                 <td class="text-center">{{tiposOrigem.0}}</td>
                                                 <td> {{ evento.Importancia  }}  </td>
                                                 <td>
-                                                    <strong>{{ evento.title }}</strong><br>
+                                                    <a href="{{ evento.get_absolute_url }}"> <strong>{{ evento.title }}</strong></a><br>
                                                     <span class="text-muted">há XX horas por <strong>{{ evento.reference }}</strong></span>
                                                 </td>
                                                 <td> {{ evento.created_at }}</td>
                                                 <td class="text-center"><span class="badge">{{ evento.id }}</span></td>
                                             </tr>
+                                                {% empty %}
+                                                <div class="pure-g">
+                                                    <div class="pure-u-1">
+                                                        <div class="l-box">
+                                                            <p>Nenhum Evento ainda ;-)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         {% endfor %}
+
                                     </tbody>
                                 </table>
                             </div>

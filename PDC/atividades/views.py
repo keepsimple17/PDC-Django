@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
@@ -28,3 +28,12 @@ def index(request):
         'tpOrigem': tpOrigens,
     }
     return render(request,template_name, context)
+
+def detalhes(request, pk):
+    #evento = Evento.objects.get(pk=pk)
+    evento = get_object_or_404(Evento, pk=pk)
+    context = {
+        'evento' : evento
+    }
+    template_name = 'eventos/detalhes.html'
+    return render(request,template_name,context)
