@@ -1,6 +1,7 @@
 from django import forms
 
-Class InformaEvento(forms.Form):
+class InformaEvento(forms.Form):
+
     Importancia = forms.IntegerField(label="Importância")
     origem = forms.IntegerField(label="Origem")
     title = forms.CharField(label="Nome Evento", max_length=30)
