@@ -11,7 +11,7 @@
                 <div class="row">
                     <!-- Main Title (hidden on small devices for the statistics to fit) -->
                     <div class="col-md-4 col-lg-6 hidden-xs hidden-sm">
-                        <h1>Bem vindo <strong>Admin</strong><br>
+                        <h1>Bem vindo <strong>{{ usuario }}</strong><br>
                         <small>Sistema de Geração de Campanha</small></h1>
                     </div>
                     <!-- END Main Title -->
@@ -22,26 +22,26 @@
                             <div class="col-xs-4 col-sm-3">
                                 <h2 class="animation-hatch">
                                     R$<strong>93.7k</strong><br>
-                                    <small><i class="fa fa-thumbs-o-up"></i> Great</small>
+                                    <small><i class="fa fa-money"></i> Arrecadação</small>
                                 </h2>
                             </div>
                             <div class="col-xs-4 col-sm-3">
                                 <h2 class="animation-hatch">
                                     <strong>167k</strong><br>
-                                    <small><i class="fa fa-heart-o"></i> Likes</small>
+                                    <small><i class="fa fa-heart-o"></i> Curtidas</small>
                                 </h2>
                             </div>
                             <div class="col-xs-4 col-sm-3">
                                 <h2 class="animation-hatch">
                                     <strong>101</strong><br>
-                                    <small><i class="fa fa-calendar-o"></i> Events</small>
+                                    <small><i class="fa fa-calendar-o"></i> Eventos</small>
                                 </h2>
                             </div>
                             <!-- We hide the last stat to fit the other 3 on small devices -->
                             <div class="col-sm-3 hidden-xs">
                                 <h2 class="animation-hatch">
-                                    <strong>27&deg; C</strong><br>
-                                    <small><i class="fa fa-map-marker"></i> Sydney</small>
+                                    <strong>{{ temp_cid_atual }}&deg; C</strong><br>
+                                    <small><i class="fa fa-map-marker"></i> {{ cidade_atual }}</small>
                                 </h2>
                             </div>
                         </div>

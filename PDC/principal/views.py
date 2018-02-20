@@ -33,7 +33,9 @@ def register_view(request):
 @login_required(login_url="login/")
 def home(request):
     #return HttpResponse('CRM PDC')
-    return render(request, 'home.html')
+    dadosUsuario = {'usuario':'Paulino', 'candidato':'Collor', 'cidade_atual': 'Brasília',
+                    'temp_cid_atual' : '25'}
+    return render(request, 'home.html', dadosUsuario)
 
 def chat(request):
     return render(request, 'page_ready_chat.html')
