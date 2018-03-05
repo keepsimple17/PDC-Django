@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'PDC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'port4lfo_crm-pdc',
-        'USER': 'port4lfo_crm-pdc',
-        'PASSWORD': 'ASFADAS2017',
-        'HOST': '177.85.98.245',
+        'NAME': 'dashboard',
+        'USER': 'dashboard',
+        'PASSWORD': 'ksiksiksi',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
