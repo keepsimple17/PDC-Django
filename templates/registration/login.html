@@ -1,0 +1,119 @@
+{% extends '_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<style>
+	body{
+		background-color: #f5f5f5;
+	}
+	.page-container1{
+		background-color: #dedede;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+	}
+	.navbar-inverse{
+		/*background-color: #676b74;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);*/
+	}
+	.navbar{
+		/*min-height: 60px;*/
+	}
+	.navbar-brand {
+	    display: inline-block;
+	    padding-top: 1.3125rem;
+	    padding-bottom: .3125rem;
+	    margin-right: 1rem;
+	    font-size: 1.95rem;
+	    line-height: inherit;
+	    white-space: nowrap;
+	    background-color: transparent;
+	    font-weight: 300;
+	}
+	</style>
+
+	<!-- Main navbar -->
+	<div class="">
+
+		<div class="container">
+			<div class="row">			
+							
+			</div>
+		</div>
+
+	</div>
+	<!-- /main navbar -->
+
+    <!-- Login form -->
+	<div class="page-container">
+		<div class="modal-dialog">
+			<div class="login-form">
+
+				<!-- Form -->
+				<form class="modal-body" method="post" action="{% url 'login' %}">
+      			{% csrf_token %}
+					<div class="text-center">
+						<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+						
+						<h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
+					</div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<input name="username" type="text" class="form-control" placeholder="Username" required="required">
+						<div class="form-control-feedback">
+							<i class="icon-user text-muted"></i>
+						</div>
+					</div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<input name="password" type="password" class="form-control" placeholder="Password" required="required">
+						<div class="form-control-feedback">
+							<i class="icon-lock2 text-muted"></i>
+						</div>
+					</div>
+
+					<div class="form-group login-options">
+						<div class="row">
+							<div class="col-sm-6">
+								<label class="checkbox-inline">
+									<input type="checkbox" class="styled">
+									Admin Login
+								</label>
+							</div>
+
+							<div class="col-sm-6 text-right">
+								<a href="#">Forgot password?</a>
+							</div>
+						</div>
+					</div>
+					<input type="hidden" name="next" value="{{request.GET.next}}" />
+
+					<div class="form-group">
+						<button type="submit" class="btn bg-green btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+					</div>
+
+					<span id="alarmArea" class="text-danger"></span>
+
+
+					<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
+						<ul class="list-inline form-group list-inline-condensed text-center">
+							<li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
+							<li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
+							<li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
+							<li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
+						</ul>
+
+						<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+						<a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Sign up</a>
+						<span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+					</div>
+
+
+				</form>
+				<!-- /form -->
+			</div>
+		</div>
+	</div>
+	<!-- /login form -->
+
+
+
+{% endblock %}

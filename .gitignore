@@ -81,6 +81,7 @@ celerybeat-schedule
 # virtualenv
 venv/
 ENV/
+.env
 
 # Spyder project settings
 .spyderproject
@@ -88,4 +89,19 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Emacs backup
 *~
+
+# Editors 
+.vscode/
+.idea/
+
+# Mac OSX
+.DS_Store
+
+behave.out/
+bat.out/
+mat.out/
+
+
+*.xlsx

@@ -1,0 +1,80 @@
+{% extends '_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <style>
+        .btn-rounded {
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+            -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+        }
+    </style>
+    <div class="page-container">
+
+        <!--Main layout-->
+        <div class="container">
+
+            <!--First row-->
+            <div class="row wow fadeIn" data-wow-delay="0.4s">
+
+                <fieldset class="content-group">
+                    <legend class="text-bold">Account Settings</legend>
+                </fieldset>
+
+            </div>
+            
+            <!--/.First row-->
+
+            <!--Second row-->
+            <form action="{% url 'profile' %}" method="post">
+            {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="user_name">User Name : {{ request.user.username }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="user_name">First Name</label>
+                        {{ user_form.first_name }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="label-light required" for="user_name">Last Name</label>
+                        {{ user_form.last_name }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="user_email">Email</label>
+                        {{ user_form.email }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="label-light" for="user_preferred_language">Company</label>
+                        {{ profile_form.company }}
+                    </div>
+                </div>
+                <hr>
+                <div class="row prepend-top-default append-bottom-default">
+                    <div class="col-md-8">
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="alert alert-{{ message.tags }} alert-styled-left"{% endif %}>{{ message }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <input type="submit" name="commit" value="Update Profile" class="btn btn-success">
+                    </div>
+                </div>
+            </form>
+            <!--/.Second row-->
+
+        </div>
+        <!--/.Main layout-->
+
+    </div>
+    <script type="text/javascript">
+    </script>
+{% endblock %}
