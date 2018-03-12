@@ -26,20 +26,16 @@
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
+	<script type="text/javascript" src="{% static 'js/plugins/visualization/d3/d3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/plugins/visualization/d3/d3_tooltip.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/plugins/forms/styling/switchery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/plugins/forms/styling/uniform.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/plugins/forms/selects/bootstrap_multiselect.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/plugins/ui/moment/moment.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/plugins/ui/fullcalendar/fullcalendar.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/plugins/pickers/daterangepicker.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/plugins/tables/datatables/datatables.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/plugins/forms/selects/select2.min.js' %}"></script>
 
 	<script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
-
-	<script type="text/javascript" src="{% static 'js/pages/extra_fullcalendar.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/pages/form_layouts.js' %}"></script>
-
+	<script type="text/javascript" src="{% static 'js/pages/dashboard.js' %}"></script>
 	<!-- /theme JS files -->
 	<script type="text/javascript" src="{% static 'js/my.js' %}"></script>
 
@@ -146,17 +142,17 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown language-switch">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="assets/images/flags/gb.png" class="position-left" alt="">
+						<img src="{% static 'images/flags/gb.png' %}" class="position-left" alt="">
 						English
 						<span class="caret"></span>
 					</a>
 
 					<ul class="dropdown-menu">
-						<li><a class="deutsch"><img src="assets/images/flags/de.png" alt=""> Deutsch</a></li>
-						<li><a class="ukrainian"><img src="assets/images/flags/ua.png" alt=""> Українська</a></li>
-						<li><a class="english"><img src="assets/images/flags/gb.png" alt=""> English</a></li>
-						<li><a class="espana"><img src="assets/images/flags/es.png" alt=""> España</a></li>
-						<li><a class="russian"><img src="assets/images/flags/ru.png" alt=""> Русский</a></li>
+						<li><a class="deutsch"><img src="{% static 'images/flags/de.png' %}" alt=""> Deutsch</a></li>
+						<li><a class="ukrainian"><img src="{% static 'images/flags/ua.png' %}" alt=""> Українська</a></li>
+						<li><a class="english"><img src="{% static 'images/flags/gb.png' %}" alt=""> English</a></li>
+						<li><a class="espana"><img src="{% static 'images/flags/es.png' %}" alt=""> España</a></li>
+						<li><a class="russian"><img src="{% static 'images/flags/ru.png' %}" alt=""> Русский</a></li>
 					</ul>
 				</li>
 
@@ -178,7 +174,7 @@
 						<ul class="media-list dropdown-content-body">
 							<li class="media">
 								<div class="media-left">
-									<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+									<img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
 									<span class="badge bg-danger-400 media-badge">5</span>
 								</div>
 
@@ -194,7 +190,7 @@
 
 							<li class="media">
 								<div class="media-left">
-									<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+									<img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
 									<span class="badge bg-danger-400 media-badge">4</span>
 								</div>
 
@@ -209,7 +205,7 @@
 							</li>
 
 							<li class="media">
-								<div class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
 								<div class="media-body">
 									<a href="#" class="media-heading">
 										<span class="text-semibold">Jeremy Victorino</span>
@@ -221,7 +217,7 @@
 							</li>
 
 							<li class="media">
-								<div class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
 								<div class="media-body">
 									<a href="#" class="media-heading">
 										<span class="text-semibold">Beatrix Diaz</span>
@@ -233,7 +229,7 @@
 							</li>
 
 							<li class="media">
-								<div class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
 								<div class="media-body">
 									<a href="#" class="media-heading">
 										<span class="text-semibold">Richard Vango</span>
@@ -253,7 +249,7 @@
 
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="assets/images/placeholder.jpg" alt="">
+						<img src="{% static 'images/placeholder.jpg' %}" alt="">
 						<span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
 						<i class="caret"></i>
 					</a>
