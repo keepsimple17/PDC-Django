@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Candidate_DB" id="Project_2d5f40" template="Default" database="MySql" >
+	<comment><![CDATA[Individual database created to the candidate in 
+the first setup]]></comment>
+	<schema name="candidate_db" schemaname="candidate_db" >
+		<table name="candidate" >
+			<comment><![CDATA[The table of candidate running for elections. 
+The candidate must be an user.
+The three first insertions on the users table must me reserved to the candidate. (the id_user starts with number 4).
+The UC-Registration define the following proccess:
+1) User register.
+2) After the first login, the USERS complete their user data. An id_user >= 4 is assigned
+3) If no candidate is assigned (check the table roles, candidate or users), he defines the base data for Candidate (name, email,name, etc). An user is created with a temporary password and sent to candidate.
+4) When the candidate execute his first login (with his username and temporary password, a Candidate Table is created. The id_candidate will be associated with his id_user)]]></comment>
+			<column name="id_candidate" type="int" jt="4" mandatory="y" />
+			<column name="reference_id" type="int" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[The ID from the user who added the Candidate]]></comment>
+			</column>
+			<column name="name_candidate" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="cpf_candidate" type="varchar" length="15" decimal="0" jt="12" />
+			<column name="photo" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="political_nickname" type="varchar" length="60" decimal="0" jt="12" >
+				<comment><![CDATA[The name by which the politician is known. Campaign Name]]></comment>
+			</column>
+			<column name="email_candidate" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="site" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="sex" type="varchar" length="1" decimal="0" jt="12" />
+			<column name="user_photo" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="birthday_date" type="date" length="10" decimal="0" jt="91" />
+			<column name="cel_number" type="varchar" length="14" decimal="0" jt="12" />
+			<column name="telephone_number" type="varchar" length="14" decimal="0" jt="12" />
+			<column name="uf" type="varchar" length="2" decimal="0" jt="12" />
+			<column name="city" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="cep" type="varchar" length="10" decimal="0" jt="12" />
+			<column name="address" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="electoral_dispute" type="varchar" length="20" decimal="0" jt="12" >
+				<comment><![CDATA[Electoral suit. Campaign in which the candidate is competing or will compete.]]></comment>
+			</column>
+			<column name="dispute_position" type="varchar" length="40" decimal="0" jt="12" >
+				<comment><![CDATA[Cargo ao qual o candidato está concorrendo. (vereador, deputado, senador, prefeito, presidente ou outro)]]></comment>
+			</column>
+			<column name="dispute_UF" type="varchar" length="2" decimal="0" jt="12" />
+			<column name="dispute_city" type="varchar" length="70" decimal="0" jt="12" />
+			<column name="dispute_id_party" type="int" length="10" decimal="0" jt="4" />
+			<column name="candidate_number" type="varchar" length="255" decimal="0" jt="12" >
+				<comment><![CDATA[The party number of the candidate in the election]]></comment>
+			</column>
+			<column name="holds_political_position" type="boolean" length="1" decimal="0" jt="-7" >
+				<comment><![CDATA[The candidate is exercising political office?]]></comment>
+			</column>
+			<column name="reelection" type="boolean" length="1" decimal="0" jt="-7" >
+				<comment><![CDATA[The candidate is trying to be re-elected?]]></comment>
+			</column>
+			<column name="first_political_campaign" type="boolean" length="1" decimal="0" jt="-7" >
+				<comment><![CDATA[It's the first campaing of the candidate?]]></comment>
+			</column>
+			<column name="candidate_situation" type="int" jt="4" >
+				<comment><![CDATA[Candidate situation (vd. status_candidate table). Ex. 0 - inactive, 1 in demonstration - 2 regular status - 3 Awaiting Payment ..]]></comment>
+			</column>
+			<column name="resume" type="text" length="65535" decimal="0" jt="-1" >
+				<comment><![CDATA[A resume from candidate: Name, Political Party, Location, etc.]]></comment>
+			</column>
+			<column name="obs" type="tinyblob" length="255" decimal="0" jt="-4" >
+				<comment><![CDATA[Candidate biografy]]></comment>
+			</column>
+			<column name="facebook" type="varchar" length="60" decimal="0" jt="12" />
+			<column name="twitter" type="varchar" length="60" decimal="0" jt="12" />
+			<column name="google" type="varchar" length="60" decimal="0" jt="12" />
+			<column name="youtube" type="varchar" length="40" jt="12" />
+			<column name="instagram" type="varchar" length="60" decimal="0" jt="12" />
+			<column name="created" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>CURRENT_TIMESTAMP</defo>
+			</column>
+			<column name="last_login" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="email_verified" type="boolean" decimal="0" jt="-7" />
+			<column name="logged_in" type="boolean" decimal="0" jt="-7" />
+			<index name="idx_candidate_id_candidate" unique="PRIMARY_KEY" >
+				<column name="id_candidate" />
+			</index>
+			<fk name="fk_candidate_users" to_schema="candidate_db" to_table="users" >
+				<fk_column name="id_candidate" pk="id_user" />
+			</fk>
+		</table>
+		<table name="coligations" >
+			<comment><![CDATA[Candidate Political Party Coligations. Consult the political_parties table in the General DB]]></comment>
+			<column name="id_coligation" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="id_candidate" type="int" jt="4" />
+			<column name="name_coligation" type="varchar" length="100" jt="12" >
+				<comment><![CDATA[Name of coligation]]></comment>
+			</column>
+			<column name="political_partie_number" type="int" length="100" jt="4" >
+				<comment><![CDATA[Consult the Politica Parties table in General DB]]></comment>
+			</column>
+			<column name="political_partie_name" type="varchar" length="100" jt="12" />
+			<index name="pk_coligations_id_coligation" unique="PRIMARY_KEY" >
+				<column name="id_coligation" />
+			</index>
+			<index name="idx_coligations_id_candidate" unique="UNIQUE" >
+				<column name="id_candidate" />
+			</index>
+			<fk name="fk_coligations_candidate" to_schema="candidate_db" to_table="candidate" >
+				<fk_column name="id_coligation" pk="id_candidate" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="commitee_members" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="id_commitee" type="int" jt="4" />
+			<column name="id_user" type="int" jt="4" />
+			<column name="assignments" type="varchar" length="50" jt="12" />
+			<index name="pk_commitee_members_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_commitee_members_id_commitee" unique="NORMAL" >
+				<column name="id_commitee" />
+			</index>
+			<index name="idx_commitee_members_id_user" unique="NORMAL" >
+				<column name="id_user" />
+			</index>
+			<fk name="fk_commitee_members_committee" to_schema="candidate_db" to_table="committee" >
+				<fk_column name="id_commitee" pk="id" />
+			</fk>
+			<fk name="fk_commitee_members_users" to_schema="candidate_db" to_table="users" >
+				<fk_column name="id_user" pk="id_user" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="committee" >
+			<comment><![CDATA[Political committes of the candidate. Structures or organizations to mobilize the campaign.]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="id_user" type="int" jt="4" >
+				<comment><![CDATA[Responsible to manage the commitee and actions on area]]></comment>
+			</column>
+			<column name="uf" type="varchar" length="2" jt="12" />
+			<column name="city" type="varchar" length="40" jt="12" />
+			<column name="region" type="varchar" length="40" jt="12" />
+			<column name="neighborhood" type="varchar" length="40" jt="12" />
+			<column name="address" type="varchar" length="100" jt="12" />
+			<column name="cellphone_contact" type="varchar" length="20" jt="12" />
+			<column name="landline_number" type="varchar" length="20" jt="12" />
+			<index name="pk_committee_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_committee_id_user" unique="NORMAL" >
+				<column name="id_user" />
+			</index>
+			<fk name="fk_committee_users" to_schema="candidate_db" to_table="users" >
+				<fk_column name="id_user" pk="id_user" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="external_organizations" >
+			<comment><![CDATA[business organizations from outside team or campaign]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="kind" type="varchar" length="40" jt="12" >
+				<comment><![CDATA[kind of organization]]></comment>
+			</column>
+			<column name="name_of_organization" type="varchar" length="100" jt="12" />
+			<column name="responsible" type="varchar" length="60" jt="12" >
+				<comment><![CDATA[responsible or owner]]></comment>
+			</column>
+			<column name="uf" type="varchar" length="2" jt="12" />
+			<column name="city" type="varchar" length="40" jt="12" />
+			<column name="address" type="varchar" length="100" jt="12" />
+			<column name="landline" type="varchar" length="20" jt="12" >
+				<comment><![CDATA[Telephone with area code]]></comment>
+			</column>
+			<column name="cellphone" type="varchar" length="20" jt="12" />
+			<column name="website" type="varchar" length="40" jt="12" >
+				<comment><![CDATA[web address]]></comment>
+			</column>
+			<column name="email" type="varchar" length="40" jt="12" />
+			<index name="pk_external_organizations_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="field_department" >
+			<comment><![CDATA[The field department focuses on the "on-the-ground" organizing that is required in order to personally contact voters through canvassing, phone calls, and building local events.
+
+All involved in the election and election campaign mobilization that does not have user account to access the system.]]></comment>
+			<column name="id" type="int" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="user_reference_id" type="int" jt="4" />
+			<column name="origem" type="varchar" length="70" decimal="0" jt="12" >
+				<comment><![CDATA[Who indicated the user]]></comment>
+			</column>
+			<column name="organization" type="varchar" length="70" decimal="0" jt="12" />
+			<column name="profession" type="varchar" length="10" decimal="0" jt="12" />
+			<column name="first_name" type="varchar" length="40" decimal="0" jt="12" />
+			<column name="last_name" type="varchar" length="40" decimal="0" jt="12" />
+			<column name="nickname" type="varchar" length="40" decimal="0" jt="12" />
+			<column name="email" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="sex" type="varchar" length="1" decimal="0" jt="12" />
+			<column name="cpf" type="varchar" length="14" decimal="0" jt="12" />
+			<column name="user_photo" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="birthday_date" type="date" length="10" decimal="0" jt="91" />
+			<column name="cel_number" type="varchar" length="14" decimal="0" jt="12" />
+			<column name="telephone_number" type="varchar" length="14" decimal="0" jt="12" />
+			<column name="uf" type="varchar" length="2" decimal="0" jt="12" />
+			<column name="city" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="cep" type="varchar" length="10" decimal="0" jt="12" />
+			<column name="address" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="created" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>CURRENT_TIMESTAMP</defo>
+			</column>
+			<column name="religion" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="last_login" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="email_verified" type="boolean" decimal="0" jt="-7" />
+			<column name="facebook" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="twitter" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="linkedin" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="google" type="varchar" length="50" decimal="0" jt="12" />
+			<index name="pk_field_department" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_field_department_user_reference_id" unique="NORMAL" >
+				<column name="user_reference_id" />
+			</index>
+			<fk name="fk_field_department_users" to_schema="candidate_db" to_table="users" >
+				<fk_column name="user_reference_id" pk="id_user" />
+			</fk>
+		</table>
+		<table name="kinds_relationship" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="kind_relationship" type="varchar" length="40" jt="12" mandatory="y" />
+			<index name="pk_kinds_relationship_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="relationship_network" >
+			<comment><![CDATA[Relationship betwen members]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="id_actor_a" type="int" jt="4" />
+			<column name="kind_of_relationship" type="varchar" length="60" jt="12" />
+			<column name="id_actor_b" type="int" jt="4" />
+			<column name="observation" type="text" jt="-1" />
+			<index name="pk_relationship_network_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="staff" >
+			<comment><![CDATA[Candidate Staff Members. Registrated users who can perform exclusive actions in the parlour.]]></comment>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="id_user" type="int" jt="4" />
+			<column name="user_access_level" type="int" jt="4" >
+				<comment><![CDATA[uses the binaty wrx (421) mode, in the sequences (ex. 777)]]></comment>
+			</column>
+			<column name="date_added" type="date" jt="91" />
+			<column name="add_from_id" type="int" jt="4" >
+				<comment><![CDATA[ID of who added the member]]></comment>
+			</column>
+			<column name="access_manage_campaign" type="tinyint" jt="-6" >
+				<comment><![CDATA[Atribution of staff user in campaign managment.
+Uses a Integer from 0 to 7, in the RWX (4,2,1) attribution.]]></comment>
+			</column>
+			<column name="access_financial_campaign" type="tinyint" jt="-6" >
+				<comment><![CDATA[Atribution of staff user in campaign finantial managment.
+Uses a Integer from 0 to 7, in the RWX (4,2,1) attribution.]]></comment>
+			</column>
+			<column name="access_cabinet_managment" type="tinyint" jt="-6" >
+				<comment><![CDATA[Atribution of staff user in parlour managment.
+Uses a Integer from 0 to 7, in the RWX (4,2,1) attribution.]]></comment>
+			</column>
+			<column name="role" type="varchar" length="50" jt="12" >
+				<comment><![CDATA[Staff Roles take precedence over user roles]]></comment>
+			</column>
+			<column name="obs" type="blob" jt="2004" />
+			<index name="pk_staff_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_staff_id_user" unique="NORMAL" >
+				<column name="id_user" />
+			</index>
+			<fk name="fk_staff_users" to_schema="candidate_db" to_table="users" >
+				<fk_column name="id_user" pk="id_user" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="user_roles" >
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="role_name" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="budget_managment" type="tinyint" jt="-6" />
+			<column name="members_managment" type="tinyint" jt="-6" />
+			<column name="reports_managment" type="tinyint" jt="-6" />
+			<column name="members_access" type="tinyint" jt="-6" />
+			<column name="agenda_access" type="tinyint" jt="-6" />
+			<column name="internet_interaction" type="tinyint" jt="-6" />
+			<column name="send_messages" type="tinyint" jt="-6" />
+			<index name="pk_user_roles_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="users" >
+			<comment><![CDATA[List of candidate enviroment]]></comment>
+			<column name="id_user" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="username" type="varchar" length="15" jt="12" mandatory="y" />
+			<column name="password" type="varchar" length="32" jt="12" mandatory="y" />
+			<column name="first_name" type="varchar" length="40" jt="12" />
+			<column name="last_name" type="varchar" length="40" jt="12" />
+			<column name="email" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="sex" type="varchar" length="1" jt="12" />
+			<column name="cpf" type="varchar" length="14" jt="12" >
+				<comment><![CDATA[The User document number]]></comment>
+			</column>
+			<column name="user_photo" type="varchar" length="100" jt="12" />
+			<column name="birthday_date" type="date" jt="91" />
+			<column name="cel_number" type="varchar" length="14" jt="12" >
+				<comment><![CDATA[Cellular number. With area code]]></comment>
+			</column>
+			<column name="telephone_number" type="varchar" length="14" jt="12" >
+				<comment><![CDATA[Landline number sith area code]]></comment>
+			</column>
+			<column name="uf" type="varchar" length="2" jt="12" >
+				<comment><![CDATA[State Code (with two digits). Complete list in the general.db, 'Estados' table.]]></comment>
+			</column>
+			<column name="city" type="varchar" length="50" jt="12" >
+				<comment><![CDATA[City Code (with two digits). Complete list in the general.db, 'Cidades' table.]]></comment>
+			</column>
+			<column name="cep" type="varchar" length="10" jt="12" >
+				<comment><![CDATA[ZIP code. The location api in the ... .py file.]]></comment>
+			</column>
+			<column name="address" type="varchar" length="255" jt="12" >
+				<comment><![CDATA[The user address]]></comment>
+			</column>
+			<column name="created" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>CURRENT_TIMESTAMP</defo>
+				<comment><![CDATA[User creation timestamp]]></comment>
+			</column>
+			<column name="religion" type="varchar" length="50" jt="12" />
+			<column name="id_role" type="int" length="10" jt="4" >
+				<comment><![CDATA[Activity of the user in the Candidate Campaign (will delimit the functions access in the system)]]></comment>
+			</column>
+			<column name="aditional_attributions" type="varchar" length="100" jt="12" />
+			<column name="last_login" type="varchar" length="100" jt="12" >
+				<comment><![CDATA[The users last signin with Location and useful data]]></comment>
+			</column>
+			<column name="email_verified" type="boolean" length="1" decimal="0" jt="-7" >
+				<comment><![CDATA[Check if the email of user was verified. Usually in the first login, after the token check]]></comment>
+			</column>
+			<column name="logged_in" type="boolean" length="1" decimal="0" jt="-7" >
+				<comment><![CDATA[Check if the user is logged in the system and available to chat]]></comment>
+			</column>
+			<column name="updated_at" type="varchar" length="200" jt="12" >
+				<comment><![CDATA[If updated, store the detais]]></comment>
+			</column>
+			<index name="pk_users_id" unique="PRIMARY_KEY" >
+				<column name="id_user" />
+			</index>
+			<index name="idx_users_id_role" unique="NORMAL" >
+				<column name="id_role" />
+			</index>
+			<fk name="fk_users_user_roles" to_schema="candidate_db" to_table="user_roles" >
+				<fk_column name="id_role" pk="id" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+	</schema>
+	<connector name="candidate - local" database="MySql" driver_class="com.mysql.jdbc.Driver" driver_jar="mysql-connector-java-5.1.44-bin.jar" driver_desc="Standard" host="localhost" port="3306" instance="candidate_db" user="root" passwd="cm9vdA==" />
+	<layout name="Parsed Script Layout" id="Layout_576ba6a" show_relation="columns" >
+		<entity schema="candidate_db" name="committee" color="bcd5f1" x="75" y="45" />
+		<entity schema="candidate_db" name="commitee_members" color="bcd5f1" x="300" y="45" />
+		<entity schema="candidate_db" name="field_department" color="bcd5f1" x="675" y="45" />
+		<entity schema="candidate_db" name="kinds_relationship" color="bcd5f1" x="495" y="60" />
+		<entity schema="candidate_db" name="relationship_network" color="bcd5f1" x="405" y="165" />
+		<entity schema="candidate_db" name="external_organizations" color="bcd5f1" x="870" y="165" />
+		<entity schema="candidate_db" name="coligations" color="bcd5f1" x="780" y="645" />
+		<entity schema="candidate_db" name="candidate" color="bcd5f1" x="390" y="330" />
+		<entity schema="candidate_db" name="staff" color="bcd5f1" x="45" y="855" />
+		<entity schema="candidate_db" name="user_roles" color="bcd5f1" x="225" y="435" />
+		<entity schema="candidate_db" name="users" color="bcd5f1" x="45" y="345" />
+		<script name="users" id="Editor_52b799" language="SQL" confirmed="y" >
+			<string><![CDATA[CREATE TABLE candidate_db.users ( 
+	id_user              int  NOT NULL  AUTO_INCREMENT,
+	username             varchar(15)  NOT NULL  ,
+	password             varchar(32)  NOT NULL  ,
+	first_name           varchar(40)    ,
+	last_name            varchar(40)    ,
+	email                varchar(50)  NOT NULL  ,
+	sex                  varchar(1)    ,
+	cpf                  varchar(14)    ,
+	user_photo           varchar(100)    ,
+	birthday_date        date    ,
+	cel_number           varchar(14)    ,
+	telephone_number     varchar(14)    ,
+	uf                   varchar(2)    ,
+	city                 varchar(50)    ,
+	cep                  varchar(10)    ,
+	address              varchar(255)    ,
+	created              timestamp    ,
+	role                 varchar(10)    ,
+	last_login           varchar(100)    ,
+	email_verified       bit    ,
+	logged_in            bit    ,
+	CONSTRAINT pk_users_id PRIMARY KEY ( id_user )
+ ) engine=InnoDB;
+
+ALTER TABLE candidate_db.users COMMENT 'List of candidate enviroment';
+
+ALTER TABLE candidate_db.users MODIFY cpf varchar(14)     COMMENT 'The User document number';
+
+ALTER TABLE candidate_db.users MODIFY cel_number varchar(14)     COMMENT 'Cellular number. With area code';
+
+ALTER TABLE candidate_db.users MODIFY telephone_number varchar(14)     COMMENT 'Landline number sith area code';
+
+ALTER TABLE candidate_db.users MODIFY uf varchar(2)     COMMENT 'State Code (with two digits). Complete list in the general.db, ''Estados'' table.';
+
+ALTER TABLE candidate_db.users MODIFY city varchar(50)     COMMENT 'City Code (with two digits). Complete list in the general.db, ''Cidades'' table.';
+
+ALTER TABLE candidate_db.users MODIFY cep varchar(10)     COMMENT 'ZIP code. The location api in the ... .py file.';
+
+ALTER TABLE candidate_db.users MODIFY address varchar(255)     COMMENT 'The user address';
+
+ALTER TABLE candidate_db.users MODIFY created timestamp     COMMENT 'User creation timestamp';
+
+ALTER TABLE candidate_db.users MODIFY role varchar(10)     COMMENT 'Activity of the user in the Candidate Campaign (will delimit the functions access in the system)';
+
+ALTER TABLE candidate_db.users MODIFY last_login varchar(100)     COMMENT 'The users last signin with Location and useful data';
+
+ALTER TABLE candidate_db.users MODIFY email_verified bit     COMMENT 'Check if the email of user was verified. Usually in the first login, after the token check';
+
+ALTER TABLE candidate_db.users MODIFY logged_in bit     COMMENT 'Check if the user is logged in the system and available to chat';
+
+]]></string>
+		</script>
+		<script name="users_001" id="Editor_282fe52" language="SQL" confirmed="y" >
+			<string><![CDATA[CREATE TABLE candidate_db.candidate ( 
+	id_candidate         int  NOT NULL  AUTO_INCREMENT,
+	reference_id         int NOT NULL,
+	name_candidate       varchar(255) NOT NULL,
+	cpf_candidate        varchar(15),
+	photo                varchar(50),
+	political_nickname   varchar(60)  ,	
+	email_candidate      varchar(50)  NOT NULL  ,
+	site                 varchar(100),
+	sex                  varchar(1)    ,
+	user_photo           varchar(100)    ,
+	birthday_date        date    ,
+	cel_number           varchar(14)    ,
+	telephone_number     varchar(14)    ,
+	uf                   varchar(2)    ,
+	city                 varchar(50)    ,
+	cep                  varchar(10)    ,
+	address              varchar(255)    ,
+	electoral_dispute     varchar(20),
+	dispute_position     varchar(40),
+	dispute_UF           varchar(2),
+	dispute_city         varchar(70),
+	dispute_id_party     int,
+	candidate_number     varchar(255),
+	holds_political_position   bit,
+	reelection          bit,
+	first_political_campaign bit,
+	candidate_situation bit,
+	resume               text,
+	obs                  tinyblob,
+	facebook             varchar(60),
+	twitter              varchar(60),
+	google               varchar(60),
+	instagram            varchar(60),
+	created              timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+	last_login           varchar(100)    ,
+	email_verified       boolean    ,
+	logged_in            boolean    ,
+	CONSTRAINT pk_candidate_db_id PRIMARY KEY ( id_candidate )
+ ) engine=InnoDB;
+
+ALTER TABLE candidate_db.candidate COMMENT 'Candidate Information Data';
+
+ALTER TABLE candidate_db.candidate MODIFY cpf varchar(14)     COMMENT 'The Candidate document number';
+
+ALTER TABLE candidate_db.candidate MODIFY cel_number varchar(14)     COMMENT 'Celular number. With area code';
+
+ALTER TABLE candidate_db.candidate MODIFY telephone_number varchar(14)     COMMENT 'Landline number sith area code';
+
+ALTER TABLE candidate_db.candidate MODIFY uf varchar(2)     COMMENT 'State Code (with two digits). Complete list in the general.db, ''Estados'' table.';
+
+ALTER TABLE candidate_db.candidate MODIFY city varchar(50)     COMMENT 'City Code (with two digits). Complete list in the general.db, ''Cidades'' table.';
+
+ALTER TABLE candidate_db.candidate MODIFY cep varchar(10)     COMMENT 'ZIP code. The location api in the ... .py file.';
+
+ALTER TABLE candidate_db.candidate MODIFY address varchar(255)     COMMENT 'The candidate address';
+
+ALTER TABLE candidate_db.candidate MODIFY created timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP  COMMENT 'Candidate creation timestamp';
+
+ALTER TABLE candidate_db.candidate MODIFY last_login varchar(100)     COMMENT 'The candidate last signin with Location and useful data';
+
+ALTER TABLE candidate_db.candidate MODIFY email_verified boolean     COMMENT 'Check if the email of candidate was verified. Usually in the first invite, after the token check';
+
+ALTER TABLE candidate_db.candidate MODIFY logged_in boolean     COMMENT 'Check if the candidate is logged in the system and available to chat';
+
+]]></string>
+		</script>
+	</layout>
+</project>
