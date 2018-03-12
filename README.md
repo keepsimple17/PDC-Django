@@ -28,13 +28,10 @@ With modern tools and digital media techniques allows the identification of cita
 <div align="center">
 <h2> Contents - Index ordered </h2>
 </div>
-#[[Revision-History]]
-#[[Vision]]
-#[[Glossary-of-Terms]]
-#[[Supplementary-Specification]]
-#[[UC---Registration]]
-#[[UC---Login]]
-#[[UC---First-Setup]]
+
+See the WIKI for documentation:
+#[[https://github.com/paulrsilva/PDC/wiki]]
+
 
 
 
