@@ -30,7 +30,7 @@ With modern tools and digital media techniques allows the identification of cita
 </div>
 
 See the WIKI for documentation:
-#[[https://github.com/paulrsilva/PDC/wiki]]
+#[[ https://github.com/paulrsilva/PDC/wiki ]]
 
 
 
