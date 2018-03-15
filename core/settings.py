@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'pdc_db',
-        'USER': 'dashboard',
-        'PASSWORD': 'ksiksiksi',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
@@ -163,5 +163,13 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 
-SOCIAL_AUTH_FACEBOOK_KEY = '555229794846219'  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
+# SOCIAL_AUTH_FACEBOOK_KEY = '555229794846219'  # App ID
+SOCIAL_AUTH_FACEBOOK_KEY = '1464725153656586'  # App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'leeyamkeng120@gmail.com'
+EMAIL_HOST_PASSWORD = 'qjddurwjdvh123'
+EMAIL_PORT = 587
