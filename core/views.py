@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from dashboard.models import Profile
+#from dashboard.models import Usuario
 from django.db import transaction
 from core.forms import UserForm, ProfileForm
 from django.conf import settings
