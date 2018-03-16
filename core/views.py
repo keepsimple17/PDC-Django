@@ -56,7 +56,7 @@ def signup(request):
         form = UserForm()
     return render(request, "registration/signup.html", {'form':form})
 
-def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
+def activate_old(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -67,6 +67,20 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
         user.save()
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('home')
+    else:
+        return HttpResponse('Activation link is invalid!')
+
+def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        form = UserForm()
+        return render(request, "registration/firstsetup.html", {'form':form})
     else:
         return HttpResponse('Activation link is invalid!')
 
