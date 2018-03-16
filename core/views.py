@@ -10,6 +10,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from dashboard.models import Profile
+#from dashboard.models import Usuario
 from django.db import transaction
 from core.forms import UserForm, ProfileForm
 from core.tokens import account_activation_token

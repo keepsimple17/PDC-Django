@@ -84,18 +84,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'pdc_db',
-        'USER': 'dashboard',
+        'USER': 'pdc',
         'PASSWORD': 'ksiksiksi',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
+        'HOST': '192.168.0.7',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'pdc_db',
-        # 'USER': 'paulrsilva',
-        # 'PASSWORD': '12341312iggb',
-        # 'HOST': 'pdc.clpcb1dffjfg.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
-        # 'PORT': '3306',
     }
 }
 
@@ -153,7 +147,7 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = ( 
-    os.path.join(BASE_DIR,'static/'),
+    os.path.join(BASE_DIR,'static'),
 )
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
@@ -169,5 +163,5 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 
-SOCIAL_AUTH_FACEBOOK_KEY = '555229794846219'  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = '178750922907729'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '256247002f670dc4e2bc64c00408e4c4'  # App Secret
