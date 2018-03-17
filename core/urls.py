@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'}, name="logout"),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
