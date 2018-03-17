@@ -21,9 +21,9 @@ class UserForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('location', 'political_party', 'phone')
+        fields = ('candidate_name', 'candidate_political_party', 'cellPhone')
         widgets = {
-            'location': forms.TextInput(attrs={'class': "form-control"}),
-            'political_party': forms.Select(attrs={'class': 'form-control'}),
-            'phone': forms.TextInput(attrs={'class': "form-control validate"}),
+            'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
+            'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
+            'cellPhone': forms.TextInput(attrs={'class': "form-control validate"}),
         }
