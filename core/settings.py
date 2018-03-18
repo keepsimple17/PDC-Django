@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'social_django',
     'dashboard',
+    'candidato',
 ]
 
 MIDDLEWARE_CLASSES = [
