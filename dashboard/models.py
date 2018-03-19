@@ -113,6 +113,15 @@ class Bairro(models.Model):
     Uf = models.CharField(max_length=2)
 
 
+class relationship_network(models.Model):
+    id_actor_a = models.IntegerField() #index from the first actor
+    kind_of_relationship = models.CharField("Tipo de Relacionamento", max_length=40,blank=True,null=True)
+    id_actor_b = models.IntegerField() #index from the second actor
+    secondary_actor = models.IntegerField()
+    kind_of_relationship_to_secondary=models.CharField("Tipo de Relacionamento", max_length=40,blank=True,null=True)
+
+
+
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
 class Profile(models.Model):
 
