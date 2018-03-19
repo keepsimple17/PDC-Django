@@ -114,7 +114,7 @@ class Bairro(models.Model):
 
 
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
-class Profile(models.Model):
+class Usuario(models.Model):
 
     GENDER_CHOICES = (
         ('M', 'Masculino'),
@@ -188,11 +188,11 @@ class Profile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Usuario.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    instance.usuario.save()
 
 
 

@@ -9,7 +9,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
-from dashboard.models import Profile
+from dashboard.models import Usuario
 #from dashboard.models import Usuario
 from django.db import transaction
 from core.forms import UserForm, ProfileForm
@@ -117,7 +117,7 @@ def profile(request):
             messages.warning(request, _('Please correct the error below.'))
     else:
         user_form = UserForm(instance=request.user)
-        profile_form = ProfileForm(instance=request.user.profile)
+        profile_form = ProfileForm(instance=request.user.usuario)
     return render(request, 'profile.html', {
         'user_form': user_form,
         'profile_form': profile_form,
