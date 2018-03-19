@@ -142,6 +142,7 @@ class Coalitions(models.Model):
     political_partie_abbreviation = models.CharField("Sigla Partirária", max_length=20,null=True,blank=True)
 
 
+#Group of Users from Candidate' Confidence, with
 class Staff(models.Model):
     pass
 
@@ -165,6 +166,37 @@ class Committee_Members(models.Model):
     id_commitee=models.IntegerField #the Commitee id
     id_user = models.IntegerField #the user ID of the User in commitee (dashboard.models.Profile)
     assignments = models.CharField("Atribuições", max_length=255, null=True, blank=True) # User assignments in Commitee
+    observations=models.TextField('Observações', null=True, blank=True)
+
+
+# This define the roles of user in the candidate environment
+# come from pre-defined roles list. Can be persolized by the Candidate'
+# The Budget managment in this class is to the Candidate Cashback. Users will have their own cashback control
+class UserRoles(models.Model):
+    candidate_id = models.IntegerField
+    user_ir = models.IntegerField
+    role_name = models.CharField('Regras das Funções',max_length=40, default="Geral")
+    budget_managment = models.PositiveSmallIntegerField('Controle Financeiro', default=0)
+    members_managment = models.PositiveSmallIntegerField('Gestão de Usuários', default=4)
+    reports_managment = models.PositiveSmallIntegerField('Gestão de Relatórios', default=2)
+    members_access = models.PositiveSmallIntegerField('Acesso a Membros', default=4)
+    agenda_access = models.PositiveSmallIntegerField('Acesso à Agenda', default=6)
+    internetInteraction = models.PositiveSmallIntegerField('interação com outros membros', default=7) #users Interaction
+    sendMessages = models.PositiveSmallIntegerField('Enviar Mensagens', default=6)
+
+
+
+# Predefined list of user possibilites to the UserRoles table
+class UserRoles_list(models.Model):
+    role_name = models.CharField('Função do Usuário', max_length=40, blank=False)
+    budget_managment = models.PositiveSmallIntegerField('Controle Financeiro', default=0)
+    members_managment = models.PositiveSmallIntegerField('Gestão de Usuários', default=4)
+    reports_managment = models.PositiveSmallIntegerField('Gestão de Relatórios', default=2)
+    members_access = models.PositiveSmallIntegerField('Acesso a Membros', default=4)
+    agenda_access = models.PositiveSmallIntegerField('Acesso à Agenda', default=6)
+    internetInteraction = models.PositiveSmallIntegerField('interação com outros membros',
+                                                           default=7)  # users Interaction
+    sendMessages = models.PositiveSmallIntegerField('Enviar Mensagens', default=6)
 
 
 

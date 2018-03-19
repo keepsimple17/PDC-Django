@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import RegexValidator
+from django_extensions.db.models import (
+    TitleSlugDescriptionModel, TimeStampedModel)
+
 import os
 
 POLITICAL_PARTY_CHOICES = (
@@ -119,6 +122,7 @@ class relationship_network(models.Model):
     id_actor_b = models.IntegerField() #index from the second actor
     secondary_actor = models.IntegerField()
     kind_of_relationship_to_secondary=models.CharField("Tipo de Relacionamento", max_length=40,blank=True,null=True)
+    observations = models.TextField(null=True,blank=True)
 
 
 
@@ -180,6 +184,8 @@ class Usuario(models.Model):
         upload_to='images/users', verbose_name='foto', null=True, blank=True
     )
     created_date = models.DateField(auto_now=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
 
     # data related to the Candidate the User will indicate | that could exist in system
     id_candidate = models.IntegerField("Id candidato", blank=True, null=True) #id of candidate the User indicated - will be filled latter. Hidden
