@@ -123,7 +123,7 @@ class relationship_network(models.Model):
 
 
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
-class Profile(models.Model):
+class Usuario(models.Model):
 
     GENDER_CHOICES = (
         ('M', 'Masculino'),
@@ -193,15 +193,17 @@ class Profile(models.Model):
 
     user_status = models.CharField("Status", max_length=40, choices=USER_STATUS_CHOICES )
     user_role = models.CharField("Tipo de Acesso", max_length=40, choices=USER_ROLES_CHOICES )
+    def __str__(self):              # __unicode__ on Python 2
+        return self.user.first_name+self.user.last_name
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Usuario.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    instance.usuario.save()
 
 
 
