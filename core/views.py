@@ -27,12 +27,13 @@ def index(request):
     else:
         return redirect(settings.LOGIN_URL)
 
+
 def signup(request):
     if request.method == 'POST':
-        print ('Here')
+        print('Here')
         form = UserForm(request.POST)
         if form.is_valid():
-            print ('form validated')
+            print('form validated')
             user = form.save(commit=False)
             user.is_active = False
             user.save()
@@ -41,21 +42,23 @@ def signup(request):
             message = render_to_string('acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':account_activation_token.make_token(user),
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
             })
-            print ('message', message)
-            to_email = form.cleaned_data.get('email')
+            print('message', message)
+            to_email = form.cleaned_data.get('email', None)
             email = EmailMessage(
                         mail_subject, message, to=[to_email]
             )
-            print ('to_email', to_email)
+            print('to_email', to_email)
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            # return HttpResponse('Please confirm your email address to complete the registration')
+            return render(request, "registration/token_confirmation.html")
     else:
-        print ('this is get request')
+        print('this is get request')
         form = UserForm()
-    return render(request, "registration/signup.html", {'form':form})
+
+    return render(request, "registration/signup.html", {'form': form})
 
 def activate_old(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
@@ -72,6 +75,7 @@ def activate_old(request, uidb64, token, backend='django.contrib.auth.backends.M
         return HttpResponse('Activation link is invalid!')
 
 def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
+    form = UserForm()
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -80,10 +84,10 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        form = UserForm()
-        return render(request, "registration/firstsetup.html", {'form':form})
+        return render(request, "registration/firstsetup.html", {'form': form, 'valid': True})
     else:
-        return HttpResponse('Activation link is invalid!')
+        return render(request, "registration/firstsetup.html", {'form': form, 'valid': False})
+        # return HttpResponse('Activation link is invalid!')
 
 def signup_confirm(request):
     if request.method == 'POST':
