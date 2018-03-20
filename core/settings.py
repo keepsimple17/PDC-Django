@@ -143,7 +143,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT= os.path.join(BASE_DIR,'assets/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets/')
 
 STATIC_URL = '/static/'
 
@@ -153,7 +153,7 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = ( 
-    os.path.join(BASE_DIR,'static/'),
+    os.path.join(BASE_DIR, 'static/'),
 )
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
@@ -177,5 +177,5 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'leeyamkeng120@gmail.com'
-EMAIL_HOST_PASSWORD = 'qjddurwjdvh1234'
+EMAIL_HOST_PASSWORD = 'qjddurwjdvh123'
 EMAIL_PORT = 587
