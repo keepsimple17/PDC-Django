@@ -134,4 +134,79 @@ class Candidate(models.Model):
 #user = models.OneToOneField(User, null=False, blank=False)
 
 
+#this is used to list the candidacy coalitions
+class Coalitions(models.Model):
+    Id_Candidate = models.IntegerField #the User ID of Candidate in the system | dashboard.profile
+    name_coligation = models.CharField("Nome Coligação", max_length=60, null=True, blank=True)
+    political_partie_number = models.IntegerField #associated with the Political Partie Number
+    political_partie_abbreviation = models.CharField("Sigla Partirária", max_length=20,null=True,blank=True)
+
+
+#Group of Users from Candidate' Confidence, with
+class Staff(models.Model):
+    pass
+
+
+#Election Committee
+class Committees(models.Model):
+    id_candidate=models.IntegerField #the Candidate who owns the Commitee
+    id_responsible=models.IntegerField #the staff user responsible in Commitee
+    cep = models.CharField("CEP",max_length=9, blank=True,null=True ) #The Brazilian zipCode
+    estado = models.CharField("UF", max_length=2, blank=True, null=True) # Federal State (in dashboard_estado table)
+    cidade = models.CharField("Cidade", max_length=255, blank=True, null=True) #city
+    bairro = models.CharField("Bairro", max_length=255, blank=True,null=True) #neiborhood
+    address = models.CharField("Endereço", max_length=255, blank=True, null=True)
+    cellPhone = models.CharField(blank=True, null=True, max_length=15,
+                                 validators=[RegexValidator(regex='^\+?1?\d{9,15}$',
+                                                            message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",
+                                                            code='Invalid number')])
+    landlinePhone = models.CharField("Telefone Fixo", max_length=11, blank=True, null=True)
+
+class Committee_Members(models.Model):
+    id_commitee=models.IntegerField #the Commitee id
+    id_user = models.IntegerField #the user ID of the User in commitee (dashboard.models.Profile)
+    assignments = models.CharField("Atribuições", max_length=255, null=True, blank=True) # User assignments in Commitee
+    observations=models.TextField('Observações', null=True, blank=True)
+
+
+# This define the roles of user in the candidate environment
+# come from pre-defined roles list. Can be persolized by the Candidate'
+# The Budget managment in this class is to the Candidate Cashback. Users will have their own cashback control
+class UserRoles(models.Model):
+    candidate_id = models.IntegerField
+    user_ir = models.IntegerField
+    role_name = models.CharField('Regras das Funções',max_length=40, default="Geral")
+    budget_managment = models.PositiveSmallIntegerField('Controle Financeiro', default=0)
+    members_managment = models.PositiveSmallIntegerField('Gestão de Usuários', default=4)
+    reports_managment = models.PositiveSmallIntegerField('Gestão de Relatórios', default=2)
+    members_access = models.PositiveSmallIntegerField('Acesso a Membros', default=4)
+    agenda_access = models.PositiveSmallIntegerField('Acesso à Agenda', default=6)
+    internetInteraction = models.PositiveSmallIntegerField('interação com outros membros', default=7) #users Interaction
+    sendMessages = models.PositiveSmallIntegerField('Enviar Mensagens', default=6)
+
+
+
+# Predefined list of user possibilites to the UserRoles table
+class UserRoles_list(models.Model):
+    role_name = models.CharField('Função do Usuário', max_length=40, blank=False)
+    budget_managment = models.PositiveSmallIntegerField('Controle Financeiro', default=0)
+    members_managment = models.PositiveSmallIntegerField('Gestão de Usuários', default=4)
+    reports_managment = models.PositiveSmallIntegerField('Gestão de Relatórios', default=2)
+    members_access = models.PositiveSmallIntegerField('Acesso a Membros', default=4)
+    agenda_access = models.PositiveSmallIntegerField('Acesso à Agenda', default=6)
+    internetInteraction = models.PositiveSmallIntegerField('interação com outros membros',
+                                                           default=7)  # users Interaction
+    sendMessages = models.PositiveSmallIntegerField('Enviar Mensagens', default=6)
+
+
+
+
+
+
+
+
+
+
+
+
 
