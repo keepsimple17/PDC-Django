@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='home'),
     url(r'^profile/$', views.profile, name='profile'),
+    url(r'^updateCities', views.updateCities, name='updateCities'),
     url(r'^accounts/login/$', auth_views.login, name="login"),
     url(r'^accounts/signup/$', views.signup, name="signup"),
     url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'}, name="logout"),

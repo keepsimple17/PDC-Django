@@ -1,3 +1,4 @@
+import json
 from itertools import chain
 
 from django.contrib import messages
@@ -9,10 +10,11 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
-from dashboard.models import Usuario
+from core.data_objects import get_cities_by_state
+from dashboard.models import Usuario, Estado, Municipio
 #from dashboard.models import Usuario
 from django.db import transaction
-from core.forms import UserForm, ProfileForm
+from core.forms import UserForm, ProfileForm, UserUpdateForm
 from core.tokens import account_activation_token
 from django.conf import settings
 from django.contrib.auth import login, authenticate
@@ -106,11 +108,11 @@ def signup_confirm(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
-        #profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        if user_form.is_valid():# and profile_form.is_valid():
+        user_form = UserUpdateForm(request.POST,instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.usuario)
+        if user_form.is_valid() and profile_form.is_valid():# and profile_form.is_valid():
             user_form.save()
-            #profile_form.save()
+            profile_form.save()
             messages.success(request, _('Your profile was successfully updated!'))
             return redirect('profile')
         else:
@@ -118,7 +120,17 @@ def profile(request):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.usuario)
+
+    cities=get_cities_by_state(request.user.usuario.estado)
     return render(request, 'profile.html', {
         'user_form': user_form,
         'profile_form': profile_form,
+        'cities' : cities,
+        'selected_city' : int(request.user.usuario.cidade)
     })
+
+
+def updateCities(request):
+    state_id=request.GET['stateId']
+    cities=get_cities_by_state(state_id)
+    return render(request, 'cities_drop_down.html', {'cities': cities})
