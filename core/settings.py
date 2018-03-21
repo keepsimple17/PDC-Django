@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'social_django',
     'dashboard',
+    'candidato',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -84,8 +85,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pdc_db',
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'pdc',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
