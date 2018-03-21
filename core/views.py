@@ -31,7 +31,7 @@ def index(request):
 
 def signup(request):
     if request.method == 'POST':
-        print ('Here')
+        #print ('Here')
         form = UserForm(request.POST)
         if form.is_valid():
             print ('form validated')
@@ -39,7 +39,7 @@ def signup(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
             message = render_to_string('acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -53,7 +53,7 @@ def signup(request):
             )
             print ('to_email', to_email)
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return HttpResponse('Por favor confirme o enviado para sua caixa-postal para prosseguir com o registro!')
     else:
         print ('this is get request')
         form = UserForm()
@@ -71,7 +71,7 @@ def activate_old(request, uidb64, token, backend='django.contrib.auth.backends.M
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('home')
     else:
-        return HttpResponse('Activation link is invalid!')
+        return HttpResponse('O Link de Ativação é Inválido!')
 
 def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
@@ -85,7 +85,7 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
         form = UserForm()
         return render(request, "registration/firstsetup.html", {'form':form})
     else:
-        return HttpResponse('Activation link is invalid!')
+        return HttpResponse('O Link de Ativação é Inválido!')
 
 def signup_confirm(request):
     if request.method == 'POST':
@@ -99,7 +99,7 @@ def signup_confirm(request):
             login(request, user)
             return redirect('home')
         else:
-            print ("form not valid")
+            print ("Formulário Inválido")
     else:
         form = UserForm()
     return render(request, "registration/signup.html", {'form':form})
@@ -113,10 +113,10 @@ def profile(request):
         if user_form.is_valid() and profile_form.is_valid():# and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
+            messages.success(request, _('Seu Cadastro foi Atualizado!'))
             return redirect('profile')
         else:
-            messages.warning(request, _('Please correct the error below.'))
+            messages.warning(request, _('Por favor corrija os erros abaixo.'))
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.usuario)
