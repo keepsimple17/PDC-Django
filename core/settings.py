@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'social_django',
     'dashboard',
     'candidato',
+    'cep',
 ]
 
 MIDDLEWARE_CLASSES = [

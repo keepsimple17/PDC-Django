@@ -133,11 +133,14 @@ def profile(request):
         profile_form = ProfileForm(instance=request.user.usuario)
 
     cities=get_cities_by_state(request.user.usuario.estado)
+    selected_city=request.user.usuario.cidade
+    if selected_city is None:
+        selected_city=0
     return render(request, 'profile.html', {
         'user_form': user_form,
         'profile_form': profile_form,
         'cities' : cities,
-        'selected_city' : int(request.user.usuario.cidade)
+        'selected_city' : int(selected_city)
     })
 
 
