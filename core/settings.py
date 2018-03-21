@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'social_django',
     'dashboard',
     'candidato',
+    'cep',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -88,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'pdc',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'root',
         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
         # 'ENGINE': 'django.db.backends.mysql',

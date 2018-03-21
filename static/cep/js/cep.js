@@ -1,5 +1,8 @@
 $(document).ready(function () {
     $(document).on("change", ".zip-field", function () {
-        updateCities(0,true)
+        //$('#loading').show();
+        updateCities(0,true,function(){
+            //$('#loading').hide();
+        });
     });
 });

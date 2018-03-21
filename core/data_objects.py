@@ -26,4 +26,5 @@ def get_cities_by_state(state_id):
             list_cities.append((city.Codigo,city.Nome))
     except:
         pass
+    list_cities.insert(0,("",""))
     return list_cities

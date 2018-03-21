@@ -43,5 +43,8 @@ def addressGet(request, zipcode):
     zipcode = re.sub('[^\d]+', '', zipcode)
     results = cep(zipcode)
     print(results)
-    return HttpResponse('{"street":"%s","district":"%s","city":"%s","state":"%s"}' % (
+    try:
+        return HttpResponse('{"street":"%s","district":"%s","city":"%s","state":"%s"}' % (
         results['logradouro'], results['bairro'], results['cidade'], results['uf']))
+    except:
+        return HttpResponse('{"message":"error"}')
