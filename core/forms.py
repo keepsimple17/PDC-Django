@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.data_objects import get_states, get_cities
 from dashboard.models import Usuario, Estado, Municipio
+from cep.widgets import CEPInput
 
 class UserForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
@@ -38,15 +39,26 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    choice_states=get_states()
+    choice_cities=get_cities()
+    choice_states.insert(0,(None,"enter state"))
+    choice_cities.insert(0,(None,"enter city"))
 
-    choice_states=tuple(get_states())
-    choice_cities=tuple(get_cities())
+    choice_states=tuple(choice_states)
+    choice_cities=tuple(choice_cities)
     estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.')
     cidade = forms.ChoiceField(choices=choice_cities, required=False, help_text='Optional.')
     address = forms.CharField(max_length=255,required=False, help_text='Optional')
+    cep = forms.CharField(label=u"CEP",
+                        help_text="Format: XXXXX-XXX",
+                        widget=CEPInput(address={
+                                                 'state': 'id_estado',
+                                                 'city': 'id_cidade',
+                                                 'street': 'id_address',
+                                                 }))
     class Meta:
         model = Usuario
-        fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address')
+        fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
         widgets = {
             'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
             'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
