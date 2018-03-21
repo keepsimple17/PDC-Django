@@ -64,7 +64,7 @@
                         <select  id="id_cidade" name="cidade">
                             {% for city in cities %}
                                 {% if selected_city  ==  city.0   %}
-                            <option value="{{ city.0 }}" selected>{{ city.1 }}</option>
+                            <option data="{{ city.1 }}" value="{{ city.0 }}" selected>{{ city.1 }}</option>
                                     {% else %}
                             <option value="{{ city.0 }}">{{ city.1 }}</option>
                                 {% endif %}
@@ -74,6 +74,10 @@
                     <div class="form-group col-md-6">
                         <label for="address" class="label-light">Address</label>
                         {{ profile_form.address }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cep" class="label-light">Zipcode</label>
+                        {{ profile_form.cep }}
                     </div>
                 </div>
 
@@ -103,20 +107,6 @@
     <script type="text/javascript">
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-        $('select#id_estado').change(function(){
-        var value = this.value;
-        var url= '/updateCities'
-      // initialize an AJAX request
-        $.ajax({
-        url: url,
-        data: {
-          'stateId': value       // add the state id to the GET parameters
-        },
-        success: function (data) {
-          $("#id_cidade").html(data);  // replace the contents of the city input with the data that came from the server
-        }
-      });
-    });
-    </script>
+    <script src="/static/cep/js/cep.js"></script>
+    <script src="/static/update_profile.js"></script>
 {% endblock %}

@@ -18,7 +18,10 @@ def get_cities():
 def get_cities_by_state(state_id):
     list_cities=[]
     try:
-        cities=Municipio.objects.filter(Uf=state_id)
+        if state_id==str(0):
+            cities=Municipio.objects.all()
+        else:
+            cities=Municipio.objects.filter(Uf=state_id)
         for city in cities:
             list_cities.append((city.Codigo,city.Nome))
     except:
