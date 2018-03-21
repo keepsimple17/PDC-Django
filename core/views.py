@@ -11,7 +11,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from core.data_objects import get_cities_by_state
-from dashboard.models import Usuario, Estado, Municipio
+from dashboard.models import Usuario, Estado, Municipio, POLITICAL_PARTY_CHOICES
 #from dashboard.models import Usuario
 from django.db import transaction
 from core.forms import UserForm, ProfileForm, UserUpdateForm
@@ -22,6 +22,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.models import User
 
 from django.utils.translation import ugettext_lazy as _
+
 
 def index(request):
     if request.user.is_authenticated():
@@ -62,6 +63,7 @@ def signup(request):
 
     return render(request, "registration/signup.html", {'form': form})
 
+
 def activate_old(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -76,6 +78,7 @@ def activate_old(request, uidb64, token, backend='django.contrib.auth.backends.M
     else:
         return HttpResponse('Activation link is invalid!')
 
+
 def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     form = UserForm()
     try:
@@ -86,10 +89,13 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return render(request, "registration/firstsetup.html", {'form': form, 'valid': True})
+        return render(request, "registration/firstsetup.html", {'form': form,
+                                                                'political_legends': POLITICAL_PARTY_CHOICES,
+                                                                'valid': True})
     else:
         return render(request, "registration/firstsetup.html", {'form': form, 'valid': False})
         # return HttpResponse('Activation link is invalid!')
+
 
 def signup_confirm(request):
     if request.method == 'POST':
@@ -114,7 +120,8 @@ def profile(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST,instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.usuario)
-        if user_form.is_valid() and profile_form.is_valid():# and profile_form.is_valid():
+        # and profile_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
             messages.success(request, _('Your profile was successfully updated!'))
