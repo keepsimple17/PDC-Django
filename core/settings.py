@@ -178,8 +178,8 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
 
 #Please use the company smtp to send emails
 DEFAULT_FROM_EMAIL = 'scopo@portaldocandidato.inf.br'
-EMAIL_USE_TLS = False
-EMAIL_HOST = 'smtp.portaldocandidato.inf.br'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtpi.uni5.net'
 EMAIL_HOST_USER = 'scopo@portaldocandidato.inf.br'
 EMAIL_HOST_PASSWORD = 'Scopo@2018'
 EMAIL_PORT = 587
