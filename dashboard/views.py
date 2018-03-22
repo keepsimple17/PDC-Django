@@ -16,12 +16,12 @@ from time import gmtime, strftime
 from datetime import datetime
 # Create your views here.
 
+
 @login_required
 def index(request):
-    excel_list = []
+    # excel_list = []
     if request.user.is_superuser:
-        print ("super user")
+        print("super user")
     else:
-        print ("normal user")
-    return render(request, 'index.html',{})
-
+        print("normal user")
+    return render(request, 'index.html', {})

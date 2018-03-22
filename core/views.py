@@ -12,8 +12,8 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from core.data_objects import get_cities_by_state
 from dashboard.models import Usuario, Estado, Municipio, POLITICAL_PARTY_CHOICES
-#from dashboard.models import Usuario
-from django.db import transaction
+# from dashboard.models import Usuario
+# from django.db import transaction
 from core.forms import UserForm, ProfileForm, UserUpdateForm
 from core.tokens import account_activation_token
 from django.conf import settings
@@ -33,7 +33,7 @@ def index(request):
 
 def signup(request):
     if request.method == 'POST':
-        #print ('Here')
+        # print ('Here')
         form = UserForm(request.POST)
         if form.is_valid():
             print('form validated')
@@ -98,9 +98,10 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
         return render(request, "registration/firstsetup.html", {'form': form, 'valid': False})
         # return HttpResponse('Activation link is invalid!')
 
+
 def signup_confirm(request):
     if request.method == 'POST':
-        print ('request.POST', request.POST)
+        print('request.POST', request.POST)
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
@@ -110,16 +111,16 @@ def signup_confirm(request):
             login(request, user)
             return redirect('home')
         else:
-            print ("Formulário Inválido")
+            print("Formulário Inválido")
     else:
         form = UserForm()
-    return render(request, "registration/signup.html", {'form':form})
+    return render(request, "registration/signup.html", {'form': form})
 
 
 @login_required
 def profile(request):
     if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST,instance=request.user)
+        user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.usuario)
         # and profile_form.is_valid():
         if user_form.is_valid() and profile_form.is_valid():
@@ -133,19 +134,19 @@ def profile(request):
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.usuario)
 
-    cities=get_cities_by_state(request.user.usuario.estado)
-    selected_city=request.user.usuario.cidade
+    cities = get_cities_by_state(request.user.usuario.estado)
+    selected_city = request.user.usuario.cidade
     if selected_city is None:
-        selected_city=0
+        selected_city = 0
     return render(request, 'profile.html', {
         'user_form': user_form,
         'profile_form': profile_form,
-        'cities' : cities,
-        'selected_city' : int(selected_city)
+        'cities': cities,
+        'selected_city': int(selected_city)
     })
 
 
 def updateCities(request):
-    state_id=request.GET['stateId']
-    cities=get_cities_by_state(state_id)
+    state_id = request.GET['stateId']
+    cities = get_cities_by_state(state_id)
     return render(request, 'cities_drop_down.html', {'cities': cities})
