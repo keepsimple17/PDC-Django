@@ -62,20 +62,12 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-<<<<<<< HEAD
-        #fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
+        # fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
         fields = ('cellPhone', 'estado', 'cidade', 'address', 'cep')
-=======
-        fields = ('candidate_name', 'candidate_political_party', 'cellPhone', 'estado', 'cidade', 'address', 'cep')
->>>>>>> 07006db9297223dcb74ba1d9b17985329b8297c9
         widgets = {
-            #'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
-            #'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
+            # 'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
+            # 'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
             'cellPhone': forms.TextInput(attrs={'class': "form-control validate"}),
         }
-<<<<<<< HEAD
-
 
     # Due duplication, the Candidate information is in candidato.models.Candidate. The widgets must been set from there
-=======
->>>>>>> 07006db9297223dcb74ba1d9b17985329b8297c9

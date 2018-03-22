@@ -218,8 +218,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.usuario.save()
-<<<<<<< HEAD
-=======
 
 
 """
@@ -244,4 +242,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 """
->>>>>>> 07006db9297223dcb74ba1d9b17985329b8297c9
