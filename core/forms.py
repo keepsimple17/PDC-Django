@@ -62,6 +62,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
+
         # fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
         fields = ('cellPhone', 'estado', 'cidade', 'address', 'cep')
         widgets = {
@@ -69,5 +70,4 @@ class ProfileForm(forms.ModelForm):
             # 'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
             'cellPhone': forms.TextInput(attrs={'class': "form-control validate"}),
         }
-
     # Due duplication, the Candidate information is in candidato.models.Candidate. The widgets must been set from there

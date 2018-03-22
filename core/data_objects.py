@@ -30,4 +30,3 @@ def get_cities_by_state(state_id):
         pass
     list_cities.insert(0, ("", ""))
     return list_cities
-
