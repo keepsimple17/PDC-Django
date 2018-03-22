@@ -175,5 +175,5 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'leeyamkeng120@gmail.com'
-EMAIL_HOST_PASSWORD = 'qjddurwjdvh123'
+EMAIL_HOST_PASSWORD = '**************'
 EMAIL_PORT = 587

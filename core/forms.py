@@ -44,6 +44,9 @@ class ProfileForm(forms.ModelForm):
     estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.')
     cidade = forms.ChoiceField(choices=choice_cities, required=False, help_text='Optional.')
     address = forms.CharField(max_length=255,required=False, help_text='Optional')
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    id_candidate = forms.IntegerField(max_value=2048, required=False)
+
     class Meta:
         model = Usuario
         fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address')
@@ -51,4 +54,5 @@ class ProfileForm(forms.ModelForm):
             'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
             'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
             'cellPhone': forms.TextInput(attrs={'class': "form-control validate"}),
+            'email': forms.TextInput(attrs={'class': "form-control validate"}),
         }
