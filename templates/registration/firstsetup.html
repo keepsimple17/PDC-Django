@@ -28,110 +28,110 @@
 	    background-color: transparent;
 	    font-weight: 300;
 	}
-	</style>
+</style>
 
-	<!-- Main navbar -->
-	<div class="">
+<!-- Main navbar -->
+<div class="">
 
-		<div class="container">
-			<div class="row">
-							
-			</div>
+	<div class="container">
+		<div class="row">
+						
 		</div>
-
 	</div>
-	<!-- /main navbar -->
 
-    <!-- Login form -->
-	<div class="page-container">
-		<div class="modal-dialog">
-			<div class="login-form">
+</div>
+<!-- /main navbar -->
 
-				<!-- Form -->
-				<form class="modal-body" method="post" action="{% url 'login' %}">
-      			{% csrf_token %}
-					<div class="text-center">
-						<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
-						{% if valid %}
-						<h5 class="content-group">First Setup <small class="display-block">Your candidate</small></h5>
-                        {% endif %}
-					</div>
-                    {% if valid %}
-                        <div class="form-group has-feedback has-feedback-left">
-                            <input name="name" type="text" class="form-control" placeholder="Name" required="required">
-                            <div class="form-control-feedback">
-                                <i class="icon-user text-muted"></i>
-                            </div>
-                        </div>
+<!-- Login form -->
+<div class="page-container">
+	<div class="modal-dialog">
+		<div class="login-form">
 
-                        <div class="form-group has-feedback has-feedback-left">
-                            <input name="number" type="text" class="form-control" placeholder="Number" required="required">
-                            <div class="form-control-feedback">
-                                <i class="icon-spinner9 text-muted"></i>
-                            </div>
-                        </div>
-
-                        <div class="form-group has-feedback has-feedback-left">
-                            <input name="email" type="email" class="form-control" placeholder="Email" required="required">
-                            <div class="form-control-feedback">
-                                <i class="icon-envelop text-muted"></i>
-                            </div>
-                        </div>
-
-                        <div class="form-group has-feedback has-feedback-left">
-                            <input name="telephone" type="number" class="form-control" placeholder="Telephone" required="required">
-                            <div class="form-control-feedback">
-                                <i class="icon-phone text-muted"></i>
-                            </div>
-                        </div>
-
-                        <div class="form-group has-feedback has-feedback-left">
-                            <input name="political_legend" type="text" class="form-control" placeholder="Political Legend" required="required">
-                            <div class="form-control-feedback">
-                                <i class="icon-profile text-muted"></i>
-                            </div>
-                        </div>
-
-                        <input type="hidden" name="next" value="{{request.GET.next}}" />
-
-                        <div class="form-group">
-                            <button type="submit" class="btn bg-green btn-block">Setup <i class="icon-arrow-right14 position-right"></i></button>
-                        </div>
-                    {% else %}
-                        <div class="block">
-                            <div class="block-title">
-                                <h2><strong>Token</strong> Verification</h2>
-                            </div>
-                            <div class="alert alert-success">
-                                <h3><i class="icon-warning" style="font-size: 33px;margin-right: 10px;"></i> Your toke has got expired.</h3>
-                            </div>
-                            <p>This Use Case describes the registration process to the visitor (General Visitor) perform in the site (crm.portaldocandidato.inf.br), with the steps of verification, authorization and initial configuration of the system. </p>
-
-                        </div>
+			<!-- Form -->
+			<form class="modal-body" method="post" action="{% url 'firstsetup' %}">
+  			{% csrf_token %}
+				<div class="text-center">
+					<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+					{% if valid %}
+					<h5 class="content-group">First Setup <small class="display-block">Your candidate</small></h5>
                     {% endif %}
+				</div>
+                {% if valid %}
+                    <div class="form-group has-feedback has-feedback-left">
+                        <input name="candidate_name" type="text" class="form-control" placeholder="Name" required="required">
+                        <div class="form-control-feedback">
+                            <i class="icon-user text-muted"></i>
+                        </div>
+                    </div>
 
-					<span id="alarmArea" class="text-danger"></span>
+                    <div class="form-group has-feedback has-feedback-left">
+                        <input name="number" type="text" class="form-control" placeholder="Number" required="required">
+                        <div class="form-control-feedback">
+                            <i class="icon-spinner9 text-muted"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback has-feedback-left">
+                        <input name="email" type="email" class="form-control" placeholder="Email" required="required">
+                        <div class="form-control-feedback">
+                            <i class="icon-envelop text-muted"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback has-feedback-left">
+                        <input name="cellPhone" type="number" class="form-control" placeholder="Telephone" required="required">
+                        <div class="form-control-feedback">
+                            <i class="icon-phone text-muted"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback has-feedback-left">
+                        <input name="candidate_political_party" type="text" class="form-control" placeholder="Political Legend" required="required">
+                        <div class="form-control-feedback">
+                            <i class="icon-profile text-muted"></i>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="next" value="{{request.GET.next}}" />
+
+                    <div class="form-group">
+                        <button type="submit" class="btn bg-green btn-block">Setup <i class="icon-arrow-right14 position-right"></i></button>
+                    </div>
+                {% else %}
+                    <div class="block">
+                        <div class="block-title">
+                            <h2><strong>Token</strong> Verification</h2>
+                        </div>
+                        <div class="alert alert-success">
+                            <h3><i class="icon-warning" style="font-size: 33px;margin-right: 10px;"></i> Your token has got expired.</h3>
+                        </div>
+                        <p>This Use Case describes the registration process to the visitor (General Visitor) perform in the site (crm.portaldocandidato.inf.br), with the steps of verification, authorization and initial configuration of the system. </p>
+
+                    </div>
+                {% endif %}
+
+				<span id="alarmArea" class="text-danger"></span>
 
 
-					<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
-						<ul class="list-inline form-group list-inline-condensed text-center">
-							<li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
-							<li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
-							<li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
-							<li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
-						</ul>
+				<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
+					<ul class="list-inline form-group list-inline-condensed text-center">
+						<li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
+						<li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
+						<li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
+						<li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
+					</ul>
 
-						<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
-						<a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Sign up</a>
-						<span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
-					</div>
+					<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+					<a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Sign up</a>
+					<span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+				</div>
 
 
-				</form>
-				<!-- /form -->
-			</div>
+			</form>
+			<!-- /form -->
 		</div>
 	</div>
-	<!-- /login form -->
+</div>
+<!-- /login form -->
 
 {% endblock %}

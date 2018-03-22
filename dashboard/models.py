@@ -93,7 +93,7 @@ class PoliticalParties(models.Model):
 
 # Table of Federal States in Brazil
 class Estado (models.Model):
-    #id = models.IntegerField("Numero Partido", primary_key=True, unique=True)
+    # id = models.IntegerField("Numero Partido", primary_key=True, unique=True)
     CodigoUf = models.PositiveSmallIntegerField(primary_key=True, unique=True)
     Nome=models.CharField(max_length=50)
     Uf=models.CharField(max_length=2)
