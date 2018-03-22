@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'pdc',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
         # 'ENGINE': 'django.db.backends.mysql',
@@ -145,7 +145,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT= os.path.join(BASE_DIR,'assets/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets/')
 
 STATIC_URL = '/static/'
 
@@ -155,7 +155,7 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = ( 
-    os.path.join(BASE_DIR,'static/'),
+    os.path.join(BASE_DIR, 'static/'),
 )
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
@@ -176,8 +176,9 @@ SOCIAL_AUTH_FACEBOOK_KEY = '1464725153656586'  # App ID
 # SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
 SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'leeyamkeng120@gmail.com'
-EMAIL_HOST_PASSWORD = 'qjddurwjdvh123'
+DEFAULT_FROM_EMAIL = 'scopo@portaldocandidato.inf.br'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.portaldocandidato.inf.br'
+EMAIL_HOST_USER = 'scopo@portaldocandidato.inf.br'
+EMAIL_HOST_PASSWORD = 'Scopo@2018'
 EMAIL_PORT = 587

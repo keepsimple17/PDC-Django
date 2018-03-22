@@ -5,6 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.data_objects import get_states, get_cities
 from dashboard.models import Usuario, Estado, Municipio
+from candidato.models import Candidate
+
 from cep.widgets import CEPInput
 
 class UserForm(UserCreationForm):
@@ -58,9 +60,13 @@ class ProfileForm(forms.ModelForm):
                                                  }))
     class Meta:
         model = Usuario
-        fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
+        #fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
+        fields = ('cellPhone', 'estado', 'cidade', 'address', 'cep')
         widgets = {
-            'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
-            'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
+            #'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
+            #'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
             'cellPhone': forms.TextInput(attrs={'class': "form-control validate"}),
         }
+
+
+    # Due duplication, the Candidate information is in candidato.models.Candidate. The widgets must been set from there
