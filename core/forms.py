@@ -7,10 +7,12 @@ from core.data_objects import get_states, get_cities
 from dashboard.models import Usuario, Estado, Municipio
 from cep.widgets import CEPInput
 
+
 class UserForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
@@ -27,10 +29,9 @@ class UserUpdateForm(forms.ModelForm):
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
 
-
     class Meta:
         model = User
-        fields = ('first_name', 'last_name','email' )
+        fields = ('first_name', 'last_name', 'email')
         widgets = {
             'first_name': forms.TextInput(attrs={'class': "form-control"}),
             'last_name': forms.TextInput(attrs={'class': "form-control"}),
@@ -39,26 +40,27 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    choice_states=get_states()
-    choice_cities=get_cities()
-    choice_states.insert(0,(None,"enter state"))
-    choice_cities.insert(0,(None,"enter city"))
+    choice_states = get_states()
+    choice_cities = get_cities()
+    choice_states.insert(0, (None, "enter state"))
+    choice_cities.insert(0, (None, "enter city"))
 
-    choice_states=tuple(choice_states)
-    choice_cities=tuple(choice_cities)
+    choice_states = tuple(choice_states)
+    choice_cities = tuple(choice_cities)
     estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.')
     cidade = forms.ChoiceField(choices=choice_cities, required=False, help_text='Optional.')
-    address = forms.CharField(max_length=255,required=False, help_text='Optional')
+    address = forms.CharField(max_length=255, required=False, help_text='Optional')
     cep = forms.CharField(label=u"CEP",
-                        help_text="Format: XXXXX-XXX",
-                        widget=CEPInput(address={
+                          help_text="Format: XXXXX-XXX",
+                          widget=CEPInput(address={
                                                  'state': 'id_estado',
                                                  'city': 'id_cidade',
                                                  'street': 'id_address',
                                                  }))
+
     class Meta:
         model = Usuario
-        fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
+        fields = ('candidate_name', 'candidate_political_party', 'cellPhone', 'estado', 'cidade', 'address', 'cep')
         widgets = {
             'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
             'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),

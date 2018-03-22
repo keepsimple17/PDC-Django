@@ -4,8 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import RegexValidator
-from django_extensions.db.models import (
-    TitleSlugDescriptionModel, TimeStampedModel)
+from django_extensions.db.models import (TitleSlugDescriptionModel, TimeStampedModel)
 
 import os
 
@@ -181,7 +180,8 @@ class Usuario(models.Model):
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
     cellPhone = models.CharField(blank=True, null=True, max_length=15,
                                  validators=[RegexValidator(regex='^\+?1?\d{9,15}$',
-                                                            message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",
+                                                            message="Phone number must be entered in the format:"
+                                                                    " '+999999999'. Up to 15 digits allowed.",
                                                             code='Invalid number')])
     landlinePhone = models.CharField("Telefone Fixo", max_length=11, blank=True, null=True)
     email_verified = models.NullBooleanField(null=True)
