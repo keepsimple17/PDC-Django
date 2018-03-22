@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'candidato/',include('candidato.urls', namespace='candidato')),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate'),
+    url(r'^candidate/register/$', views.firstsetup, name="firstsetup"),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
