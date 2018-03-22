@@ -62,6 +62,40 @@ def signup(request):
 
     return render(request, "registration/signup.html", {'form': form})
 
+
+def firstsetup(request):
+    if request.method == 'POST':
+        print('Here')
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            print('form validated')
+            candidate = form.save(commit=False)
+            candidate.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your PDC account.'
+            message = render_to_string('acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            print('message', message)
+            to_email = form.cleaned_data.get('email', None)
+            email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+            )
+            print('to_email', to_email)
+            email.send()
+            # return HttpResponse('Please confirm your email address to complete the registration')
+            return render(request, "registration/token_confirmation.html")
+    else:
+        print('this is get request')
+        form = UserForm()
+
+    return render(request, "registration/signup.html", {'form': form})
+
+
 def activate_old(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
