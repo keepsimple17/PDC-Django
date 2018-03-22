@@ -135,7 +135,7 @@ class relationship_network(models.Model):
 # This table establishes the relation between User and Candidates
 class UserCandidates(models.Model):
     user_id = models.IntegerField() #related to the dashboard.user and auth_user id
-    candidate_id = models.IntegerField # Related to the candidato.Candidate id
+    candidate_id = models.IntegerField() # Related to the candidato.Candidate id
     created_date = models.DateField(auto_now=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 

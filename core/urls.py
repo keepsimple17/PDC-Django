@@ -17,22 +17,22 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 import django.contrib.auth.views as auth_views
-from core import views
+# from core import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='home'),
-    url(r'^profile/$', views.profile, name='profile'),
-    url(r'^updateCities', views.updateCities, name='updateCities'),
-    url(r'^accounts/login/$', auth_views.login, name="login"),
-    url(r'^accounts/signup/$', views.signup, name="signup"),
-    url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'}, name="logout"),
-    url(r'^oauth/', include('social_django.urls', namespace='social')),
-    url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
-    url(r'candidato/',include('candidato.urls', namespace='candidato')),
-    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        views.activate, name='activate'),
-    url(r'^cep/', include('cep.urls')),
+    # url(r'^admin/', admin.site.urls),
+    # url(r'^$', views.index, name='home'),
+    # url(r'^profile/$', views.profile, name='profile'),
+    # url(r'^updateCities', views.updateCities, name='updateCities'),
+    # url(r'^accounts/login/$', auth_views.login, name="login"),
+    # url(r'^accounts/signup/$', views.signup, name="signup"),
+    # url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'}, name="logout"),
+    # url(r'^oauth/', include('social_django.urls', namespace='social')),
+    # url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
+    # url(r'candidato/',include('candidato.urls', namespace='candidato')),
+    # url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    #     views.activate, name='activate'),
+    # url(r'^cep/', include('cep.urls')),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
