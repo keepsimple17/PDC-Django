@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from urllib.error import URLError
 from django.http import HttpResponse
 import urllib.request
 import re
@@ -45,10 +46,12 @@ def addressGet(request, zipcode):
     # Trata o zipcode removendo caracteres diferentes de numeros.
     # Assim não precisamos nos preocupar de como vai vir o cep.
     zipcode = re.sub('[^\d]+', '', zipcode)
-    results = cep(zipcode)
-    print(results)
+    try:
+        results = cep(zipcode)
+    except URLError:
+        return HttpResponse('{"url_error_message":"urlopenerror"}')
     try:
         return HttpResponse('{"street":"%s","district":"%s","city":"%s","state":"%s"}' % (
             results['logradouro'], results['bairro'], results['cidade'], results['uf']))
     except:
-        return HttpResponse('{"message":"error"}')
+        return HttpResponse('{"not_found_error_message":"notfounderror"}')

@@ -131,6 +131,13 @@ class relationship_network(models.Model):
     kind_of_relationship_to_secondary = models.CharField("Tipo de Relacionamento", max_length=40, blank=True, null=True)
     observations = models.TextField(null=True, blank=True)
 
+# This table establishes the relation between User and Candidates
+class UserCandidates(models.Model):
+    user_id = models.IntegerField() #related to the dashboard.user and auth_user id
+    candidate_id = models.IntegerField() # Related to the candidato.Candidate id
+    created_date = models.DateField(auto_now=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
 
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
 class Usuario(models.Model):
@@ -192,17 +199,6 @@ class Usuario(models.Model):
     )
     created_date = models.DateField(auto_now=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
-
-    # data related to the Candidate the User will indicate | that could exist in system
-    # id of candidate the User indicated - will be filled latter. Hidden
-    id_candidate = models.IntegerField("Id candidato", blank=True, null=True)
-    candidate_political_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
-    candidate_name = models.CharField("Nome do Candidato", max_length=100, blank=True, null=True)
-    # State where the candidate is running for elections
-    candidate_estado = models.CharField("UF do Candidato", max_length=2, blank=True, null=True)
-    candidate_city = models.CharField("Cidade do Candidato", max_length=255, blank=True, null=True)
-    # verify if candidate exists in candidate table
-    candidate_email = models.EmailField("Email do Candidato", null=True)
 
     # Information of the access rights and roles of User to the candidate
 
