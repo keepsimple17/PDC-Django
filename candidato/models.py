@@ -81,6 +81,7 @@ ELECTION_BALLOTS =(
 
 
 class Candidate(models.Model):
+    user = models.OneToOneField(User, null=True, blank=False)
     reference_id = models.IntegerField #to associate to the user who invited the candidate
     user_id = models.IntegerField #the User ID of Candidate in the system | dashboard.profile
     candidate_political_nickname = models.CharField("Nome Eleitoral do Candidato", max_length=40, blank=True, null=True)
@@ -96,7 +97,6 @@ class Candidate(models.Model):
         #candidate' Slug used to create map url
     slug = models.SlugField('Atalho', blank=True)
 
-
     holds_political_position = models.BooleanField("Detém Cargo Político", default="False")
         #todo If the candidate does not holds political position, disable political position
     political_position = models.CharField("Posição Politica que Exerce", max_length=40,null=True,blank=True)
@@ -111,7 +111,7 @@ class Candidate(models.Model):
     google = models.CharField(max_length=40, blank=True, null=True)
     youtube = models.CharField(max_length=40, blank=True, null=True)
     instagram = models.CharField(max_length=40, blank=True, null=True)
-
+    usuarioes = models.ManyToManyField('dashboard.usuario', blank=True)
 
     foto = models.ImageField(
         #if diferent from the user photo in the dashboard.profile
