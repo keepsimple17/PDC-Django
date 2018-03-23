@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from django.core.validators import RegexValidator
 from django_extensions.db.models import (TitleSlugDescriptionModel, TimeStampedModel)
@@ -131,6 +131,7 @@ class relationship_network(models.Model):
     kind_of_relationship_to_secondary = models.CharField("Tipo de Relacionamento", max_length=40, blank=True, null=True)
     observations = models.TextField(null=True, blank=True)
 
+
 # This table establishes the relation between User and Candidates
 class UserCandidates(models.Model):
     user_id = models.IntegerField() #related to the dashboard.user and auth_user id
@@ -218,6 +219,11 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.usuario.save()
+
+
+@receiver(pre_delete, sender=User)
+def delete_user_profile(sender, instance, **kwargs):
+    instance.usuario.delete()
 
 
 """
