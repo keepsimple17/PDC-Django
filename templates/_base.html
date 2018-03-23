@@ -1,12 +1,12 @@
 {% load staticfiles  %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>PDC</title>
+	<title>SCOPO - Sistema de Controle Político</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="/"><img src="{% static 'images/logo.png'%}" alt=""></a>
+			<a class="navbar-brand" href="/"><img src="{% static 'images/logoScopo.png'%}" alt=""></a>
 
 			<ul class="nav navbar-nav visible-xs-block">
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -60,11 +60,11 @@
 
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-git-compare"></i>
-						<span class="visible-xs-inline-block position-right">Git updates</span>
+						<i class="icon-megaphone"></i>
+						<span class="visible-xs-inline-block position-right">Alertas do Candidato</span>
 						<span class="badge bg-warning-400">9</span>
 					</a>
-					
+
 					<div class="dropdown-menu dropdown-content">
 						<div class="dropdown-content-heading">
 							Git updates
@@ -72,7 +72,7 @@
 								<li><a href="#"><i class="icon-sync"></i></a></li>
 							</ul>
 						</div>
-
+                        <!-- Those information should comes from the candidate alerts, in app activities (been developed) -->
 						<ul class="media-list dropdown-content-body width-350">
 							<li class="media">
 								<div class="media-left">
@@ -80,8 +80,8 @@
 								</div>
 
 								<div class="media-body">
-									Drop the IE <a href="#">specific hacks</a> for temporal inputs
-									<div class="media-annotation">4 minutes ago</div>
+									Nova Solicitação de Amizade de <a href="#">Paulino R. e Silva</a>
+									<div class="media-annotation">4 minutos atrás</div>
 								</div>
 							</li>
 
@@ -91,8 +91,8 @@
 								</div>
 								
 								<div class="media-body">
-									Add full font overrides for popovers and tooltips
-									<div class="media-annotation">36 minutes ago</div>
+									Nova Solicitação de Marketing
+									<div class="media-annotation">36 minutos atrás</div>
 								</div>
 							</li>
 
@@ -102,8 +102,8 @@
 								</div>
 								
 								<div class="media-body">
-									<a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span> branch
-									<div class="media-annotation">2 hours ago</div>
+									<a href="#">Social Play</a> criou um novo <span class="text-semibold">Design</span>
+									<div class="media-annotation">2 horas atrás</div>
 								</div>
 							</li>
 
@@ -113,8 +113,8 @@
 								</div>
 								
 								<div class="media-body">
-									<a href="#">Eugene Kopyov</a> merged <span class="text-semibold">Master</span> and <span class="text-semibold">Dev</span> branches
-									<div class="media-annotation">Dec 18, 18:36</div>
+									<a href="#">Multiplay</a> solicitou envio de <span class="text-semibold">mensagens</span> e <span class="text-semibold">Dev</span> Revisão
+									<div class="media-annotation">Março 18, 18:36</div>
 								</div>
 							</li>
 
@@ -124,8 +124,8 @@
 								</div>
 								
 								<div class="media-body">
-									Have Carousel ignore keyboard events
-									<div class="media-annotation">Dec 12, 05:46</div>
+									Inicio de configuração
+									<div class="media-annotation">Jan 12, 05:46</div>
 								</div>
 							</li>
 						</ul>
@@ -142,24 +142,20 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown language-switch">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="{% static 'images/flags/gb.png' %}" class="position-left" alt="">
-						English
+						<img src="{% static 'images/flags/br.png' %}" class="position-left" alt="">
+						Português
 						<span class="caret"></span>
 					</a>
 
 					<ul class="dropdown-menu">
-						<li><a class="deutsch"><img src="{% static 'images/flags/de.png' %}" alt=""> Deutsch</a></li>
-						<li><a class="ukrainian"><img src="{% static 'images/flags/ua.png' %}" alt=""> Українська</a></li>
-						<li><a class="english"><img src="{% static 'images/flags/gb.png' %}" alt=""> English</a></li>
-						<li><a class="espana"><img src="{% static 'images/flags/es.png' %}" alt=""> España</a></li>
-						<li><a class="russian"><img src="{% static 'images/flags/ru.png' %}" alt=""> Русский</a></li>
+						<li><a class="english"><img src="{% static 'images/flags/gb.png' %}" alt=""> Inglês</a></li>
 					</ul>
 				</li>
 
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-bubbles4"></i>
-						<span class="visible-xs-inline-block position-right">Messages</span>
+						<span class="visible-xs-inline-block position-right">Mensagens</span>
 						<span class="badge bg-warning-400">2</span>
 					</a>
 					
@@ -180,11 +176,11 @@
 
 								<div class="media-body">
 									<a href="#" class="media-heading">
-										<span class="text-semibold">James Alexander</span>
+										<span class="text-semibold">Marcelo Senise</span>
 										<span class="media-annotation pull-right">04:58</span>
 									</a>
 
-									<span class="text-muted">who knows, maybe that would be the best thing for me...</span>
+									<span class="text-muted">Organização de Envio de Mensagens</span>
 								</div>
 							</li>
 
@@ -196,11 +192,11 @@
 
 								<div class="media-body">
 									<a href="#" class="media-heading">
-										<span class="text-semibold">Margo Baker</span>
+										<span class="text-semibold">Fernando Priolli</span>
 										<span class="media-annotation pull-right">12:16</span>
 									</a>
 
-									<span class="text-muted">That was something he was unable to do because...</span>
+									<span class="text-muted">Comitê Central no RJ</span>
 								</div>
 							</li>
 
@@ -208,11 +204,11 @@
 								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
 								<div class="media-body">
 									<a href="#" class="media-heading">
-										<span class="text-semibold">Jeremy Victorino</span>
+										<span class="text-semibold">Marcelo Victorino</span>
 										<span class="media-annotation pull-right">22:48</span>
 									</a>
 
-									<span class="text-muted">But that would be extremely strained and suspicious...</span>
+									<span class="text-muted">Como está o vídeo de divulgação?</span>
 								</div>
 							</li>
 
@@ -220,11 +216,11 @@
 								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
 								<div class="media-body">
 									<a href="#" class="media-heading">
-										<span class="text-semibold">Beatrix Diaz</span>
+										<span class="text-semibold">Beatriz Diaz</span>
 										<span class="media-annotation pull-right">Tue</span>
 									</a>
 
-									<span class="text-muted">What a strenuous career it is that I've chosen...</span>
+									<span class="text-muted">O relatório de tendências em São Paulo está pronto...</span>
 								</div>
 							</li>
 
@@ -232,11 +228,11 @@
 								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
 								<div class="media-body">
 									<a href="#" class="media-heading">
-										<span class="text-semibold">Richard Vango</span>
+										<span class="text-semibold">Comitê Bahia</span>
 										<span class="media-annotation pull-right">Mon</span>
 									</a>
 									
-									<span class="text-muted">Other travelling salesmen live a life of luxury...</span>
+									<span class="text-muted">Reunião de mobilizão online as 22:00hs.</span>
 								</div>
 							</li>
 						</ul>
@@ -255,12 +251,12 @@
 					</a>
 
 					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="{% url 'profile' %}"><i class="icon-user-plus"></i> My profile</a></li>
-						<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
-						<li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+						<li><a href="{% url 'profile' %}"><i class="icon-user-plus"></i> Meu Perfil</a></li>
+						<li><a href="#"><i class="icon-coins"></i> Livro-Caixa</a></li>
+						<li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Mensagens</a></li>
 						<li class="divider"></li>
-						<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-						<li><a href="{% url 'logout' %}"><i class="icon-switch2"></i> Logout</a></li>
+						<li><a href="#"><i class="icon-cog5"></i> Configurações</a></li>
+						<li><a href="{% url 'logout' %}"><i class="icon-switch2"></i> Sair</a></li>
 					</ul>
 				</li>
 			</ul>
