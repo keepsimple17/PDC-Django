@@ -14,7 +14,7 @@ from core.data_objects import get_cities_by_state
 from dashboard.models import Usuario, Estado, Municipio, POLITICAL_PARTY_CHOICES
 #from dashboard.models import Usuario
 from django.db import transaction
-from core.forms import UserForm, ProfileForm, UserUpdateForm
+from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
 from django.conf import settings
 from django.contrib.auth import login, authenticate
@@ -31,7 +31,7 @@ def index(request):
         return redirect(settings.LOGIN_URL)
 
 
-def signup(request):
+def signup(request, uidb64=None):
     if request.method == 'POST':
         #print ('Here')
         form = UserForm(request.POST)
@@ -65,6 +65,68 @@ def signup(request):
 
     return render(request, "registration/signup.html", {'form': form})
 
+def candidate_signup(request, uidb64=None):
+    if request.method == 'POST':
+        print ('Here')
+        form = UserForm(request.POST)
+        if form.is_valid():
+            print('form validated')
+            user = form.save(commit=False)
+            user.is_active = False
+            return redirect('home')
+            # user.save()
+            # try:
+            #     uid = force_text(urlsafe_base64_decode(uidb64))
+            #     candidate = Candidate.objects.get(pk=uid)
+            # except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            #     candidate = None
+            # candidate.user_id = user.pk
+            # candidate.save()
+            # login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            # return redirect('home')
+
+    else:
+        print('this is get request', uidb64)
+        form = UserForm()
+        return render(request, "registration/candidate_signup.html", {'form': form, 'uidb64': uidb64})
+
+def firstsetup(request):
+
+    user_id = request.POST['user_id']
+    user = User.objects.get(pk=user_id)
+
+    candidate_form = CandidateForm(request.POST)    
+    profile_form = ProfileForm(request.POST, instance=user.usuario)
+
+    if candidate_form.is_valid():
+        print('candidate_form validated')
+        candidate = candidate_form.save(commit=False)
+        candidate.save()
+        print ('candidate id', candidate.id)
+        print ('uid', urlsafe_base64_encode(force_bytes(candidate.id)))
+        current_site = get_current_site(request)
+        mail_subject = 'You are invited to PDC site as Candidate!'
+        message = render_to_string('candidate_invite_email.html', {
+            'user': candidate,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(candidate.id)),
+        })
+        print('message', message)
+        to_email = candidate_form.cleaned_data.get('campaign_email', None)
+        email = EmailMessage(
+            mail_subject, message, to=[to_email]
+        )
+        print('to_email', to_email)
+        email.send()
+
+    if profile_form.is_valid():
+        print('profile_form validated')
+        profile_form.save()
+        messages.success(request, _('Seu Cadastro foi Atualizado!'))
+    
+    login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+    return redirect('home')
+
 
 def activate_old(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
@@ -91,8 +153,12 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
+        profile_form = ProfileForm(instance=user.usuario)
+        print ('user.usuario', user.usuario)
         return render(request, "registration/firstsetup.html", {'form': form,
+                                                                'profile_form': profile_form,
                                                                 'political_legends': POLITICAL_PARTY_CHOICES,
+                                                                'user_id': user.id,
                                                                 'valid': True})
     else:
         return render(request, "registration/firstsetup.html", {'form': form, 'valid': False})
@@ -119,8 +185,10 @@ def signup_confirm(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST,instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.usuario)
+        print ('request.user', request.user)
+        print ('request.user.usuario', request.user.usuario)
+        user_form = UserUpdateForm(request.POST,instance=request.user)        
+        profile_form = ProfileForm(request.POST, instance=request.user.usuario)        
         # and profile_form.is_valid():
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
