@@ -55,9 +55,9 @@
         <div class="container">
 
             <!--First row-->
-            <div class="row wow fadeIn" data-wow-delay="0.4s">
+            <div class="row wow fadeIn" data-wow-delay="0.4s" style="margin-top: 50px;">
 
-                <fieldset class="content-group">
+                <fieldset class="content-group text-center">
                     <legend class="text-bold">Account Settings</legend>
                 </fieldset>
 
@@ -66,43 +66,69 @@
             <!--/.First row-->
 
             <!--Second row-->
-            <form action="{% url 'profile' %}" method="post" onsubmit="return validateForm();" name="user-form">
+            <form action="{% url 'profile' %}" method="post" onsubmit="return validateForm();"
+                  class="form-horizontal form-bordered"
+                  style="max-width: 700px;margin: auto;"
+                  name="user-form">
             {% csrf_token %}
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="user_name">User Name : {{ request.user.username }}</label>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="username">User Name</label>
+                    <div class="col-md-9">
+                        <input type="text"
+                               value="{{ request.user.username }}"
+                               name="username"
+                               readonly
+                               class="form-control" placeholder="User Name">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="user_name">First Name</label>
-                        {{ user_form.first_name }}
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="label-light required" for="user_name">Last Name</label>
-                        {{ user_form.last_name }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="user_email">Email</label>
-                        {{ user_form.email }}
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="label-light" for="user_preferred_language">Company</label>
-                        {{ profile_form.company }}
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="first_name">First Name</label>
+                    <div class="col-md-9">
+                        <input type="text"
+                               value="{{ request.user.first_name }}"
+                               name="first_name"
+                               class="form-control" placeholder="First Name">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="estado" >State :</label>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="last_name">Last Name</label>
+                    <div class="col-md-9">
+                        <input type="text"
+                               value="{{ request.user.last_name }}"
+                               name="last_name"
+                               class="form-control" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="email">Email</label>
+                    <div class="col-md-9">
+                        <input type="email"
+                               value="{{ request.user.email }}"
+                               name="email"
+                               class="form-control"
+                               placeholder="Enter Email">
+                        <span class="help-block">Please enter your email</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="company">Company</label>
+                    <div class="col-md-9">
+                        <input type="text"
+                               value="{{ profile_form.company.value }}"
+                               name="company"
+                               class="form-control" placeholder="Enter Company">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="estado">State :</label>
+                    <div class="col-md-9">
                         {{ profile_form.estado }}
-{#                        <select onchange="updateCities(this)" id="estado" class="form-control" name="estado" value={{ profile_form.estado }}></select>#}
                     </div>
-                    <div class="form-group col-md-6">
-                        <label  for="cidade" class="label-light" >City</label>
-{#                        {{ profile_form.cidade}}#}
-                        <select  id="id_cidade" name="cidade">
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="example-select">City :</label>
+                    <div class="col-md-9">
+                        <select class="form-control"  id="id_cidade" name="cidade">
                             {% for city in cities %}
                                 {% if selected_city  ==  city.0   %}
                             <option data="{{ city.1 }}" value="{{ city.0 }}" selected>{{ city.1 }}</option>
@@ -112,15 +138,35 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="address" class="label-light">Address</label>
-                        {{ profile_form.address }}
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="cep" class="label-light" name="cep">Zipcode</label>
-                        {{ profile_form.cep }}
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="cep">Zipcode</label>
+                    <div class="col-md-9">
+                        <input type="text"
+                               value="{{ profile_form.cep.value }}"
+                               name="cep"
+                               class="form-control" placeholder="Enter Zipcode">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="address">Address</label>
+                    <div class="col-md-9">
+                        <input type="text"
+                               value="{{ profile_form.address.value }}"
+                               name="address"
+                               class="form-control" placeholder="Enter Address">
+                    </div>
+                </div>
+{#                <div class="row">#}
+{#                    <div class="form-group col-md-6">#}
+{#                        <label for="address" class="label-light">Address</label>#}
+{#                        {{ profile_form.address }}#}
+{#                    </div>#}
+{#                    <div class="form-group col-md-6">#}
+{#                        <label for="cep" class="label-light" name="cep">Zipcode</label>#}
+{#                        {{ profile_form.cep }}#}
+{#                    </div>#}
+{#                </div>#}
 
                 <hr>
                 <div class="row prepend-top-default append-bottom-default">
