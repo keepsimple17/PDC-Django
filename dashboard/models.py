@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
+from candidato.models import Candidate
+from django.db.models.signals import post_save
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from django.core.validators import RegexValidator
@@ -132,14 +134,6 @@ class relationship_network(models.Model):
     observations = models.TextField(null=True, blank=True)
 
 
-# This table establishes the relation between User and Candidates
-class UserCandidates(models.Model):
-    user_id = models.IntegerField() #related to the dashboard.user and auth_user id
-    candidate_id = models.IntegerField() # Related to the candidato.Candidate id
-    created_date = models.DateField(auto_now=True, null=True, blank=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
-
-
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
 class Usuario(models.Model):
 
@@ -205,6 +199,7 @@ class Usuario(models.Model):
 
     user_status = models.CharField("Status", max_length=40, choices=USER_STATUS_CHOICES)
     user_role = models.CharField("Tipo de Acesso", max_length=40, choices=USER_ROLES_CHOICES)
+    candidates = models.ManyToManyField(Candidate, blank=True)
 
     def __str__(self):              # __unicode__ on Python 2
         return self.user.first_name+self.user.last_name

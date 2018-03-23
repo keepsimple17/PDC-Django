@@ -1,5 +1,4 @@
 """excelweb URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
 Examples:
@@ -27,6 +26,7 @@ urlpatterns = [
     url(r'^updateCities', views.updateCities, name='updateCities'),
     url(r'^accounts/login/$', auth_views.login, name="login"),
     url(r'^accounts/signup/$', views.signup, name="signup"),
+    url(r'^accounts/candidatesignup/(?P<uidb64>[0-9A-Za-z_\-]+)/$', views.candidate_signup, name="candidate_signup"),
     url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'}, name="logout"),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate'),
     url(r'^cep/', include('cep.urls')),
+    url(r'^account/firstsetup', views.firstsetup, name="firstsetup"),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

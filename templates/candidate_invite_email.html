@@ -1,0 +1,5 @@
+{% autoescape off %}
+Hello {{ user.username }},
+Congrats! You are invited to PDC site as a Candidate. Please sign up and use it for your campaign,
+http://{{ domain }}{% url 'candidate_signup' uidb64=uid %}
+{% endautoescape %}
