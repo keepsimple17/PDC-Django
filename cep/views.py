@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+from urllib.error import URLError
 from django.http import HttpResponse
 import urllib.request
 import re
 from xml.dom import minidom
+
 
 def cep(numero):
     url = 'http://cep.republicavirtual.com.br/web_cep.php?formato=' \
@@ -10,10 +12,11 @@ def cep(numero):
     dom = minidom.parse(urllib.request.urlopen(url))
 
     tags_name = ('uf',
-                'cidade',
-                'bairro',
-                'tipo_logradouro',
-                'logradouro',)
+                 'cidade',
+                 'bairro',
+                 'tipo_logradouro',
+                 'logradouro',
+                 )
 
     resultado = dom.getElementsByTagName('resultado')[0]
     resultado = int(resultado.childNodes[0].data)
@@ -21,6 +24,7 @@ def cep(numero):
         return _getDados(tags_name, dom)
     else:
         return {}
+
 
 def _getDados(tags_name, dom):
     dados = {}
@@ -34,6 +38,7 @@ def _getDados(tags_name, dom):
 
     return dados
 
+
 # Podem ser usados outros webservices como o http://ceplivre.pc2consultoria.com/index.php?module=cep&cep=%s&formato=xml
 # Entretanto deve ser observado o encoding para que ele seja alterado na linha 14
 # Outra referencia util http://allissonazevedo.com/2012/03/22/buscando-cep-diretamente-pelo-site-dos-correios-em-python/
@@ -41,10 +46,12 @@ def addressGet(request, zipcode):
     # Trata o zipcode removendo caracteres diferentes de numeros.
     # Assim não precisamos nos preocupar de como vai vir o cep.
     zipcode = re.sub('[^\d]+', '', zipcode)
-    results = cep(zipcode)
-    print(results)
+    try:
+        results = cep(zipcode)
+    except URLError:
+        return HttpResponse('{"url_error_message":"urlopenerror"}')
     try:
         return HttpResponse('{"street":"%s","district":"%s","city":"%s","state":"%s"}' % (
-        results['logradouro'], results['bairro'], results['cidade'], results['uf']))
+            results['logradouro'], results['bairro'], results['cidade'], results['uf']))
     except:
-        return HttpResponse('{"message":"error"}')
+        return HttpResponse('{"not_found_error_message":"notfounderror"}')
