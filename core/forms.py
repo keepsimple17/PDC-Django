@@ -66,6 +66,7 @@ class ProfileForm(forms.ModelForm):
     choice_states=tuple(choice_states)
     choice_cities=tuple(choice_cities)
     estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.', widget=forms.Select(attrs={'class':'form-control'}))
+
     cidade = forms.ChoiceField(choices=choice_cities, required=False, help_text='Optional.')
     address = forms.CharField(max_length=255, required=False, help_text='Optional')
     cep = forms.CharField(label=u"CEP",
@@ -86,10 +87,8 @@ class ProfileForm(forms.ModelForm):
             # 'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
             'cellPhone': forms.TextInput(attrs={'class': "form-control validate"}),
         }
-<<<<<<< HEAD
+
 
 
     # Due duplication, the Candidate information is in candidato.models.Candidate. The widgets must been set from there
-=======
-    # Due duplication, the Candidate information is in candidato.models.Candidate. The widgets must been set from there
->>>>>>> master
+
