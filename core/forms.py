@@ -58,7 +58,6 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-
     choice_states=get_states()
     choice_cities=get_cities()
     choice_states.insert(0,(None,"Enter State"))
