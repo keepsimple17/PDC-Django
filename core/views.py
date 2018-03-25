@@ -131,21 +131,6 @@ def firstsetup(request):
     return redirect('home')
 
 
-def activate_old(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
-    try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        return redirect('home')
-    else:
-        return HttpResponse('O Link de Ativação é Inválido!')
-
-
 def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     form = UserForm()
     try:
