@@ -58,7 +58,6 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-<<<<<<< HEAD
     choice_states=get_states()
     choice_cities=get_cities()
     choice_states.insert(0,(None,"Enter State"))
@@ -67,16 +66,6 @@ class ProfileForm(forms.ModelForm):
     choice_states=tuple(choice_states)
     choice_cities=tuple(choice_cities)
     estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.', widget=forms.Select(attrs={'class':'form-control'}))
-=======
-    choice_states = get_states()
-    choice_cities = get_cities()
-    choice_states.insert(0, (None, "enter state"))
-    choice_cities.insert(0, (None, "enter city"))
-
-    choice_states = tuple(choice_states)
-    choice_cities = tuple(choice_cities)
-    estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.')
->>>>>>> master
     cidade = forms.ChoiceField(choices=choice_cities, required=False, help_text='Optional.')
     address = forms.CharField(max_length=255, required=False, help_text='Optional')
     cep = forms.CharField(label=u"CEP",
