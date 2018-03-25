@@ -20,6 +20,7 @@ from django.conf import settings
 from django.contrib.auth import login, authenticate
 from django.core.mail import EmailMessage
 from django.contrib.auth.models import User
+from candidato.models import Candidate
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -73,17 +74,19 @@ def candidate_signup(request, uidb64=None):
             print('form validated')
             user = form.save(commit=False)
             user.is_active = False
+            user.save()
+
+            # adding user_id to candidate table
+            try:
+                uid = force_text(urlsafe_base64_decode(uidb64))
+                candidate = Candidate.objects.get(pk=uid)
+            except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+                candidate = None
+            print ('user id', user.pk)
+            candidate.user_id = user.pk
+            candidate.save()
+            
             return redirect('home')
-            # user.save()
-            # try:
-            #     uid = force_text(urlsafe_base64_decode(uidb64))
-            #     candidate = Candidate.objects.get(pk=uid)
-            # except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-            #     candidate = None
-            # candidate.user_id = user.pk
-            # candidate.save()
-            # login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            # return redirect('home')
 
     else:
         print('this is get request', uidb64)
