@@ -58,17 +58,18 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    choice_states=get_states()
-    choice_cities=get_cities()
+    choice_states = get_states()
+    choice_cities = get_cities()
     choice_states.insert(0,(None,"Enter State"))
     choice_cities.insert(0,(None,"Enter City"))
 
-    choice_states=tuple(choice_states)
-    choice_cities=tuple(choice_cities)
+    choice_states = tuple(choice_states)
+    choice_cities = tuple(choice_cities)
     estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.', widget=forms.Select(attrs={'class':'form-control'}))
 
     cidade = forms.ChoiceField(choices=choice_cities, required=False, help_text='Optional.')
     address = forms.CharField(max_length=255, required=False, help_text='Optional')
+    company = forms.CharField(max_length=255, required=False, help_text='Optional')
     cep = forms.CharField(label=u"CEP",
                           help_text="Format: XXXXX-XXX",
                           widget=CEPInput(address={
@@ -81,7 +82,7 @@ class ProfileForm(forms.ModelForm):
         model = Usuario
 
         # fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
-        fields = ('cellPhone', 'estado', 'cidade', 'address', 'cep')
+        fields = ('cellPhone', 'estado', 'cidade', 'address', 'company', 'cep')
         widgets = {
             # 'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
             # 'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),

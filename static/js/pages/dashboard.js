@@ -1520,16 +1520,19 @@ $(function() {
 
     // Chart setup
     function messagesArea(element, height, color) {
-
+        if (!document.getElementById(element)) {
+            return;
+        }
 
         // Basic setup
         // ------------------------------
 
         // Define main variables
-        var d3Container = d3.select(element),
-            margin = {top: 0, right: 0, bottom: 0, left: 0},
-            width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
-            height = height - margin.top - margin.bottom;
+        var d3Container = d3.select(element);
+        var margin = {top: 0, right: 0, bottom: 0, left: 0};
+        var width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right;
+        // var width = document.getElementById(element).getBoundingClientRect().width - margin.left - margin.right;
+        var height = height - margin.top - margin.bottom;
 
         // Date and time format
         var parseDate = d3.time.format( '%Y-%m-%d' ).parse;
@@ -2865,6 +2868,9 @@ $(function() {
 
     // Chart setup
     function generateBarChart(element, barQty, height, animate, easing, duration, delay, color, tooltip) {
+        if (!document.getElementById(element)) {
+            return;
+        }
 
 
         // Basic setup

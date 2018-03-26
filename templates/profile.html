@@ -2,53 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-    <style>
-        .btn-rounded {
-            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
-            -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
-        }
-
-        .loader {
-          border: 16px solid #f3f3f3;
-          border-radius: 50%;
-          border-top: 16px solid blue;
-          border-right: 16px solid green;
-          border-bottom: 16px solid red;
-          width: 120px;
-          height: 120px;
-          -webkit-animation: spin 2s linear infinite;
-          animation: spin 2s linear infinite;
-        }
-
-        @-webkit-keyframes spin {
-          0% { -webkit-transform: rotate(0deg); }
-          100% { -webkit-transform: rotate(360deg); }
-        }
-
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-
-        .loder-center {
-          position: absolute;
-          top: 0;
-          left: 0;
-          margin: 15% 45%;
-          bottom: 0;
-          right: 0;
-        }
-
-        .loder-layer {
-          background-color: rgba(44, 154, 179, 0.65);
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          display: none;
-        }
-    </style>
     <div class="page-container">
 
         <!--Main layout-->
@@ -68,7 +21,7 @@
             <!--Second row-->
             <form action="{% url 'profile' %}" method="post" onsubmit="return validateForm();"
                   class="form-horizontal form-bordered"
-                  style="max-width: 700px;margin: auto;"
+                  style="max-width: 700px;margin: auto;margin-bottom: 50px"
                   name="user-form">
             {% csrf_token %}
                 <div class="form-group">
@@ -81,6 +34,33 @@
                                class="form-control" placeholder="User Name">
                     </div>
                 </div>
+{#                {{ password_form }}#}
+{#                {{ password_form.cleaned_data }}#}
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="old_password">Current Password</label>
+                    <div class="col-md-9">
+                        <input type="password"
+                               name="old_password"
+                               class="form-control" placeholder="Current Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="new_password1">New Password</label>
+                    <div class="col-md-9">
+                        <input type="password"
+                               name="new_password1"
+                               class="form-control" placeholder="New Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="new_password2">New Password Confirmation</label>
+                    <div class="col-md-9">
+                        <input type="password"
+                               name="new_password2"
+                               class="form-control" placeholder="New Password Confirmation">
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="first_name">First Name</label>
                     <div class="col-md-9">
@@ -107,7 +87,7 @@
                                name="email"
                                class="form-control"
                                placeholder="Enter Email">
-                        <span class="help-block">Please enter your email</span>
+{#                        <span class="help-block">Please enter your email</span>#}
                     </div>
                 </div>
                 <div class="form-group">
@@ -154,19 +134,21 @@
                         <input type="text"
                                value="{{ profile_form.address.value }}"
                                name="address"
-                               class="form-control" placeholder="Enter Address">
+                               id="address"
+                               class="form-control typeahead" placeholder="Enter an address">
                     </div>
                 </div>
-{#                <div class="row">#}
-{#                    <div class="form-group col-md-6">#}
-{#                        <label for="address" class="label-light">Address</label>#}
-{#                        {{ profile_form.address }}#}
-{#                    </div>#}
-{#                    <div class="form-group col-md-6">#}
-{#                        <label for="cep" class="label-light" name="cep">Zipcode</label>#}
-{#                        {{ profile_form.cep }}#}
-{#                    </div>#}
-{#                </div>#}
+
+                <div id="map" class="map-wrapper"></div>
+                <div class="form-group" style="margin-top: 30px;">
+                    <label class="col-md-3 control-label" for="cellPhone">Telephone</label>
+                    <div class="col-md-9">
+                        <input type="text"
+                               value="{{ profile_form.cellPhone.value }}"
+                               name="cellPhone"
+                               class="form-control" placeholder="Enter telephone number">
+                    </div>
+                </div>
 
                 <hr>
                 <div class="row prepend-top-default append-bottom-default">
@@ -197,9 +179,28 @@
             <h3><b>Loading...</b></h3>
         </div>
     </div>
-    <script type="text/javascript">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
+    <script type="text/javascript" src="/static/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/pickers/location/typeahead_addresspicker.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/pickers/location/autocomplete_addresspicker.js"></script>
     <script src="/static/cep/js/cep.js"></script>
     <script src="/static/update_profile.js"></script>
+    <script>
+        // Basic initialization, based on Bloodhound
+        var addressPicker = new AddressPicker({
+            map: {
+                id: '#map'
+            }
+        });
+
+        // instantiate the typeahead UI
+        $('#address').typeahead(null, {
+            displayKey: 'description',
+            source: addressPicker.ttAdapter()
+        });
+
+        // Bind some event to update map on autocomplete selection
+        $('#address').bind('typeahead:selected', addressPicker.updateMap);
+        $('#address').bind('typeahead:cursorchanged', addressPicker.updateMap);
+    </script>
 {% endblock %}
