@@ -8,6 +8,8 @@ from django.dispatch import receiver
 from django.core.validators import RegexValidator
 from django_extensions.db.models import (TitleSlugDescriptionModel, TimeStampedModel)
 
+event_hook_depth = 0
+
 import os
 
 POLITICAL_PARTY_CHOICES = (
@@ -219,7 +221,42 @@ def save_user_profile(sender, instance, **kwargs):
 
 @receiver(pre_delete, sender=User)
 def delete_user_profile(sender, instance, **kwargs):
-    instance.usuario.delete()
+    global event_hook_depth
+    event_hook_depth += 1
+    if event_hook_depth < 3:
+        try:
+            instance.usuario.delete()
+        except Exception as e:
+            print('exception occurred!', e)
+        event_hook_depth = 0
+    return
+
+
+@receiver(pre_delete, sender=Usuario)
+def delete_dashboard_usuario(sender, instance, **kwargs):
+    global event_hook_depth
+    event_hook_depth += 1
+    if event_hook_depth < 3:
+        try:
+            instance.user.delete()
+        except Exception as e:
+            print('exception occurred!', e)
+        event_hook_depth = 0
+    return
+    # usuario_user = User.objects.get(username=instance)
+    # print('user', usuario_user)
+    # print('user email', usuario_user.email)
+    # # if user:
+    # #     user.delete()
+    # try:
+    #     usuario_user.delete()
+    #     print("The user is deleted")
+    #
+    # except User.DoesNotExist:
+    #     print("User doesnot exist")
+    #
+    # except Exception as e:
+    #     print('exception', e)
 
 
 """
