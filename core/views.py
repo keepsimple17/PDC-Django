@@ -75,7 +75,8 @@ def candidate_signup(request, uidb64=None):
         if form.is_valid():
             print('form validated')
             user = form.save(commit=False)
-            user.is_active = False
+            user.is_active = True
+            user.is_staff = False
             user.save()
 
             # adding user_id to candidate table
@@ -88,7 +89,7 @@ def candidate_signup(request, uidb64=None):
             candidate.user_id = user.pk
             candidate.save()
             
-            return redirect('home')
+            return redirect(settings.LOGIN_URL)
 
     else:
         print('this is get request', uidb64)
@@ -142,6 +143,7 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
         user = None
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
+        user.is_staff = False
         user.save()
         profile_form = ProfileForm(instance=user.usuario)
         print ('user.usuario', user.usuario)
