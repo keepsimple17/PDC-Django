@@ -81,19 +81,91 @@
 <!-- Basic setup -->
 		            <div class="panel panel-white">
 						<div class="panel-heading">
-							<h6 class="panel-title">Basic example</h6>
+							<h6 class="panel-title">Primeira Configuração</h6>
 							<div class="heading-elements">
 								<ul class="icons-list">
 			                		<li><a data-action="collapse"></a></li>
 			                		<li><a data-action="reload"></a></li>
-			                		<li><a data-action="close"></a></li>
 			                	</ul>
 		                	</div>
 						</div>
 
 	                	<form class="steps-basic" action="#">
-							<h6>Personal data</h6>
+							<h6>Dados Pessoais</h6>
 							<fieldset>
+
+                                <!-- Username and email -->
+                                <div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Nome de Usuário:</label> <!-- Username -->
+											<input type="text" name="name" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Email:</label>
+											<input type="email" name="email" class="form-control" placeholder="your@email.com">
+										</div>
+									</div>
+								</div>
+                                <!-- /Username and email -->
+
+                                <!-- Name, Surname, Civil Status, Gender -->
+                                <div class="row">
+									<div class="col-md-3">
+										<div class="form-group">
+											<label>Nome</label> <!-- Name -->
+											<input type="text" name="name" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-3">
+										<div class="form-group">
+											<label>Sobrenome:</label> <!-- Surname -->
+											<input type="text" name="name" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="form-group">
+											<label>Gênero:</label>
+											<select name="gender" data-placeholder="Gênero" class="select">
+												<option></option>
+												<optgroup label="Pessoa Física">
+													<option value="M">Masculino</option>
+													<option value="F">Feminino</option>
+                                                    <option value="N">Outro</option>
+												</optgroup>
+
+												<optgroup label="Pessoa Jurídica">
+													<option value="E">Empresa</option>
+													<option value="S">Sindicato</option>
+													<option value="O">Organização ou Instituto</option>
+												</optgroup>
+											</select>
+                                         </div>
+									</div>
+                                    <div class="col-md-3">
+										<div class="form-group">
+											<label>Estado Civil:</label>
+											<select name="gender" data-placeholder="Gênero" class="select">
+												<option></option>
+												<optgroup label="Estado Civil">
+													<option value="S">Solteiro</option>
+													<option value="F">Casado</option>
+                                                    <option value="D">Divordiado</option>
+                                                    <option value="V">Viúvo</option>
+                                                    <option value="O">Outro</option>
+												</optgroup>
+
+											</select>
+                                         </div>
+									</div>
+
+								</div>
+                                <!-- /Name, Surname, Civil Status, Gender -->
+
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -263,7 +335,7 @@
 								</div>
 							</fieldset>
 
-							<h6>Your education</h6>
+							<h6>Dados do Candidato</h6>
 							<fieldset>
 								<div class="row">
 									<div class="col-md-6">
@@ -365,7 +437,7 @@
 								</div>
 							</fieldset>
 
-							<h6>Your experience</h6>
+							<h6>Equipe</h6>
 							<fieldset>
 								<div class="row">
 									<div class="col-md-6">
@@ -451,7 +523,7 @@
 								</div>
 							</fieldset>
 
-							<h6>Additional info</h6>
+							<h6>Informações Adicionais</h6>
 							<fieldset>
 								<div class="row">
 									<div class="col-md-6">
