@@ -58,7 +58,7 @@
             <div class="row wow fadeIn" data-wow-delay="0.4s" style="margin-top: 50px;">
 
                 <fieldset class="content-group text-center">
-                    <legend class="text-bold">Account Settings</legend>
+                    <legend class="text-bold">Configurações da Conta</legend>
                 </fieldset>
 
             </div>
@@ -72,7 +72,7 @@
                   name="user-form">
             {% csrf_token %}
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="username">User Name</label>
+                    <label class="col-md-3 control-label" for="username">Nome do Usuário</label>
                     <div class="col-md-9">
                         <input type="text"
                                value="{{ request.user.username }}"
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="first_name">First Name</label>
+                    <label class="col-md-3 control-label" for="first_name">Primeiro Nome</label>
                     <div class="col-md-9">
                         <input type="text"
                                value="{{ request.user.first_name }}"
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="last_name">Last Name</label>
+                    <label class="col-md-3 control-label" for="last_name">Último Sobrenome</label>
                     <div class="col-md-9">
                         <input type="text"
                                value="{{ request.user.last_name }}"
@@ -107,11 +107,11 @@
                                name="email"
                                class="form-control"
                                placeholder="Enter Email">
-                        <span class="help-block">Please enter your email</span>
+                        <span class="help-block">Por favor, digite seu email</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="company">Company</label>
+                    <label class="col-md-3 control-label" for="company">Empresa</label>
                     <div class="col-md-9">
                         <input type="text"
                                value="{{ profile_form.company.value }}"
@@ -120,13 +120,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="estado">State :</label>
+                    <label class="col-md-3 control-label" for="estado">Estado :</label>
                     <div class="col-md-9">
                         {{ profile_form.estado }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="example-select">City :</label>
+                    <label class="col-md-3 control-label" for="example-select">Cidade :</label>
                     <div class="col-md-9">
                         <select class="form-control"  id="id_cidade" name="cidade">
                             {% for city in cities %}
@@ -140,7 +140,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="cep">Zipcode</label>
+                    <label class="col-md-3 control-label" for="cep">CEP</label>
                     <div class="col-md-9">
                         <input type="text"
                                value="{{ profile_form.cep.value }}"
@@ -149,7 +149,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="address">Address</label>
+                    <label class="col-md-3 control-label" for="address">Endereço</label>
                     <div class="col-md-9">
                         <input type="text"
                                value="{{ profile_form.address.value }}"
@@ -159,11 +159,11 @@
                 </div>
 {#                <div class="row">#}
 {#                    <div class="form-group col-md-6">#}
-{#                        <label for="address" class="label-light">Address</label>#}
+{#                        <label for="address" class="label-light">Endereço</label>#}
 {#                        {{ profile_form.address }}#}
 {#                    </div>#}
 {#                    <div class="form-group col-md-6">#}
-{#                        <label for="cep" class="label-light" name="cep">Zipcode</label>#}
+{#                        <label for="cep" class="label-light" name="cep">CEP</label>#}
 {#                        {{ profile_form.cep }}#}
 {#                    </div>#}
 {#                </div>#}
@@ -194,7 +194,7 @@
     <div class="loder-layer" id="loading">
         <div class="loder-center">
             <div class="loader"></div>
-            <h3><b>Loading...</b></h3>
+            <h3><b>Carregando...</b></h3>
         </div>
     </div>
     <script type="text/javascript">

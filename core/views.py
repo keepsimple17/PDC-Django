@@ -130,6 +130,12 @@ def firstsetup(request):
     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
     return redirect('home')
 
+# It' the firstSetup, with updated template
+def primeiroSetup(request):
+    #return HttpResponse('Primeira Configuração do Usuário')  # User First Configuration - In the first login
+    #return render(request, "registration/signup.html", {'form': form})
+    return render(request, "registration/primeiroSetup.html")
+
 
 def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     form = UserForm()

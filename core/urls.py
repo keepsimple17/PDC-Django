@@ -35,6 +35,7 @@ urlpatterns = [
         views.activate, name='activate'),
     url(r'^cep/', include('cep.urls')),
     url(r'^account/firstsetup', views.firstsetup, name="firstsetup"),
+    url(r'^account/primeiroSetup', views.primeiroSetup, name="primeiroSetup"), #the template update for the firstsetup
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
