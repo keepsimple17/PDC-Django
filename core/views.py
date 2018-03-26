@@ -20,6 +20,8 @@ from django.conf import settings
 from django.contrib.auth import login, authenticate
 from django.core.mail import EmailMessage
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from candidato.models import Candidate
 
 from django.utils.translation import ugettext_lazy as _
@@ -179,31 +181,40 @@ def signup_confirm(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        print ('request.user', request.user)
-        print ('request.user.usuario', request.user.usuario)
-        user_form = UserUpdateForm(request.POST,instance=request.user)        
-        profile_form = ProfileForm(request.POST, instance=request.user.usuario)        
+        print('request.user', request.user)
+        # print('request.user.usuario', request.user.usuario)
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.usuario)
+        password_form = PasswordChangeForm(request.user, request.POST)
         # and profile_form.is_valid():
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
             messages.success(request, _('Seu Cadastro foi Atualizado!'))
+            # change pw
+            if password_form.is_valid():
+                user = password_form.save()
+                # updating pw very very Important!!!!
+                update_session_auth_hash(request, user)
+                messages.success(request, 'Your password was successfully updated!')
             return redirect('profile')
         else:
             messages.warning(request, _('Por favor corrija os erros abaixo.'))
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.usuario)
+        password_form = PasswordChangeForm(request.user)
 
-    cities=get_cities_by_state(request.user.usuario.estado)
-    selected_city=request.user.usuario.cidade
+    cities = get_cities_by_state(request.user.usuario.estado)
+    selected_city = request.user.usuario.cidade
     if selected_city is None:
-        selected_city=0
+        selected_city = 0
     return render(request, 'profile.html', {
         'user_form': user_form,
         'profile_form': profile_form,
-        'cities' : cities,
-        'selected_city' : int(selected_city)
+        'cities': cities,
+        'password_form': password_form,
+        'selected_city': int(selected_city)
     })
 
 

@@ -17,10 +17,59 @@
 	<link href="{% static 'css/colors.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'css/my.css' %}" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
+    <style>
+        .btn-rounded {
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+            -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+        }
+
+        .loader {
+          border: 16px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 16px solid blue;
+          border-right: 16px solid green;
+          border-bottom: 16px solid red;
+          width: 120px;
+          height: 120px;
+          -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+          0% { -webkit-transform: rotate(0deg); }
+          100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .loder-center {
+          position: absolute;
+          top: 0;
+          left: 0;
+          margin: 15% 45%;
+          bottom: 0;
+          right: 0;
+        }
+
+        .loder-layer {
+          background-color: rgba(44, 154, 179, 0.65);
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: none;
+        }
+    </style>
 
 	<!-- Core JS files -->
 	<script type="text/javascript" src="{% static 'js/plugins/loaders/pace.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/core/libraries/jquery.min.js' %}"></script>
+{#	<script type="text/javascript" src="{% static 'js/core/libraries/jquery.min.js' %}"></script>#}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="{% static 'js/core/libraries/bootstrap.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/plugins/loaders/blockui.min.js' %}"></script>
 	<!-- /core JS files -->
@@ -39,8 +88,6 @@
 	<!-- /theme JS files -->
 	<script type="text/javascript" src="{% static 'js/my.js' %}"></script>
 
-
-
 </head>
 	
 <body>
@@ -56,217 +103,216 @@
 			</ul>
 		</div>
 {% if user.is_authenticated %}
-		<div class="navbar-collapse collapse" id="navbar-mobile">
-			<ul class="nav navbar-nav">
-				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav">
+            <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
 
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-megaphone"></i>
-						<span class="visible-xs-inline-block position-right">Alertas do Candidato</span>
-						<span class="badge bg-warning-400">9</span>
-					</a>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-megaphone"></i>
+                    <span class="visible-xs-inline-block position-right">Alertas do Candidato</span>
+                    <span class="badge bg-warning-400">9</span>
+                </a>
 
-					<div class="dropdown-menu dropdown-content">
-						<div class="dropdown-content-heading">
-							Git updates
-							<ul class="icons-list">
-								<li><a href="#"><i class="icon-sync"></i></a></li>
-							</ul>
-						</div>
-                        <!-- Those information should comes from the candidate alerts, in app activities (been developed) -->
-						<ul class="media-list dropdown-content-body width-350">
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
-								</div>
+                <div class="dropdown-menu dropdown-content">
+                    <div class="dropdown-content-heading">
+                        Git updates
+                        <ul class="icons-list">
+                            <li><a href="#"><i class="icon-sync"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- Those information should comes from the candidate alerts, in app activities (been developed) -->
+                    <ul class="media-list dropdown-content-body width-350">
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
+                            </div>
 
-								<div class="media-body">
-									Nova Solicitação de Amizade de <a href="#">Paulino R. e Silva</a>
-									<div class="media-annotation">há 4 minutos</div>
-								</div>
-							</li>
+                            <div class="media-body">
+                                Nova Solicitação de Amizade de <a href="#">Paulino R. e Silva</a>
+                                <div class="media-annotation">4 minutos atrás</div>
+                            </div>
+                        </li>
 
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-commit"></i></a>
-								</div>
-								
-								<div class="media-body">
-									Nova Solicitação de Marketing
-									<div class="media-annotation">Há 36 minutos</div>
-								</div>
-							</li>
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-commit"></i></a>
+                            </div>
 
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-branch"></i></a>
-								</div>
-								
-								<div class="media-body">
-									<a href="#">Social Play</a> criou um novo <span class="text-semibold">Design</span>
-									<div class="media-annotation">2 horas atrás</div>
-								</div>
-							</li>
+                            <div class="media-body">
+                                Nova Solicitação de Marketing
+                                <div class="media-annotation">36 minutos atrás</div>
+                            </div>
+                        </li>
 
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-merge"></i></a>
-								</div>
-								
-								<div class="media-body">
-									<a href="#">Multiplay</a> solicitou envio de <span class="text-semibold">mensagens</span> e <span class="text-semibold">Dev</span> Revisão
-									<div class="media-annotation">Março 18, 18:36</div>
-								</div>
-							</li>
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-branch"></i></a>
+                            </div>
 
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
-								</div>
-								
-								<div class="media-body">
-									Inicio de configuração
-									<div class="media-annotation">Jan 12, 05:46</div>
-								</div>
-							</li>
-						</ul>
+                            <div class="media-body">
+                                <a href="#">Social Play</a> criou um novo <span class="text-semibold">Design</span>
+                                <div class="media-annotation">2 horas atrás</div>
+                            </div>
+                        </li>
 
-						<div class="dropdown-content-footer">
-							<a href="#" data-popup="tooltip" title="All activity"><i class="icon-menu display-block"></i></a>
-						</div>
-					</div>
-				</li>
-			</ul>
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-merge"></i></a>
+                            </div>
 
-			<p class="navbar-text"><span class="label bg-success">Online</span></p>
+                            <div class="media-body">
+                                <a href="#">Multiplay</a> solicitou envio de <span class="text-semibold">mensagens</span> e <span class="text-semibold">Dev</span> Revisão
+                                <div class="media-annotation">Março 18, 18:36</div>
+                            </div>
+                        </li>
 
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown language-switch">
-					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="{% static 'images/flags/br.png' %}" class="position-left" alt="">
-						Português
-						<span class="caret"></span>
-					</a>
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
+                            </div>
 
-					<ul class="dropdown-menu">
-						<li><a class="english"><img src="{% static 'images/flags/gb.png' %}" alt=""> Inglês</a></li>
-					</ul>
-				</li>
+                            <div class="media-body">
+                                Inicio de configuração
+                                <div class="media-annotation">Jan 12, 05:46</div>
+                            </div>
+                        </li>
+                    </ul>
 
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-bubbles4"></i>
-						<span class="visible-xs-inline-block position-right">Mensagens</span>
-						<span class="badge bg-warning-400">2</span>
-					</a>
-					
-					<div class="dropdown-menu dropdown-content width-350">
-						<div class="dropdown-content-heading">
-							Messages
-							<ul class="icons-list">
-								<li><a href="#"><i class="icon-compose"></i></a></li>
-							</ul>
-						</div>
+                    <div class="dropdown-content-footer">
+                        <a href="#" data-popup="tooltip" title="All activity"><i class="icon-menu display-block"></i></a>
+                    </div>
+                </div>
+            </li>
+        </ul>
 
-						<ul class="media-list dropdown-content-body">
-							<li class="media">
-								<div class="media-left">
-									<img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
-									<span class="badge bg-danger-400 media-badge">5</span>
-								</div>
+        <p class="navbar-text"><span class="label bg-success">Online</span></p>
 
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Marcelo Senise</span>
-										<span class="media-annotation pull-right">04:58</span>
-									</a>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown language-switch">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{% static 'images/flags/br.png' %}" class="position-left" alt="">
+                    Português
+                    <span class="caret"></span>
+                </a>
 
-									<span class="text-muted">Organização de Envio de Mensagens</span>
-								</div>
-							</li>
+                <ul class="dropdown-menu">
+                    <li><a class="english"><img src="{% static 'images/flags/gb.png' %}" alt=""> Inglês</a></li>
+                </ul>
+            </li>
 
-							<li class="media">
-								<div class="media-left">
-									<img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
-									<span class="badge bg-danger-400 media-badge">4</span>
-								</div>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-bubbles4"></i>
+                    <span class="visible-xs-inline-block position-right">Mensagens</span>
+                    <span class="badge bg-warning-400">2</span>
+                </a>
 
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Fernando Priolli</span>
-										<span class="media-annotation pull-right">12:16</span>
-									</a>
+                <div class="dropdown-menu dropdown-content width-350">
+                    <div class="dropdown-content-heading">
+                        Messages
+                        <ul class="icons-list">
+                            <li><a href="#"><i class="icon-compose"></i></a></li>
+                        </ul>
+                    </div>
 
-									<span class="text-muted">Comitê Central no RJ</span>
-								</div>
-							</li>
+                    <ul class="media-list dropdown-content-body">
+                        <li class="media">
+                            <div class="media-left">
+                                <img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
+                                <span class="badge bg-danger-400 media-badge">5</span>
+                            </div>
 
-							<li class="media">
-								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Marcelo Victorino</span>
-										<span class="media-annotation pull-right">22:48</span>
-									</a>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Marcelo Senise</span>
+                                    <span class="media-annotation pull-right">04:58</span>
+                                </a>
 
-									<span class="text-muted">Como está o vídeo de divulgação?</span>
-								</div>
-							</li>
+                                <span class="text-muted">Organização de Envio de Mensagens</span>
+                            </div>
+                        </li>
 
-							<li class="media">
-								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Beatriz Diaz</span>
-										<span class="media-annotation pull-right">Tue</span>
-									</a>
+                        <li class="media">
+                            <div class="media-left">
+                                <img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
+                                <span class="badge bg-danger-400 media-badge">4</span>
+                            </div>
 
-									<span class="text-muted">O relatório de tendências em São Paulo está pronto...</span>
-								</div>
-							</li>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Fernando Priolli</span>
+                                    <span class="media-annotation pull-right">12:16</span>
+                                </a>
 
-							<li class="media">
-								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Comitê Bahia</span>
-										<span class="media-annotation pull-right">Mon</span>
-									</a>
-									
-									<span class="text-muted">Reunião de mobilizão online as 22:00hs.</span>
-								</div>
-							</li>
-						</ul>
+                                <span class="text-muted">Comitê Central no RJ</span>
+                            </div>
+                        </li>
 
-						<div class="dropdown-content-footer">
-							<a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
-						</div>
-					</div>
-				</li>
+                        <li class="media">
+                            <div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Marcelo Victorino</span>
+                                    <span class="media-annotation pull-right">22:48</span>
+                                </a>
 
-				<li class="dropdown dropdown-user">
-					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="{% static 'images/placeholder.jpg' %}" alt="">
-						<span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
-						<i class="caret"></i>
-					</a>
+                                <span class="text-muted">Como está o vídeo de divulgação?</span>
+                            </div>
+                        </li>
 
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="{% url 'profile' %}"><i class="icon-user-plus"></i> Meu Perfil</a></li>
-						<li><a href="#"><i class="icon-coins"></i> Livro-Caixa</a></li>
-						<li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Mensagens</a></li>
-						<li class="divider"></li>
-						<li><a href="#"><i class="icon-cog5"></i> Configurações</a></li>
-						<li><a href="{% url 'logout' %}"><i class="icon-switch2"></i> Sair</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
+                        <li class="media">
+                            <div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Beatriz Diaz</span>
+                                    <span class="media-annotation pull-right">Tue</span>
+                                </a>
+
+                                <span class="text-muted">O relatório de tendências em São Paulo está pronto...</span>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Comitê Bahia</span>
+                                    <span class="media-annotation pull-right">Mon</span>
+                                </a>
+
+                                <span class="text-muted">Reunião de mobilizão online as 22:00hs.</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="dropdown-content-footer">
+                        <a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="dropdown dropdown-user">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{% static 'images/placeholder.jpg' %}" alt="">
+                    <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
+                    <i class="caret"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="{% url 'profile' %}"><i class="icon-user-plus"></i> Meu Perfil</a></li>
+                    <li><a href="#"><i class="icon-coins"></i> Livro-Caixa</a></li>
+                    <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Mensagens</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="icon-cog5"></i> Configurações</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="icon-switch2"></i> Sair</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 {% endif %}
 	</div>
 	<!-- /main navbar -->
-
 
 {% block content %}
 {% endblock %}
