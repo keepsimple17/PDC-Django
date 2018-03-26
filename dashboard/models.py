@@ -180,6 +180,7 @@ class Usuario(models.Model):
     cidade = models.CharField("Cidade", max_length=255, blank=True, null=True)  # city
     bairro = models.CharField("Bairro", max_length=255, blank=True, null=True)  # neiborhood
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
+    company = models.CharField("Endereço", max_length=255, blank=True, null=True)
     cellPhone = models.CharField(blank=True, null=True, max_length=15,
                                  validators=[RegexValidator(regex='^\+?1?\d{9,15}$',
                                                             message="Phone number must be entered in the format:"
