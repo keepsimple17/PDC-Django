@@ -18,6 +18,17 @@
         <script type="text/javascript" src="{% static 'js/pages/wizard_steps.js' %}"></script>
 
         <script type="text/javascript" src="{% static 'js/plugins/ui/ripple.min.js' %}"></script>
+
+        <!-- calendar pickup itens -->
+        <script type=​"text/​javascript" src="{{ STATIC_URL }}js/plugins/notifications/jgrowl.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/ui/moment/moment.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/pickers/daterangepicker.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/pickers/anytime.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/pickers/pickadate/picker.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/pickers/pickadate/picker.date.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/pages/picker_date.js"></script>
+        <!-- calendar pickup itens -->
+
     <!-- /theme JS files -->
     <!-- /Theme for step form wizard -->
 
@@ -61,8 +72,6 @@
 	    font-weight: 300;
 	}
 </style>
-
-
 
 <!-- Main navbar -->
 <div class="">
@@ -112,7 +121,7 @@
 								</div>
                                 <!-- /Username and email -->
 
-                                <!-- Name, Surname, Civil Status, Gender -->
+                                <!-- Name, Surname, Gender, Civil Status, -->
                                 <div class="row">
 									<div class="col-md-3">
 										<div class="form-group">
@@ -149,7 +158,7 @@
                                     <div class="col-md-3">
 										<div class="form-group">
 											<label>Estado Civil:</label>
-											<select name="gender" data-placeholder="Gênero" class="select">
+											<select name="gender" data-placeholder="Estado Civil" class="select">
 												<option></option>
 												<optgroup label="Estado Civil">
 													<option value="S">Solteiro</option>
@@ -166,174 +175,253 @@
 								</div>
                                 <!-- /Name, Surname, Civil Status, Gender -->
 
-								<div class="row">
-									<div class="col-md-6">
+                                <!-- CPF, Birthday_Date, CellPhone, Landline -->
+                                <div class="row">
+									<div class="col-md-3">
 										<div class="form-group">
-											<label>Select location:</label>
-											<select name="location" data-placeholder="Select position" class="select">
-												<option></option>
-												<optgroup label="North America">
-													<option value="1">United States</option>
-													<option value="2">Canada</option>
-												</optgroup>
+											<label>CPF:</label> <!-- CPF - (social ID) -->
+											<input type="text" name="cpf" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Data de Nascimento:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-calendar3"></i></span>
+                                                <input type="text" class="form-control" id="anytime-date"
+                                                       value="dd/mm/aaaa" readonly>
+                                            </div>
+                                        </div>
+									</div>
 
-												<optgroup label="Latin America">
-													<option value="3">Chile</option>
-													<option value="4">Argentina</option>
-													<option value="5">Colombia</option>
-													<option value="6">Peru</option>
-												</optgroup>
+									<div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Tel. Celular:</label> <!-- Cellphone -->
+                                            <input type="text" name="cellPhone" class="form-control">
+                                        </div>
+									</div>
 
-												<optgroup label="Europe">
-													<option value="8">Croatia</option>
-													<option value="9">Hungary</option>
-													<option value="10">Ukraine</option>
-													<option value="11">Greece</option>
-												</optgroup>
 
-												<optgroup label="Middle East &amp; Africa">
-													<option value="21">Egypt</option>
-													<option value="22">Israel</option>
-													<option value="23">Nigeria</option>
-													<option value="24">United Arab Emirates</option>
-												</optgroup>
+                                    <div class="col-md-3">
+										<div class="form-group">
+											<label>Tel. Fixo:</label>
+                                            <input type="text" name="landLinePhone" class="form-control">
+                                         </div>
+									</div>
 
-												<optgroup label="Asia Pacific">
-													<option value="26">Australia</option>
-													<option value="27">China</option>
-													<option value="28">India</option>
-													<option value="29">Singapore</option>
-												</optgroup>
-											</select>
+								</div>
+                                <!-- /CPF, Birthday_Date, CellPhone, Landline -->
+
+
+                                <!-- CEP, State and Citie -->
+                                <div class="row">
+									<div class="col-md-2">
+										<div class="form-group">
+											<label>CEP:</label>
+											<input type="text" name="cep" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-5">
+										<div class="form-group">
+											<label>Estado:</label> <!-- State -->
+											<input type="text" name="estado" class="form-control">
 										</div>
 									</div>
 
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Select position:</label>
-											<select name="position" data-placeholder="Select position" class="select">
-												<option></option>
-												<optgroup label="Developer Relations">
-													<option value="1">Sales Engineer</option>
-													<option value="2">Ads Solutions Consultant</option>
-													<option value="3">Technical Solutions Consultant</option>
-													<option value="4">Business Intern</option>
-												</optgroup>
-
-												<optgroup label="Engineering &amp; Design">
-													<option value="5">Interaction Designer</option>
-													<option value="6">Technical Program Manager</option>
-													<option value="7">Software Engineer</option>
-													<option value="8">Information Security Engineer</option>
-												</optgroup>
-
-												<optgroup label="Marketing &amp; Communications">
-													<option value="13">Media Outreach Manager</option>
-													<option value="14">Research Manager</option>
-													<option value="15">Marketing Intern</option>
-													<option value="16">Business Intern</option>
-												</optgroup>
-
-												<optgroup label="Sales Operations">
-													<option value="17">Sales Operations Analyst</option>
-													<option value="18">Technology Product Manager</option>
-													<option value="19">Product Expert</option>
-													<option value="20">Sales Insights Analyst</option>
-													<option value="21">Customer Operations Analyst</option>
-												</optgroup>
-											</select>
-										</div>
+									<div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Cidade:</label> <!-- Citie -->
+                                            <input type="text" name="cidade" class="form-control">
+                                        </div>
 									</div>
 								</div>
+                                <!-- /CEP, State and Citie -->
 
-								<div class="row">
+                                <!-- Adreess, Predial number,  complement address -->
+                                <div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Applicant name:</label>
-											<input type="text" name="name" class="form-control" placeholder="John Doe">
+											<label>Endereço:</label>
+											<input type="text" name="address" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-2">
+										<div class="form-group">
+											<label>Complemento</label> <!-- predial number - complement address -->
+											<input type="text" name="predial_number" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Bairro</label> <!-- Neiborwood -->
+                                            <input type="text" name="bairro" class="form-control">
+                                        </div>
+									</div>
+								</div>
+                                <!-- Adreess, Predial number,  complement address -->
+
+							</fieldset>
+
+							<h6>Dados Adicionais</h6>
+							<fieldset>
+
+                                <!-- Username and email -->
+                                <div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Nome de Usuário:</label> <!-- Username -->
+											<input type="text" name="name" class="form-control">
 										</div>
 									</div>
 
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Email address:</label>
+											<label>Email:</label>
 											<input type="email" name="email" class="form-control" placeholder="your@email.com">
 										</div>
 									</div>
 								</div>
+                                <!-- /Username and email -->
 
-								<div class="row">
-									<div class="col-md-6">
+                                <!-- Name, Surname, Gender, Civil Status, -->
+                                <div class="row">
+									<div class="col-md-3">
 										<div class="form-group">
-											<label>Phone #:</label>
-											<input type="text" name="tel" class="form-control" placeholder="+99-99-9999-9999" data-mask="+99-99-9999-9999">
+											<label>Nome</label> <!-- Name -->
+											<input type="text" name="name" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-3">
+										<div class="form-group">
+											<label>Sobrenome:</label> <!-- Surname -->
+											<input type="text" name="name" class="form-control">
 										</div>
 									</div>
 
-									<div class="col-md-6">
-										<label>Date of birth:</label>
-										<div class="row">
-											<div class="col-md-4">
-												<div class="form-group">
-													<select name="birth-month" data-placeholder="Month" class="select">
-														<option></option>
-														<option value="1">January</option>
-														<option value="2">February</option>
-														<option value="3">March</option>
-														<option value="4">April</option>
-														<option value="5">May</option>
-														<option value="6">June</option>
-														<option value="7">July</option>
-														<option value="8">August</option>
-														<option value="9">September</option>
-														<option value="10">October</option>
-														<option value="11">November</option>
-														<option value="12">December</option>
-													</select>
-												</div>
-											</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label>Gênero:</label>
+											<select name="gender" data-placeholder="Gênero" class="select">
+												<option></option>
+												<optgroup label="Pessoa Física">
+													<option value="M">Masculino</option>
+													<option value="F">Feminino</option>
+                                                    <option value="N">Outro</option>
+												</optgroup>
 
-											<div class="col-md-4">
-												<div class="form-group">
-													<select name="birth-day" data-placeholder="Day" class="select">
-														<option></option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
-														<option value="6">6</option>
-														<option value="7">7</option>
-														<option value="8">8</option>
-														<option value="9">9</option>
-														<option value="...">...</option>
-														<option value="31">31</option>
-													</select>
-												</div>
-											</div>
+												<optgroup label="Pessoa Jurídica">
+													<option value="E">Empresa</option>
+													<option value="S">Sindicato</option>
+													<option value="O">Organização ou Instituto</option>
+												</optgroup>
+											</select>
+                                         </div>
+									</div>
+                                    <div class="col-md-3">
+										<div class="form-group">
+											<label>Estado Civil:</label>
+											<select name="gender" data-placeholder="Estado Civil" class="select">
+												<option></option>
+												<optgroup label="Estado Civil">
+													<option value="S">Solteiro</option>
+													<option value="F">Casado</option>
+                                                    <option value="D">Divordiado</option>
+                                                    <option value="V">Viúvo</option>
+                                                    <option value="O">Outro</option>
+												</optgroup>
 
-											<div class="col-md-4">
-												<div class="form-group">
-													<select name="birth-year" data-placeholder="Year" class="select">
-														<option></option>
-														<option value="1">1980</option>
-														<option value="2">1981</option>
-														<option value="3">1982</option>
-														<option value="4">1983</option>
-														<option value="5">1984</option>
-														<option value="6">1985</option>
-														<option value="7">1986</option>
-														<option value="8">1987</option>
-														<option value="9">1988</option>
-														<option value="10">1989</option>
-														<option value="11">1990</option>
-													</select>
-												</div>
-											</div>
+											</select>
+                                         </div>
+									</div>
+
+								</div>
+                                <!-- /Name, Surname, Civil Status, Gender -->
+
+                                <!-- CPF, Birthday_Date, CellPhone, Landline -->
+                                <div class="row">
+									<div class="col-md-3">
+										<div class="form-group">
+											<label>CPF:</label> <!-- CPF - (social ID) -->
+											<input type="text" name="cpf" class="form-control">
 										</div>
+									</div>
+                                    <div class="col-md-3">
+										<div class="form-group">
+											<label>Data de Nascimento:</label> <!-- Birthday -->
+											<input type="text" name="bithday_date" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Tel. Celular:</label> <!-- Cellphone -->
+                                            <input type="text" name="cellPhone" class="form-control">
+                                        </div>
+									</div>
+
+
+                                    <div class="col-md-3">
+										<div class="form-group">
+											<label>Tel. Fixo:</label>
+                                            <input type="text" name="landLinePhone" class="form-control">
+                                         </div>
+									</div>
+
+								</div>
+                                <!-- /CPF, Birthday_Date, CellPhone, Landline -->
+
+
+                                <!-- CEP, State and Citie -->
+                                <div class="row">
+									<div class="col-md-2">
+										<div class="form-group">
+											<label>CEP:</label>
+											<input type="text" name="cep" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-5">
+										<div class="form-group">
+											<label>Estado:</label> <!-- State -->
+											<input type="text" name="estado" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Cidade:</label> <!-- Citie -->
+                                            <input type="text" name="cidade" class="form-control">
+                                        </div>
 									</div>
 								</div>
+                                <!-- /CEP, State and Citie -->
+
+                                <!-- Adreess, Predial number,  complement address -->
+                                <div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Endereço:</label>
+											<input type="text" name="address" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-2">
+										<div class="form-group">
+											<label>Complemento</label> <!-- predial number - complement address -->
+											<input type="text" name="predial_number" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Bairro</label> <!-- Neiborwood -->
+                                            <input type="text" name="bairro" class="form-control">
+                                        </div>
+									</div>
+								</div>
+                                <!-- Adreess, Predial number,  complement address -->
+
 							</fieldset>
+
 
 							<h6>Dados do Candidato</h6>
 							<fieldset>
@@ -593,7 +681,7 @@
 							</fieldset>
 						</form>
 		            </div>
-		            <!-- /basic setup -->
+            <!-- /basic setup -->
 
         </div>
     <!-- /Content area -->
