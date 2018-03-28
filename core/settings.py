@@ -83,18 +83,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pdc',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
         # 'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'pdc',
-        # 'USER': 'paulrsilva',
-        # 'PASSWORD': '12341312iggb',
-        # 'HOST': 'pdc.clpcb1dffjfg.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
+        # 'USER': 'root',
+        # 'PASSWORD': '',
+        # 'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
         # 'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pdc',
+        'USER': 'paulrsilva',
+        'PASSWORD': '12341312iggb',
+        'HOST': 'pdc.clpcb1dffjfg.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 
@@ -129,9 +129,10 @@ AUTHENTICATION_BACKENDS = (
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -168,10 +169,13 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 
-# SOCIAL_AUTH_FACEBOOK_KEY = '555229794846219'  # App ID
-SOCIAL_AUTH_FACEBOOK_KEY = '1464725153656586'  # App ID
-# SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
-SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
+# Social Authentication Paul
+SOCIAL_AUTH_FACEBOOK_KEY = '555229794846219'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
+
+# Social Authentication from someone
+# SOCIAL_AUTH_FACEBOOK_KEY = '1464725153656586'  # App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
 
 #Please use the company smtp to send emails
 DEFAULT_FROM_EMAIL = 'scopo@portaldocandidato.inf.br'
