@@ -1,24 +1,25 @@
-import json
-from itertools import chain
+# import json
+# from itertools import chain
 
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+# from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from core.data_objects import get_cities_by_state
 from dashboard.models import Usuario, Estado, Municipio, POLITICAL_PARTY_CHOICES
-#from dashboard.models import Usuario
-from django.db import transaction
+# from dashboard.models import Usuario
+# from django.db import transaction
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
 from django.conf import settings
 from django.contrib.auth import login, authenticate
 from django.core.mail import EmailMessage
+from smtplib import SMTPException
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
@@ -36,13 +37,14 @@ def index(request):
 
 def signup(request, uidb64=None):
     if request.method == 'POST':
-        #print ('Here')
         form = UserForm(request.POST)
+        print('this is post request')
         if form.is_valid():
             print('form validated')
             user = form.save(commit=False)
             user.is_active = False
-            user.save()
+            # user.save()
+
             current_site = get_current_site(request)
             mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
             message = render_to_string('acc_active_email.html', {
@@ -57,10 +59,22 @@ def signup(request, uidb64=None):
                         mail_subject, message, to=[to_email]
             )
             print('to_email', to_email)
-            email.send()
+            try:
+                email.send()
+                user.save()
+            except SMTPException as e:
+                print('There was an SMTPException: ', e)
+                messages.warning(request, _('There was an SMTPException: ' + str(e)))
+                return render(request, "registration/signup.html", {'form': form})
+            except Exception as e:
+                print('There was an error sending an email: ', e)
+                messages.warning(request, _('There was an error sending an email: ' + str(e)))
+                return render(request, "registration/signup.html", {'form': form})
 
             # return HttpResponse('Por favor confirme o enviado para sua caixa-postal para prosseguir com o registro!')
             return render(request, "registration/token_confirmation.html")
+        else:
+            print('form not valid')
 
     else:
         print('this is get request')
@@ -68,9 +82,10 @@ def signup(request, uidb64=None):
 
     return render(request, "registration/signup.html", {'form': form})
 
+
 def candidate_signup(request, uidb64=None):
     if request.method == 'POST':
-        print ('Here')
+        print('Here')
         form = UserForm(request.POST)
         if form.is_valid():
             print('form validated')
@@ -85,7 +100,7 @@ def candidate_signup(request, uidb64=None):
                 candidate = Candidate.objects.get(pk=uid)
             except(TypeError, ValueError, OverflowError, User.DoesNotExist):
                 candidate = None
-            print ('user id', user.pk)
+            print('user id', user.pk)
             candidate.user_id = user.pk
             candidate.save()
             
@@ -95,6 +110,7 @@ def candidate_signup(request, uidb64=None):
         print('this is get request', uidb64)
         form = UserForm()
         return render(request, "registration/candidate_signup.html", {'form': form, 'uidb64': uidb64})
+
 
 def firstsetup(request):
 
@@ -108,8 +124,8 @@ def firstsetup(request):
         print('candidate_form validated')
         candidate = candidate_form.save(commit=False)
         candidate.save()
-        print ('candidate id', candidate.id)
-        print ('uid', urlsafe_base64_encode(force_bytes(candidate.id)))
+        print('candidate id', candidate.id)
+        print('uid', urlsafe_base64_encode(force_bytes(candidate.id)))
         current_site = get_current_site(request)
         mail_subject = 'You are invited to PDC site as Candidate!'
         message = render_to_string('candidate_invite_email.html', {
@@ -146,7 +162,7 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
         user.is_staff = False
         user.save()
         profile_form = ProfileForm(instance=user.usuario)
-        print ('user.usuario', user.usuario)
+        print('user.usuario', user.usuario)
         return render(request, "registration/firstsetup.html", {'form': form,
                                                                 'profile_form': profile_form,
                                                                 'political_legends': POLITICAL_PARTY_CHOICES,
@@ -156,9 +172,10 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
         return render(request, "registration/firstsetup.html", {'form': form, 'valid': False})
         # return HttpResponse('Activation link is invalid!')
 
+
 def signup_confirm(request):
     if request.method == 'POST':
-        print ('request.POST', request.POST)
+        print('request.POST', request.POST)
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
@@ -168,10 +185,10 @@ def signup_confirm(request):
             login(request, user)
             return redirect('home')
         else:
-            print ("Formulário Inválido")
+            print("Formulário Inválido")
     else:
         form = UserForm()
-    return render(request, "registration/signup.html", {'form':form})
+    return render(request, "registration/signup.html", {'form': form})
 
 
 @login_required
@@ -214,7 +231,55 @@ def profile(request):
     })
 
 
-def updateCities(request):
-    state_id=request.GET['stateId']
-    cities=get_cities_by_state(state_id)
+def update_cities(request):
+    state_id = request.GET['stateId']
+    cities = get_cities_by_state(state_id)
     return render(request, 'cities_drop_down.html', {'cities': cities})
+
+
+def forgot_password(request, uidb64=None):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        print('this is post request')
+        if form.is_valid():
+            print('form validated')
+            user = form.save(commit=False)
+            user.is_active = False
+            # user.save()
+
+            current_site = get_current_site(request)
+            mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
+            message = render_to_string('acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            print('message', message)
+            to_email = form.cleaned_data.get('email', None)
+            email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+            )
+            print('to_email', to_email)
+            try:
+                email.send()
+                user.save()
+            except SMTPException as e:
+                print('There was an SMTPException: ', e)
+                messages.warning(request, _('There was an SMTPException: ' + str(e)))
+                return render(request, "registration/signup.html", {'form': form})
+            except Exception as e:
+                print('There was an error sending an email: ', e)
+                messages.warning(request, _('There was an error sending an email: ' + str(e)))
+                return render(request, "registration/signup.html", {'form': form})
+
+            # return HttpResponse('Por favor confirme o enviado para sua caixa-postal para prosseguir com o registro!')
+            return render(request, "registration/token_confirmation.html")
+        else:
+            print('form not valid')
+
+    else:
+        print('this is get request')
+        form = UserForm()
+
+    return render(request, "registration/signup.html", {'form': form})

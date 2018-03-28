@@ -84,21 +84,21 @@
 					<div class="form-group has-feedback has-feedback-left">
 						<input name="first_name" type="text" class="form-control" placeholder="Nome" required="required">
 						<div class="form-control-feedback">
-							<i class="icon-mention text-muted"></i>
+							<i class="icon-users2 text-muted"></i>
 						</div>
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
 						<input name="last_name" type="text" class="form-control" placeholder="Sobrenome" required="required">
 						<div class="form-control-feedback">
-							<i class="icon-mention text-muted"></i>
+							<i class="icon-users text-muted"></i>
 						</div>
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
 						<input name="email" type="text" class="form-control" placeholder="Email"  required="required">
 						<div class="form-control-feedback">
-							<i class="icon-mention text-muted"></i>
+							<i class="icon-mail5 text-muted"></i>
 						</div>
 					</div>
 
@@ -132,6 +132,17 @@
 					</div>
 
 					<span id="alarmArea" class="text-danger"></span>
+                    <hr>
+                    <div class="row prepend-top-default append-bottom-default">
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="alert alert-{{ message.tags }} alert-styled-left"{% endif %}>{{ message }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
 
 				</form>
 				<!-- /form -->
