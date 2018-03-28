@@ -23,8 +23,8 @@ $(function() {
         titleTemplate: '<span class="number">#index#</span> #title#',
         labels: {
             finish: 'Enviar',
-            next: 'Prox',
-            previous: 'voltar'
+            next: 'Proximo',
+            previous: 'Anterior'
         },
         onFinished: function (event, currentIndex) {
             alert("Form submitted.");
@@ -83,8 +83,8 @@ $(function() {
         titleTemplate: '<span class="number">#index#</span> #title#',
         labels: {
             finish: 'Enviar',
-            next: 'Prox',
-            previous: 'voltar'
+            next: 'Proximo',
+            previous: 'Anterior'
         },
         autoFocus: true,
         onFinished: function (event, currentIndex) {
@@ -236,7 +236,7 @@ $(function() {
 
     // Styled file input
     $('.file-styled').uniform({
-        fileButtonClass: 'action btn bg-blue',
+        fileButtonClass: 'action btn bg-blue'
     });
 
 
