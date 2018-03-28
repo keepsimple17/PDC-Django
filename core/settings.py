@@ -173,7 +173,7 @@ SOCIAL_AUTH_FACEBOOK_KEY = '1464725153656586'  # App ID
 # SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
 SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
 
-#Please use the company smtp to send emails
+# Please use the company smtp to send emails
 DEFAULT_FROM_EMAIL = 'scopo@portaldocandidato.inf.br'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtpi.uni5.net'
