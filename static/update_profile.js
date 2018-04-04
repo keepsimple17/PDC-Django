@@ -37,14 +37,15 @@
                         else {
                             updateCities(state, function(){
                                 eval("var arr = " + data);
-                                $("#" + address.street).val(arr.street);
-                                //$("#" + address.district).val(arr.district);
-                                $('#'+address.city+' option[data='+arr.city+']').attr('selected','selected');
-                                $('#' + address.city + ' option').filter(function () {
+                                //console.log(address.state)
+                                //$("#" + address.street).val(arr.street);
+                                $("#address").val(arr.district+arr.street);
+                                $('#id_cidade option[data='+arr.city+']').attr('selected','selected');
+                                $('#id_cidade option').filter(function () {
                                     return this.text == arr.city;
                                 }).attr('selected', 'selected');
-                                $("#" + address.state).val(arr.state);
-                                $('#'+address.state+' option[value='+arr.state+']').attr('selected','selected');
+                                $("#id_estado").val(arr.state);
+                                $('#id_estado option[value='+arr.state+']').attr('selected','selected');
                                 })
                             next();
                         }
@@ -52,7 +53,7 @@
                 }
                 else
                 if($(".zip-field").val() != ""){
-                    window.alert("enter correct zipcode")
+                    window.alert("enter correct zipcode format")
                     next();
                 }
             }
@@ -66,6 +67,14 @@
         var state = document.forms["user-form"]["estado"].value;
         var city = document.forms["user-form"]["cidade"].value;
         var zip = document.forms["user-form"]["cep"].value;
+        var regex = /^\(?([0-9]{2})\)? ([0-9]{4,5})[-. ]?([0-9]{4})$/;
+
+
+        if (! regex.test($("#telephone").val()))
+        {
+            alert("enter contact in format (NN) NNNNN-NNNN or (NN) NNNN-NNNN ");
+            return false;
+        }
 
         if (state == "") {
             alert("State must be filled out");
