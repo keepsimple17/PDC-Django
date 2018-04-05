@@ -65,7 +65,7 @@ function validateForm() {
   var state = document.forms["user-form"]["estado"].value;
   var city = document.forms["user-form"]["cidade"].value;
   var zip = document.forms["user-form"]["cep"].value;
-  var regex_landline = /^\(?([0-9]{2})\)? ([0-9]{4})[-. ]?([0-9]{4})$/;
+  var regex_landline = g/^\(?([0-9]{2})\)? ([0-9]{4})[-. ]?([0-9]{4})$/;
   var regex_cellular = /^\(?([0-9]{2})\)? ([0-9]{1})? ([0-9]{4})[-. ]?([0-9]{4})$/;
 
   var valueString = $("#telephone").val();
@@ -73,6 +73,7 @@ function validateForm() {
     alert("enter contact in format (NN) N NNNN-NNNN or (NN) NNNN-NNNN");
     return false;
   }
+  var regex_zip = /^([0-9]{5})[-. ]?([0-9]{3})$/;
 
   if (state === "") {
     alert("State must be filled out");
@@ -83,7 +84,11 @@ function validateForm() {
   } else if (zip === "") {
     alert("Zipcode must be filled out");
     return false;
-  } else {
+  }else if(!(regex_zip.test($(".zip-field").val()))){
+      alert("Zipcode must be filled out in correct format");
+    return false;
+  }
+   else {
     return true;
   }
 }
