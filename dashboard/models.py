@@ -184,7 +184,7 @@ class Usuario(models.Model):
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
     company = models.CharField("Endereço", max_length=255, blank=True, null=True)
     cellPhone = models.CharField(blank=True, null=True, max_length=15,
-                                 validators=[RegexValidator(regex='^\+?1?\d{9,15}$',
+                                 validators=[RegexValidator(regex='^\(?([0-9]{2})\)? ([0-9]{4,5})[-. ]?([0-9]{4})$',
                                                             message="Phone number must be entered in the format:"
                                                                     " '+999999999'. Up to 15 digits allowed.",
                                                             code='Invalid number')])
