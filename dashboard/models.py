@@ -8,6 +8,8 @@ from django.dispatch import receiver
 from django.core.validators import RegexValidator
 from django_extensions.db.models import (TitleSlugDescriptionModel, TimeStampedModel)
 
+event_hook_depth = 0
+
 import os
 
 POLITICAL_PARTY_CHOICES = (
@@ -182,7 +184,7 @@ class Usuario(models.Model):
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
     company = models.CharField("Endereço", max_length=255, blank=True, null=True)
     cellPhone = models.CharField(blank=True, null=True, max_length=15,
-                                 validators=[RegexValidator(regex='^\+?1?\d{9,15}$',
+                                 validators=[RegexValidator(regex='^\(?([0-9]{2})\)? ([0-9]{4,5})[-. ]?([0-9]{4})$',
                                                             message="Phone number must be entered in the format:"
                                                                     " '+999999999'. Up to 15 digits allowed.",
                                                             code='Invalid number')])
@@ -219,7 +221,42 @@ def save_user_profile(sender, instance, **kwargs):
 
 @receiver(pre_delete, sender=User)
 def delete_user_profile(sender, instance, **kwargs):
-    instance.usuario.delete()
+    global event_hook_depth
+    event_hook_depth += 1
+    if event_hook_depth < 3:
+        try:
+            instance.usuario.delete()
+        except Exception as e:
+            print('exception occurred!', e)
+        event_hook_depth = 0
+    return
+
+
+@receiver(pre_delete, sender=Usuario)
+def delete_dashboard_usuario(sender, instance, **kwargs):
+    global event_hook_depth
+    event_hook_depth += 1
+    if event_hook_depth < 3:
+        try:
+            instance.user.delete()
+        except Exception as e:
+            print('exception occurred!', e)
+        event_hook_depth = 0
+    return
+    # usuario_user = User.objects.get(username=instance)
+    # print('user', usuario_user)
+    # print('user email', usuario_user.email)
+    # # if user:
+    # #     user.delete()
+    # try:
+    #     usuario_user.delete()
+    #     print("The user is deleted")
+    #
+    # except User.DoesNotExist:
+    #     print("User doesnot exist")
+    #
+    # except Exception as e:
+    #     print('exception', e)
 
 
 """

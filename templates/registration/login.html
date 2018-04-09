@@ -64,7 +64,7 @@
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="password" type="password" class="form-control" placeholder="Senha" required="required">
+						<input name="password" type="password" autocomplete="current-password" class="form-control" placeholder="Senha" required="required">
 						<div class="form-control-feedback">
 							<i class="icon-lock2 text-muted"></i>
 						</div>
@@ -80,7 +80,7 @@
 							</div>
 
 							<div class="col-sm-6 text-right">
-								<a href="#">Esqueceu a Senha?</a>
+								<a href="{% url 'password_reset' %}">Esqueceu a Senha?</a>
 							</div>
 						</div>
 					</div>
@@ -102,9 +102,9 @@
 						</ul>
 
 						<div class="content-divider text-muted form-group"><span>Ainda não tem conta?</span></div>
-						<a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Cadastrar</a>
+						<a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Registrar</a>
 						<span class="help-block text-center no-margin">Ao continuar você está aceitando os <a href="#">Termos &amp; Condições</a> do SCOPO e nossa <a href="#">Política de Cookies</a></span>
-					</div>
+
 
 
 				</form>
@@ -113,7 +113,4 @@
 		</div>
 	</div>
 	<!-- /login form -->
-
-
-
 {% endblock %}

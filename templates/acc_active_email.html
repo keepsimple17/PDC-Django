@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 {% autoescape off %}
 Olá {{ user.username }},
 Por favor clique no link abaixo para confirmar seu cadastro.
 http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 {% endautoescape %}
+=======
+{% autoescape off %}
+Olá {{ user.username }},
+Por favor clique no link abaixo para confirmar seu registro,
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}
+>>>>>>> 4b6fe8ef829c5b6442ec993f9a7ffb47f5b9f39f
