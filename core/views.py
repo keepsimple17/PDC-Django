@@ -294,12 +294,13 @@ def apporve_user(request):
     user_id=request.GET["user_id"]
     user=User.objects.get(id=user_id)
     mail_subject = 'you are authorized to dashboard'
-    message = render_to_string('authorization_mail.html')
+    message = render_to_string('authorization.html',{
+            'user': user.first_name+" "+user.last_name})
     to_email = user.email
     email = EmailMessage(
                 mail_subject, message, to=[to_email]
     )
-    print('to_email', to_email)
+    email.content_subtype = "html"
     user.is_staff=1
     user.save()
     email.send()
