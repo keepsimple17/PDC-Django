@@ -65,7 +65,7 @@ function validateForm() {
   var state = document.forms["user-form"]["estado"].value;
   var city = document.forms["user-form"]["cidade"].value;
   var zip = document.forms["user-form"]["cep"].value;
-  var regex_landline = g/^\(?([0-9]{2})\)? ([0-9]{4})[-. ]?([0-9]{4})$/;
+  var regex_landline = /^\(?([0-9]{2})\)? ([0-9]{4})[-. ]?([0-9]{4})$/;
   var regex_cellular = /^\(?([0-9]{2})\)? ([0-9]{1})? ([0-9]{4})[-. ]?([0-9]{4})$/;
 
   var valueString = $("#telephone").val();
