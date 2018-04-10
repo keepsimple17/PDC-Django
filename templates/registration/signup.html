@@ -1,3 +1,149 @@
+<<<<<<< HEAD
+{% extends '_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<style>
+	body{
+		background-color: #f5f5f5;
+	}
+	.page-container1{
+		background-color: #dedede;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+	}
+	.navbar-inverse{
+		/*background-color: #676b74;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);*/
+	}
+	.navbar{
+		/*min-height: 60px;*/
+	}
+	.navbar-brand {
+	    display: inline-block;
+	    padding-top: 1.3125rem;
+	    padding-bottom: .3125rem;
+	    margin-right: 1rem;
+	    font-size: 1.95rem;
+	    line-height: inherit;
+	    white-space: nowrap;
+	    background-color: transparent;
+	    font-weight: 300;
+	}
+	</style>
+
+	<!-- Main navbar -->
+	<div class="">
+
+		<div class="container">
+			<div class="row">			
+							
+			</div>
+		</div>
+
+	</div>
+	<!-- /main navbar -->
+
+    <!-- Login form -->
+	<div class="page-container">
+		<div class="modal-dialog">
+			<div class="login-form">
+
+				<!-- Form -->
+				<form class="modal-body" method="post" action="{% url 'signup' %}">
+      			{% csrf_token %}
+					<div class="text-center">
+						<div class="icon-object border-slate-300 text-slate-300"><i class="icon-plus3"></i></div>
+						
+						<h5 class="content-group">Criar Conta <small class="display-block">Todos os campos são obrigatórios</small></h5>
+					</div>
+
+					<div class="content-divider text-muted form-group"><span>Dados de Login</span></div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<input name="username" type="text" class="form-control" placeholder="Nome de Usuário" required="required">
+						<div class="form-control-feedback">
+							<i class="icon-user text-muted"></i>
+						</div>
+					</div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<input name="password1" type="password" class="form-control" placeholder="Senha" required="required">
+						<div class="form-control-feedback">
+							<i class="icon-lock2 text-muted"></i>
+						</div>
+					</div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<input name="password2" type="password" class="form-control" placeholder="Confirmar Senha" required="required">
+						<div class="form-control-feedback">
+							<i class="icon-lock2 text-muted"></i>
+						</div>
+					</div>
+
+					<div class="content-divider text-muted form-group"><span>Dados Pessoais</span></div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<input name="first_name" type="text" class="form-control" placeholder="Nome" required="required">
+						<div class="form-control-feedback">
+							<i class="icon-mention text-muted"></i>
+						</div>
+					</div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<input name="last_name" type="text" class="form-control" placeholder="Sobrenome" required="required">
+						<div class="form-control-feedback">
+							<i class="icon-mention text-muted"></i>
+						</div>
+					</div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<input name="email" type="text" class="form-control" placeholder="Email"  required="required">
+						<div class="form-control-feedback">
+							<i class="icon-mention text-muted"></i>
+						</div>
+					</div>
+
+					<div class="content-divider text-muted form-group"><span>Adicionais</span></div>
+
+					<div class="form-group">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" class="styled" checked="checked">
+								Send me <a href="#">Enviar modelo de configuração</a>
+							</label>
+						</div>
+
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" class="styled" checked="checked">
+								Assinar a Newsletter
+							</label>
+						</div>
+
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" class="styled">
+								Aceitar os <a href="#">Termos de Serviço</a>
+							</label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn bg-teal btn-block btn-lg">Registrar <i class="icon-circle-right2 position-right"></i></button>
+					</div>
+
+					<span id="alarmArea" class="text-danger"></span>
+
+				</form>
+				<!-- /form -->
+			</div>
+		</div>
+	</div>
+	<!-- /login form -->
+
+
+
+=======
 {% extends '_base.html' %}
 {% load staticfiles %}
 
@@ -160,4 +306,5 @@
     </script>
 
 
+>>>>>>> 4b6fe8ef829c5b6442ec993f9a7ffb47f5b9f39f
 {% endblock %}
