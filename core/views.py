@@ -4,7 +4,7 @@
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required, user_passes_test
-
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 # from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -149,6 +149,12 @@ def firstsetup(request):
     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
     return redirect('home')
 
+# It' the firstSetup, with updated template
+def primeiroSetup(request):
+    #return HttpResponse('Primeira Configuração do Usuário')  # User First Configuration - In the first login
+    #return render(request, "registration/signup.html", {'form': form})
+    return render(request, "registration/primeiroSetup.html")
+
 
 def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     form = UserForm()
@@ -283,3 +289,19 @@ def forgot_password(request, uidb64=None):
         form = UserForm()
 
     return render(request, "registration/signup.html", {'form': form})
+
+def apporve_user(request):
+    user_id=request.GET["user_id"]
+    user=User.objects.get(id=user_id)
+    mail_subject = 'you are authorized to dashboard'
+    message = render_to_string('authorization.html',{
+            'user': user.first_name+" "+user.last_name})
+    to_email = user.email
+    email = EmailMessage(
+                mail_subject, message, to=[to_email]
+    )
+    email.content_subtype = "html"
+    user.is_staff=1
+    user.save()
+    email.send()
+    return HttpResponse("activated")

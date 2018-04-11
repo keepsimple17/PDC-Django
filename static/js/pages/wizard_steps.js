@@ -22,7 +22,9 @@ $(function() {
         transitionEffect: "fade",
         titleTemplate: '<span class="number">#index#</span> #title#',
         labels: {
-            finish: 'Submit'
+            finish: 'Enviar',
+            next: 'Proximo',
+            previous: 'Anterior'
         },
         onFinished: function (event, currentIndex) {
             alert("Form submitted.");
@@ -79,6 +81,11 @@ $(function() {
         bodyTag: "fieldset",
         startIndex: 2,
         titleTemplate: '<span class="number">#index#</span> #title#',
+        labels: {
+            finish: 'Enviar',
+            next: 'Proximo',
+            previous: 'Anterior'
+        },
         autoFocus: true,
         onFinished: function (event, currentIndex) {
             alert("Form submitted.");
@@ -101,6 +108,7 @@ $(function() {
         transitionEffect: "fade",
         titleTemplate: '<span class="number">#index#</span> #title#',
         autoFocus: true,
+
         onStepChanging: function (event, currentIndex, newIndex) {
 
             // Allways allow previous action even if the current form is not valid!
@@ -230,5 +238,7 @@ $(function() {
     $('.file-styled').uniform({
         fileButtonClass: 'action btn bg-blue'
     });
+
+
     
 });

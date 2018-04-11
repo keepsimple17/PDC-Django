@@ -125,7 +125,7 @@
                         <input type="text"
                                value="{{ profile_form.cep.value }}"
                                name="cep"
-                               class="form-control" placeholder="Enter Zipcode">
+                               class="form-control zip-field" placeholder="Enter Zipcode">
                     </div>
                 </div>
                 <div class="form-group">
@@ -144,6 +144,7 @@
                     <label class="col-md-3 control-label" for="cellPhone">Telephone</label>
                     <div class="col-md-9">
                         <input type="text"
+                               id="telephone"
                                value="{{ profile_form.cellPhone.value }}"
                                name="cellPhone"
                                class="form-control" placeholder="Enter telephone number">

@@ -39,9 +39,6 @@ $(function() {
     // Initialize
     containerHeight();
 
-
-
-
     // ========================================
     //
     // Heading elements
@@ -310,12 +307,13 @@ $(function() {
     // -------------------------
 
     // Left sidebar
-    $('.navigation-main > .navigation-header > i').tooltip({
-        placement: 'right',
-        container: 'body'
-    });
-
-
+    if ($('.navigation-main > .navigation-header > i').length > 0) {
+        console.log('test--->', $('.navigation-main > .navigation-header > i'));
+        $('.navigation-main > .navigation-header > i').tooltip({
+            placement: 'right',
+            container: 'body'
+        });
+    }
 
     // Collapsible functionality
     // -------------------------
@@ -594,9 +592,6 @@ $(function() {
         }, 100);
     }).resize();
 
-
-
-
     // ========================================
     //
     // Other code
@@ -608,10 +603,17 @@ $(function() {
     // -------------------------
 
     // Popover
-    $('[data-popup="popover"]').popover();
+    if ($('[data-popup="popover"]').length > 0) {
+        $('[data-popup="popover"]').popover();
+    }
 
 
     // Tooltip
-    $('[data-popup="tooltip"]').tooltip();
+    // if ($('[data-popup="tooltip"]').length > 0) {
+    //     $('[data-popup="tooltip"]').tooltip();
+    // }
+    $(document).ready(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
 
 });

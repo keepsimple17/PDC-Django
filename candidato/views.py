@@ -19,4 +19,12 @@ from django.contrib.auth import (
 
 @login_required
 def home(request):
-    return HttpResponse('Ambiente de Configuração do Candidato')
+    return HttpResponse('Ambiente de Configuração do Candidato') #Candidate Congiguration
+
+def usuario(request):
+    return HttpResponse('Ambiente de Configuração do Usuário') #User Configuration
+
+def usuarioPrimeiraConfig(request):
+    #todo Verify if the user is not a Candidate
+
+    return HttpResponse('Primeira Configuração do Usuário')  # User First Configuration - In the first login

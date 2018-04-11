@@ -1,5 +1,5 @@
 {% autoescape off %}
 Olá {{ user.username }},
-Por favor clique no link abaixo para confirmar seu registro,
+Por favor clique no link abaixo para confirmar seu cadastro.
 http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 {% endautoescape %}

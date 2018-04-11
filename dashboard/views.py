@@ -20,8 +20,8 @@ from datetime import datetime
 @login_required
 def index(request):
     # excel_list = []
-    if request.user.is_superuser:
-        print("super user")
+    print(request.user)
+    if request.user.is_staff:
+        return render(request, 'index.html', {})
     else:
-        print("normal user")
-    return render(request, 'index.html', {})
+        return render(request, 'not_active.html', {})
