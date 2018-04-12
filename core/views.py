@@ -24,7 +24,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from candidato.models import Candidate
-
+from django.views.decorators.csrf import csrf_protect
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -35,6 +35,7 @@ def index(request):
         return redirect(settings.LOGIN_URL)
 
 
+@csrf_protect
 def signup(request, uidb64=None):
     if request.method == 'POST':
         form = UserForm(request.POST)
@@ -43,21 +44,27 @@ def signup(request, uidb64=None):
             print('form validated')
             user = form.save(commit=False)
             user.is_active = False
-            # user.save()
+            user.save()
 
             current_site = get_current_site(request)
             mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
-            message = render_to_string('acc_active_email.html', {
+            # message = render_to_string('acc_active_email.html', {
+            #     'user': user,
+            #     'domain': current_site.domain,
+            #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            #     'token': account_activation_token.make_token(user),
+            # })
+            message = render_to_string('authorization.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            print('message', message)
+                'token': account_activation_token.make_token(user)})
+
             to_email = form.cleaned_data.get('email', None)
             email = EmailMessage(
                         mail_subject, message, to=[to_email]
             )
+            email.content_subtype = "html "
             print('to_email', to_email)
             try:
                 email.send()
@@ -75,6 +82,9 @@ def signup(request, uidb64=None):
             return render(request, "registration/token_confirmation.html")
         else:
             print('form not valid')
+            # messages.error(request, "Error")
+            # form = UserForm()
+            return render(request, "registration/signup.html", {'form': form})
 
     else:
         print('this is get request')
@@ -83,6 +93,7 @@ def signup(request, uidb64=None):
     return render(request, "registration/signup.html", {'form': form})
 
 
+@csrf_protect
 def candidate_signup(request, uidb64=None):
     if request.method == 'POST':
         print('Here')
@@ -112,6 +123,7 @@ def candidate_signup(request, uidb64=None):
         return render(request, "registration/candidate_signup.html", {'form': form, 'uidb64': uidb64})
 
 
+@csrf_protect
 def firstsetup(request):
 
     user_id = request.POST['user_id']
@@ -149,13 +161,16 @@ def firstsetup(request):
     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
     return redirect('home')
 
+
 # It' the firstSetup, with updated template
 def primeiroSetup(request):
-    #return HttpResponse('Primeira Configuração do Usuário')  # User First Configuration - In the first login
-    #return render(request, "registration/signup.html", {'form': form})
+    # return HttpResponse('Primeira Configuração do Usuário')
+    # User First Configuration - In the first login
+    # return render(request, "registration/signup.html", {'form': form})
     return render(request, "registration/primeiroSetup.html")
 
 
+@csrf_protect
 def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     form = UserForm()
     try:
@@ -289,6 +304,7 @@ def forgot_password(request, uidb64=None):
         form = UserForm()
 
     return render(request, "registration/signup.html", {'form': form})
+
 
 def apporve_user(request):
     user_id=request.GET["user_id"]
