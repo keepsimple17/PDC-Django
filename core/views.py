@@ -76,6 +76,9 @@ def signup(request, uidb64=None):
             return render(request, "registration/token_confirmation.html")
         else:
             print('form not valid')
+            # messages.error(request, "Error")
+            # form = UserForm()
+            return render(request, "registration/signup.html", {'form': form})
 
     else:
         print('this is get request')

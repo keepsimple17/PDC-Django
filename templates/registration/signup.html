@@ -64,6 +64,18 @@
 							<i class="icon-user text-muted"></i>
 						</div>
 					</div>
+                    {% if form.errors %}
+                        {% for error in form.username.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
 					<div class="form-group has-feedback has-feedback-left">
 						<input name="password1" type="password" class="form-control" placeholder="Senha" required="required">
@@ -78,18 +90,25 @@
 							<i class="icon-lock2 text-muted"></i>
 						</div>
 					</div>
+                    {% if form.errors %}
+                        {% for error in form.password2.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
 					<div class="content-divider text-muted form-group"><span>Dados Pessoais</span></div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="first_name" type="text" class="form-control" placeholder="Nome" required="required">
+						<input name="first_name" type="text" class="form-control" placeholder="Nome">
 						<div class="form-control-feedback">
 							<i class="icon-users2 text-muted"></i>
 						</div>
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="last_name" type="text" class="form-control" placeholder="Sobrenome" required="required">
+						<input name="last_name" type="text" class="form-control" placeholder="Sobrenome">
 						<div class="form-control-feedback">
 							<i class="icon-users text-muted"></i>
 						</div>
@@ -101,6 +120,13 @@
 							<i class="icon-mail5 text-muted"></i>
 						</div>
 					</div>
+                    {% if form.errors %}
+                        {% for error in form.email.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
 					<div class="content-divider text-muted form-group"><span>Adicionais</span></div>
 
