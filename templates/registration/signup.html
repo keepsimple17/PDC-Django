@@ -83,6 +83,13 @@
 							<i class="icon-lock2 text-muted"></i>
 						</div>
 					</div>
+                    {% if form.errors %}
+                        {% for error in form.password1.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
 					<div class="form-group has-feedback has-feedback-left">
 						<input name="password2" type="password" class="form-control" placeholder="Confirmar Senha" required="required">
