@@ -43,21 +43,27 @@ def signup(request, uidb64=None):
             print('form validated')
             user = form.save(commit=False)
             user.is_active = False
-            # user.save()
+            user.save()
 
             current_site = get_current_site(request)
             mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
-            message = render_to_string('acc_active_email.html', {
+            # message = render_to_string('acc_active_email.html', {
+            #     'user': user,
+            #     'domain': current_site.domain,
+            #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            #     'token': account_activation_token.make_token(user),
+            # })
+            message = render_to_string('authorization.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            print('message', message)
+                'token': account_activation_token.make_token(user)})
+
             to_email = form.cleaned_data.get('email', None)
             email = EmailMessage(
                         mail_subject, message, to=[to_email]
             )
+            email.content_subtype = "html "
             print('to_email', to_email)
             try:
                 email.send()
@@ -74,7 +80,7 @@ def signup(request, uidb64=None):
             # return HttpResponse('Por favor confirme o enviado para sua caixa-postal para prosseguir com o registro!')
             return render(request, "registration/token_confirmation.html")
         else:
-            print('form not valid')
+            print('form not valid',form.errors)
 
     else:
         print('this is get request')
