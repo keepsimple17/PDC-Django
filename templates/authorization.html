@@ -42,7 +42,7 @@
             </tr>
             <tr>
                 <td align="center" bgcolor="#ffffff" style="padding: 40px 20px 40px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 20px; line-height: 30px; border-bottom: 1px solid #f6f6f6;">
-				   <p>Hi {{user}}, thanks for register in SCOPO.</p>
+				   <p>Hi {{user.first_name}}, thanks for register in SCOPO.</p>
                     <b>Just one more step...</b><br>
                     Click the big button below to activate your account.
                 </td>
@@ -52,7 +52,7 @@
                     <table bgcolor="#1bbae1" border="0" cellspacing="0" cellpadding="0" class="buttonwrapper">
                         <tbody><tr>
                             <td align="center" height="50" style=" padding: 0 25px 0 25px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold;" class="button">
-                                <a href="http://localhost:8000/accounts/login/" style="color: #ffffff; text-align: center; text-decoration: none;">Activate Account</a>
+                                <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}" style="color: #ffffff; text-align: center; text-decoration: none;">Activate Account</a>
                             </td>
                         </tr>
                     </tbody></table>

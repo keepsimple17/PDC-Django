@@ -43,7 +43,7 @@ def signup(request, uidb64=None):
             print('form validated')
             user = form.save(commit=False)
             user.is_active = False
-            # user.save()
+            user.save()
 
             current_site = get_current_site(request)
             mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
@@ -54,7 +54,10 @@ def signup(request, uidb64=None):
             #     'token': account_activation_token.make_token(user),
             # })
             message = render_to_string('authorization.html', {
-                'user': user.first_name + " " + user.last_name})
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user)})
 
             to_email = form.cleaned_data.get('email', None)
             email = EmailMessage(
