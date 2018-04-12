@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'dashboard',
     'candidato',
     'cep',
+    'elections',
 ]
 
 MIDDLEWARE_CLASSES = [

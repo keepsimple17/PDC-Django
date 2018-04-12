@@ -8,8 +8,6 @@ KIND_OF_POSITION =(
     ('outro','Outro'),
 )
 
-
-
 # Pleito Eleitoral - Year and kind of campaing
 class Ballot(models.Model):
     name = models.CharField(max_length=50)
@@ -18,5 +16,12 @@ class Ballot(models.Model):
 class Position(models.Model):
     ballot = models.ForeignKey(Ballot)
     position = models.CharField(max_length=50)
-    kind_of_position = models.CharField("Cargo Pretendido", max_length=30,
+    kind_of_position = models.CharField("Tipo de Cargo", max_length=30,
                                         choices=KIND_OF_POSITION, null=False)
+
+    #Federal State - Get from the dashboard_estado
+    uf = models.CharField(max_length=2, null=True, blank=True)
+
+    #city of desired position - get from dashboard_municipio
+    citie = models.CharField(max_length=255, null=True, blank=True)
+
