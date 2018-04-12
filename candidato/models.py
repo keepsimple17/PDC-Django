@@ -174,7 +174,7 @@ class Committee_Members(models.Model):
 # The Budget managment in this class is to the Candidate Cashback. Users will have their own cashback control
 class UserRoles(models.Model):
     candidate_id = models.IntegerField
-    user_ir = models.IntegerField
+    user_id = models.IntegerField
     role_name = models.CharField('Regras das Funções',max_length=40, default="Geral")
     budget_managment = models.PositiveSmallIntegerField('Controle Financeiro', default=0)
     members_managment = models.PositiveSmallIntegerField('Gestão de Usuários', default=4)
