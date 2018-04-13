@@ -321,3 +321,16 @@ def apporve_user(request):
     user.save()
     email.send()
     return HttpResponse("activated")
+
+
+def browser_view(request):
+    id= request.GET["id"]
+    user = User.objects.get(id=id)
+    current_site = get_current_site(request)
+    return render(request,'authorization.html',{
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+                })
+    # return HttpResponse(True)
