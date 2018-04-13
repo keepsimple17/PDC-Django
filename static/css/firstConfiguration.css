@@ -1,0 +1,161 @@
+.form-group .form-control {
+	background: white;
+	height: 45px;
+	border-radius: 5px;
+	box-shadow:inset 0px 1px 1px 0px rgba(136, 136, 136, 0.2);
+	border: 1px solid #bbb9b9;		
+}
+.form-group .control-label {
+	font-size: 14px;
+	font-weight: 400;
+	margin-bottom: 7px;
+}
+@media(min-width: 1020px){
+	.container {
+		width: 1000px;
+	}
+}
+.configurations-container {
+	background: white;
+	border: 1px solid rgba(187, 185, 185, 0.36);
+	border-radius: 5px 5px 0px 0px;
+	padding: 0px;
+}
+.form-group .btn-previous {
+	background: #CBCFD2;
+	color: #9E9E9E;
+}
+.form-group .btn-next {
+	background: #428BCA;
+	color: white;		
+}
+.form-group .btn {
+	border: 1px solid #428BCA;
+	border-radius: 5px;
+	font-size: 18px;
+	width: 140px;
+	margin: 0px 0px 0px 18px;
+	height: 45px;
+}
+.form-group {
+	margin-bottom: 30px;
+}
+.configurations-heading {
+	font-size: 17px;
+    font-weight: 500;
+    color: #ababab;
+    padding: 5px 20px;
+    border-bottom: 1px solid rgba(187, 185, 185, 0.36);
+
+}
+.configurations-text {
+	background: #F5F5F5;
+    padding: 25px 20px;
+    font-size: 14px;
+    color: rgb(89, 88, 88);
+    border-bottom: 1px solid rgba(231, 227, 227, 0.23);
+}
+.breadcrumb-line-component {
+	box-shadow: 0px 1px 6px 0px #37474F;
+    border: 1px solid #37474F;
+    border-radius: 0px;
+}
+.form-step {
+	display: none;
+}
+
+.step {
+  	display: table-cell;
+    width: auto;
+    vertical-align: top;
+    text-align: center;
+    position: relative;
+}
+.step.active {
+  	opacity: 1;
+}
+.step.finish {
+  	background-color: #4CAF50;
+}
+.steps {
+    position: relative;
+    display: block;
+    padding: 50px;
+}
+.tablist {
+	display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.step .list {
+	border: 2px solid rgba(128, 128, 128, 0.4);
+    border-radius: 40px;
+    font-size: 20px;
+    color: gray;
+    padding: 10px 16px;
+}
+.tablist .step.active .list {
+    display: none;
+}
+.tablist .step .current {
+    display: none;
+}
+.tablist .step.active .current{
+	border: 3px solid #56C0E0;
+    border-radius: 40px;
+    color:  #56C0E0;
+    padding: 15px 12px;
+    display: inline;
+}
+.tablist .step .glyphicon {
+	font-size: 21px;
+}
+.tablist .step.active {
+	padding-top: 7px;
+}
+.tablist hr {
+	margin-top: 15px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #ddd;
+    width: 160%;
+    margin-left: -30%;
+}
+.tablist h6 {
+	font-weight: bold;
+	margin-top: 15px;
+}
+.scopo-logo-study {
+	background-image: url("{% static 'images/scopo_logo_study.png' %}");
+	height: 100px;
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: center;
+}
+.page-heading {
+	font-size: 35px;
+}
+.page-breadcrumb {
+	padding: 80px 0px;
+	color: black;
+}
+
+.glyphicon-calendar {
+	font-size: x-large;
+    top: 38px;
+    right: 50px;
+}
+.form-dob {
+	padding-left: 50px;
+	box-shadow: inset 2px 2px 25px 15px rgba(136, 136, 136, 0.2) !important;
+}
+input[type="file"] {
+    display: none;
+}
+.photo-input {
+	margin: 6px 0px 0px;
+	box-shadow: inset 2px 2px 25px 15px rgba(136, 136, 136, 0.2) !important;
+}

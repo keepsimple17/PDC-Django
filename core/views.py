@@ -308,3 +308,6 @@ def apporve_user(request):
     user.save()
     email.send()
     return HttpResponse("activated")
+
+def user_configuration(request):
+    return render(request,"firstConfiguration.html")

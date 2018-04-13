@@ -1,0 +1,352 @@
+{% extends '_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<link href="{% static 'css/firstConfiguration.css' %}" rel="stylesheet" type="text/css">
+<style>
+	.scopo-logo-study {
+		background-image: url("{% static 'images/scopo_logo_study.png' %}");
+		height: 100px;
+	    background-repeat: no-repeat;
+	    background-size: 300px;
+	    background-position: center;
+	}
+
+</style>
+<div class="breadcrumb-line breadcrumb-line-component">
+	<ul class="breadcrumb">
+		<li><a href="#"><i class="icon-home2 position-left"></i> Painel</a></li>
+		<li><a href="#">Configuração</a></li>
+		<li class="#">Configurações Iniciais</li>
+	</ul>
+</div>
+
+<div class="page-container">
+	<div class="container">
+		<div class="row page-breadcrumb">
+			<div class="text-center">
+				<div class="scopo-logo-study"></div>
+				<div class="page-heading">Premeira Configuração</div>
+			</div>
+		</div>
+		<div class="configurations-container col-lg-12">
+			<div class="configurations-heading">
+				Premeira Configuração
+			</div>
+			<div class="configurations-text">
+				Some default panel content here. Nulla vitae elit libero, a pharentra augue. Aenean lancinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula.
+			</div>
+			<div class="col-lg-12 col-sm-12 col-md-12 col-xm-12">
+				<div></div>
+				<div>
+					<form class="col-lg-12 col-sm-12 col-md-12 col-xm-12 configurations-form"  name="user-form">
+						<div class="col-lg-12 col-sm-12 col-md-12 col-xm-12 steps clearfix">
+							<ul class="tablist">
+							    <li class="step first-step">
+							    	<span class="list">1</span>
+							    	<span class="current"><i class="glyphicon glyphicon-pencil gi-5x"></i></span>
+							    	<h6>Personal Data</h6>
+
+							    </li>
+							    <hr>
+							    <li class="step">
+							    	<span class="list">2</span>
+							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
+							    	<h6>Candidate</h6>
+							    </li>
+							    <hr>
+							    <li class="step">
+							    	<span class="list">3</span>
+							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
+							    	<h6>Team</h6>
+							    </li>
+							    <hr>
+							    <li class="step last-step">
+							    	<span class="list">4</span>
+							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
+							    	<h6>Campaign</h6>
+							    </li>
+							</ul>
+						</div>
+						<div class="form-step">
+							<div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
+								<span class="control-label">Photo</span><br>
+			                    <label class="form-control photo-input" for="photo">Send File...</label>
+			                    <input type="file"
+			                           value=""
+			                           name="photo"
+			                           id="photo"
+			                           class="form-control" placeholder="" required="true">
+			                           
+			                </div>
+							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
+			                    <label class="control-label" for="username">User Name</label>
+			                    <input type="text"
+			                           value=""
+			                           name="username"
+			                           class="form-control" placeholder="" required="true">
+			                </div>
+							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
+			                    <label class="control-label" for="email">E-mail</label>
+			                    <input type="text"
+			                           value=""
+			                           name="email"
+			                           class="form-control" placeholder="" required="true">
+			                </div>	
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="fname">Name</label>
+			                    <input type="text"
+			                           value=""
+			                           name="fname"
+			                           class="form-control" placeholder="" required="true">
+			                </div>	
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="lname">Last Name</label>
+			                    <input type="text"
+			                           value=""
+			                           name="lname"
+			                           class="form-control" placeholder="" required="true">
+			                </div>
+			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
+			                    <label class="control-label" for="gender">Gender</label>	                    
+			                    <select class="form-control"  id="" name="gender" required="true">
+			                    	<option></option>
+			                        <optgroup label="Pessoa Física">
+										<option value="M">Masculino</option>
+										<option value="F">Feminino</option>
+                                        <option value="N">Outro</option>
+									</optgroup>
+
+									<optgroup label="Pessoa Jurídica">
+										<option value="E">Empresa</option>
+										<option value="S">Sindicato</option>
+										<option value="O">Organização ou Instituto</option>
+									</optgroup>
+			                    </select>          
+			                </div>
+			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
+			                    <label class="control-label" for="mstatus">Marital Status</label>
+			                    <select class="form-control"  id="" name="mstatus" required="true">
+			                       <option></option>
+									<optgroup label="Estado Civil">
+										<option value="S">Solteiro</option>
+										<option value="F">Casado</option>
+                                        <option value="D">Divordiado</option>
+                                        <option value="V">Viúvo</option>
+                                        <option value="O">Outro</option>
+									</optgroup>
+			                    </select>	 
+			                </div>
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="cpf">CPF</label>
+			                    <input type="text"
+			                           value=""
+			                           name="cpf"
+			                           class="form-control" placeholder="" required="true">
+			                </div>	
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="bdate">Birth Date</label>
+
+		                    	<span class="glyphicon glyphicon-calendar"></span>
+		                        <input type="text"
+		                               value='dd/mm/yyyy'
+		                               name="bdate"
+		                               class="form-control form-dob" placeholder="" required="true">
+			                </div>
+			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
+			                    <label class="control-label" for="mphone">Mobile Phone</label>
+			                    <input type="text"
+			                           value=""
+			                           name="mphone"
+			                           class="form-control" placeholder="" required="true">
+			                </div>
+			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
+			                    <label class="control-label" for="lphone">Landline Phone</label>
+			                    <input type="text"
+			                           value=""
+			                           name="lphone"
+			                           class="form-control" placeholder="" required="true">
+			                </div>			
+			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
+			                    <label class="control-label" for="zcode">ZIP CODE</label>
+			                    <input type="text"
+			                           value=""
+			                           name="zcode"
+			                           class="form-control" placeholder="" required="true">
+			                </div>
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="state">State</label>
+			                    <select class="form-control"  id="" name="state" required="true">
+			                        <option value="0" selected> </option>                                    
+			                        <option value="1">1</option>                                    
+			                        <option value="2">2</option>
+			                        <option value="3">3</option>
+			                    </select>
+			                </div>	
+			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
+			                    <label class="control-label" for="city">City</label>
+			                    <input type="text"
+			                           value=""
+			                           name="city"
+			                           class="form-control" placeholder="" required="true">
+			                </div>
+			                <div class="form-group col-lg-8 col-sm-8 col-md-8 col-xm-12">
+			                    <label class="control-label" for="address">Address</label>
+			                    <input type="text"
+			                           value=""
+			                           name="address"
+			                           class="form-control" placeholder="" required="true">
+			                </div>	
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="complement">Complement</label>
+			                    <input type="text"
+			                           value=""
+			                           name="complement"
+			                           class="form-control" placeholder="" required="true">
+			                </div>		
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="pparty">Political Party</label>
+			                    <select class="form-control"  id="" name="pparty" required="true">
+			                        <option value="0" selected> </option>                                    
+			                        <option value="1">1</option>                                    
+			                        <option value="2">2</option>
+			                        <option value="3">3</option>
+			                    </select>	
+			                </div>	
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="urole">User Role</label>
+			                    <select class="form-control"  id="" name="urole" required="true">
+			                        <option value="0" selected> </option>                                    
+			                        <option value="1">1</option>                                    
+			                        <option value="2">2</option>
+			                        <option value="3">3</option>
+			                    </select>	 
+			                </div>	
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="company">Company</label>
+			                    <input type="text"
+			                           value=""
+			                           name="company"
+			                           class="form-control" placeholder="" required="true">
+			                </div>
+			            </div>
+			            <div class="form-step">
+							<div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
+			                    <label class="control-label" for="username">Photo</label>
+			                    <input type="text"
+			                           value=""
+			                           name="username"
+			                           class="form-control" placeholder="">
+			                </div>
+							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
+			                    <label class="control-label" for="username">User Name</label>
+			                    <input type="text"
+			                           value=""
+			                           name="username"
+			                           class="form-control" placeholder="">
+			                </div>
+							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
+			                    <label class="control-label" for="email">E-mail</label>
+			                    <input type="text"
+			                           value=""
+			                           name="email"
+			                           class="form-control" placeholder="">
+			                </div>	
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="fname">Name</label>
+			                    <input type="text"
+			                           value=""
+			                           name="fname"
+			                           class="form-control" placeholder="">
+			                </div>	
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="lname">Last Name</label>
+			                    <input type="text"
+			                           value=""
+			                           name="lname"
+			                           class="form-control" placeholder="">
+			                </div>
+			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
+			                    <label class="control-label" for="gender">Gender</label>	                    
+			                    <select class="form-control"  id="" name="gender">
+			                        <option value="" selected> </option>                                    
+			                        <option value="male">Male</option>                                    
+			                        <option value="female">Female</option>
+			                        <option value="other">Other</option>
+			                    </select>	                    
+			                </div>
+			            </div>
+		                <div class="form-group col-lg-12 text-right">
+		                        <button type="button" name="previous"  id="prevBtn" class="btn btn-previous">Previous</button>
+		                        <button type="button" name="next" id="nextBtn" onclick="nextStep(1)" class="btn btn-next">Next</button>
+		                </div>		
+
+		            </form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var currentForm = 0; // Current tab is set to be the first tab (0)
+	showForm(currentForm);
+
+
+	function showForm(n) {
+	  var x = document.getElementsByClassName("form-step");
+	  x[n].style.display = "block";
+	  // if (n == 0) {
+	  //   document.getElementById("prevBtn").style.display = "none";
+	  // } else {
+	  //   document.getElementById("prevBtn").style.display = "inline";
+	  // }
+	  if (n == (x.length - 1)) {
+	    document.getElementById("nextBtn").innerHTML = "Submit";
+	  } else {
+	    document.getElementById("nextBtn").innerHTML = "Next";
+	  }
+	  fixStepIndicator(n)
+	}
+
+	function nextStep(n) {
+	  var x = document.getElementsByClassName("form-step");
+	  if (n == 1 && !validateForm()) {
+	  	return false;
+	  }
+	  x[currentForm].style.display = "none";
+	  currentForm = currentForm + n;
+	  if (currentForm >= x.length) {
+	    document.getElementById("regForm").submit();
+	    return false;
+	  }
+	  showForm(currentForm);
+	}
+
+	function validateForm() {
+	  var x, y, i, valid = true;
+	  x = document.getElementsByClassName("form-step");
+	  y = x[currentForm].getElementsByTagName("input");
+	  console.log(y)
+	  for (i = 0; i < y.length; i++) {
+	    if (y[i].value == "") {
+	      y[i].className += " invalid";
+	      valid = false;
+	    }
+	  }
+	  if (valid) {
+	    document.getElementsByClassName("step")[currentForm].className += " finish";
+	  }
+	  return valid; 
+	}
+	function fixStepIndicator(n) {
+	  var i, x = document.getElementsByClassName("step");
+	  for (i = 0; i < x.length; i++) {
+	    x[i].className = x[i].className.replace(" active", "");
+	  }
+	  x[n].className += " active";
+	}
+</script>
+
+{% endblock %}
