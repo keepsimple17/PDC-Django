@@ -2,34 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-<style>
-	body{
-		background-color: #f5f5f5;
-	}
-	.page-container1{
-		background-color: #dedede;
-		box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-	}
-	.navbar-inverse{
-		/*background-color: #676b74;
-		box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);*/
-	}
-	.navbar{
-		/*min-height: 60px;*/
-	}
-	.navbar-brand {
-	    display: inline-block;
-	    padding-top: 1.3125rem;
-	    padding-bottom: .3125rem;
-	    margin-right: 1rem;
-	    font-size: 1.95rem;
-	    line-height: inherit;
-	    white-space: nowrap;
-	    background-color: transparent;
-	    font-weight: 300;
-	}
-	</style>
-
 	<!-- Main navbar -->
 	<div class="">
 
@@ -94,18 +66,16 @@
 
 
 					<div class="content-divider text-muted form-group"><span>Ou Entre com sua Rede-Social</span></div>
-						<ul class="list-inline form-group list-inline-condensed text-center">
-							<li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
-							<li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-google-plus"></i></a></li>
-							<li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
-							<li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
-						</ul>
+                    <ul class="list-inline form-group list-inline-condensed text-center">
+                        <li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-google-plus"></i></a></li>
+                        <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
+                        <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
+                    </ul>
 
-						<div class="content-divider text-muted form-group"><span>Ainda não tem conta?</span></div>
-						<a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Registrar</a>
-						<span class="help-block text-center no-margin">Ao continuar você está aceitando os <a href="#">Termos &amp; Condições</a> do SCOPO e nossa <a href="#">Política de Cookies</a></span>
-
-
+                    <div class="content-divider text-muted form-group"><span>Ainda não tem conta?</span></div>
+                    <a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Registrar</a>
+                    <span class="help-block text-center no-margin">Ao continuar você está aceitando os <a href="#">Termos &amp; Condições</a> do SCOPO e nossa <a href="#">Política de Cookies</a></span>
 
 				</form>
 				<!-- /form -->
