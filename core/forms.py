@@ -10,10 +10,23 @@ from candidato.models import Candidate
 from cep.widgets import CEPInput
 
 
-class UserForm(UserCreationForm):
+# use these form classes to enforce unique emails, if required
+class UniqueEmailForm:
+    def clean_email(self):
+        qs = User.objects.filter(email=self.cleaned_data['email'])
+        if self.instance:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.count():
+            raise forms.ValidationError(
+                'Esse endereço de email já esta em uso.')
+        else:
+            return self.cleaned_data['email']
+
+
+class UserForm(UserCreationForm, UniqueEmailForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.', required=False)
 
     class Meta:
         model = User
@@ -30,6 +43,7 @@ class CandidateForm(forms.ModelForm):
     candidate_dispute_number = forms.CharField(max_length=40, required=False, help_text='Optional.')
     campaign_email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     political_position = forms.CharField(max_length=40, required=False, help_text='Optional.')
+
     class Meta:
         model = Candidate
         fields = ('candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email')

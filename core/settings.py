@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'dashboard',
     'candidato',
     'cep',
+    'elections',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -69,7 +70,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'social_django.context_processors.backends',  # <--
-                'social_django.context_processors.login_redirect', # <--
+                'social_django.context_processors.login_redirect',  # <--
             ],
         },
     },
@@ -86,7 +87,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'pdc',
         # 'USER': 'root',
-        # 'PASSWORD': '',
+        # 'PASSWORD': 'root',
         # 'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
         # 'PORT': '3306',
         'ENGINE': 'django.db.backends.mysql',
@@ -125,13 +126,16 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+# session configuration for token expiration
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2   # 2 weeks in seconds
+SESSION_SAVE_EVERY_REQUEST = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'pt-br'
 
-#TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
@@ -177,7 +181,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
 # SOCIAL_AUTH_FACEBOOK_KEY = '1464725153656586'  # App ID
 # SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
 
-#Please use the company smtp to send emails
+# Please use the company smtp to send emails
 DEFAULT_FROM_EMAIL = 'scopo@portaldocandidato.inf.br'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtpi.uni5.net'
