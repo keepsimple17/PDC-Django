@@ -164,10 +164,11 @@ def firstsetup(request):
 
 # It' the firstSetup, with updated template
 def primeiroSetup(request):
-    # return HttpResponse('Primeira Configuração do Usuário')
+    #return HttpResponse('Primeira Configuração do Usuário')
     # User First Configuration - In the first login
     # return render(request, "registration/signup.html", {'form': form})
-    return render(request, "registration/primeiroSetup.html")
+    #return render(request, "registration/primeiroSetup.html")
+    return render(request,'firstConfiguration.html')
 
 
 @csrf_protect
