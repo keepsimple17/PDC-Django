@@ -325,7 +325,7 @@ def apporve_user(request):
 
 def browser_view(request):
     id= request.GET["id"]
-    user = User.objects.get(id=id)
+    user = User.objects.get(id=int(id))
     current_site = get_current_site(request)
     return render(request,'authorization.html',{
                 'user': user,
