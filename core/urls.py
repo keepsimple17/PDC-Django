@@ -31,12 +31,13 @@ urlpatterns = [
     url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'}, name="logout"),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
-    url(r'candidato/',include('candidato.urls', namespace='candidato')),
+    url(r'candidato/', include('candidato.urls', namespace='candidato')),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate'),
     url(r'^cep/', include('cep.urls')),
     url(r'^account/firstsetup', views.firstsetup, name="firstsetup"),
-    url(r'^account/primeiroSetup', views.primeiroSetup, name="primeiroSetup"), #the template update for the firstsetup
+    # the template update for the firstsetup
+    url(r'^account/primeiroSetup', views.primeiroSetup, name="primeiroSetup"),
     # password reset
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^approve_user/$', views.apporve_user, name='apporve_user'),
