@@ -164,11 +164,11 @@ def firstsetup(request):
 
 # It' the firstSetup, with updated template
 def primeiroSetup(request):
-    #return HttpResponse('Primeira Configuração do Usuário')
+    # return HttpResponse('Primeira Configuração do Usuário')
     # User First Configuration - In the first login
     # return render(request, "registration/signup.html", {'form': form})
+    # return render(request,'firstConfiguration.html')
     return render(request, "registration/primeiroSetup.html")
-    #return render(request,'firstConfiguration.html')
 
 
 @csrf_protect
@@ -216,7 +216,7 @@ def signup_confirm(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        print('request.user', request.user)
+        # print('request.user', request.user)
         # print('request.user.usuario', request.user.usuario)
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.usuario)
