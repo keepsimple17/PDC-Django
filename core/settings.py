@@ -85,16 +85,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pdc',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
         # 'NAME': 'pdc',
-        # 'USER': 'paulrsilva',
-        # 'PASSWORD': '12341312iggb',
-        # 'HOST': 'pdc.clpcb1dffjfg.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
+        # 'USER': 'root',
+        # 'PASSWORD': '',
+        # 'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
         # 'PORT': '3306',
+        'NAME': 'pdc',
+        'USER': 'paulrsilva',
+        'PASSWORD': '12341312iggb',
+        'HOST': 'pdc.clpcb1dffjfg.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 
