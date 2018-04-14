@@ -164,10 +164,11 @@ def firstsetup(request):
 
 # It' the firstSetup, with updated template
 def primeiroSetup(request):
-    # return HttpResponse('Primeira Configuração do Usuário')
+    #return HttpResponse('Primeira Configuração do Usuário')
     # User First Configuration - In the first login
     # return render(request, "registration/signup.html", {'form': form})
     return render(request, "registration/primeiroSetup.html")
+    #return render(request,'firstConfiguration.html')
 
 
 @csrf_protect
@@ -321,3 +322,19 @@ def apporve_user(request):
     user.save()
     email.send()
     return HttpResponse("activated")
+
+def browser_view(request):
+    id= request.GET["id"]
+    user = User.objects.get(id=int(id))
+    current_site = get_current_site(request)
+    return render(request,'authorization.html',{
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+                })
+    # return HttpResponse(True)
+
+def user_configuration(request):
+    return render(request,"firstConfiguration.html")
+

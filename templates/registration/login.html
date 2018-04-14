@@ -23,9 +23,9 @@
 				<form class="modal-body" method="post" action="{% url 'login' %}">
       			{% csrf_token %}
 					<div class="text-center">
-						<div class="icon-object border-slate-600 text-slate-700"><i class="icon-target2"></i></div>
+						<img src="http://www.portaldocandidato.inf.br/images/SCOPO_300px.png">
 						
-						<h4 class="content-group">Sistema de Controle Político <small class="display-block">Insira Seus Dados de Acesso</small></h4>
+						<h4 class="content-group"><small class="display-block">Insira Seus Dados de Acesso</small></h4>
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
@@ -44,14 +44,7 @@
 
 					<div class="form-group login-options">
 						<div class="row">
-							<div class="col-sm-6">
-								<label class="checkbox-inline">
-									<input type="checkbox" class="styled">
-									Login Administrativo
-								</label>
-							</div>
-
-							<div class="col-sm-6 text-right">
+							<div class="col-sm-6 text-right col-sm-offset-6">
 								<a href="{% url 'password_reset' %}">Esqueceu a Senha?</a>
 							</div>
 						</div>
@@ -66,6 +59,7 @@
 
 
 					<div class="content-divider text-muted form-group"><span>Ou Entre com sua Rede-Social</span></div>
+
                     <ul class="list-inline form-group list-inline-condensed text-center">
                         <li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
                         <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-google-plus"></i></a></li>
@@ -75,7 +69,7 @@
 
                     <div class="content-divider text-muted form-group"><span>Ainda não tem conta?</span></div>
                     <a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Registrar</a>
-                    <span class="help-block text-center no-margin">Ao continuar você está aceitando os <a href="#">Termos &amp; Condições</a> do SCOPO e nossa <a href="#">Política de Cookies</a></span>
+                    <span class="help-block text-center no-margin">Ao continuar você está aceitando os <a href="#modal_terms" data-toggle="modal" data-target="#modal_terms">Termos &amp; Condições</a> do SCOPO e nossa <a href="#">Política de Cookies</a></span>
 
 				</form>
 				<!-- /form -->
@@ -83,4 +77,189 @@
 		</div>
 	</div>
 	<!-- /login form -->
+
+	    <!-- Modal de Termos&Condições-->
+    <div id="modal_terms" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3 class="modal-title" align="center"><i class=" icon-quill4"></i>   Termos de Serviço do SCOPO Online</h3>
+                </div>
+
+                <div class="modal-body">
+                    <h4 class="text-semibold">Política de Uso do Sistema On-line</h4>
+                    <p>
+                        DIRECTNET INFORMATICA S/C LTDA, Pessoa Jurídica de Direito Privado estabelecida em Curitiba, Paraná na Av. Sete de Setembro, nº 4698 -
+                        Cj. 2201, CEP 80240-000, inscrita no CNPJ sob o nº 01.625.641/0001-04, estabelece, através deste, os termos e condições
+                        para a utilização de Sistema Online forma a permitir a melhor experiência de uso, delimitando suas responsabilidades e as de seus usuários.
+                        No presente documento será denominada simplesmente <strong>LICENCIANTE</strong>.
+                        <br />  <br />
+                        Para os fins deste documento, usuário é toda as pessoa física, maior de 18 (dezoito) anos ou emancipada e
+                        totalmente capaz de praticar os atos da vida civil, que aceite o presente termo à utilização do Sistema Online,
+                        refenciados neste contrato como <strong>USUARIO</strong>
+                        <BR />  <br />
+                        O sistema, objeto do presente termo, refere-se a um conjunto de soluções integradas à análise e
+                        controle poítico para candidatos a pleitos específicos ou eleitos, denominado <i>SCOPO - SISTEMA DE
+                        CONTROLE POLITICO</i>, denominado no presente termo apenas como <strong>SISTEMA</strong>
+
+                    </p>
+
+                    <hr>
+
+                    <h6 class="text-semibold">Sobre o Registro no <strong>Sistema</strong></h6>
+                    <p>
+                        O processo de registro no SCOPO prevê uma etapa de uso do sistema on-line. Esse sistema é
+                        oferecido a qualquer tipo de organização interessada em usar os recursos do SCOPO, mediante a
+                        aceitação desta política, indispensável para o uso do sistema.
+                    </p>
+                    <p>
+                        Esta política é válida para quaisquer informações, textos, imagens e outros materiais que
+                        sejam inseridos, baixados ou que estejam ligados ao uso do sistema on-line.
+                    </p>
+
+                    <hr>
+
+                    <h6 class="text-semibold">Conta de Acesso</h6>
+                    <p>
+                     Ao acessar o sistema on-line, o usuário concorda e aceita integralmente as condições desta política de uso.
+                    </p>
+                    <p>
+                        O <strong>Usuário</strong> irá acessar sua conta por meio de seu login e senha,
+                        responsabilizando-se integralmente pelo uso que deles seja feito, mantendo os dados em sigilo
+                        e comprometendo-se a notificar a Directnet Informática Ltda. imediatamente a respeito de
+                        qualquer uso não autorizado de sua conta, bem como o acesso não autorizado por terceiros à mesma.
+                        A <strong>Licenciante</strong> não se responsabiliza por qualquer perda ou dano causado por
+                        falha do <strong>Usuário</strong>.
+                    </p>
+
+                    <hr>
+                    <h6 class="text-semibold">Modalidades de Uso</h6>
+                    <p>
+                     Ao acessar o sistema on-line, o usuário concorda e aceita integralmente as condições desta política de uso.
+                    </p>
+                    <p>
+                        O uso do <strong>Sistema</strong> será feito através de contrato anual pago mensalmente.
+                    </p>
+                    <p>
+                        Quaisquer variantes desta modalidade serão avaliadas e autorizadas pela <strong>Licenciante</strong> .
+                    </p>
+
+                    <hr>
+                    <h6 class="text-semibold">Responsabilidades</h6>
+                    <p>
+                    <strong>Da Licenciante:</strong><br />
+                        <ul>Oferecer apoio remoto sobre o uso do sistema on-line em horários pré-estabelecidos.</ul>
+                        <ul>Oferecer oficinas ao uso do <strong>Sistema</strong>, em agenda pré-definida e
+                            comunicada por seus canais de comunicação.
+                        </ul>
+                        <ul>Tornar o sistema disponível 24 horas por dia, 7 dias por semana durante o ciclo de aplicação,
+                            exceto em casos de: (a) tempo de inatividade planejado, ou (b) qualquer indisponibilidade
+                            causada por circunstâncias além de nosso controle razoável, incluindo, sem limitação, os
+                            casos fortuitos ou de força maior, como falhas e atrasos do prestador
+                            de serviços de Internet.
+                        </ul>
+                        <ul>
+                           Tratar com sigilo os dados cadastrais e dos demais usuários inseridos no sistema on-line,
+                            assim como os desempenhos obtidos na aplicação do Scopo - Sistema de Controle Político.
+                            A <strong>Licenciante</strong> pode divulgar informações confidenciais se e quando for
+                            obrigada por lei ou por determinação de órgão público a fazê-lo, obrigando-se a notificar
+                            o <strong>Usuário</strong> das divulgações a que foi obrigada a efetuar.
+                        </ul>
+                        <ul>
+                            Divulgar os critérios para seleção de relatos de práticas para constar do
+                            <a href="#">Banco de Práticas</a>.
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>Do Usuário:</strong><br />
+                        <ul>Ter autorização expressa do <strong>Candidato</strong> para aplicar os recursos
+                        do <strong>Sistema</strong></ul>
+                        <ul>
+                           Garantir a veracidade dos dados inseridos.
+                        </ul>
+                        <ul>
+                            Agir de forma a coibir o acesso não autorizado ou utilização dos serviços e
+                            notificar-nos imediatamente de qualquer acesso não autorizado ou uso.
+                        </ul>
+                        <ul>
+                           Comprometer-se a utilizar o <strong>Sistema</strong> e seus serviços de forma adequada e diligente, não o
+                            utilizando com objetivos ou meios para a prática de atos ilícitos, proibidos pela lei e
+                            pelos presentes termos de uso, lesivos aos direitos e interesses de terceiros, ou que, de
+                            qualquer forma, possa danificar, inutilizar, sobrecarregar ou deteriorar o site e seus
+                            serviços, bem como os equipamentos de informática de outros usuários ou de outros
+                            internautas (hardware e software) assim como os documentos, arquivos e informações.
+                        </ul>
+                        <ul>
+                            Efetuar os pagamentos referentes ao contrato pactuado estando ciente que, no caso de
+                            dessassociação, inadimplemento ou não renovação do termo de adesão, os serviços serão
+                            suspensos.
+                        </ul>
+                    </p>
+
+                    <hr>
+                    <h6 class="text-semibold">Direitos de Propriedade</h6>
+                    <p>
+                     Sem prejuízo dos direitos expressamente concedidos nesta política, são reservados à
+                        <strong> Licenciante </strong>. todos os direitos, títulos e interesses relativos ao
+                        <strong>Sistema</strong> , incluindo todos os direitos de propriedade intelectual relacionados.
+                        A concessão de uso não transfere nenhum direito de propriedade relativo ao produto e serviços
+                        aqui estabelecidos.
+                    </p>
+
+                    <hr>
+                    <h6 class="text-semibold">Divulgação</h6>
+                    <p>
+                        O uso do <strong>Sistema</strong> permite a divulgação e o envio de mensagens e postagens
+                        diretas ou em redes sociais. Por isso, a <strong>Licenciante</strong>
+                        não se responsabiliza pelas informações divulgadas e não verifica a veracidade das mesmas.
+                        A decisão sobre a divulgação dos desempenhos obtidos a partir do <strong>Sistema</strong>
+                        é exclusivamente do <strong>usuário</strong> ou da equipe por ele autorizada.
+                    </p>
+
+                    <hr>
+                    <h6 class="text-semibold">Cancelamento</h6>
+                    <p>
+                        Em caso de inadimplência, rescisão ou fim do contrato sem renovação, todos os dados dos
+                        usuários serão apagados em 3 meses contados a partir da data do último pagamento.
+                    </p>
+
+                    <p>
+                        A qualquer momento, o <strong>Usuário</strong> poderá solicitar à <strong>Licenciante</strong>
+                        a exclusão de seus dados cadastrais e de sua empresa, registrados no <strong>Sistema</strong>,
+                        enviando por escrito sua solicitação para o e-mail contato@scopoonline.com, indicando no título
+                        da mensagem a palavra “CANCELAMENTO” e no corpo do texto a chave de registro e dados cadastrais.
+                    </p>
+
+                    <p>
+                       Esta política apresenta os compromissos da <strong>Licenciante</strong> ao disponibilizar o
+                        <strong>Sistema</strong> on-line e dá clareza às responsabilidades do <strong>Usuário</strong>.
+                        Ela poderá ser atualizada pela <strong>Licenciante</strong> sempre que necessário, indicando a
+                        última atualização no início do texto.
+                    </p>
+
+                    <hr>
+                    <h6 class="text-semibold">Foro</h6>
+                    <p>
+                       O presente Termo rege-se pela Lei Brasileira e fica estabelecido o foro da Comarca de Curitiba/PR,
+                        com exclusão de qualquer outro, para todas as questões dele emergentes.
+                    </p>
+                    <p>
+                       As as Partes aceitam o presente documento nos seus precisos termos exarados, manifestando que o mesmo
+                        exprime a sua vontade com o aceite dos termos expressos.
+                    </p>
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-warning">Salvar Cópia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de Termos&Condições-->
 {% endblock %}
