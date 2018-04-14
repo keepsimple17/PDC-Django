@@ -1,16 +1,16 @@
 <div align="center">
-<h1> PDC - Candidate Portal </h1>
+<h1> SCOPO - Sistema de Controle Político </h1>
 </div>
 
 
-The PDC is a platform for Voters, Candidates, Public Holders, Political Parties, Research Institutes and all those involved in the Democratic and Electoral Process in Brazil.
+The SCOPO is a platform for Voters, Candidates, Public Holders, Political Parties, Research Institutes and all those involved in the Democratic and Electoral Process in Brazil.
 
 Connected with the Internet, social networks, research networks, TRE's, press and City Management systems, it allows a clear vision of community needs, simulation of results and direct interaction between the citizen and the political system.
 
 The system can be accessed online.
 
 * Landing Page: [[http://www.portaldocandidato.inf.br]]
-* Dashboard : [[http://crm.portaldocandidato.inf.br]]
+* Dashboard : [[http://scopo.online]]
 
 
 
