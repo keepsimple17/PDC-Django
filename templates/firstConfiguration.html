@@ -509,7 +509,7 @@
 			                </div>
 			                <div class="team-member">
 				                <div class="form-group col-lg-12 col-sm-12 col-md-12 col-xm-12">
-									<button type="button" class="btn btn-down">Include Team Member <span class="glyphicon glyphicon-menu-down"></span></button>
+									<button type="button" class="btn btn-down">Include Team Member <span class="glyphicon glyphicon-chevron-down"></span></button>
 								</div>
 							</div>
 			                <div class="panel panel-white col-lg-12 p-0">
@@ -600,7 +600,197 @@
 			                </div>
 			            </div>
 			            <div class="form-step">
-			            	
+			            	<ul class="nav nav-tabs">
+							  <li role="presentation" class="active"><a data-toggle="tab" href="#proposals">Proposals & Keywords</a></li>
+							  <li role="presentation"><a data-toggle="tab" href="#location">Location</a></li>
+							  <li role="presentation"><a data-toggle="tab" href="#committees">Committees</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="proposals" class="tab-pane fade in active">
+									<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+										<div class="form-group col-lg-12 col-sm-12 col-md-12 col-xm-12">
+						                    <label class="control-label" for="proposal">Proposal</label>	                    
+						                    <input type="text"
+						                           value=""
+						                           name="proposal"
+						                           class="form-control" placeholder="">                   
+						                </div>
+						                <div class="form-group col-lg-12 col-sm-12 col-md-12 col-xm-12">
+						                    <label class="control-label" for="proposalDesc">Proposal Description</label>	                    
+						                    <input type="text"
+						                           value=""
+						                           name="proposalDesc"
+						                           class="form-control proposal-description" placeholder="">                   
+						                </div>    
+									</div>
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 btn-right">
+										<button type="button" class="btn right-btn"><span class="glyphicon glyphicon-chevron-right"></span></button>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+										<div class="form-group col-lg-12">
+											<span class="control-label">Proposals List</span><br>
+						                    <div class="proposal-list">
+						                    	<div class="proposal-item"> Release ther carrying of weapons in Brazil<span class="glyphicon glyphicon-remove-sign"></span></div>
+						                    	<div class="proposal-item odd"> Criminalization of Abortion<span class="glyphicon glyphicon-remove-sign"></span></div>
+						                    	<div class="proposal-item"> End of privileged forum<span class="glyphicon glyphicon-remove-sign"></span></span></div>
+						                    	<div class="proposal-item odd"> Expansion of Bolsa Familia<span class="glyphicon glyphicon-remove-sign"></span></div>
+						                    	<div class="proposal-item"> Creation of New Universities<span class="glyphicon glyphicon-remove-sign"></span></div>
+						                    	<div class="proposal-item odd"> Prevatization of the Penitentiary System<span class="glyphicon glyphicon-remove-sign"></span></div>
+							                </div>		                           
+						                </div>
+									</div>
+									<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
+				                    <label class="control-label" for="addkeyword">Add Keyword</label>	                    
+				                    <input type="text"
+				                           value=""
+				                           name="addkeyword"
+				                           class="form-control" placeholder="">                   
+				                </div>
+				                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
+				                     <label><input type="radio" class="zoom" name="optradio"><span class="positive keyword-desc">Positive</span></label>
+				                     <label><input type="radio" class="zoom" name="optradio"><span class="negative keyword-desc">Negative</span></label>
+				                     <label><input type="radio" class="zoom" name="optradio"><span class="follow keyword-desc">Follow</span></label>
+				                </div>
+				                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">	
+				                	<label class="control-label"></label>				                    	                    
+				                    <button type="button" class="btn add-keywords">Add Keywords <span class="glyphicon glyphicon-chevron-down"></span></button>                
+				                </div>
+				                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+									<div class="form-group col-lg-12">
+										<span class="control-label">Keywords</span><br>
+					                    <div class="keywords-list">
+					                    	<div class="positive keyword-desc">Security</div>
+					                    	<div class="positive keyword-desc">Education</div>
+					                    	<div class="positive keyword-desc">Lava-Jato</div>
+					                    	<div class="follow keyword-desc">Bolsonaro</div>
+					                    	<div class="negative keyword-desc">Luna 2018</div>
+					                    </div>		                           
+					                </div>
+								</div>
+								</div>
+								
+								<div id="location" class="tab-pane fade">
+									<!-- To do -->
+									Location Tab
+								</div>
+								<div id="committees" class="tab-pane fade">
+									<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
+					                    <label class="control-label" for="committeename">Responsible for the Committee (name)</label>	                    
+					                    <input type="text"
+					                           value=""
+					                           name="committeename"
+					                           class="form-control" placeholder="">                   
+					                </div> 
+				                	<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
+					                    <label class="control-label" for="committeeemail">Responsible for the Committee (email)</label>	                    
+					                    <input type="text"
+					                           value=""
+					                           name="committeeemail"
+					                           class="form-control" placeholder="">                   
+					                </div> 
+					                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">
+					                    <label class="control-label" for="committeezip">ZIP CODE</label>	                    
+					                    <input type="text"
+					                           value=""
+					                           name="committeezip"
+					                           class="form-control" placeholder="">                   
+					                </div> 
+					                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+					                    <label class="control-label" for="committeestate">State</label>	                    
+					                    <input type="text"
+					                           value=""
+					                           name="committeestate"
+					                           class="form-control" placeholder="">                   
+					                </div> 
+					                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
+					                    <label class="control-label" for="committeecity">City</label>	                    
+					                    <input type="text"
+					                           value=""
+					                           name="committeecity"
+					                           class="form-control" placeholder="">                   
+					                </div> 
+					                <div class="form-group col-lg-8 col-sm-8 col-md-8 col-xm-12">
+					                    <label class="control-label" for="committeeadd">Address</label>	                    
+					                    <input type="text"
+					                           value=""
+					                           name="committeeadd"
+					                           class="form-control" placeholder="">                   
+					                </div> 
+					                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+					                    <label class="control-label" for="committeecomplement">Complement</label>	                    
+					                    <input type="text"
+					                           value=""
+					                           name="committeecomplement"
+					                           class="form-control" placeholder="">                   
+					                </div> 
+					                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
+					                    <label class="control-label" for="committeecomplement">Complement</label>	                    
+					                    <input type="text"
+					                           value=""
+					                           name="committeecomplement"
+					                           class="form-control" placeholder="">                   
+					                </div> 
+					                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
+					                    <label class="control-label"></label>				                    	                    
+				                    	<button type="button" class="btn add-keywords">Add Committee <span class="glyphicon glyphicon-chevron-down"></span></button>                    
+					                </div> 
+					                <div class="panel panel-white col-lg-12 p-0">
+			                	<div class="configurations-heading table-heading">
+									Committees List
+								</div>
+								<div class="configurations-text table-text">
+									Some default panel content here. Nulla vitae elit libero, a pharentra augue. Aenean lancinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula.
+								</div>
+								<table class="table table-condensed">
+							    <thead>
+							      <tr>
+							        <th>#</th>
+							        <th>Name</th>
+							        <th>E-mail Responsible</th>
+							        <th>Location</th>
+							        <th>Registered</th>
+							        <th></th>
+							      </tr>
+							    </thead>
+							    <tbody>
+							      <tr>
+							        <td>1</td>
+							        <td>Comite lgualdade</td>
+							        <td>paulino@neoplace.com.br</td>
+							        <td>Curitiba/PR</td>
+							        <td><input type="radio" class="check-box" value=""></td>
+							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
+							      </tr>
+							      <tr>
+							        <td>2</td>
+							        <td>Brasil Melhor</td>
+							        <td>mary@poppins.com.br</td>
+							        <td>Rio de Janerio/RJ</td>
+							        <td><input type="radio" class="check-box" value=""></td>
+							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
+							      </tr>
+							      <tr>
+							        <td>3</td>
+							        <td>Agua Verde</td>
+							        <td>james@taylor.com.br</td>
+							        <td>Curitiba/PR</td>
+							        <td><input type="radio" class="check-box" value=""></td>
+							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
+							      </tr>
+							      <tr>
+							        <td>4</td>
+							        <td>ABC Paulista</td>
+							        <td>fernando@innovators.com.br</td>
+							        <td>Sao Paulo/SP</td>
+							        <td><input type="radio" class="check-box" value=""></td>
+							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
+							      </tr>
+							    </tbody>
+							  </table>
+			                </div>
+									
+								</div>
+							</div>
 			            </div>
 		                <div class="form-group col-lg-12 text-right">
 		                        <button type="button" name="previous"  id="prevBtn" onclick="nextStep(-1)" class="btn btn-previous">Previous</button>
