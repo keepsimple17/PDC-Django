@@ -1,22 +1,25 @@
-{#{% extends '_base.html' %}#}
-{#{% load staticfiles %}#}
-{##}
-{#{% block content %}#}
-{#    <style>#}
-{#        .btn-rounded {#}
-{#            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);#}
-{#            -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);#}
-{#        }#}
-{#    </style>#}
+{% extends '_base.html' %}
+{% load staticfiles %}
 
-    <!-- Page container -->
+{% block content %}
     <div class="page-container">
 
-        <!-- Page content -->
-        <div>Seu registro no scopo.online foi efetuado com sucesso. Parabéns. Por favor, aguarde sua aprovação pelo seu candidato.</div>
-        <!-- /page content -->
+        <div class="modal-dialog">
+            <div class="login-form">
+                <div class="block">
+                    <div class="block-title text-center">
+                        <h2>Notificação</h2>
+                    </div>
+                    <div class="alert alert-warning" style="display: inline-flex">
+                        <i class="icon-warning" style="font-size: 33px;margin-right: 10px;"></i>
+                        <span>
+                            Seu registro no scopo.online foi efetuado com sucesso. Parabéns. Por favor, aguarde sua aprovação pelo seu candidato.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
 
     </div>
-    <!-- /page container -->
-{#<script type="text/javascript" src="{% static 'js/pages/dashboard.js' %}"></script>#}
-{#{% endblock %}#}
+{% endblock %}

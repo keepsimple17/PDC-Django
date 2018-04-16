@@ -74,12 +74,13 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     choice_states = get_states()
     choice_cities = get_cities()
-    choice_states.insert(0,(None,"Enter State"))
-    choice_cities.insert(0,(None,"Enter City"))
+    choice_states.insert(0, (None, "Enter State"))
+    choice_cities.insert(0, (None, "Enter City"))
 
     choice_states = tuple(choice_states)
     choice_cities = tuple(choice_cities)
-    estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.', widget=forms.Select(attrs={'class':'form-control'}))
+    estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.',
+                               widget=forms.Select(attrs={'class': 'form-control'}))
 
     cidade = forms.ChoiceField(choices=choice_cities, required=False, help_text='Optional.')
     address = forms.CharField(max_length=255, required=False, help_text='Optional')
@@ -103,7 +104,4 @@ class ProfileForm(forms.ModelForm):
             'cellPhone': forms.TextInput(attrs={'class': "form-control validate"}),
         }
 
-
-
     # Due duplication, the Candidate information is in candidato.models.Candidate. The widgets must been set from there
-

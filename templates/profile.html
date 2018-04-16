@@ -152,7 +152,7 @@
                 </div>
 
                 <hr>
-                <div class="row prepend-top-default append-bottom-default">
+                <div class="row prepend-top-default append-bottom-default" style="margin-bottom: 15px;">
                     <div class="col-md-8">
                         {% if messages %}
                         <ul class="messages">
@@ -163,10 +163,43 @@
                         </ul>
                         {% endif %}
                     </div>
-                    <div class="col-md-4 text-right">
+                    <div class="col-md-4 text-right" style="margin-top: 15px;">
                         <input type="submit" name="commit" value="Update Profile" class="btn btn-success">
                     </div>
                 </div>
+                {% if user_form.errors %}
+                    {% for field in user_form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                {{ field.label_tag }}
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+                    {% for error in user_form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% if profile_form.errors %}
+                    {% for field in profile_form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                {{ field.label_tag }}
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+                    {% for error in profile_form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </form>
             <!--/.Second row-->
 
@@ -180,7 +213,9 @@
             <h3><b>Loading...</b></h3>
         </div>
     </div>
-    <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
+{#    <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>#}
+    <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDk--U-aOtHrezSQ9oM8ikjUikreFAXyQc
+&sensor=false&libraries=places'></script>
     <script type="text/javascript" src="/static/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js"></script>
     <script type="text/javascript" src="/static/js/plugins/pickers/location/typeahead_addresspicker.js"></script>
     <script type="text/javascript" src="/static/js/plugins/pickers/location/autocomplete_addresspicker.js"></script>
