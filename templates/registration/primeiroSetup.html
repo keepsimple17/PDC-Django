@@ -21,17 +21,18 @@
         <script type="text/javascript" src="{% static 'js/plugins/ui/ripple.min.js' %}"></script>
 
         <!-- calendar pickup itens -->
-        <script type=​"text/​javascript" src="{{ STATIC_URL }}js/plugins/notifications/jgrowl.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/ui/moment/moment.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/pickers/daterangepicker.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/pickers/anytime.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/pickers/pickadate/picker.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/pickers/pickadate/picker.date.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/pages/picker_date.js"></script>
+            <!-- for some reason the picker date is conflicting with the button effects -->
         <!-- calendar pickup itens -->
-
     <!-- /theme JS files -->
     <!-- /Theme for step form wizard -->
+
+    <!-- Buttons effects -->
+     	<script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.ui.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/buttons/spin.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/buttons/ladda.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/pages/components_buttons.js' %}"></script>
+    <!-- /Buttons effects -->
 
 <div class="breadcrumb-line breadcrumb-line-component">
     <ul class="breadcrumb">
@@ -648,242 +649,14 @@
 							      </tr>
 							    </tbody>
 							  </table>
+
 			                </div>
-                                <div class="row">
+                            <div class="col-md-4 col-md-offset-5">
+                                    <p>
+                                        <button type="button" class="btn bg-slate-400 btn-ladda btn-ladda-progress" data-style="slide-down"><span class="ladda-label">Spinner + Progress</span><span class="ladda-spinner"></span><div class="ladda-progress" style="width: 135px;"></div></button>
+                                    </p>
 
-                                    <div class="col-md-4">
-										<div class="form-group">
-											<label>Cargo Pretendido</label> <!-- Candidate aspiration role -->
-											<select name="Candidate aspiration" class="select">
-                                                <option></option>
-                                                <optgroup label="Campanha">
-													<option value="Presidente">Presidente</option>
-													<option value="Senador">Senador</option>
-                                                    <option value="Deputado Federal">Deputado Federal</option>
-													<option value="Governador">Governador</option>
-													<option value="Prefeito">Prefeito</option>
-													<option value="Deptado Estadual">Deptado Estadual</option>
-                                                    <option value="Vereador">Vereador</option>
-                                                </optgroup>
-                                            </select>
-										</div>
-									</div>
-
-                                    <div class="col-md-2">
-										<div class="form-group">
-											<label>Pleito</label> <!-- Ballot -->
-											<input type="number" name="ballot" class="form-control">
-										</div>
-									</div>
-
-                                    <div class="col-md-1">
-										<div class="form-group">
-											<label>UF</label> <!-- Candidate State -->
-											<input type="text" name="Candidate State" class="form-control">
-										</div>
-									</div>
-
-                                    <div class="col-md-3">
-										<div class="form-group">
-											<label>Cidade</label> <!-- Candidate City -->
-											<input type="text" name="city" class="form-control">
-										</div>
-									</div>
-
-                                    <!-- Candidate Current role, Ballot elected, State, City -->
-
-                                <div class="row">
-
-                                    <div class="col-md-4">
-										<div class="form-group">
-											<label>Cargo atual</label> <!-- Candidate Current role -->
-											<select name="Candidate aspiration" class="select">
-                                                <option></option>
-                                                <optgroup label="Campanha">
-													<option value="Presidente">Presidente</option>
-													<option value="Senador">Senador</option>
-                                                    <option value="Deputado Federal">Deputado Federal</option>
-													<option value="Governador">Governador</option>
-													<option value="Prefeito">Prefeito</option>
-													<option value="Deptado Estadual">Deptado Estadual</option>
-                                                    <option value="Vereador">Vereador</option>
-                                                </optgroup>
-                                            </select>
-										</div>
-									</div>
-
-                                    <div class="col-md-2">
-										<div class="form-group">
-											<label>Eleito em</label> <!-- Ballot elected -->
-											<input type="number" name="ballot" class="form-control">
-										</div>
-									</div>
-
-                                    <div class="col-md-1">
-										<div class="form-group">
-											<label>UF</label> <!-- Candidate State where elected-->
-											<input type="text" name="Candidate State" class="form-control">
-										</div>
-									</div>
-
-                                    <div class="col-md-3">
-										<div class="form-group">
-											<label>Cidade</label> <!-- Candidate City where elected -->
-											<input type="text" name="city" class="form-control">
-										</div>
-									</div>
-                                </div>
-
-                                    <div class="col-md-4">
-										<div class="form-group">
-											<label>Email:</label>
-											<input type="email" name="email" class="form-control" placeholder="your@email.com">
-										</div>
-									</div>
-
-
-
-                                <!-- Name, Surname, Gender, Civil Status, -->
-                                <div class="row">
-									<div class="col-md-3">
-										<div class="form-group">
-											<label>Nome</label> <!-- Name -->
-											<input type="text" name="name" class="form-control">
-										</div>
-									</div>
-                                    <div class="col-md-3">
-										<div class="form-group">
-											<label>Sobrenome:</label> <!-- Surname -->
-											<input type="text" name="name" class="form-control">
-										</div>
-									</div>
-
-									<div class="col-md-3">
-										<div class="form-group">
-											<label>Gênero:</label>
-											<select name="gender" data-placeholder="Gênero" class="select">
-												<option></option>
-												<optgroup label="Pessoa Física">
-													<option value="M">Masculino</option>
-													<option value="F">Feminino</option>
-                                                    <option value="N">Outro</option>
-												</optgroup>
-
-												<optgroup label="Pessoa Jurídica">
-													<option value="E">Empresa</option>
-													<option value="S">Sindicato</option>
-													<option value="O">Organização ou Instituto</option>
-												</optgroup>
-											</select>
-                                         </div>
-									</div>
-                                    <div class="col-md-3">
-										<div class="form-group">
-											<label>Estado Civil:</label>
-											<select name="gender" data-placeholder="Estado Civil" class="select">
-												<option></option>
-												<optgroup label="Estado Civil">
-													<option value="S">Solteiro</option>
-													<option value="F">Casado</option>
-                                                    <option value="D">Divordiado</option>
-                                                    <option value="V">Viúvo</option>
-                                                    <option value="O">Outro</option>
-												</optgroup>
-
-											</select>
-                                         </div>
-									</div>
-
-								</div>
-                                <!-- /Name, Surname, Civil Status, Gender -->
-
-                                <!-- CPF, Birthday_Date, CellPhone, Landline -->
-                                <div class="row">
-									<div class="col-md-3">
-										<div class="form-group">
-											<label>CPF:</label> <!-- CPF - (social ID) -->
-											<input type="text" name="cpf" class="form-control">
-										</div>
-									</div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Data de Nascimento:</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icon-calendar3"></i></span>
-                                                <input type="text" class="form-control" id="anytime-date"
-                                                       value="dd/mm/aaaa" readonly>
-                                            </div>
-                                        </div>
-									</div>
-
-									<div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Tel. Celular:</label> <!-- Cellphone -->
-                                            <input type="text" name="cellPhone" class="form-control">
-                                        </div>
-									</div>
-
-
-                                    <div class="col-md-3">
-										<div class="form-group">
-											<label>Tel. Fixo:</label>
-                                            <input type="text" name="landLinePhone" class="form-control">
-                                         </div>
-									</div>
-
-								</div>
-                                <!-- /CPF, Birthday_Date, CellPhone, Landline -->
-
-
-                                <!-- CEP, State and Citie -->
-                                <div class="row">
-									<div class="col-md-2">
-										<div class="form-group">
-											<label>CEP:</label>
-											<input type="text" name="cep" class="form-control">
-										</div>
-									</div>
-                                    <div class="col-md-5">
-										<div class="form-group">
-											<label>Estado:</label> <!-- State -->
-											<input type="text" name="estado" class="form-control">
-										</div>
-									</div>
-
-									<div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Cidade:</label> <!-- Citie -->
-                                            <input type="text" name="cidade" class="form-control">
-                                        </div>
-									</div>
-								</div>
-                                <!-- /CEP, State and Citie -->
-
-                                <!-- Adreess, Predial number,  complement address -->
-                                <div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Endereço:</label>
-											<input type="text" name="address" class="form-control">
-										</div>
-									</div>
-                                    <div class="col-md-2">
-										<div class="form-group">
-											<label>Complemento</label> <!-- predial number - complement address -->
-											<input type="text" name="predial_number" class="form-control">
-										</div>
-									</div>
-
-									<div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Bairro</label> <!-- Neiborwood -->
-                                            <input type="text" name="bairro" class="form-control">
-                                        </div>
-									</div>
-								</div>
-                                <!-- Adreess, Predial number,  complement address -->
-
-
+                            </div>
 							</fieldset>
 
 							<h6>Campanha</h6>
@@ -952,7 +725,7 @@
                                             <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Adicionar Membro</button>
                                         </div>
                                     </div>
-                    </div>
+                            </div>
 							</fieldset>
 
 						</form>
