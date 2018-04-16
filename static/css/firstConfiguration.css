@@ -14,12 +14,9 @@
 	.container {
 		width: 1000px;
 	}
-}
-.configurations-container {
-	background: white;
-	border: 1px solid rgba(187, 185, 185, 0.36);
-	border-radius: 5px 5px 0px 0px;
-	padding: 0px;
+	.team-member {
+		padding: 0px 235px;
+	}
 }
 .form-group .btn-previous {
 	background: #CBCFD2;
@@ -103,6 +100,26 @@
 .tablist .step .current {
     display: none;
 }
+.tablist .step .list-done {
+    display: none;
+}
+.tablist .done .list {
+    display: none;
+}
+.tablist .step.done .list-done {
+    border: 3px solid #56C0E0;
+    background: #56C0E0;
+    border-radius: 40px;
+    color:  white;
+    padding: 15px 12px;
+    display: inline;
+}
+.tablist .step.done {
+	padding-top: 7px;
+}
+.tablist .step.active .list-done{
+	display: none;
+}
 .tablist .step.active .current{
 	border: 3px solid #56C0E0;
     border-radius: 40px;
@@ -128,13 +145,7 @@
 	font-weight: bold;
 	margin-top: 15px;
 }
-.scopo-logo-study {
-	background-image: url("{% static 'images/scopo_logo_study.png' %}");
-	height: 100px;
-    background-repeat: no-repeat;
-    background-size: 300px;
-    background-position: center;
-}
+
 .page-heading {
 	font-size: 35px;
 }
@@ -155,7 +166,51 @@
 input[type="file"] {
     display: none;
 }
-.photo-input {
+.file-input {
 	margin: 6px 0px 0px;
 	box-shadow: inset 2px 2px 25px 15px rgba(136, 136, 136, 0.2) !important;
+}
+.p-0 {
+	padding: 0px !important;
+}
+.form-group.col-lg-8 {
+	height: 44px;
+}
+.icon-bordered {
+	padding: 3px;
+    border: 2px solid;
+    font-size: 12px;
+    border-radius: 50%;
+}
+.table-heading {
+	background: #F5F5F5;
+}
+.table-text {
+	background: white;
+	border-bottom: 1px solid rgba(187, 185, 185, 0.36);
+}
+.table-condensed thead {
+	background: #F5F5F5;
+	border-bottom: 1px solid rgba(187, 185, 185, 0.36);
+}
+.btn-down {
+	background: #5CB85C;
+	border: 1px solid #5CB85C !important;
+	font-size: 20px !important;
+	font-weight: 800;
+	width: 100% !important;
+	color: white;
+	margin: 0px !important;
+}
+.glyphicon-menu-down {
+	margin-left: 30px;
+	font-size: 25px;
+}
+.check-box {
+	margin: 0px 20px !important;
+	zoom:1.3;
+}
+.glyphicon-remove-sign {
+	color: #DC5A53;
+	font-size: 20px;
 }
