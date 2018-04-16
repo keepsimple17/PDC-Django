@@ -651,7 +651,7 @@
 							  </table>
 
 			                </div>
-                            <div class="col-md-4 col-md-offset-5">
+                            <div class="col-md-4 col-md-offset-8">
                                     <p>
                                         <button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress"
                                                 data-style="slide-down"><span class="ladda-label"> <i class="icon-user-plus"> Adicionar &amp. Convidar</i>  </span><span class="ladda-spinner"></span>
@@ -660,81 +660,167 @@
 
                             </div>
 
-
-
                             <!-- table with invited team members -->
-                       
+
+                            <label><i class="icon-people"> Lista de Membros Adicionados</i> </label>
+                               	<div class="panel panel-white col-lg-12 p-0">
+                                    <div class="configurations-heading table-heading">
+                                    </div>
+
+                                    <div class="configurations-text table-text">
+                                        <br />
+                                        <p>Acompanhe, abaixo, a integração de sua equipe com o SCOPO.</p>
+                                        <hr />
+                                    </div>
+                                    <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
+                                    <div class="datatable-scroll">
+                                        <table class="table datatable-save-state dataTable no-footer" id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
+							<thead>
+								<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2"
+                                                   rowspan="1" colspan="1" aria-sort="ascending"
+                                                   aria-label="First Name: activate to sort column descending">Nome</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+                                        colspan="1" aria-label="Last Name: activate to sort column ascending">E-Mail</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+                                        colspan="1" aria-label="Job Title: activate to sort column ascending">Função</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+                                        colspan="1" aria-label="Status: activate to sort column ascending">Status</th>
+                                    <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">Ações</th></tr>
+							</thead>
+							<tbody>
+
+
+							<tr role="row" class="odd">
+									<td class="sorting_1">Marcelo Senise</td>
+									<td>marcelosenise@gmail.com</td>
+									<td>Agência de Marketing</td>
+									<td><span class="label label-danger">Suspenso</span></td>
+									<td class="text-center">
+										<ul class="icons-list">
+											<li class="dropdown">
+												<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+													<i class="icon-menu9"></i>
+												</a>
+
+												<ul class="dropdown-menu dropdown-menu-right">
+													<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+													<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+													<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+												</ul>
+											</li>
+										</ul>
+									</td>
+								</tr><tr role="row" class="even">
+									<td class="sorting_1">Fernando Dichiara</td>
+									<td><a href="#">fernando@innovators.com.br</a></td>
+									<td>Consultor</td>
+									<td><span class="label label-default">Inativo</span></td>
+									<td class="text-center">
+										<ul class="icons-list">
+											<li class="dropdown">
+												<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+													<i class="icon-menu9"></i>
+												</a>
+												<ul class="dropdown-menu dropdown-menu-right">
+													<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+													<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+													<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+												</ul>
+											</li>
+										</ul>
+									</td>
+								</tr><tr role="row" class="odd">
+									<td class="sorting_1">Marcelo Arisio</td>
+									<td><a href="#">marceloarc@gmail.com</a></td>
+                                    <td>Voluntário</td>
+									<td><span class="label label-info">Convidado</span></td>
+									<td class="text-center">
+										<ul class="icons-list">
+											<li class="dropdown">
+												<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+													<i class="icon-menu9"></i>
+												</a>
+												<ul class="dropdown-menu dropdown-menu-right">
+													<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+													<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+													<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+												</ul>
+											</li>
+										</ul>
+									</td>
+								</tr><tr role="row" class="even">
+									<td class="sorting_1">Fernando Priolli</td>
+									<td>nandopriolli@gmail.com</td>
+									<td>Consultor</td>
+									<td><span class="label label-success">Ativo</span></td>
+									<td class="text-center">
+										<ul class="icons-list">
+											<li class="dropdown">
+												<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+													<i class="icon-menu9"></i>
+												</a>
+
+												<ul class="dropdown-menu dropdown-menu-right">
+													<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+													<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+													<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+												</ul>
+											</li>
+										</ul>
+									</td>
+								</tr></tbody>
+						</table></div><div class="datatable-footer"><div class="dataTables_info"
+                                                                         id="DataTables_Table_2_info"
+                                                                         role="status"
+                                                                         aria-live="polite"> 1 de 4 Convidados</div>
+                                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
+                                            <a class="paginate_button previous disabled" aria-controls="DataTables_Table_2"
+                                               data-dt-idx="0" tabindex="0" id="DataTables_Table_2_previous">←</a><span>
+                                            <a class="paginate_button current" aria-controls="DataTables_Table_2"
+                                               data-dt-idx="1" tabindex="0">1</a><a class="paginate_button "
+                                                                                    aria-controls="DataTables_Table_2"
+                                                                                    data-dt-idx="2" tabindex="0">2</a></span>
+                                            <a class="paginate_button next" aria-controls="DataTables_Table_2"
+                                               data-dt-idx="3" tabindex="0" id="DataTables_Table_2_next">→</a></div></div>
+                                         </div>
+                                </div>
                             <!-- table with invited team members -->
 
 							</fieldset>
 
 							<h6>Campanha</h6>
 							<fieldset>
-								<div class="row">
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label text-muted">Sem Imagem</label>
-                                        <div class="col-xs-9">
-                                            <i class="fa fa-fw fa-upload"></i> <a href="javascript:void(0)">Enviar Foto</a><br>
-                                            <i class="fa fa-fw fa-picture-o"></i> <a href="javascript:void(0)">Escolher da biblioteca</a>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label" for="add-membro-nome">Nome</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" id="add-contact-name" name="add-membro-nome" class="form-control" placeholder="Nome Completo">
-                                        </div>
-                                    </div>
-                                     <div class="form-group">
-                                        <label class="col-xs-3 control-label" for="add-contact-CPF">CPF</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" id="add-contact-name" name="add-membro-CPF" class="form-control" placeholder="CPF">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label" for="add-membro-email">Email</label>
-                                        <div class="col-xs-9">
-                                            <input type="email" id="add-contact-email" name="add-membro-email" class="form-control" placeholder="Email do membro">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label" for="add-membro-phone">Telefone</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" id="add-contact-phone" name="add-membro-phone" class="form-control" placeholder="(41) 0000-0000">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label" for="add-membro-mobile">Celular</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" id="add-contact-mobile" name="add-membro-mobile" class="form-control" placeholder="Insira o Celular">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label" for="add-membro-Cidade">Cidade/UF</label>
-                                        <div class="col-xs-6">
-                                            <input type="text" id="add-contact-address" name="edit-membro-Cidade" class="form-control" placeholder="Cidade">
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <input type="text" id="add-contact-UF" name="edit-membro-UF" class="form-control" placeholder="UF">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label" for="add-membro-address">Endereço</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" id="add-contact-address" name="edit-membro-address" class="form-control" placeholder="Endereço">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label" for="add-membro-group">Grupo</label>
-                                        <div class="col-xs-9">
-                                            <input type="text" id="add-contact-group" name="add-membro-group" class="input-tags" value="All Contacts">
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-actions">
-                                        <div class="col-xs-9 col-xs-offset-3">
-                                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Adicionar Membro</button>
-                                        </div>
-                                    </div>
-                            </div>
+
+                                <div class="panel panel-flat col-lg-12 p-0">
+
+								<div class="panel-body" style="display: block;">
+									<div class="tabbable">
+										<ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+											<li class="active"><a href="#highlighted-justified-tab1" data-toggle="tab">Palavras Chave &amp. Propostas</a></li>
+											<li><a href="#highlighted-justified-tab2" data-toggle="tab">Localização</a></li>
+                                            <li><a href="#highlighted-justified-tab3" data-toggle="tab">Comitês</a></li>
+										</ul>
+
+										<div class="tab-content">
+											<div class="tab-pane active" id="highlighted-justified-tab1">
+												To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+											</div>
+
+											<div class="tab-pane" id="highlighted-justified-tab2">
+												Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid laeggin.
+											</div>
+
+											<div class="tab-pane" id="highlighted-justified-tab3">
+												DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg whatever.
+											</div>
+
+											<div class="tab-pane" id="highlighted-justified-tab4">
+												Aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthet.
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							</fieldset>
 
 						</form>
