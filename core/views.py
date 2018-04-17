@@ -346,7 +346,7 @@ def user_configuration(request):
 
         choice_states = tuple(choice_states)
         choice_cities = tuple(choice_cities)
-        return render(request, "firstConfiguration.html", {'user_form': user_form, 'config_form': user_configuration, 'cities' : choice_cities, "states" :choice_states, "POLITICAL_PARTY_CHOICES": POLITICAL_PARTY_CHOICES})
+        return render(request, "registration/primeiroSetup.html", {'user_form': user_form, 'config_form': user_configuration, 'cities' : choice_cities, "states" :choice_states, "POLITICAL_PARTY_CHOICES": POLITICAL_PARTY_CHOICES})
 
 
 @csrf_exempt
