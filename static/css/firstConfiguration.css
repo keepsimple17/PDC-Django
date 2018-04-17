@@ -305,3 +305,6 @@ input[type="file"] {
 .proposal-item.odd {
 	background: #f1eeee;
 }
+.panel {
+	display: flow-root;
+}
