@@ -18,6 +18,23 @@
 		padding: 0px 235px;
 	}
 }
+@media (min-width: 600px) and (max-width: 1024px) {
+	.tablist hr {
+		width: 144% !important;
+    	margin-left: -20% !important;
+	}
+	.right-btn {
+		height: 50px !important;
+	}
+}
+@media (max-width: 500px) {
+	.tablist {
+		table-layout: unset !important;
+	}
+	.right-btn {
+		height: 50px !important;
+	}
+}
 .form-group .btn-previous {
 	background: #CBCFD2;
 	color: #9E9E9E;
@@ -307,4 +324,7 @@ input[type="file"] {
 }
 .panel {
 	display: flow-root;
+}
+.configuration-table {
+	overflow-x: scroll;
 }
