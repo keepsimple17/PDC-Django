@@ -33,13 +33,13 @@
 		<div class="row page-breadcrumb">
 			<div class="text-center">
 				<div class="scopo-logo-study"></div>
-				<div class="page-heading">Primeira Configuração</div>
+				<div class="page-heading">Premeira Configuração</div>
 			</div>
 		</div>
 
 		<div class="panel panel-white col-lg-12 col-md-12 p-0">
 			<div class="configurations-heading">
-				Primeira Configuração
+				Premeira Configuração
 			</div>
 			<div class="configurations-text">
 				Some default panel content here. Nulla vitae elit libero, a pharentra augue. Aenean lancinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula.
@@ -47,14 +47,14 @@
 			<div class="col-lg-12 col-sm-12 col-md-12 col-xm-12">
 				<div></div>
 				<div>
-					<form class="col-lg-12 col-sm-12 col-md-12 col-xm-12 configurations-form"  name="user-form">
+					<form id="config_form" action="{% url 'update_user_configuration' %}" method="post"  class="col-lg-12 col-sm-12 col-md-12 col-xm-12 configurations-form"  name="user-form">
 						<div class="col-lg-12 col-sm-12 col-md-12 col-xm-12 steps clearfix">
 							<ul class="tablist">
 							    <li class="step first-step">
 							    	<span class="list">1</span>
 							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
-							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>							    	
-							    	<h6>Dados Pessoais</h6>
+							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>
+							    	<h6>Personal Data</h6>
 
 							    </li>
 							    <hr>
@@ -62,64 +62,64 @@
 							    	<span class="list">2</span>
 							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
 							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>
-							    	<h6>Candidato</h6>
+							    	<h6>Candidate</h6>
 							    </li>
 							    <hr>
 							    <li class="step">
 							    	<span class="list">3</span>
 							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
 							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>
-							    	<h6>Equipe</h6>
+							    	<h6>Team</h6>
 							    </li>
 							    <hr>
 							    <li class="step last-step">
 							    	<span class="list">4</span>
 							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
 							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>
-							    	<h6>Campanha</h6>
+							    	<h6>Campaign</h6>
 							    </li>
 							</ul>
 						</div>
 						<div class="form-step">
 							<div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-								<span class="control-label">Foto</span><br>
-			                    <label class="form-control file-input" for="photo">Enviar Arquivo</label>
+								<span class="control-label">Photo</span><br>
+			                    <label class="form-control file-input" for="photo">Send File...</label>
 			                    <input type="file"
 			                           value=""
 			                           name="photo"
 			                           id="photo"
-			                           class="form-control" placeholder="" required="false">			                           
+			                           class="form-control" placeholder="" required="true">
 			                </div>
 							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
-			                    <label class="control-label" for="username">Nome de Usuário</label>
+			                    <label class="control-label" for="username">User Name</label>
 			                    <input type="text"
-			                           value=""
+			                           value="{{ request.user.username }}"
 			                           name="username"
 			                           class="form-control" placeholder="" required="true">
 			                </div>
 							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
 			                    <label class="control-label" for="email">E-mail</label>
 			                    <input type="text"
-			                           value=""
+			                           value="{{ request.user.email }}"
 			                           name="email"
 			                           class="form-control" placeholder="" required="true">
-			                </div>	
+			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="fname">Nome</label>
+			                    <label class="control-label" for="fname">Name</label>
 			                    <input type="text"
 			                           value=""
 			                           name="fname"
 			                           class="form-control" placeholder="" required="true">
-			                </div>	
+			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="lname">Sobrenome</label>
+			                    <label class="control-label" for="lname">Last Name</label>
 			                    <input type="text"
 			                           value=""
 			                           name="lname"
 			                           class="form-control" placeholder="" required="true">
 			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-			                    <label class="control-label" for="gender">Gender</label>	                    
+			                    <label class="control-label" for="gender">Gender</label>
 			                    <select class="form-control select"  id="" name="gender" required="true">
 			                    	<option></option>
 			                        <optgroup label="Pessoa Física">
@@ -133,20 +133,20 @@
 										<option value="S">Sindicato</option>
 										<option value="O">Organização ou Instituto</option>
 									</optgroup>
-			                    </select>          
+			                    </select>
 			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-			                    <label class="control-label" for="mstatus">Estado Civil</label>
-			                    <select class="form-control select"  id="" name="mstatus" required="true">
+			                    <label class="control-label" for="marital_status">Marital Status</label>
+			                    <select class="form-control select"  id="" name="marital_status" required="true">
 			                       <option></option>
 									<optgroup label="Estado Civil">
 										<option value="S">Solteiro</option>
-										<option value="F">Casado</option>
-                                        <option value="D">Divorciado</option>
+										<option value="C">Casado</option>
+                                        <option value="D">Divordiado</option>
                                         <option value="V">Viúvo</option>
                                         <option value="O">Outro</option>
 									</optgroup>
-			                    </select>	 
+			                    </select>
 			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cpf">CPF</label>
@@ -154,87 +154,90 @@
 			                           value=""
 			                           name="cpf"
 			                           class="form-control" placeholder="" required="true">
-			                </div>	
+			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="bdate">Data de Nascimento</label>
+			                    <label class="control-label" for="bdate">Birth Date</label>
 
 		                    	<span class="glyphicon glyphicon-calendar"></span>
 		                        <input type="text"
 		                               value='dd/mm/yyyy'
-		                               name="bdate"
+		                               name="birthday_date"
 		                               class="form-control form-dob" placeholder="" required="true">
 			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-			                    <label class="control-label" for="mphone">Tel. Celular</label>
+			                    <label class="control-label" for="cellPhone">Mobile Phone</label>
 			                    <input type="text"
 			                           value=""
-			                           name="mphone"
+			                           name="cellPhone"
 			                           class="form-control" placeholder="" required="true">
 			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-			                    <label class="control-label" for="lphone">Tel. Fixo</label>
+			                    <label class="control-label" for="landlinePhone">Landline Phone</label>
 			                    <input type="text"
 			                           value=""
-			                           name="lphone"
+			                           name="landlinePhone"
 			                           class="form-control" placeholder="" required="true">
-			                </div>			
+			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-			                    <label class="control-label" for="zcode">CEP</label>
+			                    <label class="control-label" for="cep">ZIP CODE</label>
 			                    <input type="text"
 			                           value=""
-			                           name="zcode"
+			                           name="cep"
 			                           class="form-control" placeholder="" required="true">
 			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="state">Estado</label>
-			                    <select class="form-control select"  id="" name="state" required="true">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
-			                        <option value="2">2</option>
-			                        <option value="3">3</option>
-			                    </select>
-			                </div>	
-			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-			                    <label class="control-label" for="city">Cidade</label>
-			                    <input type="text"
-			                           value=""
-			                           name="city"
-			                           class="form-control" placeholder="" required="true">
-			                </div>
+                    <label class="control-label" for="example-select">State :</label>
+                    <div class="col-md-9">
+                        <select class="form-control"  id="id_estado" name="estado">
+                            {% for state in states %}
+                            <option value="{{ state.0 }}">{{ state.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                            <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
+                    <label class="control-label" for="example-select">City :</label>
+                    <div class="col-md-9">
+                        <select class="form-control"  id="id_cidade" name="cidade">
+                            {% for city in cities %}
+                            <option value="{{ city.0 }}">{{ city.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
 			                <div class="form-group col-lg-8 col-sm-8 col-md-8 col-xm-12">
-			                    <label class="control-label" for="address">Endereço</label>
+			                    <label class="control-label" for="address">Address</label>
 			                    <input type="text"
 			                           value=""
 			                           name="address"
 			                           class="form-control" placeholder="" required="true">
-			                </div>	
+			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="complement">Complemento</label>
+			                    <label class="control-label" for="complement">Complement</label>
 			                    <input type="text"
 			                           value=""
 			                           name="complement"
 			                           class="form-control" placeholder="" required="true">
-			                </div>		
+			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="pparty">Partido Político</label>
-			                    <select class="form-control select"  id="" name="pparty" required="true">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
-			                        <option value="2">2</option>
-			                        <option value="3">3</option>
-			                    </select>	
-			                </div>	
+			                    <label class="control-label" for="user_political_party">Political Party</label>
+			                    <select class="form-control select"  id="" name="user_political_party" required="true">
+			                       {% for party in POLITICAL_PARTY_CHOICES %}
+                            <option value="{{ party.0 }}">{{ party.1 }}</option>
+                            {% endfor %}
+			                    </select>
+			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="urole">Função</label>
-			                    <select class="form-control select"  id="" name="urole" required="true">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
-			                        <option value="2">2</option>
-			                        <option value="3">3</option>
-			                    </select>	 
-			                </div>	
+			                    <label class="control-label" for="user_role">User Role</label>
+			                    <select class="form-control select"  id="" name="user_role" required="true">
+			                        <option value="" selected> </option>
+			                        <option value="agency">Agência de Marketing</option>
+			                        <option value="consultor">Consultor de Campanha</option>
+			                    </select>
+			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="company">Empresa</label>
+			                    <label class="control-label" for="company">Company</label>
 			                    <input type="text"
 			                           value=""
 			                           name="company"
@@ -243,200 +246,200 @@
 			            </div>
 			            <div class="form-step">
 							<div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-			                    <label class="control-label" for="cparty">Partido do Candidato</label>
+			                    <label class="control-label" for="cparty">Candidate Party</label>
 			                    <select class="form-control select"  id="" name="cparty" required="true">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
+			                        <option value="0" selected> </option>
+			                        <option value="1">1</option>
 			                        <option value="2">2</option>
 			                        <option value="3">3</option>
 			                    </select>
 			                </div>
 							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
-			                    <label class="control-label" for="cnickname">Apelido Político</label>
+			                    <label class="control-label" for="candidate_political_nickname">Candidate Nickname</label>
 			                    <input type="text"
 			                           value=""
-			                           name="cnickname"
+			                           name="candidate_political_nickname"
 			                           class="form-control" placeholder="">
 			                </div>
 							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
-			                    <label class="control-label" for="cballot">Pleito do Candidato</label>
-			                    <select class="form-control select"  id="" name="cballot" required="true">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
+			                    <label class="control-label" for="canditate_Election_Ballot">Candidate Election Ballot</label>
+			                    <select class="form-control select"  id="" name="canditate_Election_Ballot" required="true">
+			                        <option value="0" selected> </option>
+			                        <option value="1">1</option>
 			                        <option value="2">2</option>
 			                        <option value="3">3</option>
 			                    </select>
-			                </div>	
+			                </div>
 			               <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="cposition">Cargo Político Aspirado</label>
-			                    <select class="form-control select"  id="" name="cposition" required="true">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
+			                    <label class="control-label" for="campaign_desired_position">Campaign Desired Position</label>
+			                    <select class="form-control select"  id="" name="campaign_desired_position" required="true">
+			                        <option value="0" selected> </option>
+			                        <option value="1">1</option>
 			                        <option value="2">2</option>
 			                        <option value="3">3</option>
 			                    </select>
 			                </div>
 							<div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="cnumber">Núrmero do Candidato</label>
+			                    <label class="control-label" for="candidate_dispute_number">Candidate Dispute Number</label>
 			                    <input type="text"
 			                           value=""
-			                           name="cnumber"
+			                           name="candidate_dispute_number"
 			                           class="form-control" placeholder="">
 			                </div>
 							<div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-			                    <label class="control-label" for="scampaign">Estado da Campanha</label>
-			                    <select class="form-control select"  id="" name="scampaign" required="true">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
+			                    <label class="control-label" for="state_campaign">State Campaign</label>
+			                    <select class="form-control select"  id="" name="state_campaign" required="true">
+			                        <option value="0" selected> </option>
+			                        <option value="1">1</option>
 			                        <option value="2">2</option>
 			                        <option value="3">3</option>
 			                    </select>
-			                </div>	
+			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-			                    <label class="control-label" for="ccampaign">Cidade da Campanha</label>	                    
-			                    <select class="form-control select"  id="" name="ccampaign">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
+			                    <label class="control-label" for="city_campaign">City Campaign</label>
+			                    <select class="form-control select"  id="" name="city_campaign">
+			                        <option value="0" selected> </option>
+			                        <option value="1">1</option>
 			                        <option value="2">2</option>
 			                        <option value="3">3</option>
-			                    </select>	                    
+			                    </select>
 			                </div>
 							<div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="slug">Denominação (gerada automaticamente</label>	                    
+			                    <label class="control-label" for="slug">Slug (Autogenerated)</label>
 			                    <select class="form-control select"  id="" name="slug">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
+			                        <option value="0" selected> </option>
+			                        <option value="1">1</option>
 			                        <option value="2">2</option>
 			                        <option value="3">3</option>
-			                    </select>	                    
-			                </div>	
-			                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">
-			                    <label class="control-label" for="pposition">Holds Political Position?</label>	                    
-			                    <select class="form-control select"  id="" name="pposition">                        
-			                        <option value="no" selected>No</option>                                    
-			                        <option value="yes">Yes</option>
-			                    </select>	                    
-			                </div>	
-			                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
-			                    <label class="control-label" for="actualpposition">Actual Political Position</label>	                    
-			                    <select class="form-control select"  id="" name="actualpposition">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
-			                        <option value="2">2</option>
-			                        <option value="3">3</option>
-			                    </select>	                    
+			                    </select>
 			                </div>
 			                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">
-			                    <label class="control-label" for="reelection">Reelection?</label>	                    
-			                    <select class="form-control select"  id="" name="reelection">                      
-			                        <option value="no" selected>NO</option>                                    
+			                    <label class="control-label" for="holds_political_position">Holds Political Position?</label>
+			                    <select class="form-control select"  id="" name="holds_political_position">
+			                        <option value="no" selected>No</option>
 			                        <option value="yes">Yes</option>
-			                    </select>	                    
-			                </div>	
-			                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">	                    
-			                    <label class="control-label" for="firstpposition">First Political Position?</label>	                    
-			                    <select class="form-control select"  id="" name="firstpposition">                      
-			                        <option value="no" selected>NO</option>                                    
+			                    </select>
+			                </div>
+			                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
+			                    <label class="control-label" for="political_position">Actual Political Position</label>
+			                    <select class="form-control select"  id="" name="political_position">
+			                        <option value="0" selected> </option>
+			                        <option value="1">1</option>
+			                        <option value="2">2</option>
+			                        <option value="3">3</option>
+			                    </select>
+			                </div>
+			                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">
+			                    <label class="control-label" for="reelection">Reelection?</label>
+			                    <select class="form-control select"  id="" name="reelection">
+			                        <option value="no" selected>NO</option>
+			                        <option value="yes">Yes</option>
+			                    </select>
+			                </div>
+			                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">
+			                    <label class="control-label" for="first_political_campaign">First Political Position?</label>
+			                    <select class="form-control select"  id="" name="first_political_campaign">
+			                        <option value="no" selected>NO</option>
 			                        <option value="yes">Yes</option>
 			                    </select>
 			                </div>
 			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-			                    <label class="control-label" for="cwebsite">Candidate website</label>	                    
+			                    <label class="control-label" for="candidate_site">Candidate website</label>
 			                    <input type="text"
 			                           value=""
-			                           name="cwebsite"
-			                           class="form-control" placeholder="">                   
-			                </div> 
+			                           name="candidate_site"
+			                           class="form-control" placeholder="">
+			                </div>
 			                <div class="form-group col-lg-8 col-sm-8 col-md-8 col-xm-12">
-			                    <label class="control-label" for="cemail">Campaiign E-mail</label>	                    
+			                    <label class="control-label" for="campaign_email">Campaiign E-mail</label>
 			                    <input type="text"
 			                           value=""
-			                           name="cemail"
-			                           class="form-control" placeholder="">                   
+			                           name="campaign_email"
+			                           class="form-control" placeholder="">
 			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 								<span class="control-label">Resume Upload(.txt, .pdf, .doc)</span><br>
-			                    <label class="form-control file-input" for="cresume">Send File...</label>
+			                    <label class="form-control file-input" for="Resume">Send File...</label>
 			                    <input type="file"
 			                           value=""
-			                           name="cresume"
+			                           name="Resume"
 			                           id="cresume"
-			                           class="form-control" placeholder="" required="true">			                           
-			                </div> 
+			                           class="form-control" placeholder="" required="true">
+			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="cemail"><span class="icon-twitter icon-bordered"></span> Twitter</label>	                    
+			                    <label class="control-label" for="twitter"><span class="icon-twitter icon-bordered"></span> Twitter</label>
+			                    <input type="text"
+			                           value=""
+			                           name="twitter"
+			                           class="form-control" placeholder="">
+			                </div>
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="facebook"><span class="icon-facebook icon-bordered"></span> Facebook</label>
+			                    <input type="text"
+			                           value=""
+			                           name="facebook"
+			                           class="form-control" placeholder="">
+			                </div>
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="instagram"><span class="icon-instagram icon-bordered"></span> Instagram</label>
+			                    <input type="text"
+			                           value=""
+			                           name="instagram"
+			                           class="form-control" placeholder="">
+			                </div>
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="google"><span class="icon-google-plus icon-bordered"></span> Google+</label>
+			                    <input type="text"
+			                           value=""
+			                           name="google"
+			                           class="form-control" placeholder="">
+			                </div>
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="youtube"> <span class="icon-youtube3 icon-bordered"></span>Youtube</label>
+			                    <input type="text"
+			                           value=""
+			                           name="youtube"
+			                           class="form-control" placeholder="">
+			                </div>
+			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
+			                    <label class="control-label" for="cemail"><span class="icon-rss icon-bordered"></span> Blog/RSS</label>
 			                    <input type="text"
 			                           value=""
 			                           name="cemail"
-			                           class="form-control" placeholder="">                   
-			                </div> 
-			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="cemail"><span class="icon-facebook icon-bordered"></span> Facebook</label>	                    
-			                    <input type="text"
-			                           value=""
-			                           name="cemail"
-			                           class="form-control" placeholder="">                   
-			                </div> 
-			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="cemail"><span class="icon-instagram icon-bordered"></span> Instagram</label>	                    
-			                    <input type="text"
-			                           value=""
-			                           name="cemail"
-			                           class="form-control" placeholder="">                   
-			                </div> 
-			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="cemail"><span class="icon-google-plus icon-bordered"></span> Google+</label>	                    
-			                    <input type="text"
-			                           value=""
-			                           name="cemail"
-			                           class="form-control" placeholder="">                   
-			                </div> 
-			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="cemail"> <span class="icon-youtube3 icon-bordered"></span>Youtube</label>	                    
-			                    <input type="text"
-			                           value=""
-			                           name="cemail"
-			                           class="form-control" placeholder="">                   
-			                </div> 
-			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-			                    <label class="control-label" for="cemail"><span class="icon-rss icon-bordered"></span> Blog/RSS</label>	                    
-			                    <input type="text"
-			                           value=""
-			                           name="cemail"
-			                           class="form-control" placeholder="">                   
-			                </div>           
+			                           class="form-control" placeholder="">
+			                </div>
 			            </div>
 			            <div class="form-step">
 			            	<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-			                    <label class="control-label" for="tmembername">Team Member Name</label>	                    
+			                    <label class="control-label" for="tmembername">Team Member Name</label>
 			                    <input type="text"
 			                           value=""
 			                           name="tmembername"
-			                           class="form-control" placeholder="">                   
-			                </div>  
+			                           class="form-control" placeholder="">
+			                </div>
 			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-			                    <label class="control-label" for="tmemberemail">Team Member E-mail</label>	                    
+			                    <label class="control-label" for="tmemberemail">Team Member E-mail</label>
 			                    <input type="text"
 			                           value=""
 			                           name="tmemberemail"
-			                           class="form-control" placeholder="">                   
-			                </div>  
+			                           class="form-control" placeholder="">
+			                </div>
 			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-			                    <label class="control-label" for="tphone">Mobile Phone</label>	                    
+			                    <label class="control-label" for="tphone">Mobile Phone</label>
 			                    <input type="text"
 			                           value=""
 			                           name="tphone"
-			                           class="form-control" placeholder="">                   
-			                </div>  
+			                           class="form-control" placeholder="">
+			                </div>
 			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-			                    <label class="control-label" for="service">Service or Job Provider</label>	                    
+			                    <label class="control-label" for="service">Service or Job Provider</label>
 			                     <select class="form-control select"  id="" name="service">
-			                        <option value="0" selected> </option>                                    
-			                        <option value="1">1</option>                                    
+			                        <option value="0" selected> </option>
+			                        <option value="1">1</option>
 			                        <option value="2">2</option>
 			                        <option value="3">3</option>
-			                    </select>                  
-			                </div>  
+			                    </select>
+			                </div>
 			                <div class="panel panel-white col-lg-12 p-0">
 			                	<div class="configurations-heading table-heading">
 									Roles to Permit
@@ -609,19 +612,19 @@
 								<div id="proposals" class="tab-pane fade in active">
 									<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 										<div class="form-group col-lg-12 col-sm-12 col-md-12 col-xm-12">
-						                    <label class="control-label" for="proposal">Proposal</label>	                    
+						                    <label class="control-label" for="proposal">Proposal</label>
 						                    <input type="text"
 						                           value=""
 						                           name="proposal"
-						                           class="form-control" placeholder="">                   
+						                           class="form-control" placeholder="">
 						                </div>
 						                <div class="form-group col-lg-12 col-sm-12 col-md-12 col-xm-12">
-						                    <label class="control-label" for="proposalDesc">Proposal Description</label>	                    
+						                    <label class="control-label" for="proposalDesc">Proposal Description</label>
 						                    <input type="text"
 						                           value=""
 						                           name="proposalDesc"
-						                           class="form-control proposal-description" placeholder="">                   
-						                </div>    
+						                           class="form-control proposal-description" placeholder="">
+						                </div>
 									</div>
 									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 btn-right">
 										<button type="button" class="btn right-btn"><span class="glyphicon glyphicon-chevron-right"></span></button>
@@ -636,24 +639,24 @@
 						                    	<div class="proposal-item odd"> Expansion of Bolsa Familia<span class="glyphicon glyphicon-remove-sign"></span></div>
 						                    	<div class="proposal-item"> Creation of New Universities<span class="glyphicon glyphicon-remove-sign"></span></div>
 						                    	<div class="proposal-item odd"> Prevatization of the Penitentiary System<span class="glyphicon glyphicon-remove-sign"></span></div>
-							                </div>		                           
+							                </div>
 						                </div>
 									</div>
 									<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
-				                    <label class="control-label" for="addkeyword">Add Keyword</label>	                    
+				                    <label class="control-label" for="addkeyword">Add Keyword</label>
 				                    <input type="text"
 				                           value=""
 				                           name="addkeyword"
-				                           class="form-control" placeholder="">                   
+				                           class="form-control" placeholder="">
 				                </div>
 				                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 				                     <label><input type="radio" class="zoom" name="optradio"><span class="positive keyword-desc">Positive</span></label>
 				                     <label><input type="radio" class="zoom" name="optradio"><span class="negative keyword-desc">Negative</span></label>
 				                     <label><input type="radio" class="zoom" name="optradio"><span class="follow keyword-desc">Follow</span></label>
 				                </div>
-				                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">	
-				                	<label class="control-label"></label>				                    	                    
-				                    <button type="button" class="btn add-keywords">Add Keywords <span class="glyphicon glyphicon-chevron-down"></span></button>                
+				                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
+				                	<label class="control-label"></label>
+				                    <button type="button" class="btn add-keywords">Add Keywords <span class="glyphicon glyphicon-chevron-down"></span></button>
 				                </div>
 				                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 									<div class="form-group col-lg-12">
@@ -664,76 +667,76 @@
 					                    	<div class="positive keyword-desc">Lava-Jato</div>
 					                    	<div class="follow keyword-desc">Bolsonaro</div>
 					                    	<div class="negative keyword-desc">Luna 2018</div>
-					                    </div>		                           
+					                    </div>
 					                </div>
 								</div>
 								</div>
-								
+
 								<div id="location" class="tab-pane fade">
 									<!-- To do -->
 									Location Tab
 								</div>
 								<div id="committees" class="tab-pane fade">
 									<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-					                    <label class="control-label" for="committeename">Responsible for the Committee (name)</label>	                    
+					                    <label class="control-label" for="committeename">Responsible for the Committee (name)</label>
 					                    <input type="text"
 					                           value=""
 					                           name="committeename"
-					                           class="form-control" placeholder="">                   
-					                </div> 
+					                           class="form-control" placeholder="">
+					                </div>
 				                	<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-					                    <label class="control-label" for="committeeemail">Responsible for the Committee (email)</label>	                    
+					                    <label class="control-label" for="committeeemail">Responsible for the Committee (email)</label>
 					                    <input type="text"
 					                           value=""
 					                           name="committeeemail"
-					                           class="form-control" placeholder="">                   
-					                </div> 
+					                           class="form-control" placeholder="">
+					                </div>
 					                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">
-					                    <label class="control-label" for="committeezip">ZIP CODE</label>	                    
+					                    <label class="control-label" for="committeezip">ZIP CODE</label>
 					                    <input type="text"
 					                           value=""
 					                           name="committeezip"
-					                           class="form-control" placeholder="">                   
-					                </div> 
+					                           class="form-control" placeholder="">
+					                </div>
 					                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-					                    <label class="control-label" for="committeestate">State</label>	                    
+					                    <label class="control-label" for="committeestate">State</label>
 					                    <input type="text"
 					                           value=""
 					                           name="committeestate"
-					                           class="form-control" placeholder="">                   
-					                </div> 
+					                           class="form-control" placeholder="">
+					                </div>
 					                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
-					                    <label class="control-label" for="committeecity">City</label>	                    
+					                    <label class="control-label" for="committeecity">City</label>
 					                    <input type="text"
 					                           value=""
 					                           name="committeecity"
-					                           class="form-control" placeholder="">                   
-					                </div> 
+					                           class="form-control" placeholder="">
+					                </div>
 					                <div class="form-group col-lg-8 col-sm-8 col-md-8 col-xm-12">
-					                    <label class="control-label" for="committeeadd">Address</label>	                    
+					                    <label class="control-label" for="committeeadd">Address</label>
 					                    <input type="text"
 					                           value=""
 					                           name="committeeadd"
-					                           class="form-control" placeholder="">                   
-					                </div> 
+					                           class="form-control" placeholder="">
+					                </div>
 					                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
-					                    <label class="control-label" for="committeecomplement">Complement</label>	                    
+					                    <label class="control-label" for="committeecomplement">Complement</label>
 					                    <input type="text"
 					                           value=""
 					                           name="committeecomplement"
-					                           class="form-control" placeholder="">                   
-					                </div> 
+					                           class="form-control" placeholder="">
+					                </div>
 					                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-					                    <label class="control-label" for="committeecomplement">Complement</label>	                    
+					                    <label class="control-label" for="committeecomplement">Complement</label>
 					                    <input type="text"
 					                           value=""
 					                           name="committeecomplement"
-					                           class="form-control" placeholder="">                   
-					                </div> 
+					                           class="form-control" placeholder="">
+					                </div>
 					                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
-					                    <label class="control-label"></label>				                    	                    
-				                    	<button type="button" class="btn add-keywords">Add Committee <span class="glyphicon glyphicon-chevron-down"></span></button>                    
-					                </div> 
+					                    <label class="control-label"></label>
+				                    	<button type="button" class="btn add-keywords">Add Committee <span class="glyphicon glyphicon-chevron-down"></span></button>
+					                </div>
 					                <div class="panel panel-white col-lg-12 p-0">
 			                	<div class="configurations-heading table-heading">
 									Committees List
@@ -788,14 +791,14 @@
 							    </tbody>
 							  </table>
 			                </div>
-									
+
 								</div>
 							</div>
 			            </div>
 		                <div class="form-group col-lg-12 text-right">
 		                        <button type="button" name="previous"  id="prevBtn" onclick="nextStep(-1)" class="btn btn-previous">Previous</button>
 		                        <button type="button" name="next" id="nextBtn" onclick="nextStep(1)" class="btn btn-next">Next</button>
-		                </div>		
+		                </div>
 
 		            </form>
 				</div>
@@ -833,7 +836,7 @@
 	  x[currentForm].style.display = "none";
 	  currentForm = currentForm + n;
 	  if (currentForm >= x.length) {
-	    document.getElementById("regForm").submit();
+	    document.getElementById("config_form").submit();
 	    return false;
 	  }
 	  showForm(currentForm);
