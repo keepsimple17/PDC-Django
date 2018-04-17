@@ -6,7 +6,7 @@
 
 <link href="{% static 'css/firstConfiguration.css' %}" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="{% static 'js/plugins/forms/selects/select2.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/plugins/forms/styling/uniform.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/plugins/forms/styling/uniform.min.js' %}"></script>
 
 <style>
 	.scopo-logo-study {
@@ -55,7 +55,6 @@
 							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
 							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>							    	
 							    	<h6>Dados Pessoais</h6>
-
 							    </li>
 							    <hr>
 							    <li class="step">
@@ -84,43 +83,43 @@
 							<div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 								<span class="control-label">Foto</span><br>
 			                    <label class="form-control file-input" for="photo">Enviar Arquivo</label>
-			                    <input type="file"
+			                    <input title="" type="file"
 			                           value=""
 			                           name="photo"
 			                           id="photo"
-			                           class="form-control" placeholder="" required="false">			                           
+			                           class="form-control" placeholder="">
 			                </div>
 							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
 			                    <label class="control-label" for="username">Nome de Usuário</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="username"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>
 							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
 			                    <label class="control-label" for="email">E-mail</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="email"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>	
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="fname">Nome</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="fname"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>	
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="lname">Sobrenome</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="lname"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 			                    <label class="control-label" for="gender">Gender</label>	                    
-			                    <select class="form-control select"  id="" name="gender" required="true">
+			                    <select title="" class="form-control select"  id="" name="gender" required>
 			                    	<option></option>
 			                        <optgroup label="Pessoa Física">
 										<option value="M">Masculino</option>
@@ -137,7 +136,7 @@
 			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 			                    <label class="control-label" for="mstatus">Estado Civil</label>
-			                    <select class="form-control select"  id="" name="mstatus" required="true">
+			                    <select title="" class="form-control select"  id="" name="mstatus" required>
 			                       <option></option>
 									<optgroup label="Estado Civil">
 										<option value="S">Solteiro</option>
@@ -150,44 +149,44 @@
 			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cpf">CPF</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cpf"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>	
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="bdate">Data de Nascimento</label>
 
 		                    	<span class="glyphicon glyphicon-calendar"></span>
-		                        <input type="text"
+		                        <input title="" type="text"
 		                               value='dd/mm/yyyy'
 		                               name="bdate"
-		                               class="form-control form-dob" placeholder="" required="true">
+		                               class="form-control form-dob" placeholder="" required>
 			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 			                    <label class="control-label" for="mphone">Tel. Celular</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="mphone"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 			                    <label class="control-label" for="lphone">Tel. Fixo</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="lphone"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>			
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 			                    <label class="control-label" for="zcode">CEP</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="zcode"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="state">Estado</label>
-			                    <select class="form-control select"  id="" name="state" required="true">
+			                    <select title="" class="form-control select"  id="" name="state" required>
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -196,28 +195,28 @@
 			                </div>	
 			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
 			                    <label class="control-label" for="city">Cidade</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="city"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>
 			                <div class="form-group col-lg-8 col-sm-8 col-md-8 col-xm-12">
 			                    <label class="control-label" for="address">Endereço</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="address"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>	
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="complement">Complemento</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="complement"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>		
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="pparty">Partido Político</label>
-			                    <select class="form-control select"  id="" name="pparty" required="true">
+			                    <select title="" class="form-control select"  id="" name="pparty" required>
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -226,7 +225,7 @@
 			                </div>	
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="urole">Função</label>
-			                    <select class="form-control select"  id="" name="urole" required="true">
+			                    <select title="" class="form-control select"  id="" name="urole" required>
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -235,16 +234,16 @@
 			                </div>	
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="company">Empresa</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="company"
-			                           class="form-control" placeholder="" required="true">
+			                           class="form-control" placeholder="" required>
 			                </div>
 			            </div>
 			            <div class="form-step">
 							<div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 			                    <label class="control-label" for="cparty">Partido do Candidato</label>
-			                    <select class="form-control select"  id="" name="cparty" required="true">
+			                    <select title="" class="form-control select"  id="" name="cparty" required>
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -253,14 +252,14 @@
 			                </div>
 							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
 			                    <label class="control-label" for="cnickname">Apelido Político</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cnickname"
 			                           class="form-control" placeholder="">
 			                </div>
 							<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
 			                    <label class="control-label" for="cballot">Pleito do Candidato</label>
-			                    <select class="form-control select"  id="" name="cballot" required="true">
+			                    <select title="" class="form-control select"  id="" name="cballot" required>
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -269,7 +268,7 @@
 			                </div>	
 			               <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cposition">Cargo Político Aspirado</label>
-			                    <select class="form-control select"  id="" name="cposition" required="true">
+			                    <select title="" class="form-control select"  id="" name="cposition" required>
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -278,14 +277,14 @@
 			                </div>
 							<div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cnumber">Núrmero do Candidato</label>
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cnumber"
 			                           class="form-control" placeholder="">
 			                </div>
 							<div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 			                    <label class="control-label" for="scampaign">Estado da Campanha</label>
-			                    <select class="form-control select"  id="" name="scampaign" required="true">
+			                    <select title="" class="form-control select"  id="" name="scampaign" required>
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -294,7 +293,7 @@
 			                </div>	
 			                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
 			                    <label class="control-label" for="ccampaign">Cidade da Campanha</label>	                    
-			                    <select class="form-control select"  id="" name="ccampaign">
+			                    <select title="" class="form-control select"  id="" name="ccampaign">
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -303,7 +302,7 @@
 			                </div>
 							<div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="slug">Denominação (gerada automaticamente</label>	                    
-			                    <select class="form-control select"  id="" name="slug">
+			                    <select title="" class="form-control select"  id="" name="slug">
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -312,14 +311,14 @@
 			                </div>	
 			                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">
 			                    <label class="control-label" for="pposition">Holds Political Position?</label>	                    
-			                    <select class="form-control select"  id="" name="pposition">                        
+			                    <select title="" class="form-control select"  id="" name="pposition">
 			                        <option value="no" selected>No</option>                                    
 			                        <option value="yes">Yes</option>
 			                    </select>	                    
 			                </div>	
 			                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
 			                    <label class="control-label" for="actualpposition">Actual Political Position</label>	                    
-			                    <select class="form-control select"  id="" name="actualpposition">
+			                    <select title="" class="form-control select"  id="" name="actualpposition">
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -328,28 +327,28 @@
 			                </div>
 			                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">
 			                    <label class="control-label" for="reelection">Reelection?</label>	                    
-			                    <select class="form-control select"  id="" name="reelection">                      
+			                    <select title="" class="form-control select"  id="" name="reelection">
 			                        <option value="no" selected>NO</option>                                    
 			                        <option value="yes">Yes</option>
 			                    </select>	                    
 			                </div>	
 			                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">	                    
 			                    <label class="control-label" for="firstpposition">First Political Position?</label>	                    
-			                    <select class="form-control select"  id="" name="firstpposition">                      
+			                    <select title="" class="form-control select"  id="" name="firstpposition">
 			                        <option value="no" selected>NO</option>                                    
 			                        <option value="yes">Yes</option>
 			                    </select>
 			                </div>
 			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
 			                    <label class="control-label" for="cwebsite">Candidate website</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cwebsite"
 			                           class="form-control" placeholder="">                   
 			                </div> 
 			                <div class="form-group col-lg-8 col-sm-8 col-md-8 col-xm-12">
 			                    <label class="control-label" for="cemail">Campaiign E-mail</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cemail"
 			                           class="form-control" placeholder="">                   
@@ -357,50 +356,50 @@
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 								<span class="control-label">Resume Upload(.txt, .pdf, .doc)</span><br>
 			                    <label class="form-control file-input" for="cresume">Send File...</label>
-			                    <input type="file"
+			                    <input title="" type="file"
 			                           value=""
 			                           name="cresume"
 			                           id="cresume"
-			                           class="form-control" placeholder="" required="true">			                           
+			                           class="form-control" placeholder="" required>
 			                </div> 
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cemail"><span class="icon-twitter icon-bordered"></span> Twitter</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cemail"
 			                           class="form-control" placeholder="">                   
 			                </div> 
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cemail"><span class="icon-facebook icon-bordered"></span> Facebook</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cemail"
 			                           class="form-control" placeholder="">                   
 			                </div> 
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cemail"><span class="icon-instagram icon-bordered"></span> Instagram</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cemail"
 			                           class="form-control" placeholder="">                   
 			                </div> 
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cemail"><span class="icon-google-plus icon-bordered"></span> Google+</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cemail"
 			                           class="form-control" placeholder="">                   
 			                </div> 
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cemail"> <span class="icon-youtube3 icon-bordered"></span>Youtube</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cemail"
 			                           class="form-control" placeholder="">                   
 			                </div> 
 			                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 			                    <label class="control-label" for="cemail"><span class="icon-rss icon-bordered"></span> Blog/RSS</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="cemail"
 			                           class="form-control" placeholder="">                   
@@ -409,28 +408,28 @@
 			            <div class="form-step">
 			            	<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
 			                    <label class="control-label" for="tmembername">Team Member Name</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="tmembername"
 			                           class="form-control" placeholder="">                   
 			                </div>  
 			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
 			                    <label class="control-label" for="tmemberemail">Team Member E-mail</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="tmemberemail"
 			                           class="form-control" placeholder="">                   
 			                </div>  
 			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
 			                    <label class="control-label" for="tphone">Mobile Phone</label>	                    
-			                    <input type="text"
+			                    <input title="" type="text"
 			                           value=""
 			                           name="tphone"
 			                           class="form-control" placeholder="">                   
 			                </div>  
 			                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
 			                    <label class="control-label" for="service">Service or Job Provider</label>	                    
-			                     <select class="form-control select"  id="" name="service">
+			                     <select title="" class="form-control select"  id="" name="service">
 			                        <option value="0" selected> </option>                                    
 			                        <option value="1">1</option>                                    
 			                        <option value="2">2</option>
@@ -458,51 +457,51 @@
 							      <tr>
 							        <td>1</td>
 							        <td>Budget</td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
 							      </tr>
 							      <tr>
 							        <td>2</td>
 							        <td>Members</td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
 							      </tr>
 							      <tr>
 							        <td>3</td>
 							        <td>Reports</td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
 							      </tr>
 							       <tr>
 							        <td>4</td>
 							        <td>Members Access</td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
 							      </tr>
 							       <tr>
 							        <td>5</td>
 							        <td>Agenda Access</td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
 							      </tr>
 							       <tr>
 							        <td>6</td>
 							        <td>SMS Access</td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
 							      </tr>
 							       <tr>
 							        <td>7</td>
 							        <td>Internal Action</td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
-							        <td><input type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
+							        <td><input title="" type="checkbox" class="check-box" value=""></td>
 							      </tr>
 							    </tbody>
 							  </table>
@@ -536,7 +535,7 @@
 							        <td>Paulino R. e Silva</td>
 							        <td>paulino@neoplace.com.br</td>
 							        <td>Marketing Agency</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -544,7 +543,7 @@
 							        <td>Mary Poppins</td>
 							        <td>mary@poppins.com.br</td>
 							        <td>Candidate</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -552,7 +551,7 @@
 							        <td>James Taylor</td>
 							        <td>james@taylor.com.br</td>
 							        <td>Campaign Agency</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -560,7 +559,7 @@
 							        <td>Fernando Di Chiara</td>
 							        <td>fernando@innovators.com.br</td>
 							        <td>Marketing Coordinator</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -568,7 +567,7 @@
 							        <td>Giseliy Khauli</td>
 							        <td>giselly@neoplace.com.br</td>
 							        <td>Militancy Coordinator</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -576,7 +575,7 @@
 							        <td>Viviaine Zelazowski</td>
 							        <td>zviviane@gmail.com</td>
 							        <td>Social Media</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -584,7 +583,7 @@
 							        <td>Enzo Di Chiara</td>
 							        <td>enzodc@gmail.com</td>
 							        <td>Desiginer</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -592,7 +591,7 @@
 							        <td>Luigi Di Chiara</td>
 							        <td>luiginhodc@gmail.com</td>
 							        <td>Volunteer</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							    </tbody>
@@ -610,14 +609,14 @@
 									<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 										<div class="form-group col-lg-12 col-sm-12 col-md-12 col-xm-12">
 						                    <label class="control-label" for="proposal">Proposal</label>	                    
-						                    <input type="text"
+						                    <input title="" type="text"
 						                           value=""
 						                           name="proposal"
 						                           class="form-control" placeholder="">                   
 						                </div>
 						                <div class="form-group col-lg-12 col-sm-12 col-md-12 col-xm-12">
 						                    <label class="control-label" for="proposalDesc">Proposal Description</label>	                    
-						                    <input type="text"
+						                    <input title="" type="text"
 						                           value=""
 						                           name="proposalDesc"
 						                           class="form-control proposal-description" placeholder="">                   
@@ -632,7 +631,7 @@
 						                    <div class="proposal-list">
 						                    	<div class="proposal-item"> Release ther carrying of weapons in Brazil<span class="glyphicon glyphicon-remove-sign"></span></div>
 						                    	<div class="proposal-item odd"> Criminalization of Abortion<span class="glyphicon glyphicon-remove-sign"></span></div>
-						                    	<div class="proposal-item"> End of privileged forum<span class="glyphicon glyphicon-remove-sign"></span></span></div>
+						                    	<div class="proposal-item"> End of privileged forum<span class="glyphicon glyphicon-remove-sign"></span></div>
 						                    	<div class="proposal-item odd"> Expansion of Bolsa Familia<span class="glyphicon glyphicon-remove-sign"></span></div>
 						                    	<div class="proposal-item"> Creation of New Universities<span class="glyphicon glyphicon-remove-sign"></span></div>
 						                    	<div class="proposal-item odd"> Prevatization of the Penitentiary System<span class="glyphicon glyphicon-remove-sign"></span></div>
@@ -641,15 +640,15 @@
 									</div>
 									<div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
 				                    <label class="control-label" for="addkeyword">Add Keyword</label>	                    
-				                    <input type="text"
+				                    <input title="" type="text"
 				                           value=""
 				                           name="addkeyword"
 				                           class="form-control" placeholder="">                   
 				                </div>
 				                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xm-12">
-				                     <label><input type="radio" class="zoom" name="optradio"><span class="positive keyword-desc">Positive</span></label>
-				                     <label><input type="radio" class="zoom" name="optradio"><span class="negative keyword-desc">Negative</span></label>
-				                     <label><input type="radio" class="zoom" name="optradio"><span class="follow keyword-desc">Follow</span></label>
+				                     <label><input title="" type="radio" class="zoom" name="optradio"><span class="positive keyword-desc">Positive</span></label>
+				                     <label><input title="" type="radio" class="zoom" name="optradio"><span class="negative keyword-desc">Negative</span></label>
+				                     <label><input title="" type="radio" class="zoom" name="optradio"><span class="follow keyword-desc">Follow</span></label>
 				                </div>
 				                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">	
 				                	<label class="control-label"></label>				                    	                    
@@ -676,56 +675,56 @@
 								<div id="committees" class="tab-pane fade">
 									<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
 					                    <label class="control-label" for="committeename">Responsible for the Committee (name)</label>	                    
-					                    <input type="text"
+					                    <input title="" type="text"
 					                           value=""
 					                           name="committeename"
 					                           class="form-control" placeholder="">                   
 					                </div> 
 				                	<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
 					                    <label class="control-label" for="committeeemail">Responsible for the Committee (email)</label>	                    
-					                    <input type="text"
+					                    <input title="" type="text"
 					                           value=""
 					                           name="committeeemail"
 					                           class="form-control" placeholder="">                   
 					                </div> 
 					                <div class="form-group col-lg-3 col-sm-3 col-md-3 col-xm-12">
 					                    <label class="control-label" for="committeezip">ZIP CODE</label>	                    
-					                    <input type="text"
+					                    <input title="" type="text"
 					                           value=""
 					                           name="committeezip"
 					                           class="form-control" placeholder="">                   
 					                </div> 
 					                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 					                    <label class="control-label" for="committeestate">State</label>	                    
-					                    <input type="text"
+					                    <input title="" type="text"
 					                           value=""
 					                           name="committeestate"
 					                           class="form-control" placeholder="">                   
 					                </div> 
 					                <div class="form-group col-lg-5 col-sm-5 col-md-5 col-xm-12">
 					                    <label class="control-label" for="committeecity">City</label>	                    
-					                    <input type="text"
+					                    <input title="" type="text"
 					                           value=""
 					                           name="committeecity"
 					                           class="form-control" placeholder="">                   
 					                </div> 
 					                <div class="form-group col-lg-8 col-sm-8 col-md-8 col-xm-12">
 					                    <label class="control-label" for="committeeadd">Address</label>	                    
-					                    <input type="text"
+					                    <input title="" type="text"
 					                           value=""
 					                           name="committeeadd"
 					                           class="form-control" placeholder="">                   
 					                </div> 
 					                <div class="form-group col-lg-4 col-sm-4 col-md-4 col-xm-12">
 					                    <label class="control-label" for="committeecomplement">Complement</label>	                    
-					                    <input type="text"
+					                    <input title="" type="text"
 					                           value=""
 					                           name="committeecomplement"
 					                           class="form-control" placeholder="">                   
 					                </div> 
 					                <div class="form-group col-lg-6 col-sm-6 col-md-6 col-xm-12">
 					                    <label class="control-label" for="committeecomplement">Complement</label>	                    
-					                    <input type="text"
+					                    <input title="" type="text"
 					                           value=""
 					                           name="committeecomplement"
 					                           class="form-control" placeholder="">                   
@@ -758,7 +757,7 @@
 							        <td>Comite lgualdade</td>
 							        <td>paulino@neoplace.com.br</td>
 							        <td>Curitiba/PR</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -766,7 +765,7 @@
 							        <td>Brasil Melhor</td>
 							        <td>mary@poppins.com.br</td>
 							        <td>Rio de Janerio/RJ</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -774,7 +773,7 @@
 							        <td>Agua Verde</td>
 							        <td>james@taylor.com.br</td>
 							        <td>Curitiba/PR</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							      <tr>
@@ -782,7 +781,7 @@
 							        <td>ABC Paulista</td>
 							        <td>fernando@innovators.com.br</td>
 							        <td>Sao Paulo/SP</td>
-							        <td><input type="radio" class="check-box" value=""></td>
+							        <td><input title="" type="radio" class="check-box" value=""></td>
 							        <th><span class="glyphicon glyphicon-remove-sign"></span></th>
 							      </tr>
 							    </tbody>
@@ -793,16 +792,16 @@
 							</div>
 			            </div>
 		                <div class="form-group col-lg-12 text-right">
-		                        <button type="button" name="previous"  id="prevBtn" onclick="nextStep(-1)" class="btn btn-previous">Previous</button>
-		                        <button type="button" name="next" id="nextBtn" onclick="nextStep(1)" class="btn btn-next">Next</button>
-		                </div>		
-
+                            <button type="button" name="previous"  id="prevBtn" onclick="nextStep(-1)" class="btn btn-previous">Previous</button>
+		                    <button type="button" name="next" id="nextBtn" onclick="nextStep(1)" class="btn btn-next">Next</button>
+		                </div>
 		            </form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 <script type="text/javascript">
 	var currentForm = 0; // Current tab is set to be the first tab (0)
 	showForm(currentForm);
@@ -811,12 +810,12 @@
 	function showForm(n) {
 	  var x = document.getElementsByClassName("form-step");
 	  x[n].style.display = "block";
-	  if (n == 0) {
+	  if (n === 0) {
 	    document.getElementById("prevBtn").style.display = "none";
 	  } else {
 	    document.getElementById("prevBtn").style.display = "inline";
 	  }
-	  if (n == (x.length - 1)) {
+	  if (n === (x.length - 1)) {
 	    document.getElementById("nextBtn").innerHTML = "Submit";
 	  } else {
 	    document.getElementById("nextBtn").innerHTML = "Next";
@@ -843,9 +842,9 @@
 	  var x, y, i, valid = true;
 	  x = document.getElementsByClassName("form-step");
 	  y = x[currentForm].getElementsByTagName("input");
-	  console.log(y)
+	  console.log(y);
 	  for (i = 0; i < y.length; i++) {
-	    if (y[i].value == "") {
+	    if (y[i].value === "") {
 	      y[i].className += " invalid";
 	      valid = false;
 	    }
