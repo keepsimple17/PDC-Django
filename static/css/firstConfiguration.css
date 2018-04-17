@@ -18,6 +18,23 @@
 		padding: 0px 235px;
 	}
 }
+@media (min-width: 600px) and (max-width: 1000px) {
+	.tablist hr {
+		width: 144% !important;
+    	margin-left: -20% !important;
+	}
+	.right-btn {
+		height: 50px !important;
+	}
+}
+@media (max-width: 500px) {
+	.tablist {
+		table-layout: unset !important;
+	}
+	.right-btn {
+		height: 50px !important;
+	}
+}
 .form-group .btn-previous {
 	background: #CBCFD2;
 	color: #9E9E9E;
@@ -113,6 +130,7 @@
     color:  white;
     padding: 15px 12px;
     display: inline;
+    cursor: pointer;
 }
 .tablist .step.done {
 	padding-top: 7px;
@@ -305,3 +323,9 @@ input[type="file"] {
 .proposal-item.odd {
 	background: #f1eeee;
 }
+.panel {
+	display: flow-root;
+}
+.configuration-table {
+	overflow-x: scroll;
+} 
