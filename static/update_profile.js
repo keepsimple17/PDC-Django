@@ -74,6 +74,7 @@ function validateForm() {
     return false;
   }
   var regex_zip = /^([0-9]{5})[-. ]?([0-9]{3})$/;
+  // console.log('zip code', $('.zip-field').val());
 
   if (state === "") {
     alert("State must be filled out");
@@ -84,11 +85,10 @@ function validateForm() {
   } else if (zip === "") {
     alert("Zipcode must be filled out");
     return false;
-  }else if(!(regex_zip.test($(".zip-field").val()))){
-      alert("Zipcode must be filled out in correct format");
+  } else if (!(regex_zip.test($(".zip-field").val()))) {
+    alert("Zipcode must be filled out in correct format");
     return false;
-  }
-   else {
+  } else {
     return true;
   }
 }

@@ -11,7 +11,7 @@
     
     <!-- Page container -->
     <div class="page-container">
-
+        {% if request.user.is_staff %}
         <!-- Page content -->
         <div class="page-content">
 
@@ -833,7 +833,7 @@
                                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
                                                             <ul class="dropdown-menu dropdown-menu-right">
                                                                 <li><a href="#"><i class="icon-file-stats"></i> Ver</a></li>
-                                                                <li><a href="#"><i class="icon-file-text2"></i> Editar/a></li>
+                                                                <li><a href="#"><i class="icon-file-text2"></i> Editar</a></li>
                                                                 <li><a href="#"><i class="icon-file-locked"></i> Desativar</a></li>
                                                                 <li class="divider"></li>
                                                                 <li><a href="#"><i class="icon-gear"></i> Configurações</a></li>
@@ -2149,8 +2149,26 @@
 
         </div>
         <!-- /page content -->
-
+        <script type="text/javascript" src="{% static 'js/pages/dashboard.js' %}"></script>
+        {% else %}
+        <div class="modal-dialog">
+            <div class="login-form">
+                <div class="block">
+                    <div class="block-title text-center">
+                        <h2>Notificação</h2>
+                    </div>
+                    <div class="alert alert-warning" style="display: inline-flex">
+                        <i class="icon-warning" style="font-size: 33px;margin-right: 10px;"></i>
+                        <span>
+                            Seu registro no scopo.online foi efetuado com sucesso. Parabéns. Por favor, aguarde sua aprovação pelo seu candidato.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        {% endif %}
     </div>
     <!-- /page container -->
-<script type="text/javascript" src="{% static 'js/pages/dashboard.js' %}"></script>
+
 {% endblock %}
