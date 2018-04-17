@@ -53,7 +53,7 @@
 							    <li class="step first-step">
 							    	<span class="list">1</span>
 							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
-							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>							    	
+							    	<span class="list-done" onclick="formstep(0)"><i class="glyphicon glyphicon-ok"></i></span>	
 							    	<h6>Personal Data</h6>
 
 							    </li>
@@ -61,21 +61,21 @@
 							    <li class="step">
 							    	<span class="list">2</span>
 							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
-							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>
+							    	<span class="list-done" onclick="formstep(1)"><i class="glyphicon glyphicon-ok"></i></span>
 							    	<h6>Candidate</h6>
 							    </li>
 							    <hr>
 							    <li class="step">
 							    	<span class="list">3</span>
 							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
-							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>
+							    	<span class="list-done" onclick="formstep(2)"><i class="glyphicon glyphicon-ok"></i></span>
 							    	<h6>Team</h6>
 							    </li>
 							    <hr>
 							    <li class="step last-step">
 							    	<span class="list">4</span>
 							    	<span class="current"><i class="glyphicon glyphicon-pencil"></i></span>
-							    	<span class="list-done"><i class="glyphicon glyphicon-ok"></i></span>
+							    	<span class="list-done" onclick="formstep(3)"><i class="glyphicon glyphicon-ok"></i></span>
 							    	<h6>Campaign</h6>
 							    </li>
 							</ul>
@@ -912,6 +912,13 @@
 	    x[i].className = x[i].className.replace(" active", " done");
 	  }
 	  x[n].className += " active";
+	}
+
+	function formstep(n) {
+		var x = document.getElementsByClassName("form-step");
+		x[currentForm].style.display = "none";
+		currentForm = n;
+		showForm(n);
 	}
 </script>
 
