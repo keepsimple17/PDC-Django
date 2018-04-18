@@ -18,7 +18,8 @@
 		padding: 0px 235px;
 	}
 }
-@media (min-width: 600px) and (max-width: 1023px) {
+
+@media (min-width: 600px) and (max-width: 1000px) {
 	.tablist hr {
 		width: 144% !important;
     	margin-left: -20% !important;

@@ -4,13 +4,13 @@
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 # from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
-from core.data_objects import get_cities_by_state
+from core.data_objects import get_cities_by_state, get_states, get_cities
 from dashboard.models import Usuario, Estado, Municipio, POLITICAL_PARTY_CHOICES
 # from dashboard.models import Usuario
 # from django.db import transaction
@@ -23,8 +23,8 @@ from smtplib import SMTPException
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from candidato.models import Candidate
-from django.views.decorators.csrf import csrf_protect
+from candidato.models import Candidate,POLITICAL_PARTY_CHOICES
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -338,4 +338,25 @@ def browser_view(request):
 
 
 def user_configuration(request):
-    return render(request, "firstConfiguration.html")
+    if request.user.is_authenticated():
+        user_form = UserForm(instance=request.user)
+        user_configuration = ProfileForm(instance=request.user.usuario)
+        choice_states = get_states()
+        choice_cities = get_cities()
+        choice_states.insert(0,(None, "Enter State"))
+        choice_cities.insert(0,(None, "Enter City"))
+
+        choice_states = tuple(choice_states)
+        choice_cities = tuple(choice_cities)
+        return render(request, "registration/primeiroSetup.html", {'user_form': user_form, 'config_form': user_configuration, 'cities' : choice_cities, "states" :choice_states, "POLITICAL_PARTY_CHOICES": POLITICAL_PARTY_CHOICES})
+
+
+@csrf_exempt
+def update_user_configuration(request):
+    if request.method == 'POST':
+        user_config_form = ProfileForm(request.POST, instance=request.user.usuario)
+        print(user_config_form.errors)
+        if user_config_form.is_valid():
+            print("saving", user_config_form.save())
+            messages.success(request, _('Seu Cadastro foi Atualizado!'))
+        return redirect("/dashboard/")
