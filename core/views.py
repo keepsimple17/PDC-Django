@@ -340,15 +340,20 @@ def browser_view(request):
 def user_configuration(request):
     if request.user.is_authenticated():
         user_form = UserForm(instance=request.user)
-        user_configuration = ProfileForm(instance=request.user.usuario)
+        config_form = ProfileForm(instance=request.user.usuario)
         choice_states = get_states()
         choice_cities = get_cities()
-        choice_states.insert(0,(None, "Enter State"))
-        choice_cities.insert(0,(None, "Enter City"))
+        choice_states.insert(0, (None, "Enter State"))
+        choice_cities.insert(0, (None, "Enter City"))
 
         choice_states = tuple(choice_states)
         choice_cities = tuple(choice_cities)
-        return render(request, "registration/primeiroSetup.html", {'user_form': user_form, 'config_form': user_configuration, 'cities' : choice_cities, "states" :choice_states, "POLITICAL_PARTY_CHOICES": POLITICAL_PARTY_CHOICES})
+        return render(request, "registration/primeiroSetup.html", {
+            'user_form': user_form,
+            'config_form': config_form,
+            'cities': choice_cities,
+            'states': choice_states,
+            'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
 
 
 @csrf_exempt
