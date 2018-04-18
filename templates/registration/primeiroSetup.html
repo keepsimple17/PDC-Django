@@ -73,6 +73,12 @@
 	    background-color: transparent;
 	    font-weight: 300;
 	}
+	input[type="file"] {
+	    display: none !important;
+	}
+	.input-file {
+		background: #fafafa;
+	}
 </style>
 
 <!-- Main navbar -->
@@ -108,9 +114,9 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label>Foto</label> <!-- User Photo -->
-                                            <input type="file" name="user_profile_photo" class="form-control">
-
+                                        	<label>Foto</label><!-- User Photo -->
+                                        	<label class="form-control input-file" for="photo">Send File...</label>
+                                            <input type="file" id="photo" name="user_profile_photo" class="form-control">
                                         </div>
                                     </div>
 									<div class="col-md-5">
@@ -444,7 +450,8 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Currículo</label> <!-- Resume -->
-                                            <input type="file" name="user_resume" class="form-control">
+                                        	<label class="form-control input-file" for="photo">Send File...</label>
+                                            <input type="file" id="photo" name="user_resume" class="form-control">
                                         </div>
                                     </div>
                                 </div>
