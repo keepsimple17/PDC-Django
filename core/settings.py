@@ -82,22 +82,29 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'pdc',
-        # 'USER': 'root',
-        # 'PASSWORD': '',
-        # 'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
-        # 'PORT': '3306',
-        'NAME': 'pdc',
-        'USER': 'paulrsilva',
-        'PASSWORD': '12341312iggb',
-        'HOST': 'pdc.clpcb1dffjfg.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+if os.environ.get('DATABASE_NAME', '') == 'production':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'pdc',
+            'USER': 'paulrsilva',
+            'PASSWORD': '12341312iggb',
+            'HOST': 'pdc.clpcb1dffjfg.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        }
     }
-}
 
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'pdc',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
