@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-if os.environ.get('environment', '') == 'production':
+if os.environ.get('USER', '') == 'ubuntu':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -93,7 +93,6 @@ if os.environ.get('environment', '') == 'production':
             'PORT': '3306',
         }
     }
-
 else:
     DATABASES = {
         'default': {
