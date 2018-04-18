@@ -308,33 +308,34 @@ def forgot_password(request, uidb64=None):
 
 
 def apporve_user(request):
-    user_id=request.GET["user_id"]
-    user=User.objects.get(id=user_id)
+    user_id = request.GET["user_id"]
+    user = User.objects.get(id=user_id)
     mail_subject = 'you are authorized to dashboard'
     message = render_to_string('authorization.html', {
-            'user': user.first_name+" "+user.last_name})
+        'user': user.first_name+" "+user.last_name})
     to_email = user.email
     email = EmailMessage(
                 mail_subject, message, to=[to_email]
     )
     email.content_subtype = "html"
-    user.is_staff=1
+    user.is_staff = 1
     user.save()
     email.send()
     return HttpResponse("activated")
 
+
 def browser_view(request):
-    id= request.GET["id"]
-    user = User.objects.get(id=int(id))
+    user_id = request.GET["id"]
+    user = User.objects.get(id=int(user_id))
     current_site = get_current_site(request)
-    return render(request,'authorization.html',{
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-                })
+    return render(request, 'authorization.html', {
+        'user': user,
+        'domain': current_site.domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': account_activation_token.make_token(user),
+    })
     # return HttpResponse(True)
 
-def user_configuration(request):
-    return render(request,"firstConfiguration.html")
 
+def user_configuration(request):
+    return render(request, "firstConfiguration.html")
