@@ -41,12 +41,12 @@ function update_with_zipcode(state,next){
           //console.log(address.state)
           //$("#" + address.street).val(arr.street);
           $("#address").val(arr.district+arr.street);
+          $("#id_estado").val(arr.state);
+          $('#id_estado option[value='+arr.state+']').attr('selected', 'selected');
           $('#id_cidade option[data='+arr.city+']').attr('selected', 'selected');
           $('#id_cidade option').filter(function () {
             return this.text == arr.city;
           }).attr('selected', 'selected');
-          $("#id_estado").val(arr.state);
-          $('#id_estado option[value='+arr.state+']').attr('selected', 'selected');
         });
         next();
       }

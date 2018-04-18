@@ -214,7 +214,7 @@
                             <div class="col-md-2">
 								<div class="form-group">
 									<label>Estado Civil:</label>
-									<select name="gender" data-placeholder="Estado Civil" class="select">
+									<select name="marital_status" data-placeholder="Estado Civil" class="select">
 										<option></option>
 										<optgroup label="Estado Civil">
 											<option value="S">Solteiro</option>
@@ -245,7 +245,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icon-calendar3"></i></span>
                                         <input type="text" class="form-control" id="anytime-date"
-                                               value="dd/mm/aaaa" readonly>
+                                               name="bithday_date" value="" readonly>
                                     </div>
                                 </div>
 							</div>
@@ -274,7 +274,7 @@
 							<div class="col-md-2">
 								<div class="form-group">
 									<label>CEP:</label>
-									<input type="text" value="{{ profile_form.cep.value }}" name="cep" class="form-control zip-field">
+									<input type="text" value="" name="cep" class="form-control zip-field">
 								</div>
 							</div>
                             <div class="col-md-5">
@@ -313,7 +313,7 @@
 							<div class="col-md-8">
 								<div class="form-group">
 									<label>Endereço:</label>
-									<input type="text" name="address" class="form-control">
+									<input id="address" type="text" name="address" class="form-control" value="">
 								</div>
 							</div>
                             <div class="col-md-4">
@@ -330,13 +330,17 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>Partido do Usuário</label>
-									<input type="text" name="user_party" class="form-control" placeholder="legenda">
+                                    <select class="form-control select"  id="" name="user_political_party" required="true">
+			                       {% for party in POLITICAL_PARTY_CHOICES %}
+                                    <option value="{{ party.0 }}">{{ party.1 }}</option>
+                                    {% endfor %}
+			                    </select>
 								</div>
 							</div>
                             <div class="col-md-4">
                                 <div class="form-group">
 									<label>Função na Campanha</label>
-									<select name="userrole" data-placeholder="Atividade" class="select">
+									<select name="user_role" data-placeholder="Atividade" class="select">
 										<option></option>
 										<optgroup label="Campanha">
 											<option value="voluntario">Voluntário</option>
@@ -644,7 +648,7 @@
 						<div class="configurations-text table-text">
 							<br />
 							<p>Defina, a seguir, as permissões de acesso para o membro da equipe.</p>
-							
+
 							<hr/>
 
 						</div>
@@ -890,7 +894,7 @@
 														<input type="text" name="description" class="form-control description-input" placeholder="">
 													</div>
 												</div>
-												<div class="col-md-1">													
+												<div class="col-md-1">
 													<button type="button" class="btn bg-green proposal-btn"><span class="glyphicon glyphicon-chevron-right"></span></button>
 												</div>
 												<div class="col-md-6">
@@ -910,7 +914,7 @@
 											<div class="row">
 												<div class="col-md-5">
 													<label>Adicionar palavra-chave</label>
-													<input type="text" name="addkeyword" class="form-control" placeholder="">														
+													<input type="text" name="addkeyword" class="form-control" placeholder="">
 												</div>
 												<div class="col-md-2">
 													<label><input type="radio" class="zoom" name="optradio"><span class="label label-success radio-lable">Positive</span></label>
@@ -1002,7 +1006,7 @@
 												<button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
 					                                    data-style="slide-down"><span class="ladda-label"> <i class="icon-user-plus"> Add Committees</i></span><span class="ladda-spinner"></span>
 					                                <div class="ladda-progress" style="width: 135px;"></div>
-					                            </button>						                        
+					                            </button>
 											</div>
 											<!-- table with invited Committees members -->
 											<div class="row">
@@ -1134,10 +1138,10 @@
 								                                </div>
 								                        </div>
 						                    			<!-- table with invited Committees members -->
-						                    		</div>						                    		
+						                    		</div>
 						                    	</div>
 						                    </div>
-										</div>										
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1239,9 +1243,9 @@
                         <div class="form-control-feedback">
                             <i class="icon-home text-muted"></i>
                         </div>
-                    </div>					
+                    </div>
                     <div class="form-group has-feedback has-feedback-left">
-                        <select id="id_cidade" name="cidade" class="form-control">
+                        <select id="cidade" name="cidade" class="form-control">
                             {% for city in cities %}
                                 {% if selected_city  ==  city.0   %}
                             <option data="{{ city.1 }}" value="{{ city.0 }}" selected>{{ city.1 }}</option>
