@@ -34,7 +34,8 @@ POLITICAL_PARTY_CHOICES = (
     ('psol', 'PSOL'),
 )
 
-# Political Spectrum is the ideological posture of the Political Party (ex. democrats or republicans | left wing or right wing)
+# Political Spectrum is the ideological posture of the Political Party
+# (ex. democrats or republicans | left wing or right wing)
 PoliticalSpectrum = (
     ('Centro', 'Centro'),
     ('CentroDireita', 'Centro Direita'),
@@ -73,7 +74,7 @@ CANDIDATE_STATUS_CHOICES = (
     ('pending', 'Aguardando Aprovação'),
 )
 
-ELECTION_BALLOTS =(
+ELECTION_BALLOTS = (
     ('2018', 'Eleições 2018'),
     ('2020', 'Eleições 2020'),
 )
@@ -106,7 +107,7 @@ class Candidate(models.Model):
 
     holds_political_position = models.BooleanField("Detém Cargo Político", default="False")
     # todo If the candidate does not holds political position, disable political position
-    political_position = models.CharField("Posição Politica que Exerce", max_length=40,null=True,blank=True)
+    political_position = models.CharField("Posição Politica que Exerce", max_length=40, null=True, blank=True)
     reelection = models.BooleanField("Tentando Reeleição", default="False")
     first_political_campaign = models.BooleanField("Detém Cargo Político", default="False")
 
@@ -148,7 +149,7 @@ class Coalitions(models.Model):
     name_coligation = models.CharField("Nome Coligação", max_length=60, null=True, blank=True)
     # associated with the Political Partie Number
     political_partie_number = models.IntegerField
-    political_partie_abbreviation = models.CharField("Sigla Partirária", max_length=20,null=True,blank=True)
+    political_partie_abbreviation = models.CharField("Sigla Partirária", max_length=20, null=True, blank=True)
 
 
 # Group of Users from Candidate' Confidence, with
@@ -159,9 +160,9 @@ class Staff(models.Model):
 # Election Committee
 class Committees(models.Model):
     # the Candidate who owns the Commitee
-    id_candidate=models.IntegerField
+    id_candidate = models.IntegerField
     # the staff user responsible in Commitee
-    id_responsible=models.IntegerField
+    id_responsible = models.IntegerField
     # The Brazilian zipCode
     cep = models.CharField("CEP", max_length=9, blank=True, null=True)
     # Federal State (in dashboard_estado table)
@@ -169,7 +170,7 @@ class Committees(models.Model):
     # city
     cidade = models.CharField("Cidade", max_length=255, blank=True, null=True)
     # neiborhood
-    bairro = models.CharField("Bairro", max_length=255, blank=True,null=True)
+    bairro = models.CharField("Bairro", max_length=255, blank=True, null=True)
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
     cellPhone = models.CharField(blank=True, null=True, max_length=15,
                                  validators=[RegexValidator(regex='^\+?1?\d{9,15}$',
@@ -180,7 +181,7 @@ class Committees(models.Model):
 
 class Committee_Members(models.Model):
     # the Commitee id
-    id_commitee=models.IntegerField
+    id_commitee = models.IntegerField
     # the user ID of the User in commitee (dashboard.models.Profile)
     id_user = models.IntegerField
     # User assignments in Commitee
