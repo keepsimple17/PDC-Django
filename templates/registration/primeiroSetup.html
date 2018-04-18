@@ -44,6 +44,40 @@
     </ul>
 </div>
 
+<style>
+	body{
+		background-color: #f5f5f5;
+	}
+	.page-container1{
+		background-color: #dedede;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+	}
+	.navbar-inverse{
+		/*background-color: #676b74;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);*/
+	}
+	.navbar{
+		/*min-height: 60px;*/
+	}
+	.navbar-brand {
+	    display: inline-block;
+	    padding-top: 1.3125rem;
+	    padding-bottom: .3125rem;
+	    margin-right: 1rem;
+	    font-size: 1.95rem;
+	    line-height: inherit;
+	    white-space: nowrap;
+	    background-color: transparent;
+	    font-weight: 300;
+	}
+	input[type="file"] {
+	    display: none !important;
+	}
+	.input-file {
+		background: #fafafa;
+	}
+</style>
+
 <!-- Main navbar -->
 <div class="">
     <span style="display:block; height: 40px;"></span>
@@ -79,6 +113,256 @@
                                 <div class="form-group">
                                     <label>Foto</label> <!-- User Photo -->
                                     <input title="" type="file" name="user_profile_photo" class="form-control">
+<!-- Basic setup -->
+		            <div class="panel panel-white">
+						<div class="panel-heading">
+							<h6 class="panel-title">Primeira Configuração</h6>
+							<div class="heading-elements">
+								<ul class="icons-list">
+			                		<li><a data-action="collapse"></a></li>
+			                		<li><a data-action="reload"></a></li>
+			                	</ul>
+		                	</div>
+						</div>
+
+	                	<form class="steps-starting-step" action="{% url 'update_user_configuration' %}" method="post">
+							<h6>Dados Pessoais</h6>
+							<fieldset>
+                                <!-- Foto, Username and email -->
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        	<label>Foto</label><!-- User Photo -->
+                                        	<label class="form-control input-file" for="photo">Send File...</label>
+                                            <input type="file" id="photo" name="user_profile_photo" class="form-control">
+                                        </div>
+                                    </div>
+									<div class="col-md-5">
+										<div class="form-group">
+											<label>Nome de Usuário:</label> <!-- Username -->
+											<input type="text" name="name" value="{{ request.user.username }}" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-md-5">
+										<div class="form-group">
+											<label>E-mail:</label>
+											<input type="email" name="email" value="{{ request.user.email }}" class="form-control" placeholder="your@email.com">
+										</div>
+									</div>
+								</div>
+                                <!-- /Foto, Username and email -->
+
+                                <!-- Name, Surname, Gender, Civil Status, -->
+                                <div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Nome</label> <!-- Name -->
+											<input type="text" name="name" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-4">
+										<div class="form-group">
+											<label>Sobrenome:</label> <!-- Surname -->
+											<input type="text" name="name" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-md-2">
+										<div class="form-group">
+											<label>Gênero:</label>
+											<select name="gender" data-placeholder="Gênero" class="select">
+												<option></option>
+												<optgroup label="Pessoa Física">
+													<option value="M">Masculino</option>
+													<option value="F">Feminino</option>
+                                                    <option value="N">Outro</option>
+												</optgroup>
+
+												<optgroup label="Pessoa Jurídica">
+													<option value="E">Empresa</option>
+													<option value="S">Sindicato</option>
+													<option value="O">Organização ou Instituto</option>
+												</optgroup>
+											</select>
+                                         </div>
+									</div>
+                                    <div class="col-md-2">
+										<div class="form-group">
+											<label>Estado Civil:</label>
+											<select name="gender" data-placeholder="Estado Civil" class="select">
+												<option></option>
+												<optgroup label="Estado Civil">
+													<option value="S">Solteiro</option>
+													<option value="F">Casado</option>
+                                                    <option value="D">Divorciado</option>
+                                                    <option value="V">Viúvo</option>
+                                                    <option value="O">Outro</option>
+												</optgroup>
+
+											</select>
+                                         </div>
+									</div>
+
+								</div>
+                                <!-- /Name, Surname, Civil Status, Gender -->
+
+                                <!-- CPF, Birthday_Date, CellPhone, Landline -->
+                                <div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>CPF:</label> <!-- CPF - (social ID) -->
+											<input type="text" name="cpf" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Data de Nascimento:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-calendar3"></i></span>
+                                                <input type="text" class="form-control" id="anytime-date"
+                                                       value="dd/mm/aaaa" readonly>
+                                            </div>
+                                        </div>
+									</div>
+
+									<div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Tel. Celular:</label> <!-- Cellphone -->
+                                            <input type="text" name="cellPhone" class="form-control">
+                                        </div>
+									</div>
+
+
+                                    <div class="col-md-2">
+										<div class="form-group">
+											<label>Tel. Fixo:</label>
+                                            <input type="text" name="landLinePhone" class="form-control">
+                                         </div>
+									</div>
+
+								</div>
+                                <!-- /CPF, Birthday_Date, CellPhone, Landline -->
+
+
+                                <!-- CEP, State and Citie -->
+                                <div class="row">
+									<div class="col-md-2">
+										<div class="form-group">
+											<label>CEP:</label>
+											<input type="text" value="{{ profile_form.cep.value }}" name="cep" class="form-control zip-field">
+										</div>
+									</div>
+                                    <div class="col-md-5">
+										<div class="form-group">
+											<label>Estado:</label> <!-- State -->
+											<select name="estado" data-placeholder="Estado" id="id_estado" class="select">
+												<optgroup label="Estado">
+													{% for state in states %}
+						                            <option value="{{ state.0 }}">{{ state.1 }}</option>
+						                            {% endfor %}
+												</optgroup>
+
+											</select>
+										</div>
+									</div>
+
+
+									<div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Cidade:</label> <!-- Citie -->
+                                            <select name="cidade" data-placeholder="Cidade" id="id_cidade" value="{{ request.user.username }}" class="select">
+												<optgroup label="Cidade">
+													{% for city in cities %}
+						                            <option value="{{ city.0 }}">{{ city.1 }}</option>
+						                            {% endfor %}
+												</optgroup>
+
+											</select>
+                                        </div>
+									</div>
+								</div>
+                                <!-- /CEP, State and Citie -->
+
+                                <!-- Adreess, Predial number,  complement address -->
+                                <div class="row">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label>Endereço:</label>
+											<input type="text" name="address" class="form-control">
+										</div>
+									</div>
+                                    <div class="col-md-4">
+										<div class="form-group">
+											<label>Complemento</label> <!-- predial number - complement address -->
+											<input type="text" name="predial_number" class="form-control">
+										</div>
+									</div>
+								</div>
+                                <!-- Adreess, Predial number,  complement address -->
+
+                                <!-- Political Party, User Role, Company -->
+                                      <div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Partido do Usuário</label>
+											<input type="text" name="user_party" class="form-control" placeholder="legenda">
+										</div>
+									</div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+											<label>Função na Campanha</label>
+											<select name="userrole" data-placeholder="Atividade" class="select">
+												<option></option>
+												<optgroup label="Campanha">
+													<option value="voluntario">Voluntário</option>
+													<option value="contratado">Contratado</option>
+                                                    <option value="agenciaMkt">Agência de Marketing</option>
+												</optgroup>
+
+												<optgroup label="Gabinete">
+													<option value="func">Funcionário</option>
+													<option value="tercerizado">Terceirizado</option>
+													<option value="Org">Organização ou Instituto</option>
+												</optgroup>
+											</select>
+                                         </div>
+									</div>
+                                    <div class="col-md-4">
+										<div class="form-group">
+											<label>Empresa</label> <!-- predial number - complement address -->
+											<input type="text" name="company" placeholder="empresa se houver" class="form-control">
+										</div>
+									</div>
+								</div>
+                                <!-- Political Party, User Role, Company -->
+
+
+
+							</fieldset>
+
+							<h6>Candidato</h6>
+							<fieldset>
+                                <!-- Candidate Party, Nickname and Ballot-->
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Partido do Candidato</label> <!-- Candidate Party -->
+                                            <input type="text" name="candidate_party" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Apelido Político do Candidato</label> <!-- Candidate nickname -->
+                                            <input type="text" name="candidate_nickname" class="form-control">
+                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Pleito Eleitoral</label> <!-- Election Ballot -->
+                                            <input type="text" name="election_ballot" class="form-control" placeholder="Eleições 2018">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -109,6 +393,98 @@
                                 <div class="form-group">
                                     <label>Sobrenome:</label> <!-- Surname -->
                                     <input title="" type="text" name="name" class="form-control">
+                                    <div class="col-md-3">
+										<div class="form-group">
+											<label>Identificação</label> <!-- slug -->
+											<input type="text" name="slug" class="form-control" placeholder="gerado automaticamente">
+										</div>
+									</div>
+
+                                    <div class="col-md-1">
+										<div class="form-group">
+											<label>UF</label> <!-- Candidate State -->
+											<input type="text" name="Candidate_State" class="form-control">
+										</div>
+									</div>
+
+                                    <div class="col-md-3">
+										<div class="form-group">
+											<label>Cidade</label> <!-- Candidate City -->
+											<input type="text" name="city_candidate" class="form-control">
+										</div>
+									</div>
+
+								</div>
+
+                                <!-- has position, current position, reelection, first election, resume -->
+                                <div class="row">
+
+                                    <div class="col-md-2">
+										<div class="form-group">
+											<label>Exerce Cargo?</label> <!-- holds political position -->
+                                            <select name="holds_position" class="select">
+												<option></option>
+												<optgroup label="Exerce Cargo Público?">
+													<option value="S">Sim</option>
+													<option value="N">Não</option>
+                                                    <option value="O">Já exerceu</option>
+												</optgroup>
+
+											</select>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="form-group">
+											<label>Cargo que Exerce</label> <!-- Candidate current position -->
+											<select name="Candidate_desired_position" class="select">
+                                                <option></option>
+                                                <optgroup label="Cargo">
+													<option value="Presidente">Presidente</option>
+													<option value="Senador">Senador</option>
+                                                    <option value="Deputado Federal">Deputado Federal</option>
+													<option value="Governador">Governador</option>
+													<option value="Prefeito">Prefeito</option>
+													<option value="Deptado Estadual">Deptado Estadual</option>
+                                                    <option value="Vereador">Vereador</option>
+                                                </optgroup>
+                                            </select>
+										</div>
+									</div>
+
+                                    <div class="col-md-1">
+										<div class="form-group">
+											<label>Reeleição?</label> <!-- Reelection? -->
+                                            <select name="Reelection"  class="select">
+												<option></option>
+												<optgroup label="_">
+													<option value="S">Sim</option>
+													<option value="N">Não</option>
+												</optgroup>
+											</select>
+										</div>
+									</div>
+
+                                     <div class="col-md-2">
+										<div class="form-group">
+											<label>Primeira Eleição?</label> <!-- First election? -->
+                                            <select name="Primeira vez que concorre?"  class="select">
+												<option></option>
+												<optgroup label="Primeira vez que concorre?">
+													<option value="S">Sim</option>
+													<option value="N">Não</option>
+												</optgroup>
+											</select>
+										</div>
+									</div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Currículo</label> <!-- Resume -->
+                                        	<label class="form-control input-file" for="photo">Send File...</label>
+                                            <input type="file" id="photo" name="user_resume" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
