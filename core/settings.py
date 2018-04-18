@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-if os.environ.get('DATABASE_NAME', '') == 'production':
+if os.environ.get('environment', '') == 'production':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
