@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/PDC_Deploy
+    destination: /home/ubuntu/PDC
 permissions:
-  - object: /home/ubuntu/PDC_Deploy
+  - object: /home/ubuntu/PDC
     pattern: "**"
     owner: ubuntu
     group: ubuntu
