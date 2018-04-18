@@ -122,14 +122,14 @@
 									<div class="col-md-5">
 										<div class="form-group">
 											<label>Nome de Usuário:</label> <!-- Username -->
-											<input type="text" name="name" class="form-control">
+											<input type="text" name="name" value="{{ request.user.username }}" class="form-control">
 										</div>
 									</div>
 
 									<div class="col-md-5">
 										<div class="form-group">
 											<label>E-mail:</label>
-											<input type="email" name="email" class="form-control" placeholder="your@email.com">
+											<input type="email" name="email" value="{{ request.user.email }}" class="form-control" placeholder="your@email.com">
 										</div>
 									</div>
 								</div>
@@ -232,20 +232,35 @@
 									<div class="col-md-2">
 										<div class="form-group">
 											<label>CEP:</label>
-											<input type="text" name="cep" class="form-control">
+											<input type="text" value="{{ profile_form.cep.value }}" name="cep" class="form-control zip-field">
 										</div>
 									</div>
                                     <div class="col-md-5">
 										<div class="form-group">
 											<label>Estado:</label> <!-- State -->
-											<input type="text" name="estado" class="form-control">
+											<select name="estado" data-placeholder="Estado" id="id_estado" class="select">
+												<optgroup label="Estado">
+													{% for state in states %}
+						                            <option value="{{ state.0 }}">{{ state.1 }}</option>
+						                            {% endfor %}
+												</optgroup>
+
+											</select>
 										</div>
 									</div>
+
 
 									<div class="col-md-5">
                                         <div class="form-group">
                                             <label>Cidade:</label> <!-- Citie -->
-                                            <input type="text" name="cidade" class="form-control">
+                                            <select name="cidade" data-placeholder="Cidade" id="id_cidade" value="{{ request.user.username }}" class="select">
+												<optgroup label="Cidade">
+													{% for city in cities %}
+						                            <option value="{{ city.0 }}">{{ city.1 }}</option>
+						                            {% endfor %}
+												</optgroup>
+
+											</select>
                                         </div>
 									</div>
 								</div>
