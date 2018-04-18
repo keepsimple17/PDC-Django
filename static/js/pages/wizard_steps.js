@@ -89,6 +89,7 @@ $(function() {
         autoFocus: true,
         onFinished: function (event, currentIndex) {
             alert("Form submitted.");
+            $(this).submit();
         }
     });
 
