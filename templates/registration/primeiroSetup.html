@@ -1,36 +1,38 @@
 {% extends '_base.html' %}
 {% load staticfiles %}
 
+
+
 {% block content %}
 
-<!-- Theme for step form wizard -->
-<!-- Theme JS files -->
-<script type="text/javascript" src="{% static 'js/plugins/forms/wizards/steps.min.js' %}"
-        xmlns="http://www.w3.org/1999/html"></script>
-<script type="text/javascript" src="{% static 'js/plugins/forms/selects/select2.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/plugins/forms/styling/uniform.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/core/libraries/jasny_bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/plugins/forms/validation/validate.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/plugins/extensions/cookie.js' %}"></script>
+    <!-- Theme for step form wizard -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="{% static 'js/plugins/forms/wizards/steps.min.js' %}"
+            xmlns="http://www.w3.org/1999/html"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/forms/selects/select2.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/forms/styling/uniform.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/core/libraries/jasny_bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/forms/validation/validate.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/extensions/cookie.js' %}"></script>
 
-<script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/pages/wizard_steps.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/pages/wizard_steps.js' %}"></script>
 
-<script type="text/javascript" src="{% static 'js/plugins/ui/ripple.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/ui/ripple.min.js' %}"></script>
 
-<!-- calendar pickup itens -->
-<!-- for some reason the picker date is conflicting with the button effects -->
-<!-- calendar pickup itens -->
-<!-- /theme JS files -->
-<!-- /Theme for step form wizard -->
+        <!-- calendar pickup itens -->
+            <!-- for some reason the picker date is conflicting with the button effects -->
+        <!-- calendar pickup itens -->
+    <!-- /theme JS files -->
+    <!-- /Theme for step form wizard -->
 
-<!-- Buttons effects -->
-<script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.ui.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/plugins/buttons/spin.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/plugins/buttons/ladda.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/pages/components_buttons.js' %}"></script>
-<!-- /Buttons effects -->
+    <!-- Buttons effects -->
+     	<script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.ui.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/buttons/spin.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plugins/buttons/ladda.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/pages/components_buttons.js' %}"></script>
+    <!-- /Buttons effects -->
 
 <div class="breadcrumb-line breadcrumb-line-component">
     <ul class="breadcrumb">
@@ -43,6 +45,7 @@
         <li><a href="#"><i class="icon-comment-discussion position-left"></i> Fale Conosco</a></li>
     </ul>
 </div>
+
 
 <style>
 	body{
@@ -73,9 +76,44 @@
 	input[type="file"] {
 	    display: none !important;
 	}
+	input[type="radio"] {
+	    zoom: 1.3;
+    	margin-left: 25px;
+	}
 	.input-file {
 		background: #fafafa;
 	}
+	.description-input {
+		height: 150px;
+	}
+	.proposal-list {
+		height: 235px;
+		overflow-x: scroll;
+	}
+	.radio-lable {
+		margin-left: 5px;
+	}
+	.m-t-25 {
+		margin-top: 25px;
+	}
+	.proposal-btn {
+		height: 250px;
+   		margin-top: 20px;
+   		width: 100%;
+	}
+	.proposal-btn .glyphicon {
+		font-size: 20px;
+	}
+	@media (max-width: 1025px){
+		.proposal-btn {
+			height: 45px !important;
+		}
+	}
+	.glyphicon-remove-sign {
+		color: #F44336;
+		float: right;
+	}
+
 </style>
 
 <!-- Main navbar -->
@@ -84,724 +122,401 @@
 	<div class="container">
 		<div class="row">
             <div class="text-center">
-                <img src="http://www.portaldocandidato.inf.br/images/SCOPO_300px.png">
-                <!-- % if valid %} -->
-                <h5 class="content-group">Primeira Configuração</h5>
+				<img src="http://www.portaldocandidato.inf.br/images/SCOPO_300px.png">
+				<!-- % if valid %} -->
+				<h5 class="content-group">Primeira Configuração</h5>
                 <!-- % endif %} -->
             </div>
 		</div>
-          <!-- Content area -->
+        <!-- Content area -->
         <div class="content">
-            <!-- Basic setup -->
+			<!-- Basic setup -->
             <div class="panel panel-white">
-                <div class="panel-heading">
-                    <h6 class="panel-title">Primeira Configuração</h6>
-                    <div class="heading-elements">
-                        <ul class="icons-list">
-                            <li><a data-action="collapse"></a></li>
-                            <li><a data-action="reload"></a></li>
-                        </ul>
-                    </div>
-                </div>
+				<div class="panel-heading">
+					<h6 class="panel-title">Primeira Configuração</h6>
+					<div class="heading-elements">
+						<ul class="icons-list">
+	                		<li><a data-action="collapse"></a></li>
+	                		<li><a data-action="reload"></a></li>
+	                	</ul>
+                	</div>
+				</div>
 
-                <form class="steps-starting-step" action="{% url 'update_user_configuration' %}" method="post">
-                    <h6>Dados Pessoais</h6>
-                    <fieldset>
+            	<form class="steps-starting-step" action="{% url 'update_user_configuration' %}" method="post">
+					<h6>Dados Pessoais</h6>
+					<fieldset>
                         <!-- Foto, Username and email -->
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label>Foto</label> <!-- User Photo -->
-                                    <input title="" type="file" name="user_profile_photo" class="form-control">
-<!-- Basic setup -->
-		            <div class="panel panel-white">
-						<div class="panel-heading">
-							<h6 class="panel-title">Primeira Configuração</h6>
-							<div class="heading-elements">
-								<ul class="icons-list">
-			                		<li><a data-action="collapse"></a></li>
-			                		<li><a data-action="reload"></a></li>
-			                	</ul>
-		                	</div>
+                                	<label>Foto</label><!-- User Photo -->
+                                	<label class="form-control input-file" for="photo">Send File...</label>
+                                    <input type="file" id="photo" name="user_profile_photo" class="form-control">
+                                </div>
+                            </div>
+							<div class="col-md-5">
+								<div class="form-group">
+									<label>Nome de Usuário:</label> <!-- Username -->
+									<input type="text" name="name" value="{{ request.user.username }}" class="form-control">
+								</div>
+							</div>
+
+							<div class="col-md-5">
+								<div class="form-group">
+									<label>E-mail:</label>
+									<input type="email" name="email" value="{{ request.user.email }}"class="form-control" placeholder="your@email.com">
+								</div>
+							</div>
 						</div>
-
-	                	<form class="steps-starting-step" action="{% url 'update_user_configuration' %}" method="post">
-							<h6>Dados Pessoais</h6>
-							<fieldset>
-                                <!-- Foto, Username and email -->
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                        	<label>Foto</label><!-- User Photo -->
-                                        	<label class="form-control input-file" for="photo">Send File...</label>
-                                            <input type="file" id="photo" name="user_profile_photo" class="form-control">
-                                        </div>
-                                    </div>
-									<div class="col-md-5">
-										<div class="form-group">
-											<label>Nome de Usuário:</label> <!-- Username -->
-											<input type="text" name="name" value="{{ request.user.username }}" class="form-control">
-										</div>
-									</div>
-
-									<div class="col-md-5">
-										<div class="form-group">
-											<label>E-mail:</label>
-											<input type="email" name="email" value="{{ request.user.email }}" class="form-control" placeholder="your@email.com">
-										</div>
-									</div>
-								</div>
-                                <!-- /Foto, Username and email -->
-
-                                <!-- Name, Surname, Gender, Civil Status, -->
-                                <div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Nome</label> <!-- Name -->
-											<input type="text" name="name" class="form-control">
-										</div>
-									</div>
-                                    <div class="col-md-4">
-										<div class="form-group">
-											<label>Sobrenome:</label> <!-- Surname -->
-											<input type="text" name="name" class="form-control">
-										</div>
-									</div>
-
-									<div class="col-md-2">
-										<div class="form-group">
-											<label>Gênero:</label>
-											<select name="gender" data-placeholder="Gênero" class="select">
-												<option></option>
-												<optgroup label="Pessoa Física">
-													<option value="M">Masculino</option>
-													<option value="F">Feminino</option>
-                                                    <option value="N">Outro</option>
-												</optgroup>
-
-												<optgroup label="Pessoa Jurídica">
-													<option value="E">Empresa</option>
-													<option value="S">Sindicato</option>
-													<option value="O">Organização ou Instituto</option>
-												</optgroup>
-											</select>
-                                         </div>
-									</div>
-                                    <div class="col-md-2">
-										<div class="form-group">
-											<label>Estado Civil:</label>
-											<select name="gender" data-placeholder="Estado Civil" class="select">
-												<option></option>
-												<optgroup label="Estado Civil">
-													<option value="S">Solteiro</option>
-													<option value="F">Casado</option>
-                                                    <option value="D">Divorciado</option>
-                                                    <option value="V">Viúvo</option>
-                                                    <option value="O">Outro</option>
-												</optgroup>
-
-											</select>
-                                         </div>
-									</div>
-
-								</div>
-                                <!-- /Name, Surname, Civil Status, Gender -->
-
-                                <!-- CPF, Birthday_Date, CellPhone, Landline -->
-                                <div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>CPF:</label> <!-- CPF - (social ID) -->
-											<input type="text" name="cpf" class="form-control">
-										</div>
-									</div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Data de Nascimento:</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icon-calendar3"></i></span>
-                                                <input type="text" class="form-control" id="anytime-date"
-                                                       value="dd/mm/aaaa" readonly>
-                                            </div>
-                                        </div>
-									</div>
-
-									<div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Tel. Celular:</label> <!-- Cellphone -->
-                                            <input type="text" name="cellPhone" class="form-control">
-                                        </div>
-									</div>
-
-
-                                    <div class="col-md-2">
-										<div class="form-group">
-											<label>Tel. Fixo:</label>
-                                            <input type="text" name="landLinePhone" class="form-control">
-                                         </div>
-									</div>
-
-								</div>
-                                <!-- /CPF, Birthday_Date, CellPhone, Landline -->
-
-
-                                <!-- CEP, State and Citie -->
-                                <div class="row">
-									<div class="col-md-2">
-										<div class="form-group">
-											<label>CEP:</label>
-											<input type="text" value="{{ profile_form.cep.value }}" name="cep" class="form-control zip-field">
-										</div>
-									</div>
-                                    <div class="col-md-5">
-										<div class="form-group">
-											<label>Estado:</label> <!-- State -->
-											<select name="estado" data-placeholder="Estado" id="id_estado" class="select">
-												<optgroup label="Estado">
-													{% for state in states %}
-						                            <option value="{{ state.0 }}">{{ state.1 }}</option>
-						                            {% endfor %}
-												</optgroup>
-
-											</select>
-										</div>
-									</div>
-
-
-									<div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Cidade:</label> <!-- Citie -->
-                                            <select name="cidade" data-placeholder="Cidade" id="id_cidade" value="{{ request.user.username }}" class="select">
-												<optgroup label="Cidade">
-													{% for city in cities %}
-						                            <option value="{{ city.0 }}">{{ city.1 }}</option>
-						                            {% endfor %}
-												</optgroup>
-
-											</select>
-                                        </div>
-									</div>
-								</div>
-                                <!-- /CEP, State and Citie -->
-
-                                <!-- Adreess, Predial number,  complement address -->
-                                <div class="row">
-									<div class="col-md-8">
-										<div class="form-group">
-											<label>Endereço:</label>
-											<input type="text" name="address" class="form-control">
-										</div>
-									</div>
-                                    <div class="col-md-4">
-										<div class="form-group">
-											<label>Complemento</label> <!-- predial number - complement address -->
-											<input type="text" name="predial_number" class="form-control">
-										</div>
-									</div>
-								</div>
-                                <!-- Adreess, Predial number,  complement address -->
-
-                                <!-- Political Party, User Role, Company -->
-                                      <div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Partido do Usuário</label>
-											<input type="text" name="user_party" class="form-control" placeholder="legenda">
-										</div>
-									</div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-											<label>Função na Campanha</label>
-											<select name="userrole" data-placeholder="Atividade" class="select">
-												<option></option>
-												<optgroup label="Campanha">
-													<option value="voluntario">Voluntário</option>
-													<option value="contratado">Contratado</option>
-                                                    <option value="agenciaMkt">Agência de Marketing</option>
-												</optgroup>
-
-												<optgroup label="Gabinete">
-													<option value="func">Funcionário</option>
-													<option value="tercerizado">Terceirizado</option>
-													<option value="Org">Organização ou Instituto</option>
-												</optgroup>
-											</select>
-                                         </div>
-									</div>
-                                    <div class="col-md-4">
-										<div class="form-group">
-											<label>Empresa</label> <!-- predial number - complement address -->
-											<input type="text" name="company" placeholder="empresa se houver" class="form-control">
-										</div>
-									</div>
-								</div>
-                                <!-- Political Party, User Role, Company -->
-
-
-
-							</fieldset>
-
-							<h6>Candidato</h6>
-							<fieldset>
-                                <!-- Candidate Party, Nickname and Ballot-->
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Partido do Candidato</label> <!-- Candidate Party -->
-                                            <input type="text" name="candidate_party" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Apelido Político do Candidato</label> <!-- Candidate nickname -->
-                                            <input type="text" name="candidate_nickname" class="form-control">
-                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Pleito Eleitoral</label> <!-- Election Ballot -->
-                                            <input type="text" name="election_ballot" class="form-control" placeholder="Eleições 2018">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label>Nome de Usuário:</label> <!-- Username -->
-                                    <input title="" type="text" name="name" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label>E-mail:</label>
-                                    <input title="" type="email" name="email" class="form-control" placeholder="your@email.com">
-                                </div>
-                            </div>
-                        </div>
                         <!-- /Foto, Username and email -->
 
                         <!-- Name, Surname, Gender, Civil Status, -->
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Nome</label> <!-- Name -->
-                                    <input title="" type="text" name="name" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Sobrenome:</label> <!-- Surname -->
-                                    <input title="" type="text" name="name" class="form-control">
-                                    <div class="col-md-3">
-										<div class="form-group">
-											<label>Identificação</label> <!-- slug -->
-											<input type="text" name="slug" class="form-control" placeholder="gerado automaticamente">
-										</div>
-									</div>
-
-                                    <div class="col-md-1">
-										<div class="form-group">
-											<label>UF</label> <!-- Candidate State -->
-											<input type="text" name="Candidate_State" class="form-control">
-										</div>
-									</div>
-
-                                    <div class="col-md-3">
-										<div class="form-group">
-											<label>Cidade</label> <!-- Candidate City -->
-											<input type="text" name="city_candidate" class="form-control">
-										</div>
-									</div>
-
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Nome</label> <!-- Name -->
+									<input type="text" name="name" class="form-control">
 								</div>
+							</div>
+                            <div class="col-md-4">
+								<div class="form-group">
+									<label>Sobrenome:</label> <!-- Surname -->
+									<input type="text" name="name" class="form-control">
+								</div>
+							</div>
 
-                                <!-- has position, current position, reelection, first election, resume -->
-                                <div class="row">
-
-                                    <div class="col-md-2">
-										<div class="form-group">
-											<label>Exerce Cargo?</label> <!-- holds political position -->
-                                            <select name="holds_position" class="select">
-												<option></option>
-												<optgroup label="Exerce Cargo Público?">
-													<option value="S">Sim</option>
-													<option value="N">Não</option>
-                                                    <option value="O">Já exerceu</option>
-												</optgroup>
-
-											</select>
-										</div>
-									</div>
-
-									<div class="col-md-3">
-										<div class="form-group">
-											<label>Cargo que Exerce</label> <!-- Candidate current position -->
-											<select name="Candidate_desired_position" class="select">
-                                                <option></option>
-                                                <optgroup label="Cargo">
-													<option value="Presidente">Presidente</option>
-													<option value="Senador">Senador</option>
-                                                    <option value="Deputado Federal">Deputado Federal</option>
-													<option value="Governador">Governador</option>
-													<option value="Prefeito">Prefeito</option>
-													<option value="Deptado Estadual">Deptado Estadual</option>
-                                                    <option value="Vereador">Vereador</option>
-                                                </optgroup>
-                                            </select>
-										</div>
-									</div>
-
-                                    <div class="col-md-1">
-										<div class="form-group">
-											<label>Reeleição?</label> <!-- Reelection? -->
-                                            <select name="Reelection"  class="select">
-												<option></option>
-												<optgroup label="_">
-													<option value="S">Sim</option>
-													<option value="N">Não</option>
-												</optgroup>
-											</select>
-										</div>
-									</div>
-
-                                     <div class="col-md-2">
-										<div class="form-group">
-											<label>Primeira Eleição?</label> <!-- First election? -->
-                                            <select name="Primeira vez que concorre?"  class="select">
-												<option></option>
-												<optgroup label="Primeira vez que concorre?">
-													<option value="S">Sim</option>
-													<option value="N">Não</option>
-												</optgroup>
-											</select>
-										</div>
-									</div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Currículo</label> <!-- Resume -->
-                                        	<label class="form-control input-file" for="photo">Send File...</label>
-                                            <input type="file" id="photo" name="user_resume" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Gênero:</label>
-                                    <select title="" name="gender" data-placeholder="Gênero" class="select">
-                                        <option></option>
-                                        <optgroup label="Pessoa Física">
-                                            <option value="M">Masculino</option>
-                                            <option value="F">Feminino</option>
+							<div class="col-md-2">
+								<div class="form-group">
+									<label>Gênero:</label>
+									<select name="gender" data-placeholder="Gênero" class="select">
+										<option></option>
+										<optgroup label="Pessoa Física">
+											<option value="M">Masculino</option>
+											<option value="F">Feminino</option>
                                             <option value="N">Outro</option>
-                                        </optgroup>
+										</optgroup>
 
-                                        <optgroup label="Pessoa Jurídica">
-                                            <option value="E">Empresa</option>
-                                            <option value="S">Sindicato</option>
-                                            <option value="O">Organização ou Instituto</option>
-                                        </optgroup>
-                                    </select>
+										<optgroup label="Pessoa Jurídica">
+											<option value="E">Empresa</option>
+											<option value="S">Sindicato</option>
+											<option value="O">Organização ou Instituto</option>
+										</optgroup>
+									</select>
                                  </div>
-                            </div>
+							</div>
                             <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Estado Civil:</label>
-                                    <select title="" name="gender" data-placeholder="Estado Civil" class="select">
-                                        <option></option>
-                                        <optgroup label="Estado Civil">
-                                            <option value="S">Solteiro</option>
-                                            <option value="F">Casado</option>
+								<div class="form-group">
+									<label>Estado Civil:</label>
+									<select name="gender" data-placeholder="Estado Civil" class="select">
+										<option></option>
+										<optgroup label="Estado Civil">
+											<option value="S">Solteiro</option>
+											<option value="F">Casado</option>
                                             <option value="D">Divorciado</option>
                                             <option value="V">Viúvo</option>
                                             <option value="O">Outro</option>
-                                        </optgroup>
+										</optgroup>
 
-                                    </select>
+									</select>
                                  </div>
-                            </div>
+							</div>
 
-                        </div>
+						</div>
                         <!-- /Name, Surname, Civil Status, Gender -->
 
                         <!-- CPF, Birthday_Date, CellPhone, Landline -->
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>CPF:</label> <!-- CPF - (social ID) -->
-                                    <input title="" type="text" name="cpf" class="form-control">
-                                </div>
-                            </div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>CPF:</label> <!-- CPF - (social ID) -->
+									<input type="text" name="cpf" class="form-control">
+								</div>
+							</div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Data de Nascimento:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icon-calendar3"></i></span>
-                                        <input title="" type="text" class="form-control" id="anytime-date"
+                                        <input type="text" class="form-control" id="anytime-date"
                                                value="dd/mm/aaaa" readonly>
                                     </div>
                                 </div>
-                            </div>
+							</div>
 
-                            <div class="col-md-2">
+							<div class="col-md-2">
                                 <div class="form-group">
                                     <label>Tel. Celular:</label> <!-- Cellphone -->
-                                    <input title="" type="text" name="cellPhone" class="form-control">
+                                    <input type="text" name="cellPhone" class="form-control">
                                 </div>
-                            </div>
+							</div>
 
 
                             <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Tel. Fixo:</label>
-                                    <input title="" type="text" name="landLinePhone" class="form-control">
+								<div class="form-group">
+									<label>Tel. Fixo:</label>
+                                    <input type="text" name="landLinePhone" class="form-control">
                                  </div>
-                            </div>
+							</div>
 
-                        </div>
+						</div>
                         <!-- /CPF, Birthday_Date, CellPhone, Landline -->
+
 
                         <!-- CEP, State and Citie -->
                         <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>CEP:</label>
-                                    <input title="" type="text" name="cep" class="form-control">
-                                </div>
-                            </div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<label>CEP:</label>
+									<input type="text" value="{{ profile_form.cep.value }}" name="cep" class="form-control zip-field">
+								</div>
+							</div>
                             <div class="col-md-5">
-                                <div class="form-group">
-                                    <label>Estado:</label> <!-- State -->
-                                    <input title="" type="text" name="estado" class="form-control">
-                                </div>
-                            </div>
+								<div class="form-group">
+									<label>Estado:</label> <!-- State -->
+									<select name="estado" data-placeholder="Estado" id="id_estado" class="select">
+										<optgroup label="Estado">
+											{% for state in states %}
+				                            <option value="{{ state.0 }}">{{ state.1 }}</option>
+				                            {% endfor %}
+										</optgroup>
 
-                            <div class="col-md-5">
+									</select>
+								</div>
+							</div>
+
+
+							<div class="col-md-5">
                                 <div class="form-group">
                                     <label>Cidade:</label> <!-- Citie -->
-                                    <input title="" type="text" name="cidade" class="form-control">
+                                    <select name="cidade" data-placeholder="Cidade" id="id_cidade" value="{{ request.user.username }}" class="select">
+										<optgroup label="Cidade">
+											{% for city in cities %}
+				                            <option value="{{ city.0 }}">{{ city.1 }}</option>
+				                            {% endfor %}
+										</optgroup>
+
+									</select>
                                 </div>
-                            </div>
-                        </div>
+							</div>
+						</div>
                         <!-- /CEP, State and Citie -->
 
                         <!-- Adreess, Predial number,  complement address -->
                         <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <label>Endereço:</label>
-                                    <input title="" type="text" name="address" class="form-control">
-                                </div>
-                            </div>
+							<div class="col-md-8">
+								<div class="form-group">
+									<label>Endereço:</label>
+									<input type="text" name="address" class="form-control">
+								</div>
+							</div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Complemento</label> <!-- predial number - complement address -->
-                                    <input title="" type="text" name="predial_number" class="form-control">
-                                </div>
-                            </div>
-                        </div>
+								<div class="form-group">
+									<label>Complemento</label> <!-- predial number - complement address -->
+									<input type="text" name="predial_number" class="form-control">
+								</div>
+							</div>
+						</div>
                         <!-- Adreess, Predial number,  complement address -->
 
                         <!-- Political Party, User Role, Company -->
                         <div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Partido do Usuário</label>
+									<input type="text" name="user_party" class="form-control" placeholder="legenda">
+								</div>
+							</div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Partido do Usuário</label>
-                                    <input title="" type="text" name="user_party" class="form-control" placeholder="legenda">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Função na Campanha</label>
-                                    <select title="" name="userrole" data-placeholder="Atividade" class="select">
-                                        <option></option>
-                                        <optgroup label="Campanha">
-                                            <option value="voluntario">Voluntário</option>
-                                            <option value="contratado">Contratado</option>
+									<label>Função na Campanha</label>
+									<select name="userrole" data-placeholder="Atividade" class="select">
+										<option></option>
+										<optgroup label="Campanha">
+											<option value="voluntario">Voluntário</option>
+											<option value="contratado">Contratado</option>
                                             <option value="agenciaMkt">Agência de Marketing</option>
-                                        </optgroup>
+										</optgroup>
 
-                                        <optgroup label="Gabinete">
-                                            <option value="func">Funcionário</option>
-                                            <option value="tercerizado">Terceirizado</option>
-                                            <option value="Org">Organização ou Instituto</option>
-                                        </optgroup>
-                                    </select>
+										<optgroup label="Gabinete">
+											<option value="func">Funcionário</option>
+											<option value="tercerizado">Terceirizado</option>
+											<option value="Org">Organização ou Instituto</option>
+										</optgroup>
+									</select>
                                  </div>
-                            </div>
+							</div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Empresa</label> <!-- predial number - complement address -->
-                                    <input title="" type="text" name="company" placeholder="empresa se houver" class="form-control">
-                                </div>
-                            </div>
-                        </div>
+								<div class="form-group">
+									<label>Empresa</label> <!-- predial number - complement address -->
+									<input type="text" name="company" placeholder="empresa se houver" class="form-control">
+								</div>
+							</div>
+						</div>
                         <!-- Political Party, User Role, Company -->
+					</fieldset>
 
-                    </fieldset>
-
-                    <h6>Candidato</h6>
-                    <fieldset>
+					<h6>Candidato</h6>
+					<fieldset>
                         <!-- Candidate Party, Nickname and Ballot-->
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Partido do Candidato</label> <!-- Candidate Party -->
-                                    <input title="" type="text" name="candidate_party" class="form-control">
+                                    <input type="text" name="candidate_party" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Apelido Político do Candidato</label> <!-- Candidate nickname -->
-                                    <input title="" type="text" name="candidate_nickname" class="form-control">
+                                    <input type="text" name="candidate_nickname" class="form-control">
                                  </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Pleito Eleitoral</label> <!-- Election Ballot -->
-                                    <input title="" type="text" name="election_ballot" class="form-control" placeholder="Eleições 2018">
+                                    <input type="text" name="election_ballot" class="form-control" placeholder="Eleições 2018">
                                 </div>
                             </div>
                         </div>
                         <!-- /Candidate Party, Nickname and Ballot-->
 
+
                         <!-- desired position, dispute number, state and citie  -->
                         <div class="row">
 
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Cargo Pretendido pelo Candidato</label> <!-- Candidate aspiration -->
-                                    <select title="" name="Candidate_desired_position" class="select">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Cargo Pretendido pelo Candidato</label> <!-- Candidate aspiration -->
+									<select name="Candidate_desired_position" class="select">
                                         <option></option>
                                         <optgroup label="Cargo">
-                                            <option value="Presidente">Presidente</option>
-                                            <option value="Senador">Senador</option>
+											<option value="Presidente">Presidente</option>
+											<option value="Senador">Senador</option>
                                             <option value="Deputado Federal">Deputado Federal</option>
-                                            <option value="Governador">Governador</option>
-                                            <option value="Prefeito">Prefeito</option>
-                                            <option value="Deptado Estadual">Deptado Estadual</option>
+											<option value="Governador">Governador</option>
+											<option value="Prefeito">Prefeito</option>
+											<option value="Deptado Estadual">Deptado Estadual</option>
                                             <option value="Vereador">Vereador</option>
                                         </optgroup>
                                     </select>
-                                </div>
-                            </div>
+								</div>
+							</div>
 
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Nº Eleitoral</label> <!-- Candidate Dispute Number -->
-                                    <input title="" type="text" name="Candidate_dispute_number" class="form-control">
+                                    <input type="text" name="Candidate_dispute_number" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Identificação</label> <!-- slug -->
-                                    <input title="" type="text" name="slug" class="form-control" placeholder="gerado automaticamente">
-                                </div>
-                            </div>
+								<div class="form-group">
+									<label>Identificação</label> <!-- slug -->
+									<input type="text" name="slug" class="form-control" placeholder="gerado automaticamente">
+								</div>
+							</div>
 
                             <div class="col-md-1">
-                                <div class="form-group">
-                                    <label>UF</label> <!-- Candidate State -->
-                                    <input title="" type="text" name="Candidate_State" class="form-control">
-                                </div>
-                            </div>
+								<div class="form-group">
+									<label>UF</label> <!-- Candidate State -->
+									<input type="text" name="Candidate_State" class="form-control">
+								</div>
+							</div>
 
                             <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Cidade</label> <!-- Candidate City -->
-                                    <input title="" type="text" name="city_candidate" class="form-control">
-                                </div>
-                            </div>
+								<div class="form-group">
+									<label>Cidade</label> <!-- Candidate City -->
+									<input type="text" name="city_candidate" class="form-control">
+								</div>
+							</div>
 
-                        </div>
+						</div>
 
                         <!-- has position, current position, reelection, first election, resume -->
                         <div class="row">
 
                             <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Exerce Cargo?</label> <!-- holds political position -->
-                                    <select title="" name="holds_position" class="select">
-                                        <option></option>
-                                        <optgroup label="Exerce Cargo Público?">
-                                            <option value="S">Sim</option>
-                                            <option value="N">Não</option>
+								<div class="form-group">
+									<label>Exerce Cargo?</label> <!-- holds political position -->
+                                    <select name="holds_position" class="select">
+										<option></option>
+										<optgroup label="Exerce Cargo Público?">
+											<option value="S">Sim</option>
+											<option value="N">Não</option>
                                             <option value="O">Já exerceu</option>
-                                        </optgroup>
+										</optgroup>
 
-                                    </select>
-                                </div>
-                            </div>
+									</select>
+								</div>
+							</div>
 
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Cargo que Exerce</label> <!-- Candidate current position -->
-                                    <select title="" name="Candidate_desired_position" class="select">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Cargo que Exerce</label> <!-- Candidate current position -->
+									<select name="Candidate_desired_position" class="select">
                                         <option></option>
                                         <optgroup label="Cargo">
-                                            <option value="Presidente">Presidente</option>
-                                            <option value="Senador">Senador</option>
+											<option value="Presidente">Presidente</option>
+											<option value="Senador">Senador</option>
                                             <option value="Deputado Federal">Deputado Federal</option>
-                                            <option value="Governador">Governador</option>
-                                            <option value="Prefeito">Prefeito</option>
-                                            <option value="Deptado Estadual">Deptado Estadual</option>
+											<option value="Governador">Governador</option>
+											<option value="Prefeito">Prefeito</option>
+											<option value="Deptado Estadual">Deptado Estadual</option>
                                             <option value="Vereador">Vereador</option>
                                         </optgroup>
                                     </select>
-                                </div>
-                            </div>
+								</div>
+							</div>
 
                             <div class="col-md-1">
-                                <div class="form-group">
-                                    <label>Reeleição?</label> <!-- Reelection? -->
-                                    <select title="" name="Reelection"  class="select">
-                                        <option></option>
-                                        <optgroup label="_">
-                                            <option value="S">Sim</option>
-                                            <option value="N">Não</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
+								<div class="form-group">
+									<label>Reeleição?</label> <!-- Reelection? -->
+                                    <select name="Reelection"  class="select">
+										<option></option>
+										<optgroup label="_">
+											<option value="S">Sim</option>
+											<option value="N">Não</option>
+										</optgroup>
+									</select>
+								</div>
+							</div>
 
-                             <div class="col-md-2">
-                                 <div class="form-group">
-                                     <label>Primeira Eleição?</label> <!-- First election? -->
-                                     <select title="" name="Primeira vez que concorre?"  class="select">
-                                         <option></option>
-                                         <optgroup label="Primeira vez que concorre?">
-                                             <option value="S">Sim</option>
-                                             <option value="N">Não</option>
-                                         </optgroup>
-                                    </select>
-                                 </div>
-                            </div>
+                            <div class="col-md-2">
+								<div class="form-group">
+									<label>Primeira Eleição?</label> <!-- First election? -->
+                                    <select name="Primeira vez que concorre?"  class="select">
+										<option></option>
+										<optgroup label="Primeira vez que concorre?">
+											<option value="S">Sim</option>
+											<option value="N">Não</option>
+										</optgroup>
+									</select>
+								</div>
+							</div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Currículo</label> <!-- Resume -->
-                                    <input title="" type="file" name="user_resume" class="form-control">
+                                	<label class="form-control input-file" for="photo">Send File...</label>
+                                    <input type="file" id="photo" name="user_resume" class="form-control">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- candidate site, campaign email  -->
+
+                         <!-- candidate site, campaign email  -->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Site do Candidato</label> <!-- Candidate Site -->
-                                    <input title="" type="text" name="candidate_site" class="form-control" placeholder="www.sitedocandidato.com.br">
+                                    <input type="text" name="candidate_site" class="form-control" placeholder="www.sitedocandidato.com.br">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Email da Campanha</label><!-- Campaign email -->
-                                    <input title="" type="text" name="campaign_email" class="form-control" placeholder="email@campanha.com.br">
+									<label>Email da Campanha</label><!-- Campaign email -->
+                                    <input type="text" name="campaign_email" class="form-control" placeholder="email@campanha.com.br">
                                 </div>
                             </div>
                         </div>
@@ -812,7 +527,7 @@
                                 <div class="form-group">
                                     <i class="icon-twitter">
                                     <label>Twitter</label> <!-- candidate Twitter -->
-                                    <input title="" type="text" name="candidate_Twitter" class="form-control">
+                                    <input type="text" name="candidate_Twitter" class="form-control">
                                     </i>
                                 </div>
                             </div>
@@ -820,8 +535,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <i class="icon-facebook2">
-                                    <label>Facebook</label><!-- Candidate Facebook -->
-                                    <input title="" type="text" name="candidate_facebook" class="form-control">
+									<label>Facebook</label><!-- Candidate Facebook -->
+                                    <input type="text" name="candidate_facebook" class="form-control">
                                     </i>
                                 </div>
                             </div>
@@ -829,8 +544,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <i class="icon-instagram">
-                                    <label>Instagram</label><!-- Candidate Instagram -->
-                                    <input title="" type="text" name="candidate_instagram" class="form-control">
+									<label>Instagram</label><!-- Candidate Instagram -->
+                                    <input type="text" name="candidate_instagram" class="form-control">
                                     </i>
                                 </div>
                             </div>
@@ -842,7 +557,7 @@
                                 <div class="form-group">
                                     <i class="icon-google-plus">
                                     <label>Google+</label> <!-- candidate Google+ -->
-                                    <input title="" type="text" name="candidate_google+" class="form-control">
+                                    <input type="text" name="candidate_google+" class="form-control">
                                     </i>
                                 </div>
                             </div>
@@ -850,8 +565,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <i class="icon-youtube3">
-                                    <label>Youtube</label><!-- Candidate Youtube -->
-                                    <input title="" type="text" name="candidate_Youtube" class="form-control">
+									<label>Youtube</label><!-- Candidate Youtube -->
+                                    <input type="text" name="candidate_Youtube" class="form-control">
                                     </i>
                                 </div>
                             </div>
@@ -859,158 +574,160 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <i class="icon-blogger">
-                                    <label>Blog/Rss</label><!-- Candidate Blog/Rss -->
-                                    <input title="" type="text" name="candidate_Blog/Rss" class="form-control">
+									<label>Blog/Rss</label><!-- Candidate Blog/Rss -->
+                                    <input type="text" name="candidate_Blog/Rss" class="form-control">
                                     </i>
                                 </div>
                             </div>
                         </div>
 
-                    </fieldset>
+					</fieldset>
 
-                    <h6>Equipe</h6>
-                    <fieldset>
-
+					<h6>Equipe</h6>
+					<fieldset>
                         <!-- Nome do Membro da equipe, Email Membro da Equipe   -->
                         <div class="row">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Nome</label> <!-- Team Member name -->
-                                    <input title="" type="text" name="name" class="form-control" placeholder="Membro da Equipe">
-                                </div>
-                            </div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Nome</label> <!-- Team Member name -->
+									<input type="text" name="name" class="form-control" placeholder="Membro da Equipe">
+								</div>
+							</div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email</label> <!-- Team Member Email -->
-                                    <input title="" type="text" name="team_member_email" class="form-control" placeholder="membrodaequipe@campanha.com.br">
+                                    <input type="text" name="team_member_email" class="form-control" placeholder="membrodaequipe@campanha.com.br">
                                 </div>
                             </div>
 
-                        </div>
+						</div>
 
                         <!-- Telefone celular Membro da Equipe, Função  -->
                         <div class="row">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Telefone Celular</label> <!-- Team Member Mobile Phone -->
-                                    <input title="" type="text" name="name" class="form-control">
-                                </div>
-                            </div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Telefone Celular</label> <!-- Team Member Mobile Phone -->
+									<input type="text" name="name" class="form-control">
+								</div>
+							</div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Função</label> <!-- Team Member role -->
-                                    <select title="" name="Candidate_desired_position" class="select">
+                                    <select name="Candidate_desired_position" class="select">
                                         <option></option>
                                         <optgroup label="Função">
-                                            <option value="entregador_de_pizza">Entregador de Pizza</option>
-                                            <option value="Cafezinho">Cafezinho</option>
+											<option value="entregador_de_pizza">Entregador de Pizza</option>
+											<option value="Cafezinho">Cafezinho</option>
                                             <option value="Distribuidor_de_Folhetos">Distribuidor de Folhetos</option>
                                         </optgroup>
                                     </select>
                                 </div>
                             </div>
 
-                        </div>
+						</div>
 
-                        <!--  Painel de Permissões de Acesso  -->
-                        <label><i class="icon-credit-card2">  Permissões de Acesso</i></label>
-                        <div class="panel panel-white col-lg-12 p-0">
+						<!--  Painel de Permissões de Acesso  -->
+						<label><i class="icon-credit-card2">  Permissões de Acesso</i></label>
+                       	<div class="panel panel-white col-lg-12 p-0">
 
-                            <div class="configurations-text table-text">
-                                <br />
-                                <p>Defina, a seguir, as permissões de acesso para o membro da equipe.</p>
-                                <hr/>
+						<div class="configurations-text table-text">
+							<br />
+							<p>Defina, a seguir, as permissões de acesso para o membro da equipe.</p>
+							
+							<hr/>
 
+						</div>
+						<table class="table table-condensed">
+						    <thead>
+						      <tr>
+						        <th>#</th>
+
+						        <th>Área</th>
+						        <th>Visualizar</th>
+						        <th>Escrever</th>
+						        <th>Executar</th>
+
+						      </tr>
+						    </thead>
+						    <tbody>
+						      <tr>
+						        <td>1</td>
+						        <td>Orçamentos</td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						      </tr>
+						      <tr>
+						        <td>2</td>
+						        <td>Membros</td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						      </tr>
+						      <tr>
+						        <td>3</td>
+						        <td>Relatórios</td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						      </tr>
+						       <tr>
+						        <td>4</td>
+
+						        <td>Acesso a Membros</td>
+
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						      </tr>
+						       <tr>
+						        <td>5</td>
+
+						        <td>Agenda do Candidato</td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						      </tr>
+						       <tr>
+						        <td>6</td>
+
+						        <td>Mensagens de Texto</td>
+
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						      </tr>
+						       <tr>
+						        <td>7</td>
+						        <td>Ações Internas</td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						        <td><input type="checkbox" class="check-box" value=""></td>
+						      </tr>
+						    </tbody>
+						</table>
+
+	                </div>
+                    <div class="col-md-4 col-md-offset-8">
+                        <p>
+                            <button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
+                                    data-style="slide-down"><span class="ladda-label"> <i class="icon-user-plus"> Adicionar &amp Convidar</i>  </span><span class="ladda-spinner"></span>
+                                <div class="ladda-progress" style="width: 135px;"></div>
+                            </button>
+                        </p>
+
+                    </div>
+
+                    <!-- table with invited team members -->
+
+                    <label><i class="icon-people"> Lista de Membros Adicionados</i> </label>
+                       	<div class="panel panel-white col-lg-12 p-0">
+                            <div class="configurations-heading table-heading">
                             </div>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-
-                                        <th>Área</th>
-                                        <th>Visualizar</th>
-                                        <th>Escrever</th>
-                                        <th>Executar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Orçamentos</td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Membros</td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Relatórios</td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-
-                                        <td>Acesso a Membros</td>
-
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-
-                                        <td>Agenda do Candidato</td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-
-                                        <td>Mensagens de Texto</td>
-
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Ações Internas</td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                        <td><input title="" type="checkbox" class="check-box" value=""></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-4 col-md-offset-8">
-                            <p>
-                                <button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
-                                        data-style="slide-down">
-                                    <span class="ladda-label"> <i class="icon-user-plus"> Adicionar &amp Convidar</i>  </span><span class="ladda-spinner"></span>
-                                    <span class="ladda-progress" style="width: 135px;"></span>
-                                </button>
-                            </p>
-
-                        </div>
-
-                        <!-- table with invited team members -->
-
-                        <label><i class="icon-people"> Lista de Membros Adicionados</i> </label>
-                        <div class="panel panel-white col-lg-12 p-0">
-                            <div class="configurations-heading table-heading"></div>
 
                             <div class="configurations-text table-text">
                                 <br />
@@ -1018,163 +735,410 @@
                                 <hr />
                             </div>
                             <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
-                                <div class="datatable-scroll">
-                                    <table class="table datatable-save-state dataTable no-footer" id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
-                                        <thead>
-                                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2"
-                                                               rowspan="1" colspan="1" aria-sort="ascending"
-                                                               aria-label="First Name: activate to sort column descending">Nome</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
-                                                    colspan="1" aria-label="Last Name: activate to sort column ascending">E-Mail</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
-                                                    colspan="1" aria-label="Job Title: activate to sort column ascending">Função</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
-                                                    colspan="1" aria-label="Status: activate to sort column ascending">Status</th>
-                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">Ações</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">Marcelo Senise</td>
-                                                <td>marcelosenise@gmail.com</td>
-                                                <td>Agência de Marketing</td>
-                                                <td><span class="label label-danger">Suspenso</span></td>
-                                                <td class="text-center">
-                                                    <ul class="icons-list">
-                                                        <li class="dropdown">
-                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                                <i class="icon-menu9"></i>
-                                                            </a>
+                            <div class="datatable-scroll">
+                                <table class="table datatable-save-state dataTable no-footer" id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
+									<thead>
+										<tr role="row">
+											<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2"
+				                                           rowspan="1" colspan="1" aria-sort="ascending"
+				                                           aria-label="First Name: activate to sort column descending">Nome</th>
+				                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+				                                colspan="1" aria-label="Last Name: activate to sort column ascending">E-Mail</th>
+				                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+				                                colspan="1" aria-label="Job Title: activate to sort column ascending">Função</th>
+				                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+				                                colspan="1" aria-label="Status: activate to sort column ascending">Status</th>
+				                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">Ações</th>
+				                        </tr>
+									</thead>
+								<tbody>
+									<tr role="row" class="odd">
+										<td class="sorting_1">Marcelo Senise</td>
+										<td>marcelosenise@gmail.com</td>
+										<td>Agência de Marketing</td>
+										<td><span class="label label-danger">Suspenso</span></td>
+										<td class="text-center">
+											<ul class="icons-list">
+												<li class="dropdown">
+													<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+														<i class="icon-menu9"></i>
+													</a>
 
-                                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                                <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
-                                                                <li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
-                                                                <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">Fernando Dichiara</td>
-                                                <td><a href="#">fernando@innovators.com.br</a></td>
-                                                <td>Consultor</td>
-                                                <td><span class="label label-default">Inativo</span></td>
-                                                <td class="text-center">
-                                                    <ul class="icons-list">
-                                                        <li class="dropdown">
-                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                                <i class="icon-menu9"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                                <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
-                                                                <li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
-                                                                <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">Marcelo Arisio</td>
-                                                <td><a href="#">marceloarc@gmail.com</a></td>
-                                                <td>Voluntário</td>
-                                                <td><span class="label label-info">Convidado</span></td>
-                                                <td class="text-center">
-                                                    <ul class="icons-list">
-                                                        <li class="dropdown">
-                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                                <i class="icon-menu9"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                                <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
-                                                                <li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
-                                                                <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">Fernando Priolli</td>
-                                                <td>nandopriolli@gmail.com</td>
-                                                <td>Consultor</td>
-                                                <td><span class="label label-success">Ativo</span></td>
-                                                <td class="text-center">
-                                                    <ul class="icons-list">
-                                                        <li class="dropdown">
-                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                                <i class="icon-menu9"></i>
-                                                            </a>
+													<ul class="dropdown-menu dropdown-menu-right">
+														<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+														<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+														<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+													</ul>
+												</li>
+											</ul>
+										</td>
+									</tr>
+									<tr role="row" class="even">
+										<td class="sorting_1">Fernando Dichiara</td>
+										<td><a href="#">fernando@innovators.com.br</a></td>
+										<td>Consultor</td>
+										<td><span class="label label-default">Inativo</span></td>
+										<td class="text-center">
+											<ul class="icons-list">
+												<li class="dropdown">
+													<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+														<i class="icon-menu9"></i>
+													</a>
+													<ul class="dropdown-menu dropdown-menu-right">
+														<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+														<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+														<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+													</ul>
+												</li>
+											</ul>
+										</td>
+									</tr>
+									<tr role="row" class="odd">
+										<td class="sorting_1">Marcelo Arisio</td>
+										<td><a href="#">marceloarc@gmail.com</a></td>
+			                            <td>Voluntário</td>
+										<td><span class="label label-info">Convidado</span></td>
+										<td class="text-center">
+											<ul class="icons-list">
+												<li class="dropdown">
+													<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+														<i class="icon-menu9"></i>
+													</a>
+													<ul class="dropdown-menu dropdown-menu-right">
+														<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+														<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+														<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+													</ul>
+												</li>
+											</ul>
+										</td>
+									</tr>
+									<tr role="row" class="even">
+										<td class="sorting_1">Fernando Priolli</td>
+										<td>nandopriolli@gmail.com</td>
+										<td>Consultor</td>
+										<td><span class="label label-success">Ativo</span></td>
+										<td class="text-center">
+											<ul class="icons-list">
+												<li class="dropdown">
+													<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+														<i class="icon-menu9"></i>
+													</a>
 
-                                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                                <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
-                                                                <li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
-                                                                <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                <div class="datatable-footer">
-                                    <div class="dataTables_info" id="DataTables_Table_2_info" role="status" aria-live="polite"> 1 de 4 Convidados</div>
-                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
-                                        <a class="paginate_button previous disabled" aria-controls="DataTables_Table_2"
-                                           data-dt-idx="0" tabindex="0" id="DataTables_Table_2_previous">←</a><span>
-                                        <a class="paginate_button current" aria-controls="DataTables_Table_2"
-                                           data-dt-idx="1" tabindex="0">1</a><a class="paginate_button "
-                                                                                aria-controls="DataTables_Table_2"
-                                                                                data-dt-idx="2" tabindex="0">2</a></span>
-                                        <a class="paginate_button next" aria-controls="DataTables_Table_2"
-                                           data-dt-idx="3" tabindex="0" id="DataTables_Table_2_next">→</a>
-                                    </div>
+													<ul class="dropdown-menu dropdown-menu-right">
+														<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+														<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+														<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+													</ul>
+												</li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="datatable-footer">
+							<div class="dataTables_info"
+	                             id="DataTables_Table_2_info"
+	                             role="status"
+	                             aria-live="polite"> 1 de 4 Convidados</div>
+                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
+                                    <a class="paginate_button previous disabled" aria-controls="DataTables_Table_2"
+                                       data-dt-idx="0" tabindex="0" id="DataTables_Table_2_previous">←</a><span>
+                                    <a class="paginate_button current" aria-controls="DataTables_Table_2"
+                                       data-dt-idx="1" tabindex="0">1</a><a class="paginate_button "
+                                                                            aria-controls="DataTables_Table_2"
+                                                                            data-dt-idx="2" tabindex="0">2</a></span>
+                                    <a class="paginate_button next" aria-controls="DataTables_Table_2"
+                                       data-dt-idx="3" tabindex="0" id="DataTables_Table_2_next">→</a></div></div>
                                 </div>
-                            </div>
                         </div>
                     <!-- table with invited team members -->
 
-                    </fieldset>
+					</fieldset>
 
-                    <h6>Campanha</h6>
-                    <fieldset>
+					<h6>Campanha</h6>
+					<fieldset>
 
                         <div class="panel panel-flat col-lg-12 p-0">
 
-                        <div class="panel-body" style="display: block;">
-                            <div class="tabbable">
-                                <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
-                                    <li class="active"><a href="#highlighted-justified-tab1" data-toggle="tab">Palavras Chave &amp. Propostas</a></li>
-                                    <li><a href="#highlighted-justified-tab2" data-toggle="tab">Localização</a></li>
-                                    <li><a href="#highlighted-justified-tab3" data-toggle="tab">Comitês</a></li>
-                                </ul>
+							<div class="panel-body" style="display: block;">
+								<div class="tabbable">
+									<ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+										<li class="active"><a href="#highlighted-justified-tab1" data-toggle="tab">Palavras Chave &amp. Propostas</a></li>
+										<li><a href="#highlighted-justified-tab2" data-toggle="tab">Localização</a></li>
+	                                    <li><a href="#highlighted-justified-tab3" data-toggle="tab">Comitês</a></li>
+									</ul>
 
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="highlighted-justified-tab1">
-                                        To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
-                                    </div>
+									<div class="tab-content">
+										<div class="tab-pane active" id="highlighted-justified-tab1">
+											<div class="row">
+												<div class="col-md-5">
+													<div class="form-group">
+														<label>Propostas</label>
+														<input type="text" name="proposal" class="form-control" placeholder="">
+													</div>
+													<div class="form-group">
+														<label>Descrição da proposta</label>
+														<input type="text" name="description" class="form-control description-input" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-1">													
+													<button type="button" class="btn bg-green proposal-btn"><span class="glyphicon glyphicon-chevron-right"></span></button>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label class="control-label">Lista de propostas</label>
+									                    <div class="proposal-list form-control">
+									                    	<div class="proposal-item"> Libertar o transporte de armas no Brasil<span class="glyphicon glyphicon-remove-sign "></span></div>
+									                    	<div class="proposal-item odd"> Criminalização do Aborto<span class="glyphicon glyphicon-remove-sign"></span></div>
+									                    	<div class="proposal-item"> Fim do fórum privilegiado<span class="glyphicon glyphicon-remove-sign"></span></div>
+									                    	<div class="proposal-item odd"> Expansão do Bolsa Família<span class="glyphicon glyphicon-remove-sign"></span></div>
+									                    	<div class="proposal-item"> Criação de novas universidades<span class="glyphicon glyphicon-remove-sign"></span></div>
+									                    	<div class="proposal-item odd"> Prevatização do sistema penitenciário<span class="glyphicon glyphicon-remove-sign"></span></div>
+										                </div>
+									                </div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-5">
+													<label>Adicionar palavra-chave</label>
+													<input type="text" name="addkeyword" class="form-control" placeholder="">														
+												</div>
+												<div class="col-md-2">
+													<label><input type="radio" class="zoom" name="optradio"><span class="label label-success radio-lable">Positive</span></label>
+								                    <label><input type="radio" class="zoom" name="optradio"><span class="label label-danger radio-lable">Negative</span></label>
+								                    <label><input type="radio" class="zoom" name="optradio"><span class="label label-default radio-lable">Follow</span></label>
+												</div>
+												<div class="col-md-5">
+													<button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right m-t-25"
+						                                    data-style="slide-down"><span class="ladda-label">Add Committees <span class="glyphicon glyphicon-chevron-down"></span></span><span class="ladda-spinner"></span>
+						                                <div class="ladda-progress" style="width: 135px;"></div>
+						                            </button>
+												</div>
+											</div>
+											<div class="row">
+												<label>Palavra chave</label>
+												<div class="description-input form-control">
+							                    	<div class="label label-success radio-lable">Security</div>
+							                    	<div class="label label-success radio-lable">Education</div>
+							                    	<div class="label label-success radio-lable">Lava-Jato</div>
+							                    	<div class="label label-danger radio-lable">Bolsonaro</div>
+							                    	<div class="label label-default radio-lable">Luna 2018</div>
+							                    </div>
+											</div>
+										</div>
 
-                                    <div class="tab-pane" id="highlighted-justified-tab2">
-                                        Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid laeggin.
-                                    </div>
+										<div class="tab-pane" id="highlighted-justified-tab2">
+											Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid laeggin.
+										</div>
 
-                                    <div class="tab-pane" id="highlighted-justified-tab3">
-                                        DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg whatever.
-                                    </div>
+										<div class="tab-pane" id="highlighted-justified-tab3">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label>Responsible for the Committee (name)</label>
+														<input type="text" name="committeename" class="form-control" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label>Responsible for the Committee (email)</label>
+														<input type="email" name="committeeemail" class="form-control" placeholder="">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-3">
+													<div class="form-group">
+														<label>ZIP CODE</label>
+														<input type="text" name="committeezip" class="form-control" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>State</label>
+														<input type="text" name="committeestate" class="form-control" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-5">
+													<div class="form-group">
+														<label>City</label>
+														<input type="text" name="committeecity" class="form-control" placeholder="">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label>Address</label>
+														<input type="text" name="committeeadd" class="form-control" placeholder="">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label>Complement</label>
+														<input type="text" name="committeecomplement" class="form-control" placeholder="">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label>Committee Name or identitication</label>
+														<input type="text" name="identitication" class="form-control" placeholder="">
+													</div>
+												</div>
 
-                                    <div class="tab-pane" id="highlighted-justified-tab4">
-                                        Aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthet.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </fieldset>
+											</div>
+											<div class="row">
+												<button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
+					                                    data-style="slide-down"><span class="ladda-label"> <i class="icon-user-plus"> Add Committees</i></span><span class="ladda-spinner"></span>
+					                                <div class="ladda-progress" style="width: 135px;"></div>
+					                            </button>						                        
+											</div>
+											<!-- table with invited Committees members -->
+											<div class="row">
+						                   		<label><i class="icon-people">Committees List</i> </label>
+						                       	<div class="panel panel-white col-lg-12 p-0">
+						                            <div class="configurations-heading table-heading"></div>
 
-                </form>
-            </div>
+						                            <div class="configurations-text table-text">
+						                                <br />
+						                                <p>Acompanhe, abaixo, a integração dos seus comitês com o SCOPO.</p>
+						                                <hr />
+						                            </div>
+						                            <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
+						                            	<div class="datatable-scroll">
+						                                	<table class="table datatable-save-state dataTable no-footer" id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
+																<thead>
+																	<tr role="row">
+																		<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2"
+											                                           rowspan="1" colspan="1" aria-sort="ascending"
+											                                           aria-label="First Name: activate to sort column descending">Name</th>
+											                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+											                                colspan="1" aria-label="Last Name: activate to sort column ascending">E-mail Responsible</th>
+											                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+											                                colspan="1" aria-label="Job Title: activate to sort column ascending">Location</th>
+											                            <th class="text-center sorting_disabled" rowspan="1" colspan="1">Registerd</th>
+											                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">Ações</th>
+											                        </tr>
+																</thead>
+																<tbody>
+																	<tr role="row" class="odd">
+																		<td class="sorting_1">Comite lgualdade</td>
+																		<td>paulino@neoplace.com.br</td>
+																		<td>Curitiba/PR</td>
+																		<td><input type="radio" value=""></td>
+																		<td class="text-center">
+																			<ul class="icons-list">
+																				<li class="dropdown">
+																					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+																						<i class="icon-menu9"></i>
+																					</a>
+
+																					<ul class="dropdown-menu dropdown-menu-right">
+																						<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+																						<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+																						<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+																					</ul>
+																				</li>
+																			</ul>
+																		</td>
+																	</tr>
+																	<tr role="row" class="even">
+																		<td class="sorting_1">Brasil Melhor</td>
+																		<td>mary@poppins.com.br</td>
+																		<td>Rio de Janerio/RJ</td>
+																		<td><input type="radio" value=""></td>
+																		<td class="text-center">
+																			<ul class="icons-list">
+																				<li class="dropdown">
+																					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+																						<i class="icon-menu9"></i>
+																					</a>
+																					<ul class="dropdown-menu dropdown-menu-right">
+																						<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+																						<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+																						<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+																					</ul>
+																				</li>
+																			</ul>
+																		</td>
+																	</tr>
+																	<tr role="row" class="odd">
+																		<td class="sorting_1">Agua Verde</td>
+																		<td>james@taylor.com.br</td>
+											                            <td>Curitiba/PR</td>
+																		<td><input type="radio"  value=""></td>
+																		<td class="text-center">
+																			<ul class="icons-list">
+																				<li class="dropdown">
+																					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+																						<i class="icon-menu9"></i>
+																					</a>
+																					<ul class="dropdown-menu dropdown-menu-right">
+																						<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+																						<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+																						<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+																					</ul>
+																				</li>
+																			</ul>
+																		</td>
+																	</tr>
+																	<tr role="row" class="even">
+																		<td class="sorting_1">ABC Paulista</td>
+																		<td>fernando@innovators.com.br</td>
+																		<td>Sao Paulo/SP</td>
+																		<td><input type="radio" value=""></td>
+																		<td class="text-center">
+																			<ul class="icons-list">
+																				<li class="dropdown">
+																					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+																						<i class="icon-menu9"></i>
+																					</a>
+
+																					<ul class="dropdown-menu dropdown-menu-right">
+																						<li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
+																						<li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
+																						<li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li> <!--Resend invitation -->
+																					</ul>
+																				</li>
+																			</ul>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+														<div class="datatable-footer">
+															<div class="dataTables_info"
+									                             id="DataTables_Table_2_info"
+									                             role="status"
+									                             aria-live="polite"> 1 de 4 Convidados</div>
+								                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
+								                                    <a class="paginate_button previous disabled" aria-controls="DataTables_Table_2"
+								                                       data-dt-idx="0" tabindex="0" id="DataTables_Table_2_previous">←</a><span>
+								                                    <a class="paginate_button current" aria-controls="DataTables_Table_2"
+								                                       data-dt-idx="1" tabindex="0">1</a><a class="paginate_button "
+								                                                                            aria-controls="DataTables_Table_2"
+								                                                                            data-dt-idx="2" tabindex="0">2</a></span>
+								                                    <a class="paginate_button next" aria-controls="DataTables_Table_2"
+								                                       data-dt-idx="3" tabindex="0" id="DataTables_Table_2_next">→</a></div></div>
+								                                </div>
+								                        </div>
+						                    			<!-- table with invited Committees members -->
+						                    		</div>						                    		
+						                    	</div>
+						                    </div>
+										</div>										
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+
+				</form>
+		    </div>
             <!-- /basic setup -->
 
         </div>
@@ -1183,7 +1147,11 @@
 
 </div>
 
+
 <!-- /main navbar -->
+
+
+
 
 <!-- Login form -->
 <div class="page-container">
@@ -1202,35 +1170,35 @@
 
                 <!-- % if valid %} -->
                     <div class="form-group has-feedback has-feedback-left">
-                        <input title="" name="candidate_political_nickname" type="text" class="form-control" placeholder="Name" required="required">
+                        <input name="candidate_political_nickname" type="text" class="form-control" placeholder="Name" required="required">
                         <div class="form-control-feedback">
                             <i class="icon-user text-muted"></i>
                         </div>
                     </div>
 
                     <div class="form-group has-feedback has-feedback-left">
-                        <input title="" name="candidate_dispute_number" type="text" class="form-control" placeholder="Number" required="required">
+                        <input name="candidate_dispute_number" type="text" class="form-control" placeholder="Number" required="required">
                         <div class="form-control-feedback">
                             <i class="icon-spinner9 text-muted"></i>
                         </div>
                     </div>
 
                     <div class="form-group has-feedback has-feedback-left">
-                        <input title="" name="campaign_email" type="email" class="form-control" placeholder="Email" required="required">
+                        <input name="campaign_email" type="email" class="form-control" placeholder="Email" required="required">
                         <div class="form-control-feedback">
                             <i class="icon-envelop text-muted"></i>
                         </div>
                     </div>
 
                     <div class="form-group has-feedback has-feedback-left">
-                        <input title="" name="cellPhone" type="number" class="form-control" placeholder="Telephone" required="required">
+                        <input name="cellPhone" type="number" class="form-control" placeholder="Telephone" required="required">
                         <div class="form-control-feedback">
                             <i class="icon-phone text-muted"></i>
                         </div>
                     </div>
 
                     <div class="form-group has-feedback has-feedback-left">
-                        <select title="" name="political_position" class="form-control">
+                        <select name="political_position" class="form-control">
                             <option value="0">Por favor, Selecione o Partido Político</option>
                             {% for political_legend in political_legends %}
                             <option value="{{ political_legend.0 }}">{{ political_legend.1 }}</option>
@@ -1246,14 +1214,14 @@
 	                </div>
 
                     <div class="form-group has-feedback has-feedback-left">
-                        <input title="" name="user_birth" type="date" class="form-control" placeholder="Birthday">
+                        <input name="user_birth" type="date" class="form-control" placeholder="Birthday">
                         <div class="form-control-feedback">
                             <i class="icon-gift text-muted"></i>
                         </div>
                     </div>
 
                     <div class="form-group has-feedback has-feedback-left">
-                        <input title="" name="address" type="text" class="form-control" placeholder="Address" required="required">
+                        <input name="address" type="text" class="form-control" placeholder="Address" required="required">
                         <div class="form-control-feedback">
                             <i class="icon-home text-muted"></i>
                         </div>
@@ -1264,9 +1232,9 @@
                         <div class="form-control-feedback">
                             <i class="icon-home text-muted"></i>
                         </div>
-                    </div>
+                    </div>					
                     <div class="form-group has-feedback has-feedback-left">
-                        <select title="" id="id_cidade" name="cidade" class="form-control">
+                        <select id="id_cidade" name="cidade" class="form-control">
                             {% for city in cities %}
                                 {% if selected_city  ==  city.0   %}
                             <option data="{{ city.1 }}" value="{{ city.0 }}" selected>{{ city.1 }}</option>
@@ -1281,36 +1249,52 @@
                     </div>
 
                     <div class="form-group has-feedback has-feedback-left">
-                        <input title="" name="cpf" type="text" class="form-control" placeholder="CPF" required="required">
+                        <input name="cpf" type="text" class="form-control" placeholder="CPF" required="required">
                         <div class="form-control-feedback">
                             <i class="icon-city text-muted"></i>
                         </div>
                     </div>
-                    <input title="" type="hidden" name="user_id" value="{{user_id}}" />
+                    <input type="hidden" name="user_id" value="{{user_id}}" />
                     <div class="form-group">
                         <button type="submit" class="btn bg-green btn-block">Setup <i class="icon-arrow-right14 position-right"></i></button>
                     </div>
 
+
+                <!-- % else %}
+                    <div class="block">
+                        <div class="block-title">
+                            <h2> Verificação do <strong>Token</strong></h2>
+                        </div>
+                        <div class="alert alert-success">
+                            <h3><i class="icon-warning" style="font-size: 33px;margin-right: 10px;"></i> Seu Token Expirou.</h3>
+                        </div>
+
+                    </div>
+                4% endif %}-->
+
 				<span id="alarmArea" class="text-danger"></span>
 
-				<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
-                <ul class="list-inline form-group list-inline-condensed text-center">
-                    <li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
-                    <li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
-                    <li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
-                    <li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
-                </ul>
 
-                <div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
-                <a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Sign up</a>
-                <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+				<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
+					<ul class="list-inline form-group list-inline-condensed text-center">
+						<li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
+						<li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
+						<li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
+						<li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
+					</ul>
+
+					<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+					<a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Sign up</a>
+					<span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+				</div>
+
 
 			</form>
 			<!-- /form -->
 		</div>
-	</div>
+	</div>'
 <!-- /Login form -->
-</div>
+
 {#<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>#}
 <script src="/static/cep/js/cep.js"></script>
 <script src="/static/update_profile.js"></script>
