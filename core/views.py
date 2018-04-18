@@ -337,6 +337,7 @@ def browser_view(request):
     # return HttpResponse(True)
 
 
+@login_required()
 def user_configuration(request):
     if request.user.is_authenticated():
         user_form = UserForm(instance=request.user)
