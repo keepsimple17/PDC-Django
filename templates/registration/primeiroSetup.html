@@ -80,6 +80,11 @@
 	    zoom: 1.3;
     	margin-left: 25px;
 	}
+	@media (max-width: 1025px){
+		.proposal-btn {
+			height: 45px !important;
+		}
+	}
 	.input-file {
 		background: #fafafa;
 	}
@@ -88,7 +93,7 @@
 	}
 	.proposal-list {
 		height: 235px;
-		overflow-x: scroll;
+		overflow-y: scroll;
 	}
 	.radio-lable {
 		margin-left: 5px;
@@ -104,16 +109,18 @@
 	.proposal-btn .glyphicon {
 		font-size: 20px;
 	}
-	@media (max-width: 1025px){
-		.proposal-btn {
-			height: 45px !important;
-		}
-	}
+	
 	.glyphicon-remove-sign {
 		color: #F44336;
 		float: right;
 	}
-
+	.proposal-item {
+		padding: 5px;
+    	font-size: 15px;
+	}
+	.proposal-item.odd {
+		background: #F5F5F5;
+	}
 </style>
 
 <!-- Main navbar -->
