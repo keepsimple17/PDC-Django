@@ -43,10 +43,18 @@ class CandidateForm(forms.ModelForm):
     candidate_dispute_number = forms.CharField(max_length=40, required=False, help_text='Optional.')
     campaign_email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     political_position = forms.CharField(max_length=40, required=False, help_text='Optional.')
+    reelection = forms.BooleanField()
+    candidate_site = forms.CharField(max_length=50, required=False)
+    facebook = forms.CharField(max_length=40, required=False)
+    twitter = forms.CharField(max_length=40, required=False)
+    google = forms.CharField(max_length=40, required=False)
+    youtube = forms.CharField(max_length=40, required=False)
+    instagram = forms.CharField(max_length=40, required=False)
 
     class Meta:
         model = Candidate
-        fields = ('candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email')
+        fields = ('candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email','reelection','candidate_site','facebook',
+                  'twitter','google','youtube','instagram')
         widgets = {
             'candidate_political_nickname': forms.TextInput(attrs={'class': "form-control"}),
             'candidate_dispute_number': forms.TextInput(attrs={'class': "form-control"}),
