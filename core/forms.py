@@ -74,12 +74,13 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     choice_states = get_states()
     choice_cities = get_cities()
-    choice_states.insert(0,(None,"Enter State"))
-    choice_cities.insert(0,(None,"Enter City"))
+    choice_states.insert(0, (None, "Enter State"))
+    choice_cities.insert(0, (None, "Enter City"))
 
     choice_states = tuple(choice_states)
     choice_cities = tuple(choice_cities)
-    estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.', widget=forms.Select(attrs={'class':'form-control'}))
+    estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.',
+                               widget=forms.Select(attrs={'class': 'form-control'}))
 
     cidade = forms.ChoiceField(choices=choice_cities, required=False, help_text='Optional.')
     address = forms.CharField(max_length=255, required=False, help_text='Optional')
@@ -93,7 +94,7 @@ class ProfileForm(forms.ModelForm):
     landlinePhone = forms.CharField(max_length=11, required=False, help_text='Optional')
     user_political_party = forms.CharField(max_length=50, required=False, help_text='Optional')
     user_role = forms.CharField(max_length=40, required=False, help_text='Optional')
-    cep = forms.CharField(required=False,label=u"CEP",
+    cep = forms.CharField(required=False, label=u"CEP",
                           help_text="Format: XXXXX-XXX",
                           widget=CEPInput(address={
                                                  'state': 'id_estado',
@@ -105,7 +106,8 @@ class ProfileForm(forms.ModelForm):
         model = Usuario
 
         # fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
-        fields = ('cellPhone', 'estado', 'cidade', 'address', 'company', 'cep','gender','marital_status','cpf','cellPhone','landlinePhone','user_political_party','user_role')
+        fields = ('cellPhone', 'estado', 'cidade', 'address', 'company', 'cep', 'gender', 'marital_status',
+                  'cpf', 'cellPhone', 'landlinePhone', 'user_political_party', 'user_role')
         widgets = {
             # 'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
             # 'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),

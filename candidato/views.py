@@ -9,22 +9,24 @@ from django.contrib.auth import (
     logout,
 )
 
-
-
 # It' the candidate environment setup
-
 
 #  return render(request, "registration/signup.html", {'form':form})
 
 
 @login_required
 def home(request):
-    return HttpResponse('Ambiente de Configuração do Candidato') #Candidate Congiguration
+    # Candidate Congiguration
+    return HttpResponse('Ambiente de Configuração do Candidato')
+
 
 def usuario(request):
-    return HttpResponse('Ambiente de Configuração do Usuário') #User Configuration
+    # User Configuration
+    return HttpResponse('Ambiente de Configuração do Usuário')
+
 
 def usuarioPrimeiraConfig(request):
-    #todo Verify if the user is not a Candidate
+    # todo Verify if the user is not a Candidate
 
-    return HttpResponse('Primeira Configuração do Usuário')  # User First Configuration - In the first login
+    # User First Configuration - In the first login
+    return HttpResponse('Primeira Configuração do Usuário')
