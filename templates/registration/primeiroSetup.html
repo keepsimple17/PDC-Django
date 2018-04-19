@@ -343,21 +343,22 @@
                                 <div class="form-group">
                                     <label>Partido do Usuário</label>
                                     <select title="" class="form-control select"
-                                            name="user_political_party" required>
+                                            name="user_political_party">
                                         <option selected></option>
                                     {% for party in POLITICAL_PARTY_CHOICES %}
                                         <option value="{{ party.0 }}">{{ party.1 }}</option>
                                     {% endfor %}
-                                </select>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Função na Campanha</label>
-                                    <select title="" name="user_role" data-placeholder="Preencha o papel." class="select required">
+                                    <select title="" name="user_roles_list" data-placeholder="Preencha o papel."
+                                            class="select required">
                                         <option selected></option>
                                         {% for role in user_roles_list %}
-                                            {% if profile_form.user_role == role.0 %}
+                                            {% if profile_form.user_roles_list == role.0 %}
                                                 <option value="{{ role.0 }}" selected>{{ role.1 }}</option>
                                             {% else %}
                                                 <option value="{{ role.0 }}">{{ role.1 }}</option>
@@ -384,23 +385,29 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Partido do Candidato</label> <!-- Candidate Party -->
-                                    <input title="" type="text" name="candidate_party"
-                                           value="{{ candidate_form.candidate_party.value|default_if_none:"" }}"
-                                           class="form-control">
+                                    <label>Partido do Candidato</label>
+                                    <select title="" class="form-control select"
+                                            name="candidate_party">
+                                        <option selected></option>
+                                        {% for party in POLITICAL_PARTY_CHOICES %}
+                                            <option value="{{ party.0 }}">{{ party.1 }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Apelido Político do Candidato</label> <!-- Candidate nickname -->
                                     <input title="" type="text" name="candidate_political_nickname"
+                                           value="{{ candidate_form.candidate_political_nickname.value|default_if_none:"" }}"
                                            class="form-control">
                                  </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Pleito Eleitoral</label> <!-- Election Ballot -->
-                                    <input title="" type="text" name="election_ballot" class="form-control"
+                                    <input title="" type="text" name="canditate_Election_Ballot" class="form-control"
+                                           value="{{ candidate_form.canditate_Election_Ballot.value|default_if_none:"" }}"
                                            placeholder="Eleições 2018">
                                 </div>
                             </div>
@@ -413,16 +420,12 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Cargo Pretendido pelo Candidato</label> <!-- Candidate aspiration -->
-                                    <select title="" name="Candidate_desired_position" class="select">
+                                    <select title="" name="candidate_desired_position" class="select">
                                         <option></option>
                                         <optgroup label="Cargo">
-                                            <option value="Presidente">Presidente</option>
-                                            <option value="Senador">Senador</option>
-                                            <option value="Deputado Federal">Deputado Federal</option>
-                                            <option value="Governador">Governador</option>
-                                            <option value="Prefeito">Prefeito</option>
-                                            <option value="Deptado Estadual">Deptado Estadual</option>
-                                            <option value="Vereador">Vereador</option>
+                                            {% for item in CANDIDATE_POSITION_CHOICES %}
+                                                <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                            {% endfor %}
                                         </optgroup>
                                     </select>
                                 </div>
@@ -431,7 +434,8 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Nº Eleitoral</label> <!-- Candidate Dispute Number -->
-                                    <input title="" type="text" name="Candidate_dispute_number"
+                                    <input title="" type="text" name="candidate_dispute_number"
+                                           value="{{ candidate_form.candidate_dispute_number.value|default_if_none:"" }}"
                                            class="form-control">
                                 </div>
                             </div>
@@ -440,6 +444,7 @@
                                 <div class="form-group">
                                     <label>Identificação</label> <!-- slug -->
                                     <input title="" type="text" name="slug" class="form-control"
+                                           value="{{ candidate_form.slug.value|default_if_none:"" }}"
                                            placeholder="gerado automaticamente">
                                 </div>
                             </div>
@@ -447,14 +452,24 @@
                             <div class="col-md-1">
                                 <div class="form-group">
                                     <label>UF</label> <!-- Candidate State -->
-                                    <input title="" type="text" name="Candidate_State" class="form-control">
+                                    <select title="" name="candidate_state" class="select">
+                                        <option></option>
+                                        {% for item in states %}
+                                            <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Cidade</label> <!-- Candidate City -->
-                                    <input title="" type="text" name="city_candidate" class="form-control">
+                                    <select title="" name="candidate_city" class="select">
+                                        <option></option>
+                                        {% for item in cities %}
+                                            <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                             </div>
 
@@ -481,16 +496,12 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Cargo que Exerce</label> <!-- Candidate current position -->
-                                    <select title="" name="Candidate_desired_position" class="select">
+                                    <select title="" name="candidate_current_position" class="select">
                                         <option></option>
                                         <optgroup label="Cargo">
-                                            <option value="Presidente">Presidente</option>
-                                            <option value="Senador">Senador</option>
-                                            <option value="Deputado Federal">Deputado Federal</option>
-                                            <option value="Governador">Governador</option>
-                                            <option value="Prefeito">Prefeito</option>
-                                            <option value="Deptado Estadual">Deptado Estadual</option>
-                                            <option value="Vereador">Vereador</option>
+                                            {% for item in CANDIDATE_POSITION_CHOICES %}
+                                                <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                            {% endfor %}
                                         </optgroup>
                                     </select>
                                 </div>
@@ -512,7 +523,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Primeira Eleição?</label> <!-- First election? -->
-                                    <select title="" name="Primeira vez que concorre?"  class="select">
+                                    <select title="" name="first_election"  class="select">
                                         <option></option>
                                         <optgroup label="Primeira vez que concorre?">
                                             <option value="S">Sim</option>
@@ -539,6 +550,7 @@
                                 <div class="form-group">
                                     <label>Site do Candidato</label> <!-- Candidate Site -->
                                     <input title="" type="text" name="candidate_site" class="form-control"
+                                           value="{{ candidate_form.candidate_site.value|default_if_none:"" }}"
                                            placeholder="www.sitedocandidato.com.br">
                                 </div>
                             </div>
@@ -547,6 +559,7 @@
                                 <div class="form-group">
                                     <label>Email da Campanha</label><!-- Campaign email -->
                                     <input title="" type="text" name="campaign_email" class="form-control"
+                                           value="{{ candidate_form.campaign_email.value|default_if_none:"" }}"
                                            placeholder="email@campanha.com.br">
                                 </div>
                             </div>
@@ -558,7 +571,9 @@
                                 <div class="form-group">
                                     <i class="icon-twitter"></i>
                                     <label>Twitter</label> <!-- candidate Twitter -->
-                                    <input title="" type="text" name="twitter" class="form-control">
+                                    <input title="" type="text" name="twitter"
+                                           value="{{ candidate_form.twitter.value|default_if_none:"" }}"
+                                           class="form-control">
                                 </div>
                             </div>
 
@@ -566,7 +581,9 @@
                                 <div class="form-group">
                                     <i class="icon-facebook2"></i>
                                     <label>Facebook</label><!-- Candidate Facebook -->
-                                    <input title="" type="text" name="facebook" class="form-control">
+                                    <input title="" type="text" name="facebook"
+                                           value="{{ candidate_form.facebook.value|default_if_none:"" }}"
+                                           class="form-control">
                                 </div>
                             </div>
 
@@ -574,7 +591,9 @@
                                 <div class="form-group">
                                     <i class="icon-instagram"></i>
                                     <label>Instagram</label><!-- Candidate Instagram -->
-                                    <input title="" type="text" name="instagram" class="form-control">
+                                    <input title="" type="text" name="instagram"
+                                           value="{{ candidate_form.instagram.value|default_if_none:"" }}"
+                                           class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -585,7 +604,9 @@
                                 <div class="form-group">
                                     <i class="icon-google-plus"></i>
                                     <label>Google+</label> <!-- candidate Google+ -->
-                                    <input title="" type="text" name="google" class="form-control">
+                                    <input title="" type="text" name="google"
+                                           value="{{ candidate_form.google.value|default_if_none:"" }}"
+                                           class="form-control">
                                 </div>
                             </div>
 
@@ -593,7 +614,9 @@
                                 <div class="form-group">
                                     <i class="icon-youtube3"></i>
                                     <label>Youtube</label><!-- Candidate Youtube -->
-                                    <input title="" type="text" name="youtube" class="form-control">
+                                    <input title="" type="text" name="youtube"
+                                           value="{{ candidate_form.youtube.value|default_if_none:"" }}"
+                                           class="form-control">
                                 </div>
                             </div>
 
@@ -601,7 +624,9 @@
                                 <div class="form-group">
                                     <i class="icon-blogger"></i>
                                     <label>Blog/Rss</label><!-- Candidate Blog/Rss -->
-                                    <input title="" type="text" name="candidate_Blog/Rss" class="form-control">
+                                    <input title="" type="text" name="candidate_blog_rss"
+                                           value="{{ candidate_form.candidate_blog_rss.value|default_if_none:"" }}"
+                                           class="form-control">
                                 </div>
                             </div>
                         </div>

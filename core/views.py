@@ -13,8 +13,7 @@ from django.utils.encoding import force_bytes, force_text
 from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list)
 from dashboard.models import (Usuario, Estado, Municipio, Candidate, POLITICAL_PARTY_CHOICES,
                               GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
-# from dashboard.models import Usuario
-# from django.db import transaction
+from candidato.models import CANDIDATE_POSITION_CHOICES
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
 from django.conf import settings
@@ -361,6 +360,7 @@ def user_configuration(request):
             'states': choice_states,
             'user_roles_list': user_roles_list,
             'GENDER_CHOICES': GENDER_CHOICES,
+            'CANDIDATE_POSITION_CHOICES': CANDIDATE_POSITION_CHOICES,
             'ESTADO_CIVIL_CHOICES': ESTADO_CIVIL_CHOICES,
             'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
 

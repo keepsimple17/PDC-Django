@@ -79,6 +79,16 @@ ELECTION_BALLOTS = (
     ('2020', 'Eleições 2020'),
 )
 
+CANDIDATE_POSITION_CHOICES = (
+    ('pr', 'Presidente'),
+    ('se', 'Senador'),
+    ('df', 'Deputado Federal'),
+    ('go', 'Governador'),
+    ('pr', 'Prefeito'),
+    ('ds', 'Deptado Estadual'),
+    ('ve', 'Vereador'),
+)
+
 
 class Candidate(models.Model):
     user = models.OneToOneField(User, null=True, blank=False)
@@ -94,9 +104,16 @@ class Candidate(models.Model):
                                                  choices=ELECTION_BALLOTS, blank=True, null=True)
     # The desired position at Ballot
     campaign_desired_position = models.CharField("Cargo de Disputa", max_length=30, blank=True, null=True)
+    candidate_desired_position = models.CharField('Cargo Pretendido pelo Candidato', max_length=30,
+                                                  blank=True, null=True)
+    candidate_current_position = models.CharField('Cargo Pretendido pelo Candidato', max_length=30,
+                                                  blank=True, null=True)
     # todo depending od the desired position, state campaign or city campaign are not necessary
     # State of the electoral campaign
     state_campaign = models.CharField("UF de Campanha", max_length=2, blank=True, null=True)
+    candidate_state = models.CharField("UF", max_length=2, blank=True, null=True)
+    candidate_city = models.CharField("Cidade", max_length=255, blank=True, null=True)  # city
+    holds_position = models.CharField("Exerce Cargo", max_length=255, blank=True, null=True)  # city
     # City of the electoral campaign
     city_campaign = models.CharField("Cidade de Campanha", max_length=255, blank=True, null=True)
     # todo the number should sugest to begins with the dispute_party number
@@ -109,6 +126,7 @@ class Candidate(models.Model):
     # todo If the candidate does not holds political position, disable political position
     political_position = models.CharField("Posição Politica que Exerce", max_length=40, null=True, blank=True)
     reelection = models.BooleanField("Tentando Reeleição", default="False")
+    first_election = models.BooleanField("Primeira Eleição", default="False")
     first_political_campaign = models.BooleanField("Detém Cargo Político", default="False")
 
     # Candidate web site
@@ -120,7 +138,8 @@ class Candidate(models.Model):
     google = models.CharField(max_length=40, blank=True, null=True)
     youtube = models.CharField(max_length=40, blank=True, null=True)
     instagram = models.CharField(max_length=40, blank=True, null=True)
-    usuarioes = models.ManyToManyField('dashboard.usuario', blank=True)
+    candidate_blog_rss = models.CharField(max_length=40, blank=True, null=True)
+    usuarioes = models.ManyToManyField('dashboard.Usuario', blank=True)
 
     foto = models.ImageField(
         # if diferent from the user photo in the dashboard.profile
