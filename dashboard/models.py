@@ -136,23 +136,33 @@ class relationship_network(models.Model):
     observations = models.TextField(null=True, blank=True)
 
 
+GENDER_CHOICES = {
+    'physical': (
+        ("M", 'Masculino'),
+        ("F", 'Feminino'),
+        ("N", 'Outro'),
+    ),
+
+    'legal': (
+        ("E", 'Empresa'),
+        ("S", 'Sindicato'),
+        ("O", 'Organização ou Instituto'),
+    ),
+}
+
+
+# Marital Status
+ESTADO_CIVIL_CHOICES = (
+    ('S', 'Solteiro'),
+    ('C', 'Casado'),
+    ('D', 'Divorciado'),
+    ('V', 'Viúvo'),
+    ('O', 'Outro'),
+)
+
+
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
 class Usuario(models.Model):
-
-    GENDER_CHOICES = (
-        ('M', 'Masculino'),
-        ('F', 'Feminino'),
-    )
-
-    # Marital Status
-    ESTADO_CIVIL_CHOICES = (
-        ('S', 'Solteiro'),
-        ('C', 'Casado'),
-        ('D', 'Divorciado'),
-        ('V', 'Viúvo'),
-        ('O', 'Outro'),
-    )
-
     # status of the Candidate Aproval to the dashboard
     USER_STATUS_CHOICES = (
         ('aproved', 'Aprovado'),
@@ -172,10 +182,11 @@ class Usuario(models.Model):
     )
 
     user = models.OneToOneField(User, null=False, blank=False)
-    gender = models.CharField('Gênero', max_length=1, choices=GENDER_CHOICES, null=True)
+    gender = models.CharField('Gênero', max_length=1, choices=GENDER_CHOICES['physical'] + GENDER_CHOICES['legal'],
+                              null=True)
     marital_status = models.CharField("Estado Civil", max_length=1, choices=ESTADO_CIVIL_CHOICES,null=True)
     cpf = models.CharField('CPF', max_length=11, unique=True, null=True, blank=True)    # Document ID in Brazil
-    birthday_date = models.DateField('Data de Nascimento',null=True,blank=True)
+    birthday_date = models.DateField('Data de Nascimento', null=True, blank=True)
     # todo to implement autofill address - https://github.com/staticdev/django-cep
     cep = models.CharField("CEP", max_length=9, blank=True, null=True)  # The Brazilian zipCode
     estado = models.CharField("UF", max_length=2, blank=True, null=True)    # Federal State (in dashboard_estado table)

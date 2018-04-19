@@ -14,6 +14,10 @@
     <script type="text/javascript" src="{% static 'js/core/libraries/jasny_bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/forms/validation/validate.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/extensions/cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/pickers/pickadate/picker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/pickers/pickadate/picker.date.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/pickers/daterangepicker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/pickers/datepicker.js' %}"></script>
 
     <script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/pages/wizard_steps.js' %}"></script>
@@ -120,13 +124,13 @@
                     <h6 class="panel-title">Primeira Configuração</h6>
                     <div class="heading-elements">
                         <ul class="icons-list">
-                            <li><a data-action="collapse"></a></li>
+{#                            <li><a data-action="collapse"></a></li>#}
                             <li><a data-action="reload"></a></li>
                         </ul>
                     </div>
                 </div>
 
-                <form class="steps-starting-step" action="{% url 'update_user_configuration' %}" method="post">
+                <form class="steps-validation" action="{% url 'update_user_configuration' %}" method="post">
                     <h6>Dados Pessoais</h6>
                     <fieldset>
                         <!-- Foto, Username and email -->
@@ -143,6 +147,7 @@
                                 <div class="form-group">
                                     <label>Nome de Usuário:</label> <!-- Username -->
                                     <input title="" type="text" name="name" value="{{ request.user.username }}"
+                                           readonly
                                            class="form-control">
                                 </div>
                             </div>
@@ -162,31 +167,44 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Nome</label> <!-- Name -->
-                                    <input title="" type="text" name="name" class="form-control">
+                                    <input title="" type="text" name="name"
+                                           value="{{ request.user.first_name }}"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Sobrenome:</label> <!-- Surname -->
-                                    <input title="" type="text" name="name" class="form-control">
+                                    <input title="" type="text" name="name"
+                                           value="{{ request.user.last_name }}"
+                                           class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Gênero:</label>
-                                    <select title="" name="gender" data-placeholder="Gênero" class="select">
+                                    <select title="" name="gender" data-placeholder="Gênero"
+                                            class="select">
                                         <option></option>
-                                        <optgroup label="Pessoa Física">
-                                            <option value="M">Masculino</option>
-                                            <option value="F">Feminino</option>
-                                            <option value="N">Outro</option>
+                                        <optgroup label="Pessoa Física">1
+                                            {% for item in GENDER_CHOICES|get_item:'physical' %}
+                                                {% if profile_form.gender == item.0 %}
+                                                    <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+                                                {% else %}
+                                                    <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                                {% endif %}
+                                            {% endfor %}
                                         </optgroup>
 
                                         <optgroup label="Pessoa Jurídica">
-                                            <option value="E">Empresa</option>
-                                            <option value="S">Sindicato</option>
-                                            <option value="O">Organização ou Instituto</option>
+                                            {% for item in GENDER_CHOICES|get_item:'legal' %}
+                                                {% if profile_form.gender == item.0 %}
+                                                    <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+                                                {% else %}
+                                                    <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                                {% endif %}
+                                            {% endfor %}
                                         </optgroup>
                                     </select>
                                  </div>
@@ -198,11 +216,13 @@
                                             class="select">
                                         <option></option>
                                         <optgroup label="Estado Civil">
-                                            <option value="S">Solteiro</option>
-                                            <option value="F">Casado</option>
-                                            <option value="D">Divorciado</option>
-                                            <option value="V">Viúvo</option>
-                                            <option value="O">Outro</option>
+                                            {% for item in ESTADO_CIVIL_CHOICES %}
+                                                {% if profile_form.marital_status == item.0 %}
+                                                    <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+                                                {% else %}
+                                                    <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                                {% endif %}
+                                            {% endfor %}
                                         </optgroup>
 
                                     </select>
@@ -217,7 +237,9 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>CPF:</label> <!-- CPF - (social ID) -->
-                                    <input title="" type="text" name="cpf" class="form-control">
+                                    <input title="" type="text" name="cpf"
+                                           value="{{ profile_form.cpf.value|default_if_none:"" }}"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -225,8 +247,9 @@
                                     <label>Data de Nascimento:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icon-calendar3"></i></span>
-                                        <input title="" type="text" class="form-control" id="anytime-date"
-                                               name="bithday_date" value="" readonly>
+                                        <input title="" type="text" class="form-control daterange-single"
+                                               value="{{ profile_form.birthday_date.value|default_if_none:"" }}"
+                                               name="birthday_date" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +257,9 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Tel. Celular:</label> <!-- Cellphone -->
-                                    <input title="" type="text" name="cellPhone" class="form-control">
+                                    <input title="" type="text" name="cellPhone"
+                                           value="{{ profile_form.cellPhone.value|default_if_none:"" }}"
+                                           class="form-control">
                                 </div>
                             </div>
 
@@ -242,20 +267,23 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Tel. Fixo:</label>
-                                    <input title="" type="text" name="landLinePhone" class="form-control">
+                                    <input title="" type="text" name="landLinePhone"
+                                           value="{{ profile_form.landLinePhone.value|default_if_none:"" }}"
+                                           class="form-control">
                                  </div>
                             </div>
 
                         </div>
                         <!-- /CPF, Birthday_Date, CellPhone, Landline -->
 
-
                         <!-- CEP, State and Citie -->
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>CEP:</label>
-                                    <input title="" type="text" value="" name="cep" class="form-control zip-field">
+                                    <input title="" type="text"
+                                           value="{{ profile_form.cep.value|default_if_none:"" }}"
+                                           name="cep" class="form-control zip-field">
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -281,7 +309,7 @@
                                             class="select">
                                         <optgroup label="Cidade">
                                             {% for city in cities %}
-                                            <option value="{{ city.0 }}">{{ city.1 }}</option>
+                                                <option value="{{ city.0 }}">{{ city.1 }}</option>
                                             {% endfor %}
                                         </optgroup>
 
@@ -297,7 +325,7 @@
                                 <div class="form-group">
                                     <label>Endereço:</label>
                                     <input title="" id="address" type="text" name="address"
-                                           class="form-control" value="">
+                                           class="form-control required">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -1333,10 +1361,8 @@
             </div>
         </div>
     </div>
-    <!-- /Login form -->
 
     <script src="/static/cep/js/cep.js"></script>
     <script src="/static/update_profile.js"></script>
-    <!-- /login form -->
 
 {% endblock %}

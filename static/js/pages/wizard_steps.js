@@ -81,7 +81,7 @@ $(function () {
     $(".steps-starting-step").steps({
         headerTag: "h6",
         bodyTag: "fieldset",
-        startIndex: 2,
+        startIndex: 0,
         titleTemplate: '<span class="number">#index#</span> #title#',
         labels: {
             finish: 'Enviar',
@@ -227,5 +227,13 @@ $(function () {
     // Styled file input
     $('.file-styled').uniform({
         fileButtonClass: 'action btn bg-blue'
+    });
+
+
+    // Date range picker
+    // ------------------------------
+    // Single picker
+    $('.daterange-single').daterangepicker({
+        singleDatePicker: true
     });
 });
