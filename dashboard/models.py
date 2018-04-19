@@ -213,7 +213,7 @@ class Usuario(models.Model):
 
     user_status = models.CharField("Status", max_length=40, choices=USER_STATUS_CHOICES)
     # user_role = models.CharField("Tipo de Acesso", max_length=40, choices=USER_ROLES_CHOICES)
-    user_role = models.ForeignKey('candidato.UserRoles_list', blank=True, null=True)
+    user_roles_list = models.ForeignKey('candidato.UserRoles_list', blank=True, null=True)
     candidates = models.ManyToManyField(Candidate, blank=True)
 
     def __str__(self):              # __unicode__ on Python 2
