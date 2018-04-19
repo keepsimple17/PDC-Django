@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.data_objects import get_states, get_cities
 from dashboard.models import Usuario, Estado, Municipio
-from candidato.models import Candidate
+from candidato.models import Candidate, UserRoles_list
 
 from cep.widgets import CEPInput
 
@@ -101,7 +101,8 @@ class ProfileForm(forms.ModelForm):
     cellPhone = forms.CharField(max_length=15, required=False, help_text='Optional')
     landlinePhone = forms.CharField(max_length=11, required=False, help_text='Optional')
     user_political_party = forms.CharField(max_length=50, required=False, help_text='Optional')
-    user_role = forms.CharField(max_length=40, required=False, help_text='Optional')
+    # user_role = forms.CharField(max_length=40, required=False, help_text='Optional')
+    user_role = forms.ModelChoiceField(queryset=UserRoles_list.objects.all())
     cep = forms.CharField(required=False, label=u"CEP",
                           help_text="Format: XXXXX-XXX",
                           widget=CEPInput(address={

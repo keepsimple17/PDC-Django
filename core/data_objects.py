@@ -1,4 +1,5 @@
 from dashboard.models import Estado, Municipio
+from candidato.models import UserRoles_list
 
 
 def get_states():
@@ -30,3 +31,14 @@ def get_cities_by_state(state_id):
         pass
     list_cities.insert(0, ("", ""))
     return list_cities
+
+
+def get_user_roles_list():
+    user_roles_list = []
+    user_roles = UserRoles_list.objects.all()
+    print('user_roles', len(user_roles))
+
+    for role in user_roles:
+        user_roles_list.append((role.id, role.role_name))
+
+    return user_roles_list

@@ -325,7 +325,7 @@
                                 <div class="form-group">
                                     <label>Endereço:</label>
                                     <input title="" id="address" type="text" name="address"
-                                           class="form-control required">
+                                           class="form-control" placeholder="Bairro">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -344,6 +344,7 @@
                                     <label>Partido do Usuário</label>
                                     <select title="" class="form-control select"
                                             name="user_political_party" required>
+                                        <option selected></option>
                                     {% for party in POLITICAL_PARTY_CHOICES %}
                                         <option value="{{ party.0 }}">{{ party.1 }}</option>
                                     {% endfor %}
@@ -353,19 +354,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Função na Campanha</label>
-                                    <select title="" name="user_role" data-placeholder="Atividade" class="select">
-                                        <option></option>
-                                        <optgroup label="Campanha">
-                                            <option value="voluntario">Voluntário</option>
-                                            <option value="contratado">Contratado</option>
-                                            <option value="agenciaMkt">Agência de Marketing</option>
-                                        </optgroup>
-
-                                        <optgroup label="Gabinete">
-                                            <option value="func">Funcionário</option>
-                                            <option value="tercerizado">Terceirizado</option>
-                                            <option value="Org">Organização ou Instituto</option>
-                                        </optgroup>
+                                    <select title="" name="user_role" data-placeholder="Preencha o papel." class="select required">
+                                        <option selected></option>
+                                        {% for role in user_roles_list %}
+                                            {% if profile_form.user_role == role.0 %}
+                                                <option value="{{ role.0 }}" selected>{{ role.1 }}</option>
+                                            {% else %}
+                                                <option value="{{ role.0 }}">{{ role.1 }}</option>
+                                            {% endif %}
+                                        {% endfor %}
                                     </select>
                                  </div>
                             </div>
@@ -373,7 +370,8 @@
                                 <div class="form-group">
                                     <label>Empresa</label> <!-- predial number - complement address -->
                                     <input title="" type="text" name="company" placeholder="empresa se houver"
-                                           class="form-control">
+                                           class="form-control"
+                                           value="{{ profile_form.company.value|default_if_none:"" }}">
                                 </div>
                             </div>
                         </div>
@@ -387,7 +385,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Partido do Candidato</label> <!-- Candidate Party -->
-                                    <input title="" type="text" name="candidate_party" class="form-control">
+                                    <input title="" type="text" name="candidate_party"
+                                           value="{{ candidate_form.candidate_party.value|default_if_none:"" }}"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -406,7 +406,6 @@
                             </div>
                         </div>
                         <!-- /Candidate Party, Nickname and Ballot-->
-
 
                         <!-- desired position, dispute number, state and citie  -->
                         <div class="row">
@@ -646,7 +645,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Função</label> <!-- Team Member role -->
-                                    <select title="" name="Candidate_desired_position" class="select">
+                                    <select title="" name="team_user_role" class="select">
                                         <option></option>
                                         <optgroup label="Função">
                                             <option value="entregador_de_pizza">Entregador de Pizza</option>

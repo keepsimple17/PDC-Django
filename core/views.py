@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
-from core.data_objects import get_cities_by_state, get_states, get_cities
+from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list)
 from dashboard.models import (Usuario, Estado, Municipio, Candidate, POLITICAL_PARTY_CHOICES,
                               GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
 # from dashboard.models import Usuario
@@ -344,11 +344,12 @@ def user_configuration(request):
     if request.user.is_authenticated():
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.usuario)
-        candidate_form = CandidateForm(instance=request.user.candidate)
+        candidate_form = CandidateForm()
         choice_states = get_states()
         choice_cities = get_cities()
-        choice_states.insert(0, (None, "Enter State"))
-        choice_cities.insert(0, (None, "Enter City"))
+        user_roles_list = get_user_roles_list()
+        choice_states.insert(0, (None, "Preencha o estado."))
+        choice_cities.insert(0, (None, "Encha a cidade."))
 
         choice_states = tuple(choice_states)
         choice_cities = tuple(choice_cities)
@@ -358,6 +359,7 @@ def user_configuration(request):
             'candidate_form': candidate_form,
             'cities': choice_cities,
             'states': choice_states,
+            'user_roles_list': user_roles_list,
             'GENDER_CHOICES': GENDER_CHOICES,
             'ESTADO_CIVIL_CHOICES': ESTADO_CIVIL_CHOICES,
             'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
