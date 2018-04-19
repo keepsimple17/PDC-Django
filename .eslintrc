@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": "eslint-config-airbnb-es5",
   "rules": {
     "no-underscore-dangle": "off",
     "func-names": ["error", "never"],
@@ -8,6 +8,13 @@
     "camelcase": "off",
     "quotes": "off",
     "object-curly-spacing": "off",
-    "no-else-return": "off"
+    "no-else-return": "off",
+    "indent": ["error", 4]
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jquery": true
   }
 }

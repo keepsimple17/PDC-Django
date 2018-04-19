@@ -9,9 +9,7 @@
 *
 * ---------------------------------------------------------------------------- */
 
-$(function() {
-
-
+$(function () {
     // Wizard examples
     // ------------------------------
 
@@ -28,6 +26,7 @@ $(function() {
         },
         onFinished: function (event, currentIndex) {
             alert("Form submitted.");
+            console.log(event, currentIndex);
         }
     });
 
@@ -42,6 +41,7 @@ $(function() {
             finish: 'Submit'
         },
         onContentLoaded: function (event, currentIndex) {
+            console.log(event, currentIndex);
             $(this).find('select.select').select2();
 
             $(this).find('select.select-simple').select2({
@@ -57,6 +57,7 @@ $(function() {
             });
         },
         onFinished: function (event, currentIndex) {
+            console.log(event, currentIndex);
             alert("Form submitted.");
         }
     });
@@ -70,6 +71,7 @@ $(function() {
         titleTemplate: '<span class="number">#index#</span> #title#',
         autoFocus: true,
         onFinished: function (event, currentIndex) {
+            console.log(event, currentIndex);
             alert("Form submitted.");
         }
     });
@@ -88,6 +90,7 @@ $(function() {
         },
         autoFocus: true,
         onFinished: function (event, currentIndex) {
+            console.log(event, currentIndex);
             alert("Form submitted.");
             $(this).submit();
         }
@@ -111,7 +114,6 @@ $(function() {
         autoFocus: true,
 
         onStepChanging: function (event, currentIndex, newIndex) {
-
             // Allways allow previous action even if the current form is not valid!
             if (currentIndex > newIndex) {
                 return true;
@@ -123,9 +125,8 @@ $(function() {
             }
 
             // Needed in some cases if the user went back (clean up)
+            // To remove error styles
             if (currentIndex < newIndex) {
-
-                // To remove error styles
                 form.find(".body:eq(" + newIndex + ") label.error").remove();
                 form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
             }
@@ -135,7 +136,6 @@ $(function() {
         },
 
         onStepChanged: function (event, currentIndex, priorIndex) {
-
             // Used to skip the "Warning" step if the user is old enough.
             if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
                 form.steps("next");
@@ -148,11 +148,13 @@ $(function() {
         },
 
         onFinishing: function (event, currentIndex) {
+            console.log(event, currentIndex);
             form.validate().settings.ignore = ":disabled";
             return form.valid();
         },
 
         onFinished: function (event, currentIndex) {
+            console.log(event, currentIndex);
             alert("Submitted!");
         }
     });
@@ -163,47 +165,35 @@ $(function() {
         ignore: 'input[type=hidden], .select2-search__field', // ignore hidden fields
         errorClass: 'validation-error-label',
         successClass: 'validation-valid-label',
-        highlight: function(element, errorClass) {
+        highlight: function (element, errorClass) {
             $(element).removeClass(errorClass);
         },
-        unhighlight: function(element, errorClass) {
+        unhighlight: function (element, errorClass) {
             $(element).removeClass(errorClass);
         },
 
         // Different components require proper error label placement
-        errorPlacement: function(error, element) {
-
+        errorPlacement: function (error, element) {
             // Styled checkboxes, radios, bootstrap switch
             if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container') ) {
-                if(element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
                     error.appendTo( element.parent().parent().parent().parent() );
-                }
-                 else {
+                } else {
                     error.appendTo( element.parent().parent().parent().parent().parent() );
                 }
-            }
-
-            // Unstyled checkboxes, radios
-            else if (element.parents('div').hasClass('checkbox') || element.parents('div').hasClass('radio')) {
+            } else if (element.parents('div').hasClass('checkbox') || element.parents('div').hasClass('radio')) {
+                // Unstyled checkboxes, radios
                 error.appendTo( element.parent().parent().parent() );
-            }
-
-            // Input with icons and Select2
-            else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+            } else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+                // Input with icons and Select2
                 error.appendTo( element.parent() );
-            }
-
-            // Inline checkboxes, radios
-            else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+            } else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                // Inline checkboxes, radios
                 error.appendTo( element.parent().parent() );
-            }
-
-            // Input group, styled file input
-            else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+            } else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+                // Input group, styled file input
                 error.appendTo( element.parent().parent() );
-            }
-
-            else {
+            } else {
                 error.insertAfter(element);
             }
         },
@@ -213,7 +203,6 @@ $(function() {
             }
         }
     });
-
 
 
     // Initialize plugins
@@ -239,7 +228,4 @@ $(function() {
     $('.file-styled').uniform({
         fileButtonClass: 'action btn bg-blue'
     });
-
-
-    
 });
