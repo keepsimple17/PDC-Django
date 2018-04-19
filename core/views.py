@@ -11,7 +11,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from core.data_objects import get_cities_by_state, get_states, get_cities
-from dashboard.models import (Usuario, Estado, Municipio, POLITICAL_PARTY_CHOICES,
+from dashboard.models import (Usuario, Estado, Municipio, Candidate, POLITICAL_PARTY_CHOICES,
                               GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
 # from dashboard.models import Usuario
 # from django.db import transaction
@@ -344,6 +344,7 @@ def user_configuration(request):
     if request.user.is_authenticated():
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.usuario)
+        candidate_form = CandidateForm(instance=request.user.candidate)
         choice_states = get_states()
         choice_cities = get_cities()
         choice_states.insert(0, (None, "Enter State"))
@@ -354,6 +355,7 @@ def user_configuration(request):
         return render(request, "registration/primeiroSetup.html", {
             'user_form': user_form,
             'profile_form': profile_form,
+            'candidate_form': candidate_form,
             'cities': choice_cities,
             'states': choice_states,
             'GENDER_CHOICES': GENDER_CHOICES,

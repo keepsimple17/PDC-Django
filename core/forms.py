@@ -53,8 +53,8 @@ class CandidateForm(forms.ModelForm):
 
     class Meta:
         model = Candidate
-        fields = ('candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email','reelection','candidate_site','facebook',
-                  'twitter','google','youtube','instagram')
+        fields = ('candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email',
+                  'reelection', 'candidate_site', 'facebook', 'twitter', 'google', 'youtube', 'instagram')
         widgets = {
             'candidate_political_nickname': forms.TextInput(attrs={'class': "form-control"}),
             'candidate_dispute_number': forms.TextInput(attrs={'class': "form-control"}),
