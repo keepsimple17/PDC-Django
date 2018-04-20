@@ -449,3 +449,6 @@ def update_user_configuration(request):
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
+
+def teste404(request):
+    return render(request,"pag404.html")
