@@ -39,6 +39,8 @@ def get_user_roles_list():
     print('user_roles', len(user_roles))
 
     for role in user_roles:
-        user_roles_list.append((role.id, role.role_name))
+        user_roles_list.append((role.id, role.role_name, role.budget_managment, role.members_managment,
+                                role.reports_managment, role.members_access, role.agenda_access,
+                                role.sendMessages, role.internetInteraction))
 
     return user_roles_list

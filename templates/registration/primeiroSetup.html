@@ -35,7 +35,6 @@
     <script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.ui.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/buttons/spin.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/buttons/ladda.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/pages/components_buttons.js' %}"></script>
     <!-- /Buttons effects -->
 
     <div class="breadcrumb-line breadcrumb-line-component">
@@ -670,13 +669,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Função</label> <!-- Team Member role -->
-                                    <select title="" name="team_user_role" class="select">
-                                        <option></option>
-                                        <optgroup label="Função">
-                                            <option value="entregador_de_pizza">Entregador de Pizza</option>
-                                            <option value="Cafezinho">Cafezinho</option>
-                                            <option value="Distribuidor_de_Folhetos">Distribuidor de Folhetos</option>
-                                        </optgroup>
+                                    <select title="" name="team_user_role" data-placeholder="Preencha o papel."
+                                            class="select team-user-roles_select">
+                                        <option selected></option>
+                                        {% for item in user_roles_list %}
+                                            <option value="{{ item.0 }}"
+                                                    data-values="[{{ item.2 }}, {{ item.3 }}, {{ item.4 }}, {{ item.5 }}, {{ item.6 }}, {{ item.7 }}, {{ item.8 }}]">{{ item.1 }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -706,7 +705,7 @@
 
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="user_permission_table">
                                     <tr>
                                         <td>1</td>
                                         <td>Orçamentos</td>
@@ -1245,7 +1244,7 @@
                             </div>
                         </div>
                     </fieldset>
-
+                    <input type="submit" value="Go" style="opacity: 0">
                 </form>
             </div>
             <!-- /basic setup -->

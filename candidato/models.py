@@ -94,7 +94,8 @@ class Candidate(models.Model):
     user = models.OneToOneField(User, null=True, blank=False)
     reference_id = models.IntegerField
     # to associate to the user who invited the candidate
-    user_id = models.IntegerField
+    # let's rethink about this field, if needed, it should be n:n relationship.
+    # user_id = models.IntegerField
     # the User ID of Candidate in the system | dashboard.profile
     candidate_political_nickname = models.CharField("Nome Eleitoral do Candidato", max_length=40, blank=True, null=True)
     candidate_dispute_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)

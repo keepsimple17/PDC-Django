@@ -10,97 +10,6 @@
 * ---------------------------------------------------------------------------- */
 
 $(function () {
-    // Wizard examples
-    // ------------------------------
-
-    // Basic wizard setup
-    $(".steps-basic").steps({
-        headerTag: "h6",
-        bodyTag: "fieldset",
-        transitionEffect: "fade",
-        titleTemplate: '<span class="number">#index#</span> #title#',
-        labels: {
-            finish: 'Enviar',
-            next: 'Proximo',
-            previous: 'Anterior'
-        },
-        onFinished: function (event, currentIndex) {
-            alert("Form submitted.");
-            console.log(event, currentIndex);
-        }
-    });
-
-
-    // Async content loading
-    $(".steps-async").steps({
-        headerTag: "h6",
-        bodyTag: "fieldset",
-        transitionEffect: "fade",
-        titleTemplate: '<span class="number">#index#</span> #title#',
-        labels: {
-            finish: 'Submit'
-        },
-        onContentLoaded: function (event, currentIndex) {
-            console.log(event, currentIndex);
-            $(this).find('select.select').select2();
-
-            $(this).find('select.select-simple').select2({
-                minimumResultsForSearch: Infinity
-            });
-
-            $(this).find('.styled').uniform({
-                radioClass: 'choice'
-            });
-
-            $(this).find('.file-styled').uniform({
-                fileButtonClass: 'action btn bg-warning'
-            });
-        },
-        onFinished: function (event, currentIndex) {
-            console.log(event, currentIndex);
-            alert("Form submitted.");
-        }
-    });
-
-
-    // Saving wizard state
-    $(".steps-state-saving").steps({
-        headerTag: "h6",
-        bodyTag: "fieldset",
-        saveState: true,
-        titleTemplate: '<span class="number">#index#</span> #title#',
-        autoFocus: true,
-        onFinished: function (event, currentIndex) {
-            console.log(event, currentIndex);
-            alert("Form submitted.");
-        }
-    });
-
-
-    // Specify custom starting step
-    $(".steps-starting-step").steps({
-        headerTag: "h6",
-        bodyTag: "fieldset",
-        startIndex: 0,
-        titleTemplate: '<span class="number">#index#</span> #title#',
-        labels: {
-            finish: 'Enviar',
-            next: 'Proximo',
-            previous: 'Anterior'
-        },
-        autoFocus: true,
-        onFinished: function (event, currentIndex) {
-            console.log(event, currentIndex);
-            alert("Form submitted.");
-            $(this).submit();
-        }
-    });
-
-
-    //
-    // Wizard with validation
-    //
-
     // Show form
     var form = $(".steps-validation").show();
 
@@ -155,7 +64,12 @@ $(function () {
 
         onFinished: function (event, currentIndex) {
             console.log(event, currentIndex);
-            alert("Submitted!");
+            console.log($('.steps-validation'));
+            alert("Submitted!!!!!!!");
+            $('.steps-validation')[0].submit(function (_event) {
+                alert( "Handler for .submit() called." );
+                _event.preventDefault();
+            });
         }
     });
 
@@ -235,5 +149,81 @@ $(function () {
     // Single picker
     $('.daterange-single').daterangepicker({
         singleDatePicker: true
+    });
+
+    // Button with progress
+    Ladda.bind('.btn-ladda-progress', {
+        callback: function (instance) {
+            setTimeout(function () {
+                instance.stop();
+            }, 500);
+            var trs = $('#user_permission_table > tr');
+            // console.log('cliecked', trs);
+            var permissionArray = [];
+
+            for (var index in Array.from(Array(trs.length).keys())) {
+                var tds = $(trs[index]).find('.check-box');
+                // console.log('tds', tds);
+                if (tds.length === 3) {
+                    var value = calcPermissionValue(tds);
+                    permissionArray.push(value);
+                }
+            }
+            function calcPermissionValue(_tds) {
+                var val = 0;
+                if (_tds[0].checked) {
+                    val += 4;
+                }
+                if (_tds[1].checked) {
+                    val += 2;
+                }
+                if (_tds[2].checked) {
+                    val += 1;
+                }
+                return val;
+            }
+            console.log(permissionArray);
+            // var progress = 0;
+            // var interval = setInterval(function () {
+            //     progress = Math.min(progress + Math.random() * 0.1, 1);
+            //     instance.setProgress(progress);
+            //
+            //     if ( progress === 1 ) {
+            //         instance.stop();
+            //         clearInterval(interval);
+            //     }
+            // }, 200);
+        }
+    });
+
+    $('.team-user-roles_select').change(function () {
+        var valueList = $('option:selected', this).attr('data-values');
+        console.log('valueList', JSON.parse(valueList)[0]);
+        var permissionArray = JSON.parse(valueList);
+
+        var trs = $('#user_permission_table > tr');
+        for (var index in Array.from(Array(trs.length).keys())) {
+            var tds = $(trs[index]).find('.check-box');
+            // console.log('tds', tds);
+            var str = permissionArray[index].toString();
+            var bin = (+str).toString(2);
+            if (tds.length === 3) {
+                if (bin[0] === '1') {
+                    tds[0].checked = true;
+                } else {
+                    tds[0].checked = false;
+                }
+                if (bin[1] === '1') {
+                    tds[1].checked = true;
+                } else {
+                    tds[1].checked = false;
+                }
+                if (bin[2] === '1') {
+                    tds[2].checked = true;
+                } else {
+                    tds[2].checked = false;
+                }
+            }
+        }
     });
 });

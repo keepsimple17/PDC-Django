@@ -367,20 +367,22 @@ def user_configuration(request):
 
 @csrf_exempt
 def update_user_configuration(request):
+    print('updating user configuration now')
     if request.method == 'POST':
         user_config_form = ProfileForm(request.POST, instance=request.user.usuario)
         candidate_user = Candidate.objects.get(user_id=request.user.id)
-        if candidate_user:
-            candidate_config_form = CandidateForm(request.POST, instance=request.user.candidate)
-        else:
-            candidate_config_form = CandidateForm(request.POST)
-        print(user_config_form.errors)
-        if user_config_form.is_valid():
-            print("saving", user_config_form.save())
-            messages.success(request, _('Seu Cadastro foi Atualizado!'))
-        if candidate_config_form.is_valid():
-            print("saving", candidate_config_form.save())
-            messages.success(request, _('Seu Cadastro foi Atualizado!'))
+        print('updating user configuration now')
+        # if candidate_user:
+        #     candidate_config_form = CandidateForm(request.POST, instance=request.user.candidate)
+        # else:
+        #     candidate_config_form = CandidateForm(request.POST)
+        # print(user_config_form.errors)
+        # if user_config_form.is_valid():
+        #     print("saving", user_config_form.save())
+        #     messages.success(request, _('Seu Cadastro foi Atualizado!'))
+        # if candidate_config_form.is_valid():
+        #     print("saving", candidate_config_form.save())
+        #     messages.success(request, _('Seu Cadastro foi Atualizado!'))
         return redirect("/dashboard/")
 
 
