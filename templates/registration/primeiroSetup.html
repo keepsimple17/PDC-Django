@@ -1328,6 +1328,7 @@
 
                 <!-- Form -->
                 <form class="modal-body" method="post" action="{% url 'firstsetup' %}">
+                {% csrf_token %}
                 <!-- To reinclude Toke after tests -->
                     <div class="text-center">
                         <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
