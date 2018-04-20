@@ -105,6 +105,8 @@ else:
         }
     }
 
+
+
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -187,7 +189,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
 # SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
 
 # Please use the company smtp to send emails
-DEFAULT_FROM_EMAIL = 'scopo@scopooonline.com'
+DEFAULT_FROM_EMAIL = 'scopo@scopoonline.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtpi.uni5.net'
 EMAIL_HOST_USER = 'scopo@scopoonline.com'
