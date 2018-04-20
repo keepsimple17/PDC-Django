@@ -164,12 +164,53 @@ def firstsetup(request):
 
 
 # It' the firstSetup, with updated template
-def primeiroSetup(request):
-    # return HttpResponse('Primeira Configuração do Usuário')
-    # User First Configuration - In the first login
-    # return render(request, "registration/signup.html", {'form': form})
-    # return render(request,'firstConfiguration.html')
-    return render(request, "registration/primeiroSetup.html")
+@login_required()
+@csrf_protect
+def primeiro_setup(request):
+    choice_states = get_states()
+    choice_cities = get_cities()
+    user_roles_list = get_user_roles_list()
+    choice_states.insert(0, ('', "Preencha o estado."))
+    choice_cities.insert(0, ('', "Encha a cidade."))
+
+    choice_states = tuple(choice_states)
+    choice_cities = tuple(choice_cities)
+
+    user_form = UserForm(instance=request.user)
+    profile_form = ProfileForm(instance=request.user.usuario)
+    candidate_form = CandidateForm()
+
+    if request.method == 'GET':
+        print('get request in primeiro_setup')
+
+    if request.method == 'POST':
+        print('post request in primeiro_setup')
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.usuario)
+        try:
+            candidator = request.user.candidate
+            if candidator:
+                candidate_form = CandidateForm(request.POST, instance=candidator)
+        except:
+            candidate_form = CandidateForm(request.POST)
+
+        if profile_form.is_valid():
+            # user_roles_list = profile_form.cleaned_data.get('user_roles_list', None)
+            print('testing now valid->', profile_form.cleaned_data)
+        else:
+            print('testing now errors->', profile_form.errors)
+
+    return render(request, "registration/primeiroSetup.html", {
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'candidate_form': candidate_form,
+        'cities': choice_cities,
+        'states': choice_states,
+        'user_roles_list': user_roles_list,
+        'GENDER_CHOICES': GENDER_CHOICES,
+        'CANDIDATE_POSITION_CHOICES': CANDIDATE_POSITION_CHOICES,
+        'ESTADO_CIVIL_CHOICES': ESTADO_CIVIL_CHOICES,
+        'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
 
 
 @csrf_protect

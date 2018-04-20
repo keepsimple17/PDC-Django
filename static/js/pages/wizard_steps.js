@@ -65,9 +65,9 @@ $(function () {
         onFinished: function (event, currentIndex) {
             console.log(event, currentIndex);
             console.log($('.steps-validation'));
-            alert("Submitted!!!!!!!");
+            // alert("Submitted!!!!!!!");
             $('.steps-validation')[0].submit(function (_event) {
-                alert( "Handler for .submit() called." );
+                // alert( "Handler for .submit() called." );
                 _event.preventDefault();
             });
         }

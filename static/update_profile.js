@@ -48,8 +48,8 @@ $(function () {
                 } else {
                     updateCities(state, function () {
                         eval("var arr = " + data);
-                        //console.log(address.state)
-                        //$("#" + address.street).val(arr.street);
+                        // console.log(address.state)
+                        // $("#" + address.street).val(arr.street);
                         $("#address").val(arr.district + arr.street);
                         $("#id_estado").val(arr.state);
                         $('#id_estado option[value=' + arr.state + ']').attr('selected', 'selected');
@@ -68,7 +68,9 @@ $(function () {
     }
 
     $('select#id_estado').change(function () {
-        updateCities(this.value);
+        updateCities(this.value, function () {
+            console.log('updating cities');
+        });
     });
 
     function validateForm () {

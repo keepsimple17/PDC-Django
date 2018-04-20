@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^cep/', include('cep.urls')),
     url(r'^account/firstsetup', views.firstsetup, name="firstsetup"),
     # the template update for the firstsetup
-    url(r'^account/primeiroSetup', views.primeiroSetup, name="primeiroSetup"),
+    url(r'^account/primeiroSetup', views.primeiro_setup, name="primeiro_setup"),
     # password reset
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^approve_user/$', views.apporve_user, name='apporve_user'),

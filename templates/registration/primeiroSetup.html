@@ -129,7 +129,8 @@
                     </div>
                 </div>
 
-                <form class="steps-validation" action="{% url 'update_user_configuration' %}" method="post">
+                <form class="steps-validation" action="{% url 'primeiro_setup' %}" method="post">
+                    {% csrf_token %}
                     <h6>Dados Pessoais</h6>
                     <fieldset>
                         <!-- Foto, Username and email -->
@@ -291,8 +292,12 @@
                                     <select title="" name="estado" data-placeholder="Estado" id="id_estado"
                                             class="select">
                                         <optgroup label="Estado">
-                                            {% for state in states %}
-                                            <option value="{{ state.0 }}">{{ state.1 }}</option>
+                                            {% for item in states %}
+                                                {% if profile_form.estado.value == item.0 %}
+                                                    <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+                                                {% else %}
+                                                    <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                                {% endif %}
                                             {% endfor %}
                                         </optgroup>
 
@@ -1244,8 +1249,47 @@
                             </div>
                         </div>
                     </fieldset>
-                    <input type="submit" value="Go" style="opacity: 0">
                 </form>
+                <div class="row prepend-top-default append-bottom-default">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="alert alert-{{ message.tags }} alert-styled-left"{% endif %}>{{ message }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                {% if user_form.errors %}
+                    {% for field in user_form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                {{ field.name }}
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+                {% if profile_form.errors %}
+                    {% for field in profile_form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                {{ field.name }}
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+{#                {% if candidate_form.errors %}#}
+{#                    {% for field in candidate_form %}#}
+{#                        {% for error in field.errors %}#}
+{#                            <div class="alert alert-danger">#}
+{#                                {{ field.name }}#}
+{#                                <strong>{{ error|escape }}</strong>#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    {% endfor %}#}
+{#                {% endif %}#}
             </div>
             <!-- /basic setup -->
 

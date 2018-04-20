@@ -116,7 +116,7 @@ class ProfileForm(forms.ModelForm):
     landlinePhone = forms.CharField(max_length=11, required=False, help_text='Optional')
     user_political_party = forms.CharField(max_length=50, required=False, help_text='Optional')
 
-    user_roles_list = forms.ModelChoiceField(queryset=UserRoles_list.objects.all())
+    user_roles_list = forms.ModelChoiceField(queryset=UserRoles_list.objects.all(), required=False)
     cep = forms.CharField(required=False, label=u"CEP",
                           help_text="Format: XXXXX-XXX",
                           widget=CEPInput(address={
