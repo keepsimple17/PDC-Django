@@ -10,17 +10,14 @@
 * ---------------------------------------------------------------------------- */
 
 // Allow CSS transitions when page is loaded
-$(window).on('load', function() {
+$(window).on('load', function () {
     $('body').removeClass('no-transitions');
 });
 
 
-$(function() {
-
+$(function () {
     // Disable CSS transitions on page load
     $('body').addClass('no-transitions');
-
-
 
     // ========================================
     //
@@ -54,11 +51,9 @@ $(function() {
 
 
     // Toggle visible state of heading elements
-    $('.heading-elements-toggle').on('click', function() {
+    $('.heading-elements-toggle').on('click', function () {
         $(this).parent().children('.heading-elements').toggleClass('visible');
     });
-
-
 
     // Breadcrumb elements toggler
     // -------------------------
@@ -68,12 +63,9 @@ $(function() {
 
 
     // Toggle visible state of breadcrumb elements
-    $('.breadcrumb-elements-toggle').on('click', function() {
+    $('.breadcrumb-elements-toggle').on('click', function () {
         $(this).parent().children('.breadcrumb-elements').toggleClass('visible');
     });
-
-
-
 
     // ========================================
     //
@@ -97,12 +89,9 @@ $(function() {
     });
 
     // Show tabs inside dropdowns
-    $('.dropdown-content a[data-toggle="tab"]').on('click', function (e) {
+    $('.dropdown-content a[data-toggle="tab"]').on('click', function () {
         $(this).tab('show');
     });
-
-
-
 
     // ========================================
     //
@@ -118,7 +107,7 @@ $(function() {
     $('.panel [data-action=reload]').click(function (e) {
         e.preventDefault();
         var block = $(this).parent().parent().parent().parent().parent();
-        $(block).block({ 
+        $(block).block({
             message: '<i class="icon-spinner2 spinner"></i>',
             overlayCSS: {
                 backgroundColor: '#fff',
@@ -135,8 +124,8 @@ $(function() {
 
         // For demo purposes
         window.setTimeout(function () {
-           $(block).unblock();
-        }, 2000); 
+            $(block).unblock();
+        }, 2000);
     });
 
 
@@ -144,7 +133,7 @@ $(function() {
     $('.category-title [data-action=reload]').click(function (e) {
         e.preventDefault();
         var block = $(this).parent().parent().parent().parent();
-        $(block).block({ 
+        $(block).block({
             message: '<i class="icon-spinner2 spinner"></i>',
             overlayCSS: {
                 backgroundColor: '#000',
@@ -162,16 +151,16 @@ $(function() {
 
         // For demo purposes
         window.setTimeout(function () {
-           $(block).unblock();
-        }, 2000); 
-    }); 
+            $(block).unblock();
+        }, 2000);
+    });
 
 
     // Light sidebar categories
     $('.sidebar-default .category-title [data-action=reload]').click(function (e) {
         e.preventDefault();
         var block = $(this).parent().parent().parent().parent();
-        $(block).block({ 
+        $(block).block({
             message: '<i class="icon-spinner2 spinner"></i>',
             overlayCSS: {
                 backgroundColor: '#fff',
@@ -188,10 +177,9 @@ $(function() {
 
         // For demo purposes
         window.setTimeout(function () {
-           $(block).unblock();
-        }, 2000); 
-    }); 
-
+            $(block).unblock();
+        }, 2000);
+    });
 
 
     // Collapse elements
@@ -247,7 +235,6 @@ $(function() {
     });
 
 
-
     // Remove elements
     // -------------------------
 
@@ -258,7 +245,7 @@ $(function() {
 
         containerHeight(); // recalculate page height
 
-        $panelClose.slideUp(150, function() {
+        $panelClose.slideUp(150, function () {
             $(this).remove();
         });
     });
@@ -271,12 +258,10 @@ $(function() {
 
         containerHeight(); // recalculate page height
 
-        $categoryClose.slideUp(150, function() {
+        $categoryClose.slideUp(150, function () {
             $(this).remove();
         });
     });
-
-
 
 
     // ========================================
@@ -300,8 +285,6 @@ $(function() {
 
     // Add active state to all dropdown parent levels
     $('.dropdown-menu:not(.dropdown-content), .dropdown-menu:not(.dropdown-content) .dropdown-submenu').has('li.active').addClass('active').parents('.navbar-nav .dropdown:not(.language-switch), .navbar-nav .dropup:not(.language-switch)').addClass('active');
-
-    
 
     // Main navigation tooltips positioning
     // -------------------------
@@ -331,7 +314,7 @@ $(function() {
         }
     });
 
-        
+
     // Alternate navigation
     $('.navigation-alt').find('li').has('ul').children('a').on('click', function (e) {
         e.preventDefault();
@@ -343,9 +326,7 @@ $(function() {
         if ($('.navigation-alt').hasClass('navigation-accordion')) {
             $(this).parent('li').not('.disabled').siblings(':has(.has-ul)').removeClass('active').children('ul').slideUp(200);
         }
-    }); 
-
-
+    });
 
 
     // ========================================
@@ -366,8 +347,6 @@ $(function() {
         $('body').toggleClass('sidebar-xs');
     });
 
-
-
     // Sidebar controls
     // -------------------------
 
@@ -378,7 +357,7 @@ $(function() {
 
 
     // Adjust page height on sidebar control button click
-    $(document).on('click', '.sidebar-control', function (e) {
+    $(document).on('click', '.sidebar-control', function () {
         containerHeight();
     });
 
@@ -412,7 +391,6 @@ $(function() {
     });
 
 
-
     //
     // Opposite sidebar
     //
@@ -426,15 +404,12 @@ $(function() {
 
         // If visible
         if ($('body').hasClass('sidebar-opposite-visible')) {
-
             // Make main sidebar mini
             $('body').addClass('sidebar-xs');
 
             // Hide children lists
             $('.navigation-main').children('li').children('ul').css('display', '');
-        }
-        else {
-
+        } else {
             // Make main sidebar default
             $('body').removeClass('sidebar-xs');
         }
@@ -447,15 +422,12 @@ $(function() {
 
         // Opposite sidebar visibility
         $('body').toggleClass('sidebar-opposite-visible');
-        
+
         // If visible
         if ($('body').hasClass('sidebar-opposite-visible')) {
-
             // Hide main sidebar
             $('body').addClass('sidebar-main-hidden');
-        }
-        else {
-
+        } else {
             // Show main sidebar
             $('body').removeClass('sidebar-main-hidden');
         }
@@ -471,13 +443,9 @@ $(function() {
 
         // If visible
         if ($('body').hasClass('sidebar-opposite-visible')) {
-
             // Hide secondary
             $('body').addClass('sidebar-secondary-hidden');
-
-        }
-        else {
-
+        } else {
             // Show secondary
             $('body').removeClass('sidebar-secondary-hidden');
         }
@@ -493,15 +461,12 @@ $(function() {
 
         // If hidden
         if ($('body').hasClass('sidebar-all-hidden')) {
-
             // Show opposite
             $('body').addClass('sidebar-opposite-visible');
 
             // Hide children lists
             $('.navigation-main').children('li').children('ul').css('display', '');
-        }
-        else {
-
+        } else {
             // Hide opposite
             $('body').removeClass('sidebar-opposite-visible');
         }
@@ -515,8 +480,6 @@ $(function() {
         // Toggle opposite sidebar visibility
         $('body').toggleClass('sidebar-opposite-visible');
     });
-
-
 
     // Mobile sidebar controls
     // -------------------------
@@ -548,17 +511,14 @@ $(function() {
         $('body').toggleClass('sidebar-mobile-detached').removeClass('sidebar-mobile-main sidebar-mobile-secondary sidebar-mobile-opposite');
     });
 
-
-
     // Mobile sidebar setup
     // -------------------------
 
-    $(window).on('resize', function() {
-        setTimeout(function() {
+    $(window).on('resize', function () {
+        setTimeout(function () {
             containerHeight();
-            
-            if($(window).width() <= 768) {
 
+            if ($(window).width() <= 768) {
                 // Add mini sidebar indicator
                 $('body').addClass('sidebar-xs-indicator');
 
@@ -567,9 +527,7 @@ $(function() {
 
                 // Place detached sidebar before content
                 $('.sidebar-detached').insertBefore('.content-wrapper');
-            }
-            else {
-
+            } else {
                 // Remove mini sidebar indicator
                 $('body').removeClass('sidebar-xs-indicator');
 
@@ -580,12 +538,9 @@ $(function() {
                 $('body').removeClass('sidebar-mobile-main sidebar-mobile-secondary sidebar-mobile-detached sidebar-mobile-opposite');
 
                 // Revert left detached position
-                if($('body').hasClass('has-detached-left')) {
+                if ($('body').hasClass('has-detached-left')) {
                     $('.sidebar-detached').insertBefore('.container-detached');
-                }
-
-                // Revert right detached position
-                else if($('body').hasClass('has-detached-right')) {
+                } else if ($('body').hasClass('has-detached-right')) {
                     $('.sidebar-detached').insertAfter('.container-detached');
                 }
             }
@@ -612,8 +567,7 @@ $(function() {
     // if ($('[data-popup="tooltip"]').length > 0) {
     //     $('[data-popup="tooltip"]').tooltip();
     // }
-    $(document).ready(function() {
-      $('[data-toggle="tooltip"]').tooltip();
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
     });
-
 });

@@ -10,10 +10,10 @@ from django.shortcuts import render, redirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
-from core.data_objects import get_cities_by_state, get_states, get_cities
-from dashboard.models import Usuario, Estado, Municipio, POLITICAL_PARTY_CHOICES
-# from dashboard.models import Usuario
-# from django.db import transaction
+from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list)
+from dashboard.models import (Usuario, Estado, Municipio, Candidate, POLITICAL_PARTY_CHOICES,
+                              GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
+from candidato.models import CANDIDATE_POSITION_CHOICES
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
 from django.conf import settings
@@ -26,6 +26,7 @@ from django.contrib.auth import update_session_auth_hash
 from candidato.models import Candidate,POLITICAL_PARTY_CHOICES
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.utils.translation import ugettext_lazy as _
+from django.template.defaulttags import register
 
 
 def index(request):
@@ -114,7 +115,7 @@ def candidate_signup(request, uidb64=None):
             print('user id', user.pk)
             candidate.user_id = user.pk
             candidate.save()
-            
+
             return redirect(settings.LOGIN_URL)
 
     else:
@@ -129,7 +130,7 @@ def firstsetup(request):
     user_id = request.POST['user_id']
     user = User.objects.get(pk=user_id)
 
-    candidate_form = CandidateForm(request.POST)    
+    candidate_form = CandidateForm(request.POST)
     profile_form = ProfileForm(request.POST, instance=user.usuario)
 
     if candidate_form.is_valid():
@@ -157,18 +158,78 @@ def firstsetup(request):
         print('profile_form validated')
         profile_form.save()
         messages.success(request, _('Seu Cadastro foi Atualizado!'))
-    
+
     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
     return redirect('home')
 
 
 # It' the firstSetup, with updated template
-def primeiroSetup(request):
-    # return HttpResponse('Primeira Configuração do Usuário')
-    # User First Configuration - In the first login
-    # return render(request, "registration/signup.html", {'form': form})
-    # return render(request,'firstConfiguration.html')
-    return render(request, "registration/primeiroSetup.html")
+@login_required()
+@csrf_protect
+def primeiro_setup(request):
+    choice_states = get_states()
+    choice_cities = get_cities()
+    user_roles_list = get_user_roles_list()
+    choice_states.insert(0, ('', "Preencha o estado."))
+    choice_cities.insert(0, ('', "Encha a cidade."))
+
+    choice_states = tuple(choice_states)
+    choice_cities = tuple(choice_cities)
+
+    user_form = UserForm(instance=request.user)
+    profile_form = ProfileForm(instance=request.user.usuario)
+    candidate_form = CandidateForm()
+
+    if request.method == 'GET':
+        print('get request in primeiro_setup')
+
+    if request.method == 'POST':
+        print('post request in primeiro_setup')
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.usuario)
+        try:
+            candidator = request.user.candidate
+            if candidator:
+                candidate_form = CandidateForm(request.POST, instance=candidator)
+        except:
+            candidate_form = CandidateForm(request.POST)
+
+        if profile_form.is_valid():
+            user_roles_list_data = profile_form.cleaned_data.get('user_roles_list', None)
+            role_name = user_roles_list_data.role_name
+            profile_form.save()
+            if role_name == 'Candidato':
+                print('case candidator')
+                if candidate_form.is_valid():
+                    candidator_data = candidate_form.save(commit=False)
+                    print('testing-->', candidator_data.id)
+                    if not candidator_data.id:
+                        candidator_data.user = request.user
+                        candidator_data.save()
+                else:
+                    print('candidate_form is not valid')
+            else:
+                messages.warning(request, _('We are supporting only a Candidato. '
+                                            'Please choose Candidato in Função na Campanha.'))
+            print('testing now valid->', user_roles_list_data.role_name)
+        else:
+            print('testing now errors->', profile_form.errors)
+
+    return render(request, "registration/primeiroSetup.html", {
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'candidate_form': candidate_form,
+        'cities': choice_cities,
+        'states': choice_states,
+        'user_roles_list': user_roles_list,
+        'GENDER_CHOICES': GENDER_CHOICES,
+        'CANDIDATE_POSITION_CHOICES': CANDIDATE_POSITION_CHOICES,
+        'ESTADO_CIVIL_CHOICES': ESTADO_CIVIL_CHOICES,
+        'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
+
+
+def add_user_roles(request):
+    return HttpResponse('System received your request.')
 
 
 @csrf_protect
@@ -341,36 +402,50 @@ def browser_view(request):
 def user_configuration(request):
     if request.user.is_authenticated():
         user_form = UserForm(instance=request.user)
-        config_form = ProfileForm(instance=request.user.usuario)
+        profile_form = ProfileForm(instance=request.user.usuario)
+        candidate_form = CandidateForm()
         choice_states = get_states()
         choice_cities = get_cities()
-        choice_states.insert(0, (None, "Enter State"))
-        choice_cities.insert(0, (None, "Enter City"))
+        user_roles_list = get_user_roles_list()
+        choice_states.insert(0, (None, "Preencha o estado."))
+        choice_cities.insert(0, (None, "Encha a cidade."))
 
         choice_states = tuple(choice_states)
         choice_cities = tuple(choice_cities)
         return render(request, "registration/primeiroSetup.html", {
             'user_form': user_form,
-            'config_form': config_form,
+            'profile_form': profile_form,
+            'candidate_form': candidate_form,
             'cities': choice_cities,
             'states': choice_states,
+            'user_roles_list': user_roles_list,
+            'GENDER_CHOICES': GENDER_CHOICES,
+            'CANDIDATE_POSITION_CHOICES': CANDIDATE_POSITION_CHOICES,
+            'ESTADO_CIVIL_CHOICES': ESTADO_CIVIL_CHOICES,
             'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
 
 
 @csrf_exempt
 def update_user_configuration(request):
+    print('updating user configuration now')
     if request.method == 'POST':
-        user_config_form = ProfileForm(request.POST, instance=request.user.usuario)
-        candidate_user = Candidate.objects.get(user_id=request.user.id)
-        if candidate_user:
-            candidate_config_form = CandidateForm(request.POST,instance=request.user.candidate)
-        else:
-            candidate_config_form = CandidateForm(request.POST)
-        print(user_config_form.errors)
-        if user_config_form.is_valid():
-            print("saving", user_config_form.save())
-            messages.success(request, _('Seu Cadastro foi Atualizado!'))
-        if candidate_config_form.is_valid():
-            print("saving", candidate_config_form.save())
-            messages.success(request, _('Seu Cadastro foi Atualizado!'))
+        # user_config_form = ProfileForm(request.POST, instance=request.user.usuario)
+        # candidate_user = Candidate.objects.get(user_id=request.user.id)
+        print('updating user configuration now')
+        # if candidate_user:
+        #     candidate_config_form = CandidateForm(request.POST, instance=request.user.candidate)
+        # else:
+        #     candidate_config_form = CandidateForm(request.POST)
+        # print(user_config_form.errors)
+        # if user_config_form.is_valid():
+        #     print("saving", user_config_form.save())
+        #     messages.success(request, _('Seu Cadastro foi Atualizado!'))
+        # if candidate_config_form.is_valid():
+        #     print("saving", candidate_config_form.save())
+        #     messages.success(request, _('Seu Cadastro foi Atualizado!'))
         return redirect("/dashboard/")
+
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)

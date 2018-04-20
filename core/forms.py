@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.data_objects import get_states, get_cities
 from dashboard.models import Usuario, Estado, Municipio
-from candidato.models import Candidate
+from candidato.models import Candidate, UserRoles_list, CANDIDATE_POSITION_CHOICES
 
 from cep.widgets import CEPInput
 
@@ -40,21 +40,36 @@ class UserForm(UserCreationForm, UniqueEmailForm):
 
 class CandidateForm(forms.ModelForm):
     candidate_political_nickname = forms.CharField(max_length=40, required=False, help_text='Optional.')
+    candidate_party = forms.CharField(max_length=40, required=False, help_text='Optional.')
     candidate_dispute_number = forms.CharField(max_length=40, required=False, help_text='Optional.')
     campaign_email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     political_position = forms.CharField(max_length=40, required=False, help_text='Optional.')
-    reelection = forms.BooleanField()
+    reelection = forms.BooleanField(required=False)
+    first_election = forms.BooleanField(required=False)
     candidate_site = forms.CharField(max_length=50, required=False)
     facebook = forms.CharField(max_length=40, required=False)
     twitter = forms.CharField(max_length=40, required=False)
     google = forms.CharField(max_length=40, required=False)
     youtube = forms.CharField(max_length=40, required=False)
     instagram = forms.CharField(max_length=40, required=False)
+    candidate_blog_rss = forms.CharField(max_length=40, required=False)
+    canditate_Election_Ballot = forms.CharField(max_length=50, required=False, help_text='Optional')
+    slug = forms.CharField(max_length=50, required=False, help_text='Optional')
+    candidate_state = forms.CharField(max_length=50, required=False, help_text='Optional')
+    candidate_city = forms.CharField(max_length=50, required=False, help_text='Optional')
+    holds_position = forms.CharField(max_length=50, required=False, help_text='Optional')
+    candidate_desired_position = forms.ChoiceField(choices=CANDIDATE_POSITION_CHOICES, required=False,
+                                                   help_text='Optional')
+    candidate_current_position = forms.ChoiceField(choices=CANDIDATE_POSITION_CHOICES, required=False,
+                                                   help_text='Optional')
 
     class Meta:
         model = Candidate
-        fields = ('candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email','reelection','candidate_site','facebook',
-                  'twitter','google','youtube','instagram')
+        fields = ('candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email',
+                  'reelection', 'candidate_site', 'facebook', 'twitter', 'google', 'youtube', 'instagram',
+                  'canditate_Election_Ballot', 'candidate_desired_position', 'slug', 'candidate_state',
+                  'candidate_city', 'holds_position', 'candidate_current_position', 'first_election',
+                  'candidate_blog_rss', 'candidate_party')
         widgets = {
             'candidate_political_nickname': forms.TextInput(attrs={'class': "form-control"}),
             'candidate_dispute_number': forms.TextInput(attrs={'class': "form-control"}),
@@ -96,12 +111,13 @@ class ProfileForm(forms.ModelForm):
     gender = forms.CharField(max_length=1, required=False, help_text='Optional')
     marital_status = forms.CharField(max_length=1, required=False, help_text='Optional')
     cpf = forms.CharField(max_length=11, required=False, help_text='Optional')
-    # birthday_date = forms.DateField(required=False, help_text='Optional')
+    birthday_date = forms.CharField(required=False, help_text='Optional')
     bairro = forms.CharField(max_length=255, required=False, help_text='Optional')
     cellPhone = forms.CharField(max_length=15, required=False, help_text='Optional')
     landlinePhone = forms.CharField(max_length=11, required=False, help_text='Optional')
     user_political_party = forms.CharField(max_length=50, required=False, help_text='Optional')
-    user_role = forms.CharField(max_length=40, required=False, help_text='Optional')
+
+    user_roles_list = forms.ModelChoiceField(queryset=UserRoles_list.objects.all(), required=False)
     cep = forms.CharField(required=False, label=u"CEP",
                           help_text="Format: XXXXX-XXX",
                           widget=CEPInput(address={
@@ -115,7 +131,7 @@ class ProfileForm(forms.ModelForm):
 
         # fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
         fields = ('cellPhone', 'estado', 'cidade', 'address', 'company', 'cep', 'gender', 'marital_status',
-                  'cpf', 'cellPhone', 'landlinePhone', 'user_political_party', 'user_role')
+                  'cpf', 'cellPhone', 'landlinePhone', 'user_political_party', 'user_roles_list',)
         widgets = {
             # 'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
             # 'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),

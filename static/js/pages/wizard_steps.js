@@ -9,95 +9,7 @@
 *
 * ---------------------------------------------------------------------------- */
 
-$(function() {
-
-
-    // Wizard examples
-    // ------------------------------
-
-    // Basic wizard setup
-    $(".steps-basic").steps({
-        headerTag: "h6",
-        bodyTag: "fieldset",
-        transitionEffect: "fade",
-        titleTemplate: '<span class="number">#index#</span> #title#',
-        labels: {
-            finish: 'Enviar',
-            next: 'Proximo',
-            previous: 'Anterior'
-        },
-        onFinished: function (event, currentIndex) {
-            alert("Form submitted.");
-        }
-    });
-
-
-    // Async content loading
-    $(".steps-async").steps({
-        headerTag: "h6",
-        bodyTag: "fieldset",
-        transitionEffect: "fade",
-        titleTemplate: '<span class="number">#index#</span> #title#',
-        labels: {
-            finish: 'Submit'
-        },
-        onContentLoaded: function (event, currentIndex) {
-            $(this).find('select.select').select2();
-
-            $(this).find('select.select-simple').select2({
-                minimumResultsForSearch: Infinity
-            });
-
-            $(this).find('.styled').uniform({
-                radioClass: 'choice'
-            });
-
-            $(this).find('.file-styled').uniform({
-                fileButtonClass: 'action btn bg-warning'
-            });
-        },
-        onFinished: function (event, currentIndex) {
-            alert("Form submitted.");
-        }
-    });
-
-
-    // Saving wizard state
-    $(".steps-state-saving").steps({
-        headerTag: "h6",
-        bodyTag: "fieldset",
-        saveState: true,
-        titleTemplate: '<span class="number">#index#</span> #title#',
-        autoFocus: true,
-        onFinished: function (event, currentIndex) {
-            alert("Form submitted.");
-        }
-    });
-
-
-    // Specify custom starting step
-    $(".steps-starting-step").steps({
-        headerTag: "h6",
-        bodyTag: "fieldset",
-        startIndex: 2,
-        titleTemplate: '<span class="number">#index#</span> #title#',
-        labels: {
-            finish: 'Enviar',
-            next: 'Proximo',
-            previous: 'Anterior'
-        },
-        autoFocus: true,
-        onFinished: function (event, currentIndex) {
-            alert("Form submitted.");
-            $(this).submit();
-        }
-    });
-
-
-    //
-    // Wizard with validation
-    //
-
+$(function () {
     // Show form
     var form = $(".steps-validation").show();
 
@@ -111,7 +23,6 @@ $(function() {
         autoFocus: true,
 
         onStepChanging: function (event, currentIndex, newIndex) {
-
             // Allways allow previous action even if the current form is not valid!
             if (currentIndex > newIndex) {
                 return true;
@@ -123,9 +34,8 @@ $(function() {
             }
 
             // Needed in some cases if the user went back (clean up)
+            // To remove error styles
             if (currentIndex < newIndex) {
-
-                // To remove error styles
                 form.find(".body:eq(" + newIndex + ") label.error").remove();
                 form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
             }
@@ -135,7 +45,6 @@ $(function() {
         },
 
         onStepChanged: function (event, currentIndex, priorIndex) {
-
             // Used to skip the "Warning" step if the user is old enough.
             if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
                 form.steps("next");
@@ -148,12 +57,19 @@ $(function() {
         },
 
         onFinishing: function (event, currentIndex) {
+            console.log(event, currentIndex);
             form.validate().settings.ignore = ":disabled";
             return form.valid();
         },
 
         onFinished: function (event, currentIndex) {
-            alert("Submitted!");
+            console.log(event, currentIndex);
+            console.log($('.steps-validation'));
+            // alert("Submitted!!!!!!!");
+            $('.steps-validation')[0].submit(function (_event) {
+                // alert( "Handler for .submit() called." );
+                _event.preventDefault();
+            });
         }
     });
 
@@ -163,47 +79,35 @@ $(function() {
         ignore: 'input[type=hidden], .select2-search__field', // ignore hidden fields
         errorClass: 'validation-error-label',
         successClass: 'validation-valid-label',
-        highlight: function(element, errorClass) {
+        highlight: function (element, errorClass) {
             $(element).removeClass(errorClass);
         },
-        unhighlight: function(element, errorClass) {
+        unhighlight: function (element, errorClass) {
             $(element).removeClass(errorClass);
         },
 
         // Different components require proper error label placement
-        errorPlacement: function(error, element) {
-
+        errorPlacement: function (error, element) {
             // Styled checkboxes, radios, bootstrap switch
             if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container') ) {
-                if(element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
                     error.appendTo( element.parent().parent().parent().parent() );
-                }
-                 else {
+                } else {
                     error.appendTo( element.parent().parent().parent().parent().parent() );
                 }
-            }
-
-            // Unstyled checkboxes, radios
-            else if (element.parents('div').hasClass('checkbox') || element.parents('div').hasClass('radio')) {
+            } else if (element.parents('div').hasClass('checkbox') || element.parents('div').hasClass('radio')) {
+                // Unstyled checkboxes, radios
                 error.appendTo( element.parent().parent().parent() );
-            }
-
-            // Input with icons and Select2
-            else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+            } else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+                // Input with icons and Select2
                 error.appendTo( element.parent() );
-            }
-
-            // Inline checkboxes, radios
-            else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+            } else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                // Inline checkboxes, radios
                 error.appendTo( element.parent().parent() );
-            }
-
-            // Input group, styled file input
-            else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+            } else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+                // Input group, styled file input
                 error.appendTo( element.parent().parent() );
-            }
-
-            else {
+            } else {
                 error.insertAfter(element);
             }
         },
@@ -213,7 +117,6 @@ $(function() {
             }
         }
     });
-
 
 
     // Initialize plugins
@@ -228,18 +131,115 @@ $(function() {
         minimumResultsForSearch: Infinity
     });
 
-
-    // Styled checkboxes and radios
-    $('.styled').uniform({
-        radioClass: 'choice'
+    // Date range picker
+    // ------------------------------
+    // Single picker
+    $('.daterange-single').daterangepicker({
+        singleDatePicker: true
     });
 
+    function notify() {
+        noty({
+            width: 200,
+            text: 'System received your request.',
+            type: 'success',
+            dismissQueue: true,
+            timeout: 4000,
+            layout: 'topRight'
+        });
+        $('#team_member_name').removeClass('required');
+        $('#team_member_email').removeClass('required');
+        $('#team_member_role').removeClass('required');
+    }
 
-    // Styled file input
-    $('.file-styled').uniform({
-        fileButtonClass: 'action btn bg-blue'
+    // Button with progress
+    Ladda.bind('.btn-ladda-progress', {
+        callback: function (instance) {
+            $('#team_member_name').addClass('required');
+            $('#team_member_email').addClass('required');
+            $('#team_member_role').addClass('required');
+            form.validate().settings.ignore = ":disabled,:hidden";
+
+            // $('#team_member_name').removeClass('required');
+            // $('#team_member_email').removeClass('required');
+            // $('#team_member_email').removeClass('team_member_role');
+
+            if (!form.valid()) {
+                instance.stop();
+                return;
+            }
+
+            setTimeout(function () {
+                instance.stop();
+                notify();
+            }, 1500);
+            var trs = $('#user_permission_table > tr');
+            // console.log('cliecked', trs);
+            var permissionArray = [];
+
+            for (var index in Array.from(Array(trs.length).keys())) {
+                var tds = $(trs[index]).find('.check-box');
+                // console.log('tds', tds);
+                if (tds.length === 3) {
+                    var value = calcPermissionValue(tds);
+                    permissionArray.push(value);
+                }
+            }
+            function calcPermissionValue(_tds) {
+                var val = 0;
+                if (_tds[0].checked) {
+                    val += 4;
+                }
+                if (_tds[1].checked) {
+                    val += 2;
+                }
+                if (_tds[2].checked) {
+                    val += 1;
+                }
+                return val;
+            }
+            console.log(permissionArray);
+            // var progress = 0;
+            // var interval = setInterval(function () {
+            //     progress = Math.min(progress + Math.random() * 0.1, 1);
+            //     instance.setProgress(progress);
+            //
+            //     if ( progress === 1 ) {
+            //         instance.stop();
+            //         clearInterval(interval);
+            //     }
+            // }, 200);
+        }
     });
 
+    $('.team-user-roles_select').change(function () {
+        var valueList = $('option:selected', this).attr('data-values');
+        console.log('valueList', JSON.parse(valueList)[0]);
+        var permissionArray = JSON.parse(valueList);
 
-    
+        var trs = $('#user_permission_table > tr');
+        for (var index in Array.from(Array(trs.length).keys())) {
+            var tds = $(trs[index]).find('.check-box');
+            // console.log('tds', tds);
+            var str = permissionArray[index].toString();
+            var bin = (+str).toString(2);
+            if (tds.length === 3) {
+                if (bin[0] === '1') {
+                    tds[0].checked = true;
+                } else {
+                    tds[0].checked = false;
+                }
+                if (bin[1] === '1') {
+                    tds[1].checked = true;
+                } else {
+                    tds[1].checked = false;
+                }
+                if (bin[2] === '1') {
+                    tds[2].checked = true;
+                } else {
+                    tds[2].checked = false;
+                }
+            }
+        }
+    });
 });
