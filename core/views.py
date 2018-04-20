@@ -369,8 +369,8 @@ def user_configuration(request):
 def update_user_configuration(request):
     print('updating user configuration now')
     if request.method == 'POST':
-        user_config_form = ProfileForm(request.POST, instance=request.user.usuario)
-        candidate_user = Candidate.objects.get(user_id=request.user.id)
+        # user_config_form = ProfileForm(request.POST, instance=request.user.usuario)
+        # candidate_user = Candidate.objects.get(user_id=request.user.id)
         print('updating user configuration now')
         # if candidate_user:
         #     candidate_config_form = CandidateForm(request.POST, instance=request.user.candidate)
