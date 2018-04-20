@@ -240,11 +240,12 @@ class UserRoles_list(models.Model):
                                                            default=7)  # users Interaction
     sendMessages = models.PositiveSmallIntegerField('Enviar Mensagens', default=6)
 
+
 # This is the invitation list of users to the candidate
 # It stores the Invitator ID and email, the name and email of the Invited
 # and the candidate id for which he was nominated.
 class Invites(models.Model):
-    invitator_id = models.IntegerField
+    # invitator_id = models.IntegerField
     invitator_email = models.CharField(max_length=50)
     invited_name = models.CharField(max_length=60, null=True, blank=True)
     invited_email = models.CharField(max_length=60)

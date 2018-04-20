@@ -186,7 +186,7 @@ class Usuario(models.Model):
                               null=True)
     marital_status = models.CharField("Estado Civil", max_length=1, choices=ESTADO_CIVIL_CHOICES,null=True)
     cpf = models.CharField('CPF', max_length=11, unique=True, null=True, blank=True)    # Document ID in Brazil
-    birthday_date = models.DateField('Data de Nascimento', null=True, blank=True)
+    birthday_date = models.TextField('Data de Nascimento', null=True, blank=True)
     # todo to implement autofill address - https://github.com/staticdev/django-cep
     cep = models.CharField("CEP", max_length=9, blank=True, null=True)  # The Brazilian zipCode
     estado = models.CharField("UF", max_length=2, blank=True, null=True)    # Federal State (in dashboard_estado table)

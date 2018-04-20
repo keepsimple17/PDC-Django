@@ -110,7 +110,7 @@ class ProfileForm(forms.ModelForm):
     gender = forms.CharField(max_length=1, required=False, help_text='Optional')
     marital_status = forms.CharField(max_length=1, required=False, help_text='Optional')
     cpf = forms.CharField(max_length=11, required=False, help_text='Optional')
-    birthday_date = forms.DateField(required=False, help_text='Optional')
+    birthday_date = forms.CharField(required=False, help_text='Optional')
     bairro = forms.CharField(max_length=255, required=False, help_text='Optional')
     cellPhone = forms.CharField(max_length=15, required=False, help_text='Optional')
     landlinePhone = forms.CharField(max_length=11, required=False, help_text='Optional')
