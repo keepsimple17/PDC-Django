@@ -195,8 +195,23 @@ def primeiro_setup(request):
             candidate_form = CandidateForm(request.POST)
 
         if profile_form.is_valid():
-            # user_roles_list = profile_form.cleaned_data.get('user_roles_list', None)
-            print('testing now valid->', profile_form.cleaned_data)
+            user_roles_list_data = profile_form.cleaned_data.get('user_roles_list', None)
+            role_name = user_roles_list_data.role_name
+            profile_form.save()
+            if role_name == 'Candidato':
+                print('case candidator')
+                if candidate_form.is_valid():
+                    candidator_data = candidate_form.save(commit=False)
+                    print('testing-->', candidator_data.id)
+                    if not candidator_data.id:
+                        candidator_data.user = request.user
+                        candidator_data.save()
+                else:
+                    print('candidate_form is not valid')
+            else:
+                messages.warning(request, _('We are supporting only a Candidato. '
+                                            'Please choose Candidato in Função na Campanha.'))
+            print('testing now valid->', user_roles_list_data.role_name)
         else:
             print('testing now errors->', profile_form.errors)
 
@@ -211,6 +226,10 @@ def primeiro_setup(request):
         'CANDIDATE_POSITION_CHOICES': CANDIDATE_POSITION_CHOICES,
         'ESTADO_CIVIL_CHOICES': ESTADO_CIVIL_CHOICES,
         'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
+
+
+def add_user_roles(request):
+    return HttpResponse('System received your request.')
 
 
 @csrf_protect

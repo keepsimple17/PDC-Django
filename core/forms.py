@@ -40,11 +40,12 @@ class UserForm(UserCreationForm, UniqueEmailForm):
 
 class CandidateForm(forms.ModelForm):
     candidate_political_nickname = forms.CharField(max_length=40, required=False, help_text='Optional.')
+    candidate_party = forms.CharField(max_length=40, required=False, help_text='Optional.')
     candidate_dispute_number = forms.CharField(max_length=40, required=False, help_text='Optional.')
     campaign_email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     political_position = forms.CharField(max_length=40, required=False, help_text='Optional.')
-    reelection = forms.BooleanField()
-    first_election = forms.BooleanField()
+    reelection = forms.BooleanField(required=False)
+    first_election = forms.BooleanField(required=False)
     candidate_site = forms.CharField(max_length=50, required=False)
     facebook = forms.CharField(max_length=40, required=False)
     twitter = forms.CharField(max_length=40, required=False)
@@ -68,7 +69,7 @@ class CandidateForm(forms.ModelForm):
                   'reelection', 'candidate_site', 'facebook', 'twitter', 'google', 'youtube', 'instagram',
                   'canditate_Election_Ballot', 'candidate_desired_position', 'slug', 'candidate_state',
                   'candidate_city', 'holds_position', 'candidate_current_position', 'first_election',
-                  'candidate_blog_rss')
+                  'candidate_blog_rss', 'candidate_party')
         widgets = {
             'candidate_political_nickname': forms.TextInput(attrs={'class': "form-control"}),
             'candidate_dispute_number': forms.TextInput(attrs={'class': "form-control"}),

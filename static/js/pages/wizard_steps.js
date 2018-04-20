@@ -131,19 +131,6 @@ $(function () {
         minimumResultsForSearch: Infinity
     });
 
-
-    // Styled checkboxes and radios
-    $('.styled').uniform({
-        radioClass: 'choice'
-    });
-
-
-    // Styled file input
-    $('.file-styled').uniform({
-        fileButtonClass: 'action btn bg-blue'
-    });
-
-
     // Date range picker
     // ------------------------------
     // Single picker
@@ -151,12 +138,41 @@ $(function () {
         singleDatePicker: true
     });
 
+    function notify() {
+        noty({
+            width: 200,
+            text: 'System received your request.',
+            type: 'success',
+            dismissQueue: true,
+            timeout: 4000,
+            layout: 'topRight'
+        });
+        $('#team_member_name').removeClass('required');
+        $('#team_member_email').removeClass('required');
+        $('#team_member_role').removeClass('required');
+    }
+
     // Button with progress
     Ladda.bind('.btn-ladda-progress', {
         callback: function (instance) {
+            $('#team_member_name').addClass('required');
+            $('#team_member_email').addClass('required');
+            $('#team_member_role').addClass('required');
+            form.validate().settings.ignore = ":disabled,:hidden";
+
+            // $('#team_member_name').removeClass('required');
+            // $('#team_member_email').removeClass('required');
+            // $('#team_member_email').removeClass('team_member_role');
+
+            if (!form.valid()) {
+                instance.stop();
+                return;
+            }
+
             setTimeout(function () {
                 instance.stop();
-            }, 500);
+                notify();
+            }, 1500);
             var trs = $('#user_permission_table > tr');
             // console.log('cliecked', trs);
             var permissionArray = [];
