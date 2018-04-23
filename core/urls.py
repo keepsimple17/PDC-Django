@@ -49,6 +49,7 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^elections/', include('elections.urls', namespace='elections')),
+    url(r'^teste404/', views.teste404),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

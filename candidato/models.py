@@ -251,4 +251,4 @@ class Invites(models.Model):
     invited_name = models.CharField(max_length=60, null=True, blank=True)
     invited_email = models.CharField(max_length=60)
     invited_cel = models.CharField(max_length=20,null=True,blank=True)
-    candidate_id = models.ManyToManyField(Candidate)
+    candidate = models.ManyToManyField(Candidate)
