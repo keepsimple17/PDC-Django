@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=zn8e^-gw3lu$=9r@_t1a!+tw#*pmy7ctp&+gft+5zx@gqdk98'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -93,6 +93,7 @@ if os.environ.get('USER', '') == 'ubuntu':
             'PORT': '3306',
         }
     }
+    DEBUG = False
 else:
     DATABASES = {
         'default': {
@@ -104,7 +105,6 @@ else:
             'PORT': '3306',
         }
     }
-
 
 
 # Password validation
