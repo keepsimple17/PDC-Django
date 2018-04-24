@@ -140,7 +140,7 @@ def firstsetup(request):
         print('candidate id', candidate.id)
         print('uid', urlsafe_base64_encode(force_bytes(candidate.id)))
         current_site = get_current_site(request)
-        mail_subject = 'You are invited to PDC site as Candidate!'
+        mail_subject = 'Parabéns Candidato. Vc foi adicionado no SCOPO Online'
         message = render_to_string('candidate_invite_email.html', {
             'user': candidate,
             'domain': current_site.domain,
@@ -151,6 +151,7 @@ def firstsetup(request):
         email = EmailMessage(
             mail_subject, message, to=[to_email]
         )
+        email.content_subtype = "html "
         print('to_email', to_email)
         email.send()
 

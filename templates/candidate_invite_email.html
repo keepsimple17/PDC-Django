@@ -1,5 +1,94 @@
-{% autoescape off %}
-Olá {{ user.username }},
-Parabéns! você foi convidado para o SCOPO como CANDIDATO. Por favor, insira seus dados e use o SCOPO para ter o controle da sua campanha e do seu mandato.
-http://{{ domain }}{% url 'candidate_signup' uidb64=uid %}
-{% endautoescape %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0071) -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>SCOPO Online - Sistema de Controle Político</title>
+        <meta name="viewport" content="width=device-width">
+       <style type="text/css">
+            @media only screen and (max-width: 550px), screen and (max-device-width: 550px) {
+                body[yahoo] .buttonwrapper { background-color: transparent !important; }
+                body[yahoo] .button { padding: 0 !important; }
+                body[yahoo] .button a { background-color: #1bbae1; padding: 15px 25px !important; }
+            }
+
+            @media only screen and (min-device-width: 601px) {
+                .content { width: 600px !important; }
+                .col387 { width: 387px !important; }
+            }
+
+        </style>
+    </head>
+    <body bgcolor="#2f5c7a" style="margin: 0; padding: 0; background: rgb(47, 92, 122);" yahoo="fix">
+        <!--[if (gte mso 9)|(IE)]>
+        <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td>
+        <![endif]-->
+        <table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;" class="content">
+            <tbody><tr>
+                <td style="padding: 15px 10px 15px 10px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody><tr>
+
+                            <td align="center" style="color: #aaaaaa; font-family: Arial, sans-serif; font-size: 12px;">
+                                Não consegue visualizar este email?  <a href="http://{{ domain }}/browser_view/?id={{ user.id }}" style="color: #1bbae1;">Veja em seu Navegador</a>
+                            </td>
+
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" bgcolor="#f5f5f5" style="padding: 20px 20px 20px 20px; color: #ffffff; font-family: Arial, sans-serif; font-size: 36px; font-weight: bold;">
+                    <img src="http://scopoonline.com/images/SCOPO_300px.png" alt="SCOPO Online" style="display:block;">
+                </td>
+            </tr>
+            <tr>
+                <td align="center" bgcolor="#ffffff" style="padding: 40px 20px 40px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 20px; line-height: 30px; border-bottom: 1px solid #f6f6f6;">
+				   <p>Parabéns, você foi convidado para o SCOPO como CANDIDATO. Por favor, insira seus dados e use o
+                       SCOPO para ter o controle da sua campanha e do seu mandato. </p>
+                    <p>Após o registro, autorize sua equipe <i>(incluindo o usuario que lhe adicionou: <b>{{user.email}}</b>)</i>,
+                    revise os dados de sua campanha e deixe nosso sistema trabalhar em conjunto na estratégia para sua eleicão.</p>
+                    <p>Para saber mais sobre o sistema, clique <a href="http://scopoonline.com/candidato/">aqui</a>.<br />
+                        Leia nosso <a href="http://scopoonline.com/termos-de-servico/">termos de Uso e Serviço</a> e a
+                        <a href="http://scopoonline.com/politica-de-privacidade/">Política de Privacidade</a>.
+                    </p>
+                    <p>Clique no botão abaixo efetuar seu concluir seu cadastro</p>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" bgcolor="#f9f9f9" style="padding: 30px 20px 30px 20px; font-family: Arial, sans-serif;">
+                    <table bgcolor="#1bbae1" border="0" cellspacing="0" cellpadding="0" class="buttonwrapper">
+                        <tbody><tr>
+                            <td align="center" height="50" style=" padding: 0 25px 0 25px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold;" class="button">
+                               <a href="http://{{ domain }}{% url 'candidate_signup' uidb64=uid %}"
+                                  style="color: #ffffff; text-align: center; text-decoration: none;">Concluir Cadastro</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" bgcolor="#dddddd" style="padding: 15px 10px 15px 10px; color: #555555; font-family: Arial, sans-serif; font-size: 12px; line-height: 18px;">
+                    <b>Directnet / Neoplace Inc.</b><br>Av. Sete de Setembro, 4698 • Cj.2201 • Curitiba, PR • CEP: 80240-0000
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 15px 10px 15px 10px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody><tr>
+                            <td align="center" width="100%" style="color: #999999; font-family: Arial, sans-serif; font-size: 12px;">
+                                2018-19 © <a href="http://portaldocandidato.inf.br/" style="color: #1bbae1;">SCOPO Online</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        </tbody></table>
+        <!--[if (gte mso 9)|(IE)]>
+                </td>
+            </tr>
+        </table>
+        <![endif]-->
+
+</body></html>
