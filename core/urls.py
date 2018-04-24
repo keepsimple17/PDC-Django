@@ -38,7 +38,7 @@ urlpatterns = [
     url(r'^account/firstsetup', views.firstsetup, name="firstsetup"),
     # the template update for the firstsetup
     url(r'^account/primeiroSetup', views.primeiro_setup, name="primeiro_setup"),
-    url(r'^account/add_user_roles', views.add_user_roles, name='account_add_user_roles'),
+    url(r'^account/add_team_member', views.add_team_member, name='account_add_user_roles'),
     # password reset
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^approve_user/$', views.apporve_user, name='apporve_user'),

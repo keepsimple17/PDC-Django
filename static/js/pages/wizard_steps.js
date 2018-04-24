@@ -12,6 +12,9 @@
 $(function () {
     // Show form
     var form = $(".steps-validation").show();
+    var severUrl = $("meta[name=sever_url]").attr("content");
+    // var csrfToken = $("input[name=csrfmiddlewaretoken]").val();
+    // console.log(severUrl);
 
 
     // Initialize wizard
@@ -160,9 +163,12 @@ $(function () {
             $('#team_member_role').addClass('required');
             form.validate().settings.ignore = ":disabled,:hidden";
 
-            // $('#team_member_name').removeClass('required');
-            // $('#team_member_email').removeClass('required');
-            // $('#team_member_email').removeClass('team_member_role');
+            var team_member_name = $("input[name=team_member_name]").val();
+            var team_member_email = $("input[name=team_member_email]").val();
+            var team_member_cel = $("input[name=team_member_cel]").val();
+            console.log('team_member_name', team_member_name);
+            console.log('team_member_email', team_member_email);
+            console.log('team_member_cel', team_member_cel);
 
             if (!form.valid()) {
                 instance.stop();
@@ -199,6 +205,19 @@ $(function () {
                 return val;
             }
             console.log(permissionArray);
+            var url = severUrl + 'account/add_team_member';
+            axios.post(url, {
+                team_member_name: team_member_name,
+                team_member_email: team_member_email,
+                team_member_cel: team_member_cel,
+                permission_list: permissionArray
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
             // var progress = 0;
             // var interval = setInterval(function () {
             //     progress = Math.min(progress + Math.random() * 0.1, 1);

@@ -6,6 +6,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+import json
 # from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
@@ -172,12 +173,15 @@ def primeiro_setup(request):
     user_roles_list = get_user_roles_list()
     choice_states.insert(0, ('', "Preencha o estado."))
     choice_cities.insert(0, ('', "Encha a cidade."))
+    sever_url = request.build_absolute_uri('/')
 
     choice_states = tuple(choice_states)
     choice_cities = tuple(choice_cities)
 
     user_form = UserForm(instance=request.user)
     profile_form = ProfileForm(instance=request.user.usuario)
+    candidate_form = CandidateForm()
+
     try:
         candidator = request.user.candidate
         if candidator:
@@ -225,6 +229,7 @@ def primeiro_setup(request):
         'user_form': user_form,
         'profile_form': profile_form,
         'candidate_form': candidate_form,
+        'sever_url': sever_url,
         'cities': choice_cities,
         'states': choice_states,
         'user_roles_list': user_roles_list,
@@ -234,7 +239,25 @@ def primeiro_setup(request):
         'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
 
 
-def add_user_roles(request):
+def add_team_member(request):
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+    except:
+        data = request.POST
+    team_member_name = data.get('team_member_name', None)
+    team_member_email = data.get('team_member_email', None)
+    team_member_cel = data.get('team_member_cel', None)
+    permission_list = data.get('permission_list', None)
+    user_profile = Usuario.objects.filter(user__username=team_member_name)
+    if len(user_profile) == 0:
+        user_profile = Usuario.objects.filter(user__email=team_member_email)
+        if len(user_profile) == 0:
+            user_profile = Usuario.objects.filter(cellPhone=team_member_cel)
+    if len(user_profile) > 0:
+        print('user exist', user_profile.values())
+
+    print(team_member_name, team_member_email, team_member_cel, permission_list[0])
+
     return HttpResponse('System received your request.')
 
 

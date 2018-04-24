@@ -16,6 +16,8 @@ $(window).on('load', function () {
 
 
 $(function () {
+    // axios config
+    axios.defaults.xsrfHeaderName = "X-CSRFToken";
     // Disable CSS transitions on page load
     $('body').addClass('no-transitions');
 

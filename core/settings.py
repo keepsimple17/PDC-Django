@@ -136,6 +136,7 @@ AUTHENTICATION_BACKENDS = (
 # session configuration for token expiration
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2   # 2 weeks in seconds
 SESSION_SAVE_EVERY_REQUEST = True
+CSRF_COOKIE_NAME = 'XSRF-TOKEN'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
