@@ -178,7 +178,12 @@ def primeiro_setup(request):
 
     user_form = UserForm(instance=request.user)
     profile_form = ProfileForm(instance=request.user.usuario)
-    candidate_form = CandidateForm()
+    try:
+        candidator = request.user.candidate
+        if candidator:
+            candidate_form = CandidateForm(instance=candidator)
+    except:
+        candidate_form = CandidateForm()
 
     if request.method == 'GET':
         print('get request in primeiro_setup')
@@ -187,6 +192,7 @@ def primeiro_setup(request):
         print('post request in primeiro_setup')
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.usuario)
+        candidate_form = CandidateForm(request.POST)
         try:
             candidator = request.user.candidate
             if candidator:

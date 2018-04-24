@@ -89,6 +89,13 @@ CANDIDATE_POSITION_CHOICES = (
     ('ve', 'Vereador'),
 )
 
+CANDIDATE_INVITE_CHOICES = (
+    ('S', 'SUSPENSO'),
+    ('I', 'INATIVO'),
+    ('C', 'CONVIDADO'),
+    ('A', 'ATIVO'),
+)
+
 
 class Candidate(models.Model):
     user = models.OneToOneField(User, null=True, blank=False)
@@ -250,5 +257,6 @@ class Invites(models.Model):
     invitator_email = models.CharField(max_length=50)
     invited_name = models.CharField(max_length=60, null=True, blank=True)
     invited_email = models.CharField(max_length=60)
-    invited_cel = models.CharField(max_length=20,null=True,blank=True)
+    invited_cel = models.CharField(max_length=20, null=True, blank=True)
     candidate = models.ManyToManyField(Candidate)
+    invite_status = models.CharField(max_length=10, choices=CANDIDATE_INVITE_CHOICES, blank=True, null=True)
