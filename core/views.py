@@ -234,7 +234,7 @@ def primeiro_setup(request):
                 messages.warning(request, _('We are supporting only a Candidato. '
                                             'Please choose Candidato in Função na Campanha.'))
                 if candidate_form.is_valid():
-                    campaign_email = candidate_form.cleaned_data.get('candidate_form', None)
+                    campaign_email = candidate_form.cleaned_data['candidate_form']
                     candidator = Candidate.objects.filter(campaign_email=campaign_email).first()
                     if candidator:
                         # candidator exist
