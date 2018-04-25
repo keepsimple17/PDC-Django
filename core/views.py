@@ -428,8 +428,6 @@ def signup_confirm(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        # print('request.user', request.user)
-        # print('request.user.usuario', request.user.usuario)
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.usuario)
         password_form = PasswordChangeForm(request.user, request.POST)
@@ -454,7 +452,7 @@ def profile(request):
 
     cities = get_cities_by_state(request.user.usuario.estado)
     selected_city = request.user.usuario.cidade
-    if selected_city is None:
+    if selected_city is None or selected_city == '':
         selected_city = 0
     return render(request, 'profile.html', {
         'user_form': user_form,
