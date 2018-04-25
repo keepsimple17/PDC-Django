@@ -233,6 +233,13 @@ def primeiro_setup(request):
             else:
                 messages.warning(request, _('We are supporting only a Candidato. '
                                             'Please choose Candidato in Função na Campanha.'))
+                if candidate_form.is_valid():
+                    campaign_email = candidate_form.cleaned_data.get('candidate_form', None)
+                    candidator = Candidate.objects.filter(campaign_email=campaign_email).first()
+                    if candidator:
+                        # candidator exist
+                        print('candidator exist')
+
             print('testing now valid->', user_roles_list_data.role_name)
         else:
             print('testing now errors->', profile_form.errors)
