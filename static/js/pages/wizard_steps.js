@@ -218,6 +218,10 @@ $(function () {
                     instance.stop();
                     // console.log(response.data.message);
                     notify(response.data.message);
+                    var _status = response.data.status;
+                    if ((_status === 'invited' || _status === 'created') && response.data.body) {
+                        pushInvit(response.data.body);
+                    }
                 })
                 .catch(function (error) {
                     instance.stop();
@@ -268,18 +272,85 @@ $(function () {
     });
 
     function getInvites() {
+        console.log('getInvites');
         var url = 'http://' + severUrl + '/candidato/invites/';
         var invitor_email = $("input[name=campaign_email]").val();
         axios.get('/candidato/invites/', {
             params: {
-                invitator_email: invitor_email
+                invitator_email: invitor_email,
+                limit: 4
             }
         })
             .then(function (response) {
                 console.log(response);
+                renderInvites(response.data.results);
             })
             .catch(function (error) {
                 console.log(error);
             });
+    }
+
+    function renderInvites(invites) {
+        // console.log('invites', invites);
+        var htmlString = '';
+        for (var invite of invites) {
+            console.log(invite);
+            htmlString += changeVariable(invite.invited_name, invite.invited_email, invite.invite_status);
+        }
+        $( ".invites_body" ).html('');
+        $( ".invites_body" ).append(htmlString);
+    }
+
+    function changeVariable(name, email, status) {
+        var template = `
+        <tr role="row" class="odd">
+            <td class="sorting_1">${name}</td>
+            <td>${email}</td>
+            <td>Agência de Marketing</td>
+            <td>${getStatus(status)}</td>
+            <td class="text-center">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li>
+                            <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                            <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        `;
+
+        function getStatus(_status) {
+            var htmlStr = '';
+            switch (_status) {
+            case 'I':
+                htmlStr = `<span class="label label-default">INATIVO</span>`;
+                break;
+            case 'S':
+                htmlStr = `<span class="label label-danger">SUSPENSO</span>`;
+                break;
+            case 'C':
+                htmlStr = `<span class="label label-info">CONVIDADO</span>`;
+                break;
+            case 'A':
+                htmlStr = `<span class="label label-success">ATIVO</span>`;
+                break;
+            default:
+                break;
+            }
+            return htmlStr;
+        }
+        return template;
+    }
+
+    function pushInvit(invite) {
+        var oldStr = $( ".invites_body" ).html('');
+        var newStr = changeVariable(invite.invited_name, invite.invited_email, invite.invite_status) + oldStr;
+        $( ".invites_body" ).append(newStr);
     }
 });

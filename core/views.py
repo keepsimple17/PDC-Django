@@ -308,6 +308,7 @@ def add_team_member(request, format=None):
     else:
         # User not exist
         print('user not exist')
+        body = None
 
         if candidate_invite:
             invited_date = candidate_invite.updated_at
@@ -321,6 +322,7 @@ def add_team_member(request, format=None):
                 invite_status='I',  # INATIVO
                 updated_at=timezone.now(),
             )
+            body = InvitesSerializer(candidate_invite).data
 
         current_site = get_current_site(request)
         mail_subject = 'Aceite um convite no SCOPO (Sistema de Controle do POlítro)'
@@ -355,6 +357,7 @@ def add_team_member(request, format=None):
         return Response({
             'status': 'created',
             'message': 'System sent an invite email to user.',
+            'body': body,
         }, status=status.HTTP_201_CREATED)
 
     print(team_member_name)
