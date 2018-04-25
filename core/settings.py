@@ -34,8 +34,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+
+    # third party apps
+    'rest_framework',
     'social_django',
+
+    # scopo apps
+    'core',
     'dashboard',
     'candidato',
     'cep',
@@ -132,6 +137,25 @@ AUTHENTICATION_BACKENDS = (
 
     'django.contrib.auth.backends.ModelBackend',
 )
+
+# Django REST framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAdminUser'
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'core.custom_classes.CustomPagination',
+    'PAGE_SIZE': 20,
+}
 
 # session configuration for token expiration
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2   # 2 weeks in seconds

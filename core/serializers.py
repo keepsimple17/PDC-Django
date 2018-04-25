@@ -6,11 +6,12 @@ from django.contrib.auth import update_session_auth_hash
 # from .models import (Vod)
 
 
-# class VodSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Vod
-#         fields = ('id', 'division', 'created', 'title', 'media_type', 'duration', 'kinds',
-#                   'is_hit', 'hit_created', 'is_popular', 'popular_created', 'declaration',
-#                   'creator', 'vod_category', 'media_id', 'media_thumbnail', 'video_height',
-#                   'video_width', 'duration',)
-#         read_only_fields = ('created', )
+class AccountSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=False)
+    confirm_password = serializers.CharField(write_only=True, required=False)
+
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'username', 'is_superuser', 'is_staff', 'last_login',
+                  'date_joined', 'first_name', 'last_name', 'password', 'confirm_password')
+        read_only_fields = ('last_login', 'date_joined')

@@ -6,7 +6,9 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.utils import timezone
 import json
+import datetime
 # from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
@@ -14,7 +16,9 @@ from django.utils.encoding import force_bytes, force_text
 from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list)
 from dashboard.models import (Usuario, Estado, Municipio, Candidate, POLITICAL_PARTY_CHOICES,
                               GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
-from candidato.models import CANDIDATE_POSITION_CHOICES
+from dashboard.serializers import UsuarioSerializer
+from candidato.models import CANDIDATE_POSITION_CHOICES, Invites
+from candidato.serializers import InvitesSerializer
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
 from django.conf import settings
@@ -24,10 +28,13 @@ from smtplib import SMTPException
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from candidato.models import Candidate,POLITICAL_PARTY_CHOICES
+from candidato.models import Candidate, POLITICAL_PARTY_CHOICES
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaulttags import register
+from rest_framework.response import Response
+from rest_framework import generics, status
+from rest_framework.decorators import api_view
 
 
 def index(request):
@@ -173,7 +180,8 @@ def primeiro_setup(request):
     user_roles_list = get_user_roles_list()
     choice_states.insert(0, ('', "Preencha o estado."))
     choice_cities.insert(0, ('', "Encha a cidade."))
-    sever_url = request.build_absolute_uri('/')
+    # sever_url = request.build_absolute_uri('/')
+    sever_url = get_current_site(request)
 
     choice_states = tuple(choice_states)
     choice_cities = tuple(choice_cities)
@@ -197,12 +205,6 @@ def primeiro_setup(request):
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.usuario)
         candidate_form = CandidateForm(request.POST)
-        try:
-            candidator = request.user.candidate
-            if candidator:
-                candidate_form = CandidateForm(request.POST, instance=candidator)
-        except:
-            candidate_form = CandidateForm(request.POST)
 
         if profile_form.is_valid():
             user_roles_list_data = profile_form.cleaned_data.get('user_roles_list', None)
@@ -210,7 +212,16 @@ def primeiro_setup(request):
             profile_form.save()
             if role_name == 'Candidato':
                 print('case candidator')
+
                 if candidate_form.is_valid():
+                    try:
+                        candidator = request.user.candidate
+                        if candidator:
+                            candidate_form = CandidateForm(request.POST, instance=candidator)
+                            candidate_form.save()
+                    except:
+                        candidate_form = CandidateForm(request.POST)
+
                     candidator_data = candidate_form.save(commit=False)
                     print('testing-->', candidator_data.id)
                     if not candidator_data.id:
@@ -239,26 +250,126 @@ def primeiro_setup(request):
         'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
 
 
-def add_team_member(request):
+@api_view(['GET', 'POST', ])
+def add_team_member(request, format=None):
     try:
         data = json.loads(request.body.decode('utf-8'))
     except:
-        data = request.POST
+        # data = request.POST
+        data = request.data
+    # print(request.data)
     team_member_name = data.get('team_member_name', None)
     team_member_email = data.get('team_member_email', None)
     team_member_cel = data.get('team_member_cel', None)
     permission_list = data.get('permission_list', None)
+    invitor_email = data.get('invitor_email', None)
+
     user_profile = Usuario.objects.filter(user__username=team_member_name)
+    candidate_invite = Invites.objects.filter(invitator_email=invitor_email, invited_email=team_member_email).first()
+
     if len(user_profile) == 0:
         user_profile = Usuario.objects.filter(user__email=team_member_email)
         if len(user_profile) == 0:
             user_profile = Usuario.objects.filter(cellPhone=team_member_cel)
     if len(user_profile) > 0:
-        print('user exist', user_profile.values())
+        # User exist in system
+        print('user exist')
+        user_profile_data = UsuarioSerializer(user_profile[0]).data
+        print('user_profile_data', user_profile_data['user']['is_staff'])
+        is_active = user_profile_data['user']['is_staff']
+        if is_active:
+            # User is active
+            print('user active')
+            if candidate_invite:
+                return Response({
+                    'status': 'exist',
+                    'message': 'The User is already invited.',
+                    # 'body': json.dumps('')
+                }, status=status.HTTP_200_OK)
+            else:
+                candidate_invite = Invites(
+                    invitator_email=invitor_email,
+                    invited_email=team_member_email,
+                    invited_name=team_member_name,
+                    invited_cel=team_member_cel,
+                    invite_status='I',  # INATIVO
+                    updated_at=timezone.now(),
+                )
+                candidate_invite.save()
 
-    print(team_member_name, team_member_email, team_member_cel, permission_list[0])
+                return Response({
+                    'status': 'invited',
+                    'message': 'The User is invited successfully.',
+                    'body': InvitesSerializer(candidate_invite).data,
+                }, status=status.HTTP_201_CREATED)
+        else:
+            # User is not active
+            print('user not active')
+    else:
+        # User not exist
+        print('user not exist')
 
-    return HttpResponse('System received your request.')
+        if candidate_invite:
+            invited_date = candidate_invite.updated_at
+            candidate_invite.updated_at = timezone.now()
+        else:
+            candidate_invite = Invites(
+                invitator_email=invitor_email,
+                invited_email=team_member_email,
+                invited_name=team_member_name,
+                invited_cel=team_member_cel,
+                invite_status='I',  # INATIVO
+                updated_at=timezone.now(),
+            )
+
+        current_site = get_current_site(request)
+        mail_subject = 'Aceite um convite no SCOPO (Sistema de Controle do POlítro)'
+
+        message = render_to_string('mail/invite_user.html', {
+            'invitor_email': invitor_email,
+            'domain': current_site.domain,
+        })
+
+        to_email = team_member_email
+        email = EmailMessage(
+            mail_subject, message, to=[to_email]
+        )
+        email.content_subtype = "html"
+        print('to_email', to_email)
+        try:
+            email.send()
+            candidate_invite.save()
+        except SMTPException as e:
+            print('There was an SMTPException: ', e)
+            return Response({
+                'status': 'NotFound',
+                'message': 'Email address not exist.' + str(e),
+            }, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            print('There was an error sending an email: ', e)
+            return Response({
+                'status': 'NotFound',
+                'message': 'Email address not exist.' + str(e),
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({
+            'status': 'created',
+            'message': 'System sent an invite email to user.',
+        }, status=status.HTTP_201_CREATED)
+
+    print(team_member_name)
+    print(team_member_email)
+    print(team_member_cel)
+    print(permission_list[0])
+
+    return Response({
+        'status': 'Success',
+        'message': 'System received your request.',
+    }, status=status.HTTP_200_OK)
+
+
+def account_accept_invite(request):
+    pass
 
 
 @csrf_protect
@@ -479,5 +590,6 @@ def update_user_configuration(request):
 def get_item(dictionary, key):
     return dictionary.get(key)
 
+
 def teste404(request):
-    return render(request,"pag404.html")
+    return render(request, "pag404.html")

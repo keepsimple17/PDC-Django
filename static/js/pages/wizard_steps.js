@@ -14,7 +14,7 @@ $(function () {
     var form = $(".steps-validation").show();
     var severUrl = $("meta[name=sever_url]").attr("content");
     // var csrfToken = $("input[name=csrfmiddlewaretoken]").val();
-    // console.log(severUrl);
+    console.log(severUrl);
 
 
     // Initialize wizard
@@ -26,7 +26,11 @@ $(function () {
         autoFocus: true,
 
         onStepChanging: function (event, currentIndex, newIndex) {
+            console.log('step chaning', currentIndex, newIndex);
             // Allways allow previous action even if the current form is not valid!
+            if (currentIndex === 1 && newIndex === 2) {
+                getInvites();
+            }
             if (currentIndex > newIndex) {
                 return true;
             }
@@ -60,7 +64,7 @@ $(function () {
         },
 
         onFinishing: function (event, currentIndex) {
-            console.log(event, currentIndex);
+            // console.log(event, currentIndex);
             form.validate().settings.ignore = ":disabled";
             return form.valid();
         },
@@ -141,10 +145,10 @@ $(function () {
         singleDatePicker: true
     });
 
-    function notify() {
+    function notify(message) {
         noty({
             width: 200,
-            text: 'System received your request.',
+            text: message,
             type: 'success',
             dismissQueue: true,
             timeout: 4000,
@@ -166,6 +170,7 @@ $(function () {
             var team_member_name = $("input[name=team_member_name]").val();
             var team_member_email = $("input[name=team_member_email]").val();
             var team_member_cel = $("input[name=team_member_cel]").val();
+            var invitor_email = $("input[name=campaign_email]").val();
             console.log('team_member_name', team_member_name);
             console.log('team_member_email', team_member_email);
             console.log('team_member_cel', team_member_cel);
@@ -175,10 +180,6 @@ $(function () {
                 return;
             }
 
-            setTimeout(function () {
-                instance.stop();
-                notify();
-            }, 1500);
             var trs = $('#user_permission_table > tr');
             // console.log('cliecked', trs);
             var permissionArray = [];
@@ -205,17 +206,21 @@ $(function () {
                 return val;
             }
             console.log(permissionArray);
-            var url = severUrl + 'account/add_team_member';
+            var url = 'http://' + severUrl + '/account/add_team_member';
             axios.post(url, {
                 team_member_name: team_member_name,
                 team_member_email: team_member_email,
                 team_member_cel: team_member_cel,
-                permission_list: permissionArray
+                permission_list: permissionArray,
+                invitor_email: invitor_email
             })
                 .then(function (response) {
-                    console.log(response);
+                    instance.stop();
+                    // console.log(response.data.message);
+                    notify(response.data.message);
                 })
                 .catch(function (error) {
+                    instance.stop();
                     console.log(error);
                 });
             // var progress = 0;
@@ -261,4 +266,20 @@ $(function () {
             }
         }
     });
+
+    function getInvites() {
+        var url = 'http://' + severUrl + '/candidato/invites/';
+        var invitor_email = $("input[name=campaign_email]").val();
+        axios.get('/candidato/invites/', {
+            params: {
+                invitator_email: invitor_email
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 });
