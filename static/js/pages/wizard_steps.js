@@ -12,6 +12,9 @@
 $(function () {
     // Show form
     var form = $(".steps-validation").show();
+    var severUrl = $("meta[name=sever_url]").attr("content");
+    // var csrfToken = $("input[name=csrfmiddlewaretoken]").val();
+    console.log(severUrl);
 
 
     // Initialize wizard
@@ -23,7 +26,11 @@ $(function () {
         autoFocus: true,
 
         onStepChanging: function (event, currentIndex, newIndex) {
+            console.log('step chaning', currentIndex, newIndex);
             // Allways allow previous action even if the current form is not valid!
+            if (currentIndex === 1 && newIndex === 2) {
+                getInvites();
+            }
             if (currentIndex > newIndex) {
                 return true;
             }
@@ -57,7 +64,7 @@ $(function () {
         },
 
         onFinishing: function (event, currentIndex) {
-            console.log(event, currentIndex);
+            // console.log(event, currentIndex);
             form.validate().settings.ignore = ":disabled";
             return form.valid();
         },
@@ -138,10 +145,10 @@ $(function () {
         singleDatePicker: true
     });
 
-    function notify() {
+    function notify(message) {
         noty({
             width: 200,
-            text: 'System received your request.',
+            text: message,
             type: 'success',
             dismissQueue: true,
             timeout: 4000,
@@ -160,19 +167,19 @@ $(function () {
             $('#team_member_role').addClass('required');
             form.validate().settings.ignore = ":disabled,:hidden";
 
-            // $('#team_member_name').removeClass('required');
-            // $('#team_member_email').removeClass('required');
-            // $('#team_member_email').removeClass('team_member_role');
+            var team_member_name = $("input[name=team_member_name]").val();
+            var team_member_email = $("input[name=team_member_email]").val();
+            var team_member_cel = $("input[name=team_member_cel]").val();
+            var invitor_email = $("input[name=campaign_email]").val();
+            console.log('team_member_name', team_member_name);
+            console.log('team_member_email', team_member_email);
+            console.log('team_member_cel', team_member_cel);
 
             if (!form.valid()) {
                 instance.stop();
                 return;
             }
 
-            setTimeout(function () {
-                instance.stop();
-                notify();
-            }, 1500);
             var trs = $('#user_permission_table > tr');
             // console.log('cliecked', trs);
             var permissionArray = [];
@@ -199,6 +206,27 @@ $(function () {
                 return val;
             }
             console.log(permissionArray);
+            var url = 'http://' + severUrl + '/account/add_team_member';
+            axios.post(url, {
+                team_member_name: team_member_name,
+                team_member_email: team_member_email,
+                team_member_cel: team_member_cel,
+                permission_list: permissionArray,
+                invitor_email: invitor_email
+            })
+                .then(function (response) {
+                    instance.stop();
+                    // console.log(response.data.message);
+                    notify(response.data.message);
+                    var _status = response.data.status;
+                    if ((_status === 'invited' || _status === 'created') && response.data.body) {
+                        pushInvit(response.data.body);
+                    }
+                })
+                .catch(function (error) {
+                    instance.stop();
+                    console.log(error);
+                });
             // var progress = 0;
             // var interval = setInterval(function () {
             //     progress = Math.min(progress + Math.random() * 0.1, 1);
@@ -242,4 +270,87 @@ $(function () {
             }
         }
     });
+
+    function getInvites() {
+        console.log('getInvites');
+        var url = 'http://' + severUrl + '/candidato/invites/';
+        var invitor_email = $("input[name=campaign_email]").val();
+        axios.get('/candidato/invites/', {
+            params: {
+                invitator_email: invitor_email,
+                limit: 4
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+                renderInvites(response.data.results);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    function renderInvites(invites) {
+        // console.log('invites', invites);
+        var htmlString = '';
+        for (var invite of invites) {
+            console.log(invite);
+            htmlString += changeVariable(invite.invited_name, invite.invited_email, invite.invite_status);
+        }
+        $( ".invites_body" ).html('');
+        $( ".invites_body" ).append(htmlString);
+    }
+
+    function changeVariable(name, email, status) {
+        var template = `
+        <tr role="row" class="odd">
+            <td class="sorting_1">${name}</td>
+            <td>${email}</td>
+            <td>Agência de Marketing</td>
+            <td>${getStatus(status)}</td>
+            <td class="text-center">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li>
+                            <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                            <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        `;
+
+        function getStatus(_status) {
+            var htmlStr = '';
+            switch (_status) {
+            case 'I':
+                htmlStr = `<span class="label label-default">INATIVO</span>`;
+                break;
+            case 'S':
+                htmlStr = `<span class="label label-danger">SUSPENSO</span>`;
+                break;
+            case 'C':
+                htmlStr = `<span class="label label-info">CONVIDADO</span>`;
+                break;
+            case 'A':
+                htmlStr = `<span class="label label-success">ATIVO</span>`;
+                break;
+            default:
+                break;
+            }
+            return htmlStr;
+        }
+        return template;
+    }
+
+    function pushInvit(invite) {
+        var oldStr = $( ".invites_body" ).html('');
+        var newStr = changeVariable(invite.invited_name, invite.invited_email, invite.invite_status) + oldStr;
+        $( ".invites_body" ).append(newStr);
+    }
 });

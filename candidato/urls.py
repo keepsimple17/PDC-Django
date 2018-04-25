@@ -1,7 +1,13 @@
 from django.conf.urls import include, url
+from rest_framework.routers import DefaultRouter
 from candidato import views as CandidateViews
 
+router = DefaultRouter()
+
+router.register(r'invites', CandidateViews.InvitesViewSet)
+
 urlpatterns = [
+    url(r'', include(router.urls), name='api'),
     url(r'^$', CandidateViews.home, name="home"),
     url(r'^usuario/$', CandidateViews.usuario, name='usuario'),
     url(r'^primeiroLogin/$', CandidateViews.usuarioPrimeiraConfig, name='PrimeiroLoginUsuario'),

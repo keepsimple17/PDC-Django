@@ -10,8 +10,6 @@ from django_extensions.db.models import (TitleSlugDescriptionModel, TimeStampedM
 
 event_hook_depth = 0
 
-import os
-
 POLITICAL_PARTY_CHOICES = (
     ('pmdb', 'PMDB'),
     ('pt', 'PT'),
@@ -161,30 +159,31 @@ ESTADO_CIVIL_CHOICES = (
 )
 
 
+# status of the Candidate Aproval to the dashboard
+USER_STATUS_CHOICES = (
+    ('aproved', 'Aprovado'),
+    ('denied ', 'Não Aprovado'),
+    ('pending', 'Aguardando Aprovação'),
+)
+
+# Kind of activity or function of the user to the candidate or campaign
+USER_ROLES_CHOICES = (
+    ('subscriber', 'Assinante'),
+    ('agency', 'Agência de Marketing'),
+    ('consultor', 'Consultor de Campanha'),
+    ('external_contractor', 'Contratado Externo'),
+    ('internal_employee', 'Empregado Interno'),
+    ('outsourced', 'Terceirizado'),
+    ('voluntary', 'Voluntário'),
+)
+
+
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
 class Usuario(models.Model):
-    # status of the Candidate Aproval to the dashboard
-    USER_STATUS_CHOICES = (
-        ('aproved', 'Aprovado'),
-        ('denied ', 'Não Aprovado'),
-        ('pending', 'Aguardando Aprovação'),
-    )
-
-    # Kind of activity or function of the user to the candidate or campaign
-    USER_ROLES_CHOICES = (
-        ('subscriber', 'Assinante'),
-        ('agency', 'Agência de Marketing'),
-        ('consultor', 'Consultor de Campanha'),
-        ('external_contractor', 'Contratado Externo'),
-        ('internal_employee', 'Empregado Interno'),
-        ('outsourced', 'Terceirizado'),
-        ('voluntary', 'Voluntário'),
-    )
-
     user = models.OneToOneField(User, null=False, blank=False)
     gender = models.CharField('Gênero', max_length=1, choices=GENDER_CHOICES['physical'] + GENDER_CHOICES['legal'],
                               null=True)
-    marital_status = models.CharField("Estado Civil", max_length=1, choices=ESTADO_CIVIL_CHOICES,null=True)
+    marital_status = models.CharField("Estado Civil", max_length=1, choices=ESTADO_CIVIL_CHOICES, null=True)
     cpf = models.CharField('CPF', max_length=11, unique=True, null=True, blank=True)    # Document ID in Brazil
     birthday_date = models.TextField('Data de Nascimento', null=True, blank=True)
     # todo to implement autofill address - https://github.com/staticdev/django-cep
@@ -255,41 +254,3 @@ def delete_dashboard_usuario(sender, instance, **kwargs):
             print('exception occurred!', e)
         event_hook_depth = 0
     return
-    # usuario_user = User.objects.get(username=instance)
-    # print('user', usuario_user)
-    # print('user email', usuario_user.email)
-    # # if user:
-    # #     user.delete()
-    # try:
-    #     usuario_user.delete()
-    #     print("The user is deleted")
-    #
-    # except User.DoesNotExist:
-    #     print("User doesnot exist")
-    #
-    # except Exception as e:
-    #     print('exception', e)
-
-
-"""
-class Profile(models.Model):
-    # This will represent an user account profile entity
-    user = models.OneToOneField(User, null=False, blank=False)
-    location = models.CharField(max_length=50, blank=True, null=True)
-    political_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
-    phone = models.CharField(blank=True, null=True, max_length=15,
-                             validators=[RegexValidator(regex='^\+?1?\d{9,15}$',
-                                                        message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",
-                                                        code='Invalid number')])
-    created_date = models.DateField(auto_now=True, null=True, blank=True)
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-"""

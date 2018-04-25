@@ -89,6 +89,13 @@ CANDIDATE_POSITION_CHOICES = (
     ('ve', 'Vereador'),
 )
 
+CANDIDATE_INVITE_CHOICES = (
+    ('S', 'SUSPENSO'),
+    ('I', 'INATIVO'),
+    ('C', 'CONVIDADO'),
+    ('A', 'ATIVO'),
+)
+
 
 class Candidate(models.Model):
     user = models.OneToOneField(User, null=True, blank=False)
@@ -195,7 +202,8 @@ class Committees(models.Model):
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
     cellPhone = models.CharField(blank=True, null=True, max_length=15,
                                  validators=[RegexValidator(regex='^\+?1?\d{9,15}$',
-                                                            message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",
+                                                            message="Phone number must be entered in the format: "
+                                                                    "'+999999999'. Up to 15 digits allowed.",
                                                             code='Invalid number')])
     landlinePhone = models.CharField("Telefone Fixo", max_length=11, blank=True, null=True)
 
@@ -250,5 +258,7 @@ class Invites(models.Model):
     invitator_email = models.CharField(max_length=50)
     invited_name = models.CharField(max_length=60, null=True, blank=True)
     invited_email = models.CharField(max_length=60)
-    invited_cel = models.CharField(max_length=20,null=True,blank=True)
+    invited_cel = models.CharField(max_length=20, null=True, blank=True)
     candidate = models.ManyToManyField(Candidate)
+    invite_status = models.CharField(max_length=10, choices=CANDIDATE_INVITE_CHOICES, blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
