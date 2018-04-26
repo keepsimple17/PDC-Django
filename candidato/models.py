@@ -262,3 +262,10 @@ class Invites(models.Model):
     candidate = models.ManyToManyField(Candidate)
     invite_status = models.CharField(max_length=10, choices=CANDIDATE_INVITE_CHOICES, blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
+
+
+class CandidateRequests(models.Model):
+    user_email = models.CharField(max_length=50)
+    candidator_email = models.CharField(max_length=60, null=True, blank=True)
+    request_status = models.CharField(max_length=10, blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
