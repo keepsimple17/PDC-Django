@@ -17,7 +17,7 @@ from core.data_objects import (get_cities_by_state, get_states, get_cities, get_
 from dashboard.models import (Usuario, Estado, Municipio, Candidate, POLITICAL_PARTY_CHOICES,
                               GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
 from dashboard.serializers import UsuarioSerializer
-from candidato.models import CANDIDATE_POSITION_CHOICES, Invites
+from candidato.models import CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests
 from candidato.serializers import InvitesSerializer
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
@@ -212,6 +212,7 @@ def primeiro_setup(request):
             role_name = user_roles_list_data.role_name
             profile_form.save()
             if role_name == 'Candidato':
+                # start user is candidate
                 print('case candidator')
 
                 if candidate_form.is_valid():
@@ -230,15 +231,76 @@ def primeiro_setup(request):
                         candidator_data.save()
                 else:
                     print('candidate_form is not valid')
+                # end user is candidate
             else:
-                messages.warning(request, _('We are supporting only a Candidato. '
-                                            'Please choose Candidato in Função na Campanha.'))
+                # messages.warning(request, _('We are supporting only a Candidato. '
+                #                             'Please choose Candidato in Função na Campanha.'))
                 if candidate_form.is_valid():
-                    campaign_email = candidate_form.cleaned_data['candidate_form']
+                    campaign_email = candidate_form.cleaned_data['campaign_email']
+                    candidate_request = CandidateRequests(
+                        user_email=request.user.email,
+                        candidator_email=campaign_email,
+                        request_status='REQUESTED',
+                        updated_at=timezone.now(),
+                    )
+
                     candidator = Candidate.objects.filter(campaign_email=campaign_email).first()
                     if candidator:
-                        # candidator exist
+                        # start candidator exist
                         print('candidator exist')
+                        candidate_request.request_type = 'REQUEST'
+                        current_site = get_current_site(request)
+                        mail_subject = 'Aprovar solicitação do usuário.'
+
+                        message = render_to_string('mail/candidator_aprove_user.html', {
+                            'user_email': request.user.email,
+                            'domain': current_site.domain,
+                        })
+
+                        to_email = campaign_email
+                        email = EmailMessage(
+                            mail_subject, message, to=[to_email]
+                        )
+                        email.content_subtype = "html"
+                        try:
+                            email.send()
+                            candidate_request.save()
+                        except SMTPException as e:
+                            print('There was an SMTPException: ', e)
+                            messages.warning(request, _('There was an SMTPException: ' + str(e)))
+                        except Exception as e:
+                            print('There was an error sending an email: ', e)
+                            messages.warning(request, _('There was an SMTPException: ' + str(e)))
+                        # end candidator exist
+                    else:
+                        candidate_request.request_type = 'INVITE'
+                        # start candidator not exist
+                        print('candidator not exist')
+                        current_site = get_current_site(request)
+                        mail_subject = 'Convidar Candidato.'
+
+                        message = render_to_string('mail/user_invite_candidator.html', {
+                            'user_email': request.user.email,
+                            'domain': current_site.domain,
+                        })
+
+                        to_email = campaign_email
+                        email = EmailMessage(
+                            mail_subject, message, to=[to_email]
+                        )
+                        email.content_subtype = "html"
+                        try:
+                            email.send()
+                            candidate_request.save()
+                        except SMTPException as e:
+                            print('There was an SMTPException: ', e)
+                            messages.warning(request, _('There was an SMTPException: ' + str(e)))
+                        except Exception as e:
+                            print('There was an error sending an email: ', e)
+                            messages.warning(request, _('There was an SMTPException: ' + str(e)))
+                        # end candidator not exist
+                else:
+                    print('candidate form is not valid')
 
             print('testing now valid->', user_roles_list_data.role_name)
         else:
@@ -281,7 +343,7 @@ def add_team_member(request, format=None):
         if len(user_profile) == 0:
             user_profile = Usuario.objects.filter(cellPhone=team_member_cel)
     if len(user_profile) > 0:
-        # User exist in system
+        # start User exist in system
         print('user exist')
         user_profile_data = UsuarioSerializer(user_profile[0]).data
         print('user_profile_data', user_profile_data['user']['is_staff'])
@@ -311,11 +373,13 @@ def add_team_member(request, format=None):
                     'message': 'The User is invited successfully.',
                     'body': InvitesSerializer(candidate_invite).data,
                 }, status=status.HTTP_201_CREATED)
+            # start User exist in system
         else:
-            # User is not active
+            # start User is not active
             print('user not active')
+            # end User is not active
     else:
-        # User not exist
+        # start User not exist
         print('user not exist')
         body = None
 
@@ -368,6 +432,7 @@ def add_team_member(request, format=None):
             'message': 'System sent an invite email to user.',
             'body': body,
         }, status=status.HTTP_201_CREATED)
+        # end User not exist
 
     print(team_member_name)
     print(team_member_email)
@@ -381,6 +446,14 @@ def add_team_member(request, format=None):
 
 
 def account_accept_invite(request):
+    pass
+
+
+def account_candidator_aprove_user(request):
+    pass
+
+
+def account_accept_candidator_invite(request):
     pass
 
 

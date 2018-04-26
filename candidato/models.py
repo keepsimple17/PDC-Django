@@ -254,11 +254,19 @@ class UserRoles_list(models.Model):
 # It stores the Invitator ID and email, the name and email of the Invited
 # and the candidate id for which he was nominated.
 class Invites(models.Model):
-    # invitator_id = models.IntegerField
     invitator_email = models.CharField(max_length=50)
     invited_name = models.CharField(max_length=60, null=True, blank=True)
     invited_email = models.CharField(max_length=60)
     invited_cel = models.CharField(max_length=20, null=True, blank=True)
     candidate = models.ManyToManyField(Candidate)
     invite_status = models.CharField(max_length=10, choices=CANDIDATE_INVITE_CHOICES, blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+
+class CandidateRequests(models.Model):
+    user_email = models.CharField(max_length=50)
+    candidator_email = models.CharField(max_length=60, null=True, blank=True)
+    request_status = models.CharField(max_length=10, blank=True, null=True)
+    # REQUEST or INVITE
+    request_type = models.CharField(max_length=10, blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
