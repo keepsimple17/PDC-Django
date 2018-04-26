@@ -241,12 +241,14 @@ def primeiro_setup(request):
                         user_email=request.user.email,
                         candidator_email=campaign_email,
                         request_status='REQUESTED',
+                        updated_at=timezone.now(),
                     )
 
                     candidator = Candidate.objects.filter(campaign_email=campaign_email).first()
                     if candidator:
                         # start candidator exist
                         print('candidator exist')
+                        candidate_request.request_type = 'REQUEST'
                         current_site = get_current_site(request)
                         mail_subject = 'Aprovar solicitação do usuário.'
 
@@ -262,6 +264,7 @@ def primeiro_setup(request):
                         email.content_subtype = "html"
                         try:
                             email.send()
+                            candidate_request.save()
                         except SMTPException as e:
                             print('There was an SMTPException: ', e)
                             messages.warning(request, _('There was an SMTPException: ' + str(e)))
@@ -270,9 +273,34 @@ def primeiro_setup(request):
                             messages.warning(request, _('There was an SMTPException: ' + str(e)))
                         # end candidator exist
                     else:
+                        candidate_request.request_type = 'INVITE'
                         # start candidator not exist
                         print('candidator not exist')
+                        current_site = get_current_site(request)
+                        mail_subject = 'Convidar Candidato.'
+
+                        message = render_to_string('mail/user_invite_candidator.html', {
+                            'user_email': request.user.email,
+                            'domain': current_site.domain,
+                        })
+
+                        to_email = campaign_email
+                        email = EmailMessage(
+                            mail_subject, message, to=[to_email]
+                        )
+                        email.content_subtype = "html"
+                        try:
+                            email.send()
+                            candidate_request.save()
+                        except SMTPException as e:
+                            print('There was an SMTPException: ', e)
+                            messages.warning(request, _('There was an SMTPException: ' + str(e)))
+                        except Exception as e:
+                            print('There was an error sending an email: ', e)
+                            messages.warning(request, _('There was an SMTPException: ' + str(e)))
                         # end candidator not exist
+                else:
+                    print('candidate form is not valid')
 
             print('testing now valid->', user_roles_list_data.role_name)
         else:
@@ -422,6 +450,10 @@ def account_accept_invite(request):
 
 
 def account_candidator_aprove_user(request):
+    pass
+
+
+def account_accept_candidator_invite(request):
     pass
 
 
