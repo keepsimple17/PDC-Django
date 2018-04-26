@@ -130,8 +130,9 @@ class ProfileForm(forms.ModelForm):
         model = Usuario
 
         # fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
-        fields = ('cellPhone', 'estado', 'cidade', 'address', 'company', 'cep', 'gender', 'marital_status',
-                  'cpf', 'cellPhone', 'landlinePhone', 'user_political_party', 'user_roles_list',)
+        fields = ('estado', 'cidade', 'address', 'company', 'gender', 'marital_status',
+                  'cpf', 'cellPhone', 'landlinePhone', 'user_political_party', 'user_roles_list', 'birthday_date',
+                  'bairro', 'cep')
         widgets = {
             # 'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
             # 'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),
