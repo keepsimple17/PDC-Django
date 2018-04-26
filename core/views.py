@@ -177,15 +177,14 @@ def firstsetup(request):
 @csrf_protect
 def primeiro_setup(request):
     choice_states = get_states()
-    choice_cities = get_cities()
+    user_cities = get_cities_by_state(request.user.usuario.estado)
+    candidate_cities = ()
     user_roles_list = get_user_roles_list()
     choice_states.insert(0, ('', "Preencha o estado."))
-    choice_cities.insert(0, ('', "Encha a cidade."))
     # sever_url = request.build_absolute_uri('/')
     sever_url = get_current_site(request)
 
     choice_states = tuple(choice_states)
-    choice_cities = tuple(choice_cities)
 
     user_form = UserForm(instance=request.user)
     profile_form = ProfileForm(instance=request.user.usuario)
@@ -195,6 +194,7 @@ def primeiro_setup(request):
         candidator = request.user.candidate
         if candidator:
             candidate_form = CandidateForm(instance=candidator)
+            candidate_cities = get_cities_by_state(candidator.candidate_state)
     except:
         candidate_form = CandidateForm()
 
@@ -249,7 +249,8 @@ def primeiro_setup(request):
         'profile_form': profile_form,
         'candidate_form': candidate_form,
         'sever_url': sever_url,
-        'cities': choice_cities,
+        'user_cities': user_cities,
+        'candidate_cities': candidate_cities,
         'states': choice_states,
         'user_roles_list': user_roles_list,
         'GENDER_CHOICES': GENDER_CHOICES,

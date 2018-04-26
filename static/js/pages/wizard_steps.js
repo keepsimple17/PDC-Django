@@ -353,4 +353,26 @@ $(function () {
         var newStr = changeVariable(invite.invited_name, invite.invited_email, invite.invite_status) + oldStr;
         $( ".invites_body" ).append(newStr);
     }
+
+    // update candidate cicies
+    $('select#candidate_state').change(function () {
+        updateCandidateCities(this.value, function () {
+            console.log('updating cities');
+        });
+    });
+
+    function updateCandidateCities(state, next) {
+        var url = '/updateCities';
+        // initialize an AJAX request
+        $.ajax({
+            url: url,
+            data: {
+                stateId: state  // add the state id to the GET parameters
+            },
+            success: function (data) {
+                $("#candidate_city").html(data);
+                next();
+            // replace the contents of the city input with the data that came from the server
+            }});
+    }
 });

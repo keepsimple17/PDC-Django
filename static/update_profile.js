@@ -1,8 +1,4 @@
 $(function () {
-    function append_cities (data) {
-        $("#id_cidade").html(data);
-    }
-
     $(document).ready(function () {
         $(document).on("change", ".zip-field", function () {
             if ($(".zip-field").val() !== "") {
