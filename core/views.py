@@ -445,16 +445,58 @@ def add_team_member(request, format=None):
     }, status=status.HTTP_200_OK)
 
 
+# need to tweak by tulga, please don't change this.
 def account_accept_invite(request):
-    pass
+    user_id = request.GET["user_id"]
+    user = User.objects.get(id=user_id)
+    mail_subject = 'you are authorized to dashboard'
+    message = render_to_string('authorization.html', {
+        'user': user.first_name + " " + user.last_name})
+    to_email = user.email
+    email = EmailMessage(
+        mail_subject, message, to=[to_email]
+    )
+    email.content_subtype = "html"
+    user.is_staff = 1
+    user.save()
+    email.send()
+    return HttpResponse("accepted the invite!")
 
 
+# need to tweak by tulga
 def account_candidator_aprove_user(request):
-    pass
+    user_id = request.GET["user_id"]
+    user = User.objects.get(id=user_id)
+    mail_subject = 'you are authorized to dashboard'
+    message = render_to_string('authorization.html', {
+        'user': user.first_name + " " + user.last_name})
+    to_email = user.email
+    email = EmailMessage(
+        mail_subject, message, to=[to_email]
+    )
+    email.content_subtype = "html"
+    user.is_staff = 1
+    user.save()
+    email.send()
+    return HttpResponse("approved the user request")
 
 
+# need to tweak by tulga
 def account_accept_candidator_invite(request):
-    pass
+    user_id = request.GET["user_id"]
+    user = User.objects.get(id=user_id)
+    mail_subject = 'you are authorized to dashboard'
+    message = render_to_string('authorization.html', {
+        'user': user.first_name + " " + user.last_name})
+    to_email = user.email
+    email = EmailMessage(
+        mail_subject, message, to=[to_email]
+    )
+    email.content_subtype = "html"
+    user.is_staff = 1
+    user.save()
+    email.send()
+    return HttpResponse("accepted the candidator invite")
 
 
 @csrf_protect
