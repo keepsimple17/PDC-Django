@@ -69,17 +69,17 @@ function get_fileicon(filename) {
     var ext_arrary = {
         "pdf": "icon-file-pdf text-pink",
         "zip": "icon-file-zip text-slate",
-        "txt":"icon-file-text2 text-slate",
-        "xml":"icon-file-xml text-blue",
-        "doc":"icon-file-word text-blue",
-        "docx":"icon-file-word text-blue",
-        "xls":"icon-file-excel text-green",
-        "xlsx":"icon-file-excel text-green",
-        "ppt":"icon-file-presentation text-pink",
-        "pptx":"icon-file-presentation text-pink",
-        "jpg":"icon-file-picture text-blue",
-        "png":"icon-file-picture text-blue",
-        "gif":"icon-file-picture text-blue"
+        "txt": "icon-file-text2 text-slate",
+        "xml": "icon-file-xml text-blue",
+        "doc": "icon-file-word text-blue",
+        "docx": "icon-file-word text-blue",
+        "xls": "icon-file-excel text-green",
+        "xlsx": "icon-file-excel text-green",
+        "ppt": "icon-file-presentation text-pink",
+        "pptx": "icon-file-presentation text-pink",
+        "jpg": "icon-file-picture text-blue",
+        "png": "icon-file-picture text-blue",
+        "gif": "icon-file-picture text-blue"
     };
     // console.log(ext_arrary[ext]);
     if (ext_arrary[ext]) {
