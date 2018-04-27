@@ -207,6 +207,8 @@ def primeiro_setup(request):
         profile_form = ProfileForm(request.POST, instance=request.user.usuario)
         candidate_form = CandidateForm(request.POST)
 
+        user_email = request.user.email
+
         if profile_form.is_valid():
             user_roles_list_data = profile_form.cleaned_data.get('user_roles_list', None)
             role_name = user_roles_list_data.role_name
@@ -238,7 +240,7 @@ def primeiro_setup(request):
                 if candidate_form.is_valid():
                     campaign_email = candidate_form.cleaned_data['campaign_email']
                     candidate_request = CandidateRequests(
-                        user_email=request.user.email,
+                        user_email=user_email,
                         candidator_email=campaign_email,
                         request_status='REQUESTED',
                         updated_at=timezone.now(),
@@ -253,7 +255,7 @@ def primeiro_setup(request):
                         mail_subject = 'Aprovar solicitação do usuário.'
 
                         message = render_to_string('mail/candidator_aprove_user.html', {
-                            'user_email': request.user.email,
+                            'user_email': user_email,
                             'domain': current_site.domain,
                         })
 
@@ -264,7 +266,15 @@ def primeiro_setup(request):
                         email.content_subtype = "html"
                         try:
                             email.send()
-                            candidate_request.save()
+                            exist_candidator_request = CandidateRequests.objects.filter(candidator_email=campaign_email,
+                                                                                        user_email=user_email,
+                                                                                        request_type='REQUEST').first()
+                            if exist_candidator_request:
+                                exist_candidator_request.updated_at = timezone.now()
+                                exist_candidator_request.save()
+                            else:
+                                candidate_request.save()
+
                         except SMTPException as e:
                             print('There was an SMTPException: ', e)
                             messages.warning(request, _('There was an SMTPException: ' + str(e)))
@@ -280,7 +290,7 @@ def primeiro_setup(request):
                         mail_subject = 'Convidar Candidato.'
 
                         message = render_to_string('mail/user_invite_candidator.html', {
-                            'user_email': request.user.email,
+                            'user_email': user_email,
                             'domain': current_site.domain,
                         })
 
@@ -291,7 +301,14 @@ def primeiro_setup(request):
                         email.content_subtype = "html"
                         try:
                             email.send()
-                            candidate_request.save()
+                            exist_candidator_request = CandidateRequests.objects.filter(candidator_email=campaign_email,
+                                                                                        user_email=user_email,
+                                                                                        request_type='INVITE').first()
+                            if exist_candidator_request:
+                                exist_candidator_request.updated_at = timezone.now()
+                                exist_candidator_request.save()
+                            else:
+                                candidate_request.save()
                         except SMTPException as e:
                             print('There was an SMTPException: ', e)
                             messages.warning(request, _('There was an SMTPException: ' + str(e)))
