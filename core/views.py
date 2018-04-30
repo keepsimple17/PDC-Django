@@ -463,6 +463,7 @@ def add_team_member(request, format=None):
 
 
 # need to tweak by tulga, please don't change this.
+# team member invite
 def account_accept_invite(request):
     user_id = request.GET["user_id"]
     user = User.objects.get(id=user_id)
@@ -481,8 +482,11 @@ def account_accept_invite(request):
 
 
 # need to tweak by tulga
-def account_candidator_aprove_user(request):
+def account_candidator_aprove_user(request, uidb64=None):
     user_id = request.GET["user_id"]
+    # urlsafe_base64_encode(force_bytes(user.pk))
+    uid = force_text(urlsafe_base64_decode(uidb64))
+    candidate = Candidate.objects.get(pk=uid)
     user = User.objects.get(id=user_id)
     mail_subject = 'you are authorized to dashboard'
     message = render_to_string('authorization.html', {
