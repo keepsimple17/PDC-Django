@@ -253,9 +253,12 @@ def primeiro_setup(request):
                         candidate_request.request_type = 'REQUEST'
                         current_site = get_current_site(request)
                         mail_subject = 'Aprovar solicitação do usuário.'
+                        # need to address by tulga
+                        uidb64 = '123'
 
                         message = render_to_string('mail/candidator_aprove_user.html', {
                             'user_email': user_email,
+                            'uid': uidb64,
                             'domain': current_site.domain,
                         })
 
@@ -288,10 +291,13 @@ def primeiro_setup(request):
                         print('candidator not exist')
                         current_site = get_current_site(request)
                         mail_subject = 'Convidar Candidato.'
+                        # need to address by tulga
+                        uidb64 = '123'
 
                         message = render_to_string('mail/user_invite_candidator.html', {
                             'user_email': user_email,
                             'domain': current_site.domain,
+                            'uid': uidb64,
                         })
 
                         to_email = campaign_email
@@ -399,6 +405,7 @@ def add_team_member(request, format=None):
         # start User not exist
         print('user not exist')
         body = None
+        invited_date = None
 
         if candidate_invite:
             invited_date = candidate_invite.updated_at
@@ -414,11 +421,16 @@ def add_team_member(request, format=None):
             )
             body = InvitesSerializer(candidate_invite).data
 
+        candidate_invite.save()
+        print('candidate_invite pk ---> ', candidate_invite.pk)
+        uidb64 = urlsafe_base64_encode(force_bytes(candidate_invite.pk))
+
         current_site = get_current_site(request)
         mail_subject = 'Aceite um convite no SCOPO (Sistema de Controle do POlítro)'
 
         message = render_to_string('mail/invite_user.html', {
             'invitor_email': invitor_email,
+            'uid': uidb64,
             'domain': current_site.domain,
         })
 
@@ -427,18 +439,22 @@ def add_team_member(request, format=None):
             mail_subject, message, to=[to_email]
         )
         email.content_subtype = "html"
-        print('to_email', to_email)
+
         try:
             email.send()
-            candidate_invite.save()
+            print('to_email', to_email)
         except SMTPException as e:
             print('There was an SMTPException: ', e)
+            if invited_date is None:
+                candidate_invite.delete()
             return Response({
                 'status': 'NotFound',
                 'message': 'Email address not exist.' + str(e),
             }, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             print('There was an error sending an email: ', e)
+            if invited_date is None:
+                candidate_invite.delete()
             return Response({
                 'status': 'NotFound',
                 'message': 'Email address not exist.' + str(e),
@@ -484,7 +500,7 @@ def account_accept_invite(request):
 # need to tweak by tulga
 def account_candidator_aprove_user(request, uidb64=None):
     user_id = request.GET["user_id"]
-    # urlsafe_base64_encode(force_bytes(user.pk))
+    # uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
     uid = force_text(urlsafe_base64_decode(uidb64))
     candidate = Candidate.objects.get(pk=uid)
     user = User.objects.get(id=user_id)
