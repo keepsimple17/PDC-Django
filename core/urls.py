@@ -17,7 +17,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 import django.contrib.auth.views as auth_views
-from core import views
+import core.views.index as views
+import core.views.first_configuration as fc_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -37,11 +38,15 @@ urlpatterns = [
     url(r'^cep/', include('cep.urls')),
     url(r'^account/firstsetup', views.firstsetup, name="firstsetup"),
     # the template update for the firstsetup
-    url(r'^account/primeiroSetup', views.primeiro_setup, name="primeiro_setup"),
-    url(r'^account/add_team_member', views.add_team_member, name='account_add_user_roles'),
-    url(r'^account/account_accept_invite', views.account_accept_invite, name='account_accept_invite'),
-    url(r'^account/account_candidator_aprove_user', views.account_candidator_aprove_user, name='account_candidator_aprove_user'),
-    url(r'^account/account_accept_candidator_invite', views.account_accept_candidator_invite, name='account_accept_candidator_invite'),
+    url(r'^account/primeiroSetup', fc_views.primeiro_setup, name="primeiro_setup"),
+    url(r'^account/add_team_member', fc_views.add_team_member, name='account_add_user_roles'),
+    # email confirmation
+    url(r'^account/account_accept_invite/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_accept_invite,
+        name='account_accept_invite'),
+    url(r'^account/account_candidator_aprove_user/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_candidator_aprove_user,
+        name='account_candidator_aprove_user'),
+    url(r'^account/account_accept_candidator_invite/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_accept_candidator_invite,
+        name='account_accept_candidator_invite'),
     # password reset
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^approve_user/$', views.apporve_user, name='apporve_user'),

@@ -16,7 +16,7 @@ function timeSince(date) {
     var interval = Math.floor(seconds / 31536000);
 
     if (interval > 1) {
-        return interval + " years";
+        return `${interval} years`;
     }
     interval = Math.floor(seconds / 2592000);
     if (interval > 1) {
@@ -38,47 +38,49 @@ function timeSince(date) {
 }
 
 function formatAMPM(date) {
-	var hours = date.getHours();
-	var minutes = date.getMinutes();
-	var ampm = hours >= 12 ? 'pm' : 'am';
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
 
-	hours = hours % 12;
-	hours = hours ? hours : 12; // the hour '0' should be '12'
-	minutes = minutes < 10 ? '0'+minutes : minutes;
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
 
-	var strTime = hours + ':' + minutes + ' ' + ampm;
-	return strTime;
+    return hours + ':' + minutes + ' ' + ampm;
 }
 
 function todayFormat(date) {
-	return timeSince(date);
+    return timeSince(date);
 }
+
 function yesterdayFormat(date) {
-	return "Yesterday, " +  formatAMPM(date);
+    return "Yesterday, " +  formatAMPM(date);
 }
+
 function otherdayFormat(date) {
-	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return date.getDate() + ", " + monthNames[date.getMonth()] + ", " + date.getFullYear() + "  "+ formatAMPM(date);
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return date.getDate() + ", " + monthNames[date.getMonth()] + ", " + date.getFullYear() + "  " + formatAMPM(date);
 }
 // end of Date Time Control ----------------------------------------------------------
 
-
 function get_fileicon(filename) {
     var ext = filename.split('.')[1];
-    var ext_arrary = {  "pdf":"icon-file-pdf text-pink",
-                        "zip":"icon-file-zip text-slate",
-                        "txt":"icon-file-text2 text-slate",
-                        "xml":"icon-file-xml text-blue",
-                        "doc":"icon-file-word text-blue",
-                        "docx":"icon-file-word text-blue",
-                        "xls":"icon-file-excel text-green",
-                        "xlsx":"icon-file-excel text-green",
-                        "ppt":"icon-file-presentation text-pink",
-                        "pptx":"icon-file-presentation text-pink",
-                        "jpg":"icon-file-picture text-blue",
-                        "png":"icon-file-picture text-blue",
-                        "gif":"icon-file-picture text-blue" }
-    //console.log(ext_arrary[ext]);
+    var ext_arrary = {
+        pdf: "icon-file-pdf text-pink",
+        zip: "icon-file-zip text-slate",
+        txt: "icon-file-text2 text-slate",
+        xml: "icon-file-xml text-blue",
+        doc: "icon-file-word text-blue",
+        docx: "icon-file-word text-blue",
+        xls: "icon-file-excel text-green",
+        xlsx: "icon-file-excel text-green",
+        ppt: "icon-file-presentation text-pink",
+        pptx: "icon-file-presentation text-pink",
+        jpg: "icon-file-picture text-blue",
+        png: "icon-file-picture text-blue",
+        gif: "icon-file-picture text-blue"
+    };
+    // console.log(ext_arrary[ext]);
     if (ext_arrary[ext]) {
         return ext_arrary[ext];
     } else {

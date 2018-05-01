@@ -1,0 +1,216 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<!-- Login form -->
+<div class="page-container">
+	<div class="modal-dialog">
+		<div class="login-form">
+			<!-- Form -->
+			<form class="modal-body" method="post" action="{% url 'account_accept_invite' uidb64=uid %}">
+  			{% csrf_token %}
+				<div class="text-center">
+					<img src="http://scopoonline.com/images/SCOPO_300px.png" alt="SCOPO Online" style="display:block;margin: auto">
+                    <br />
+					<h3 class="content-group">Aceitar convite<small class="display-block">Candidato</small></h3>
+                    <div class="alert alert-styled-left alert-styled-custom alert-arrow-left alpha-teal alert-bordered">
+                        <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                        <span class="text-semibold">Dados do Candidato!</span> Por favor, verifique os dados do Candidato.
+                     </div>
+				</div>
+                <div class="form-group has-feedback has-feedback-left">
+                    <input name="candidate_political_nickname" type="text" class="form-control"
+                           value="{{ candidate_form.candidate_political_nickname.value|default_if_none:"" }}"
+                           placeholder="Name" readonly>
+                    <div class="form-control-feedback">
+                        <i class="icon-user text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input name="candidate_dispute_number" type="text" class="form-control"
+                           value="{{ candidate_form.candidate_dispute_number.value|default_if_none:"" }}"
+                           placeholder="Number" readonly>
+                    <div class="form-control-feedback">
+                        <i class="icon-spinner9 text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input name="campaign_email" type="email" class="form-control"
+                           value="{{ candidate_form.campaign_email.value|default_if_none:"" }}"
+                           placeholder="Email" readonly>
+                    <div class="form-control-feedback">
+                        <i class="icon-envelop text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input name="cellPhone" type="number" class="form-control"
+                           value="{{ candidate_form.cellPhone.value|default_if_none:"" }}"
+                           placeholder="Telephone" readonly>
+                    <div class="form-control-feedback">
+                        <i class="icon-phone text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <select name="political_position" class="form-control" title="">
+                        <option value="0">Por favor, Selecione o Partido Político</option>
+                        {% for political_legend in political_legends %}
+                        <option value="{{ political_legend.0 }}">{{ political_legend.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="form-control-feedback">
+                        <i class="icon-profile text-muted"></i>
+                    </div>
+                </div>
+                <br>
+                <div class="text-center">
+                    <h3 class="content-group">Informações Adicionais Pessoais <small class="display-block">Dados pessoais</small></h3>
+                    <div class="alert alert-styled-left alert-styled-custom alert-arrow-left alpha-teal alert-bordered">
+                        <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                        <span class="text-semibold">Complete <strong>seus</strong> dados pessoais</span>
+                         complete abaixo com seus <strong>dados pessoais</strong>.
+                    </div>
+                </div>
+
+                {% if user_form.errors %}
+                    {% for error in user_form.username.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                    {% for error in user_form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input name="password1" type="password" class="form-control" placeholder="Senha" required="required">
+                    <div class="form-control-feedback">
+                        <i class="icon-lock2 text-muted"></i>
+                    </div>
+                </div>
+                {% if user_form.errors %}
+                    {% for error in user_form.password1.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input name="password2" type="password" class="form-control" placeholder="Confirmar Senha" required="required">
+                    <div class="form-control-feedback">
+                        <i class="icon-lock2 text-muted"></i>
+                    </div>
+                </div>
+                {% if user_form.errors %}
+                    {% for error in user_form.password2.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="content-divider text-muted form-group"><span>Dados Pessoais</span></div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input name="username" type="text" class="form-control"
+                           value="{{ user_form.username.value|default_if_none:"" }}"
+                           placeholder="Nome" readonly>
+                    <div class="form-control-feedback">
+                        <i class="icon-users2 text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input name="last_name" type="text" class="form-control" placeholder="Sobrenome">
+                    <div class="form-control-feedback">
+                        <i class="icon-users text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input name="email" type="text" class="form-control"
+                           value="{{ user_form.email.value|default_if_none:"" }}"
+                           placeholder="Email" readonly>
+                    <div class="form-control-feedback">
+                        <i class="icon-mail5 text-muted"></i>
+                    </div>
+                </div>
+                {% if user_form.errors %}
+                    {% for error in user_form.email.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="content-divider text-muted form-group"><span>Adicionais</span></div>
+
+                <div class="form-group">
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="styled" checked="checked">
+                            Assinar a Newsletter
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="styled" id="term_checkbox">
+                            Aceitar os <a href="#modal_terms" data-toggle="modal"
+                                data-target="#modal_terms">Termos de Serviço</a>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn bg-teal btn-block btn-lg" id="btncheck">Registrar <i class="icon-circle-right2 position-right"></i></button>
+                </div>
+                <hr>
+                <div class="form-group login-options">
+                    <div class="row">
+                        <div class="col-sm-6 text-right col-sm-offset-6">
+                            Já tem Cadastro? Faça seu <a href="{% url 'login' %}">Login</a>
+                        </div>
+                    </div>
+                </div>
+
+                <span id="alarmArea" class="text-danger"></span>
+                <hr>
+                <div class="row prepend-top-default append-bottom-default">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="alert alert-{{ message.tags }} alert-styled-left"{% endif %}>{{ message }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+			</form>
+			<!-- /form -->
+		</div>
+	</div>
+</div>
+
+{% include 'components/terms_modal.html' %}
+
+<script>
+    // Basic initialization, based on Bloodhound
+    var chk = $("#term_checkbox");
+    var btn = $("#btncheck");
+    chk.on('change', function() {
+        btn.prop('disabled', !this.checked);
+    }).trigger('change');
+</script>
+<script src="/static/cep/js/cep.js"></script>
+<script src="/static/update_profile.js"></script>
+<!-- /login form -->
+
+{% endblock %}
