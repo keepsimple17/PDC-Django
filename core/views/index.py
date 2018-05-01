@@ -53,7 +53,6 @@ def signup(request, uidb64=None):
             print('form validated')
             user = form.save(commit=False)
             user.is_active = False
-            user.save()
 
             current_site = get_current_site(request)
             mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'

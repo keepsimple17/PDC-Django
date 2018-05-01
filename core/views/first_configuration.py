@@ -349,12 +349,13 @@ def account_accept_invite(request, uidb64=None):
     uid = force_text(urlsafe_base64_decode(uidb64))
     invite = Invites.objects.get(pk=uid)
     candidate = Candidate.objects.get(campaign_email=invite.invitator_email)
+    print('uid==>', candidate.usuarioes)
     user_form = UserForm(initial={
         'email': invite.invited_email,
         'username': invite.invited_name,
     })
     candidate_form = CandidateForm(instance=candidate)
-    print('uid==>', uid)
+
     if request.method == 'GET':
         return render(request, "first_configuration/member_accept_invite.html", {
             'uid': uidb64,
@@ -362,6 +363,20 @@ def account_accept_invite(request, uidb64=None):
             'candidate_form': candidate_form,
         })
     else:
+        user_form = UserForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save(commit=False)
+            user.save()
+            usuario = Usuario.objects.get(user=user)
+
+            candidate.usuarioes.add(usuario)
+            candidate.save()
+
+            usuario.candidates.add(candidate)
+            usuario.save()
+
+            messages.success(request, _('Criei sua conta com sucesso.'))
+
         return render(request, "first_configuration/member_accept_invite.html", {
             'uid': uidb64,
             'user_form': user_form,

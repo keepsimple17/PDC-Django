@@ -226,6 +226,7 @@ class UserRoles(models.Model):
     candidate = models.ForeignKey(Candidate, blank=True, null=True, related_name='candidate_in_user_roles')
     # user_ir = models.IntegerField
     user = models.ForeignKey('dashboard.Usuario', blank=True, null=True, related_name='usuario_in_user_roles')
+    invite = models.ForeignKey('candidato.Invites', blank=True, null=True, related_name='usuario_in_user_roles')
     role_name = models.CharField('Regras das Funções', max_length=40, default="Geral")
     budget_managment = models.PositiveSmallIntegerField('Controle Financeiro', default=0)
     members_managment = models.PositiveSmallIntegerField('Gestão de Usuários', default=4)
@@ -253,6 +254,7 @@ class UserRoles_list(models.Model):
 # This is the invitation list of users to the candidate
 # It stores the Invitator ID and email, the name and email of the Invited
 # and the candidate id for which he was nominated.
+# Team member list
 class Invites(models.Model):
     invitator_email = models.CharField(max_length=50)
     invited_name = models.CharField(max_length=60, null=True, blank=True)
