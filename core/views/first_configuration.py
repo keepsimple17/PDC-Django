@@ -375,6 +375,8 @@ def account_accept_invite(request, uidb64=None):
             usuario.candidates.add(candidate)
             usuario.save()
 
+            # should be added userroles table
+
             messages.success(request, _('Criei sua conta com sucesso.'))
 
         return render(request, "first_configuration/member_accept_invite.html", {
@@ -386,38 +388,16 @@ def account_accept_invite(request, uidb64=None):
 
 # need to tweak by tulga
 def account_candidator_aprove_user(request, uidb64=None):
-    user_id = request.GET["user_id"]
-    # uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
     uid = force_text(urlsafe_base64_decode(uidb64))
-    candidate = Candidate.objects.get(pk=uid)
-    user = User.objects.get(id=user_id)
-    mail_subject = 'you are authorized to dashboard'
-    message = render_to_string('authorization.html', {
-        'user': user.first_name + " " + user.last_name})
-    to_email = user.email
-    email = EmailMessage(
-        mail_subject, message, to=[to_email]
-    )
-    email.content_subtype = "html"
-    user.is_staff = 1
-    user.save()
-    email.send()
-    return HttpResponse("approved the user request")
+    invite = Usuario.objects.filter(pk=uid)
+    candidate = Candidate.objects.filter(campaign_email=invite.invitator_email)
+    return HttpResponse("The Candidator approved your request")
 
 
 # need to tweak by tulga
-def account_accept_candidator_invite(request):
-    user_id = request.GET["user_id"]
-    user = User.objects.get(id=user_id)
-    mail_subject = 'you are authorized to dashboard'
-    message = render_to_string('authorization.html', {
-        'user': user.first_name + " " + user.last_name})
-    to_email = user.email
-    email = EmailMessage(
-        mail_subject, message, to=[to_email]
-    )
-    email.content_subtype = "html"
-    user.is_staff = 1
-    user.save()
-    email.send()
-    return HttpResponse("accepted the candidator invite")
+def account_accept_candidator_invite(request, uidb64=None):
+    uid = force_text(urlsafe_base64_decode(uidb64))
+    invite = Candidate.objects.filter(pk=uid)
+    candidate = Usuario.objects.filter(campaign_email=invite.invitator_email)
+
+    return HttpResponse("You completed the invitation")
