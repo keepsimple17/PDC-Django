@@ -17,7 +17,7 @@ from core.data_objects import (get_cities_by_state, get_states, get_cities, get_
 from dashboard.models import (Usuario, Estado, Municipio, Candidate, POLITICAL_PARTY_CHOICES,
                               GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
 from dashboard.serializers import UsuarioSerializer
-from candidato.models import CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests
+from candidato.models import CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate
 from candidato.serializers import InvitesSerializer
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
@@ -28,7 +28,6 @@ from smtplib import SMTPException
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from candidato.models import Candidate, POLITICAL_PARTY_CHOICES
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaulttags import register
@@ -255,6 +254,17 @@ def add_team_member(request, format=None):
                     updated_at=timezone.now(),
                 )
                 candidate_invite.save()
+                user_roles = UserRoles(
+                    invite=candidate_invite,
+                    budget_managment=permission_list[0],
+                    members_managment=permission_list[1],
+                    reports_managment=permission_list[2],
+                    members_access=permission_list[3],
+                    agenda_access=permission_list[4],
+                    internetInteraction=permission_list[5],
+                    sendMessages=permission_list[6],
+                )
+                user_roles.save()
 
                 return Response({
                     'status': 'invited',
@@ -275,6 +285,7 @@ def add_team_member(request, format=None):
         if candidate_invite:
             invited_date = candidate_invite.updated_at
             candidate_invite.updated_at = timezone.now()
+            candidate_invite.save()
         else:
             candidate_invite = Invites(
                 invitator_email=invitor_email,
@@ -285,8 +296,20 @@ def add_team_member(request, format=None):
                 updated_at=timezone.now(),
             )
             body = InvitesSerializer(candidate_invite).data
+            candidate_invite.save()
 
-        candidate_invite.save()
+            user_roles = UserRoles(
+                invite=candidate_invite,
+                budget_managment=permission_list[0],
+                members_managment=permission_list[1],
+                reports_managment=permission_list[2],
+                members_access=permission_list[3],
+                agenda_access=permission_list[4],
+                internetInteraction=permission_list[5],
+                sendMessages=permission_list[6],
+            )
+            user_roles.save()
+
         print('candidate_invite pk ---> ', candidate_invite.pk)
         uidb64 = urlsafe_base64_encode(force_bytes(candidate_invite.pk))
 
@@ -376,6 +399,10 @@ def account_accept_invite(request, uidb64=None):
             usuario.save()
 
             # should be added userroles table
+            user_role = UserRoles.objects.get(invite=invite)
+            user_role.user = usuario
+            user_role.candidate = candidate
+            user_role.save()
 
             messages.success(request, _('Criei sua conta com sucesso.'))
 
