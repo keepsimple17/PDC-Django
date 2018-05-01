@@ -53,15 +53,11 @@ def signup(request, uidb64=None):
             print('form validated')
             user = form.save(commit=False)
             user.is_active = False
+            user.save()
 
             current_site = get_current_site(request)
             mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
-            # message = render_to_string('acc_active_email.html', {
-            #     'user': user,
-            #     'domain': current_site.domain,
-            #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-            #     'token': account_activation_token.make_token(user),
-            # })
+            # should save the user before getting user.pk
             message = render_to_string('authorization.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -76,13 +72,15 @@ def signup(request, uidb64=None):
             print('to_email', to_email)
             try:
                 email.send()
-                user.save()
             except SMTPException as e:
                 print('There was an SMTPException: ', e)
+                # when occurring any exception, remove the user from user table.
+                user.delete()
                 messages.warning(request, _('There was an SMTPException: ' + str(e)))
                 return render(request, "registration/signup.html", {'form': form})
             except Exception as e:
                 print('There was an error sending an email: ', e)
+                user.delete()
                 messages.warning(request, _('There was an error sending an email: ' + str(e)))
                 return render(request, "registration/signup.html", {'form': form})
 
