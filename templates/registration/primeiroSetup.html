@@ -160,7 +160,7 @@
                                 <div class="form-group">
                                     <label>E-mail:</label>
                                     <input title="" type="email" name="email" value="{{ request.user.email }}"
-                                           class="form-control" placeholder="your@email.com">
+                                           class="form-control" placeholder="your@email.com" readonly>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Nome</label> <!-- Name -->
-                                    <input title="" type="text" name="name"
+                                    <input title="" type="text" name="first_name"
                                            value="{{ request.user.first_name }}"
                                            class="form-control">
                                 </div>
@@ -179,7 +179,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Sobrenome:</label> <!-- Surname -->
-                                    <input title="" type="text" name="name"
+                                    <input title="" type="text" name="last_name"
                                            value="{{ request.user.last_name }}"
                                            class="form-control">
                                 </div>
@@ -293,19 +293,19 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Estado:</label> <!-- State -->
-                                    <select title="" name="estado" data-placeholder="Estado" id="id_estado"
-                                            class="select">
-                                        <optgroup label="Estado">
-                                            {% for item in states %}
-                                                {% if profile_form.estado.value == item.0 %}
-                                                    <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
-                                                {% else %}
-                                                    <option value="{{ item.0 }}">{{ item.1 }}</option>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </optgroup>
-
-                                    </select>
+{#                                    <select title="" name="estado" data-placeholder="Estado" id="id_estado"#}
+{#                                            class="select">#}
+{#                                        <optgroup label="Estado">#}
+{#                                            {% for item in states %}#}
+{#                                                {% if profile_form.estado.value == item.0 %}#}
+{#                                                    <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
+{#                                                {% else %}#}
+{#                                                    <option value="{{ item.0 }}">{{ item.1 }}</option>#}
+{#                                                {% endif %}#}
+{#                                            {% endfor %}#}
+{#                                        </optgroup>#}
+{#                                    </select>#}
+                                    {{ profile_form.estado }}
                                 </div>
                             </div>
 
@@ -314,17 +314,14 @@
                                 <div class="form-group">
                                     <label>Cidade:</label> <!-- Citie -->
                                     <select title="" name="cidade" data-placeholder="Cidade" id="id_cidade"
-                                            class="select">
-                                        <optgroup label="Cidade">
-                                            {% for item in user_cities %}
-                                                {% if profile_form.cidade.value == item.0|slugify %}
-                                                    <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
-                                                {% else %}
-                                                    <option value="{{ item.0 }}">{{ item.1 }}</option>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </optgroup>
-
+                                            class="form-control">
+                                        {% for item in user_cities %}
+                                            {% if profile_form.cidade.value == item.0|slugify %}
+                                                <option data="{{ item.1 }}" value="{{ item.0 }}" selected>{{ item.1 }}</option>
+                                            {% else %}
+                                                <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                            {% endif %}
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -336,9 +333,9 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label>Endereço:</label>
-                                    <input title="" type="text" name="bairro"
-                                           value="{{ profile_form.bairro.value|default_if_none:"" }}"
-                                           class="form-control" placeholder="Bairro">
+                                    <input title="" type="text" name="address" id="address"
+                                           value="{{ profile_form.address.value|default_if_none:"" }}"
+                                           class="form-control" placeholder="Endereço">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -1323,6 +1320,12 @@
     </div>
 
     <!-- /main navbar -->
+    <div class="loder-layer" id="loading">
+        <div class="loder-center">
+            <div class="loader"></div>
+            <h3><b>Loading...</b></h3>
+        </div>
+    </div>
 
     <!-- Login form -->
 {#    <div class="page-container">#}
