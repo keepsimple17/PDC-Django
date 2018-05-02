@@ -223,14 +223,20 @@ EMAIL_HOST_PASSWORD = 'Scopo@2018'
 EMAIL_PORT = 587
 
 # AWS configuration
-AWS_ACCESS_KEY_ID = 'AKIAIT2Z5TDYPX3ARJBA'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAIPSKZRJTJWUYB7ZQ'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'dash.scopo.online'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-AWS_LOCATION = 'static'
+AWS_STATIC_LOCATION = 'static'
+# STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
 
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'core.s3_storage.PublicMediaStorage'
+
+AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
+AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
+PRIVATE_FILE_STORAGE = 'core.s3_storage.PrivateMediaStorage'
