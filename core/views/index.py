@@ -251,6 +251,7 @@ def profile(request):
 
 def update_cities(request):
     state_id = request.GET['stateId']
+    print('state_id', state_id)
     cities = get_cities_by_state(state_id)
     return render(request, 'cities_drop_down.html', {'cities': cities})
 

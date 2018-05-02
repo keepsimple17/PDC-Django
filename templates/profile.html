@@ -15,7 +15,7 @@
                 </fieldset>
 
             </div>
-            
+
             <!--/.First row-->
 
             <!--Second row-->
@@ -24,6 +24,14 @@
                   style="max-width: 700px;margin: auto;margin-bottom: 50px"
                   name="user-form">
             {% csrf_token %}
+                <input type="hidden" name="gender" value="{{ profile_form.gender.value }}">
+                <input type="hidden" name="marital_status" value="{{ profile_form.marital_status.value }}">
+                <input type="hidden" name="cpf" value="{{ profile_form.cpf.value }}">
+                <input type="hidden" name="birthday_date" value="{{ profile_form.birthday_date.value }}">
+                <input type="hidden" name="bairro" value="{{ profile_form.bairro.value }}">
+                <input type="hidden" name="landlinePhone" value="{{ profile_form.landlinePhone.value }}">
+                <input type="hidden" name="user_political_party" value="{{ profile_form.user_political_party.value }}">
+                <input type="hidden" name="user_roles_list" value="{{ profile_form.user_roles_list.value }}">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="username">User Name</label>
                     <div class="col-md-9">
@@ -34,8 +42,6 @@
                                class="form-control" placeholder="User Name">
                     </div>
                 </div>
-{#                {{ password_form }}#}
-{#                {{ password_form.cleaned_data }}#}
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="old_password">Current Password</label>
                     <div class="col-md-9">
