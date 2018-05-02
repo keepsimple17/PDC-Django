@@ -31,6 +31,12 @@ $(function () {
             if (currentIndex === 1 && newIndex === 2) {
                 getInvites();
             }
+
+            if (currentIndex === 2 && newIndex === 3) {
+                $('#team_member_name').removeClass('required');
+                $('#team_member_email').removeClass('required');
+                $('#team_member_role').removeClass('required');
+            }
             if (currentIndex > newIndex) {
                 return true;
             }
