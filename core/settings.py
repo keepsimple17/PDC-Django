@@ -232,9 +232,11 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 AWS_STATIC_LOCATION = 'static'
+AWS_S3_RESION = 's3-sa-east-1'
+STATICFILES_STORAGE = 'core.s3_storage.StaticStorage'
+
 # STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'core.s3_storage.PublicMediaStorage'
 
 AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
