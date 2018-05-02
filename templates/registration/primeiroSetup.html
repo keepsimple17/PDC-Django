@@ -287,7 +287,7 @@
                                     <label>CEP:</label>
                                     <input title="" type="text"
                                            value="{{ profile_form.cep.value|default_if_none:"" }}"
-                                           name="cep" class="form-control zip-field">
+                                           name="cep" class="form-control zip-field" required>
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -314,7 +314,7 @@
                                 <div class="form-group">
                                     <label>Cidade:</label> <!-- Citie -->
                                     <select title="" name="cidade" data-placeholder="Cidade" id="id_cidade"
-                                            class="form-control">
+                                            class="form-control" required>
                                         {% for item in user_cities %}
                                             {% if profile_form.cidade.value == item.0|slugify %}
                                                 <option data="{{ item.1 }}" value="{{ item.0 }}" selected>{{ item.1 }}</option>
@@ -335,7 +335,7 @@
                                     <label>Endereço:</label>
                                     <input title="" type="text" name="address" id="address"
                                            value="{{ profile_form.address.value|default_if_none:"" }}"
-                                           class="form-control" placeholder="Endereço">
+                                           class="form-control" placeholder="Endereço" required>
                                 </div>
                             </div>
                             <div class="col-md-4">

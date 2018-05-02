@@ -267,12 +267,42 @@ def add_team_member(request, format=None):
                 user_roles.save()
 
                 # should send an email to the user
+                uidb64 = urlsafe_base64_encode(force_bytes(candidate_invite.pk))
+
+                current_site = get_current_site(request)
+                mail_subject = 'Aceite um convite no SCOPO (Sistema de Controle do POlítro)'
+
+                message = render_to_string('mail/candidator_invite_user.html', {
+                    'invitor_email': invitor_email,
+                    'uid': uidb64,
+                    'domain': current_site.domain,
+                })
+
+                to_email = team_member_email
+                email = EmailMessage(
+                    mail_subject, message, to=[to_email]
+                )
+                email.content_subtype = "html"
+
+                try:
+                    email.send()
+                except SMTPException as e:
+                    return Response({
+                        'status': 'NotFound',
+                        'message': 'Email address not exist.' + str(e),
+                    }, status=status.HTTP_404_NOT_FOUND)
+                except Exception as e:
+                    return Response({
+                        'status': 'NotFound',
+                        'message': 'Email address not exist.' + str(e),
+                    }, status=status.HTTP_404_NOT_FOUND)
 
                 return Response({
                     'status': 'invited',
-                    'message': 'The User is invited successfully.',
+                    'message': 'System sent an invite email to user.',
                     'body': InvitesSerializer(candidate_invite).data,
                 }, status=status.HTTP_201_CREATED)
+
             # start User exist in system
         else:
             # start User is not active
