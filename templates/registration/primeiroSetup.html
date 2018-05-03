@@ -193,7 +193,7 @@
                                         <option></option>
                                         <optgroup label="Pessoa Física">1
                                             {% for item in GENDER_CHOICES|get_item:'physical' %}
-                                                {% if profile_form.gender == item.0 %}
+                                                {% if profile_form.gender.value == item.0 %}
                                                     <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
                                                 {% else %}
                                                     <option value="{{ item.0 }}">{{ item.1 }}</option>
@@ -203,7 +203,7 @@
 
                                         <optgroup label="Pessoa Jurídica">
                                             {% for item in GENDER_CHOICES|get_item:'legal' %}
-                                                {% if profile_form.gender == item.0 %}
+                                                {% if profile_form.gender.value == item.0 %}
                                                     <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
                                                 {% else %}
                                                     <option value="{{ item.0 }}">{{ item.1 }}</option>
@@ -221,7 +221,7 @@
                                         <option></option>
                                         <optgroup label="Estado Civil">
                                             {% for item in ESTADO_CIVIL_CHOICES %}
-                                                {% if profile_form.marital_status == item.0 %}
+                                                {% if profile_form.marital_status.value == item.0 %}
                                                     <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
                                                 {% else %}
                                                     <option value="{{ item.0 }}">{{ item.1 }}</option>
@@ -317,7 +317,7 @@
                                             class="form-control" required>
                                         {% for item in user_cities %}
                                             {% if profile_form.cidade.value == item.0|slugify %}
-                                                <option data="{{ item.1 }}" value="{{ item.0 }}" selected>{{ item.1 }}</option>
+                                                <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
                                             {% else %}
                                                 <option value="{{ item.0 }}">{{ item.1 }}</option>
                                             {% endif %}
@@ -333,8 +333,8 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label>Endereço:</label>
-                                    <input title="" type="text" name="address" id="address"
-                                           value="{{ profile_form.address.value|default_if_none:"" }}"
+                                    <input title="" type="text" name="bairro" id="bairro"
+                                           value="{{ profile_form.bairro.value|default_if_none:"" }}"
                                            class="form-control" placeholder="Endereço" required>
                                 </div>
                             </div>
@@ -355,7 +355,7 @@
                                     <select title="" class="form-control select required"
                                             name="user_political_party">
                                         <option></option>
-                                        {% for item in POLITICAL_PARTY_CHOICES %}
+                                        {% for item in political_parties %}
                                             {% if profile_form.user_political_party.value == item.0 %}
                                                     <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
                                             {% else %}
@@ -368,6 +368,18 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Função na Campanha</label>
+                                {% if is_invited_candidato %}
+                                    <select title="" name="user_roles_list" data-placeholder="Candidato."
+                                            class="select required" disabled>
+                                        {% for item in user_roles_list %}
+                                            {% if item.1 == 'Candidato' %}
+                                                <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+                                            {% else %}
+                                                <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                {% else %}
                                     <select title="" name="user_roles_list" data-placeholder="Preencha o papel."
                                             class="select required">
                                         {% for item in user_roles_list %}
@@ -378,6 +390,7 @@
                                             {% endif %}
                                         {% endfor %}
                                     </select>
+                                {% endif %}
                                  </div>
                             </div>
                             <div class="col-md-4">
@@ -402,7 +415,7 @@
                                     <select title="" class="form-control select required"
                                             name="candidate_party">
                                         <option selected></option>
-                                        {% for item in POLITICAL_PARTY_CHOICES %}
+                                        {% for item in political_parties %}
                                             {% if candidate_form.candidate_party.value == item.0 %}
                                                 <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
                                             {% else %}

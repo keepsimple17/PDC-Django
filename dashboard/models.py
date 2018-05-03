@@ -201,7 +201,7 @@ class Usuario(models.Model):
     landlinePhone = models.CharField("Telefone Fixo", max_length=11, blank=True, null=True)
     email_verified = models.NullBooleanField(null=True)
     cellPhone_verified = models.BooleanField
-    user_political_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
+    user_political_party = models.CharField(max_length=50, blank=True, null=True)
     user_profile_photo = models.ImageField(
         upload_to='images/users', verbose_name='foto', null=True, blank=True
     )

@@ -13,9 +13,8 @@ import datetime
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
-from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list)
-from dashboard.models import (Usuario, Estado, Municipio, Candidate, POLITICAL_PARTY_CHOICES,
-                              GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
+from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list, get_political_parties)
+from dashboard.models import (Usuario, Estado, Municipio, Candidate, GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
 from dashboard.serializers import UsuarioSerializer
 from candidato.models import CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate
 from candidato.serializers import InvitesSerializer
@@ -46,7 +45,9 @@ def primeiro_setup(request):
     user_roles_list = get_user_roles_list()
     choice_states.insert(0, ('', "Preencha o estado."))
     # sever_url = request.build_absolute_uri('/')
+    political_parties = get_political_parties()
     sever_url = get_current_site(request)
+    is_invited_candidato = True
 
     choice_states = tuple(choice_states)
 
@@ -205,7 +206,9 @@ def primeiro_setup(request):
         'GENDER_CHOICES': GENDER_CHOICES,
         'CANDIDATE_POSITION_CHOICES': CANDIDATE_POSITION_CHOICES,
         'ESTADO_CIVIL_CHOICES': ESTADO_CIVIL_CHOICES,
-        'POLITICAL_PARTY_CHOICES': POLITICAL_PARTY_CHOICES})
+        'political_parties': political_parties,
+        'is_invited_candidato': is_invited_candidato,
+    })
 
 
 @api_view(['GET', 'POST', ])

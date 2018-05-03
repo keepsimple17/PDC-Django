@@ -31,6 +31,7 @@ $(function () {
         var regex = /^([0-9]{5})[-. ]?([0-9]{3})$/;
         if (regex.test($(".zip-field").val())) {
             $.get('/cep/' + $(".zip-field").val() + '/', function (data, status) {
+                console.log('data', data);
                 if (data.indexOf("not_found_error_message") >= 0) {
                     if ($(".zip-field").val() !== "") {
                         alert("enter correct zipcode");
@@ -42,16 +43,15 @@ $(function () {
                         next();
                     }
                 } else {
-                    updateCities(state, function () {
-                        eval("var arr = " + data);
-                        // console.log(address.state)
+                    var dataObj = JSON.parse(data);
+                    updateCities(dataObj.state, function () {
                         // $("#" + address.street).val(arr.street);
-                        $("#address").val(arr.district + arr.street);
-                        $("#id_estado").val(arr.state);
-                        $('#id_estado option[value=' + arr.state + ']').attr('selected', 'selected');
-                        $('#id_cidade option[data=' + arr.city + ']').attr('selected', 'selected');
+                        $("#address").val(`${dataObj.district} ${dataObj.street}`);
+                        $("#bairro").val(`${dataObj.district} ${dataObj.street}`);
+                        $("#id_estado").val(dataObj.state);
+                        $(`#id_estado option[value="${dataObj.state}"]`).attr('selected', 'selected');
                         $('#id_cidade option').filter(function () {
-                            return this.text === arr.city;
+                            return this.text === dataObj.city;
                         }).attr('selected', 'selected');
                     });
                     next();
