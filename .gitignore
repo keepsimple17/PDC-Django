@@ -92,7 +92,7 @@ ENV/
 # Emacs backup
 *~
 
-# Editors 
+# Editors
 .vscode/
 .idea/
 
@@ -105,3 +105,5 @@ mat.out/
 
 
 *.xlsx
+
+assets/
