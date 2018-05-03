@@ -125,14 +125,16 @@ class ProfileForm(forms.ModelForm):
                                                  'city': 'id_cidade',
                                                  'street': 'id_address',
                                                  }))
+    user_profile_photo = forms.ImageField(required=False)
 
     class Meta:
         model = Usuario
+        exclude = ['user']
 
         # fields = ('candidate_name', 'candidate_political_party', 'cellPhone','estado','cidade','address','cep')
         fields = ('estado', 'cidade', 'address', 'company', 'gender', 'marital_status',
                   'cpf', 'cellPhone', 'landlinePhone', 'user_political_party', 'user_roles_list', 'birthday_date',
-                  'bairro', 'cep')
+                  'bairro', 'cep', 'user_profile_photo')
         widgets = {
             # 'candidate_name': forms.TextInput(attrs={'class': "form-control"}),
             # 'candidate_political_party': forms.Select(attrs={'class': 'form-control'}),

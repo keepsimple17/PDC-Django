@@ -132,12 +132,14 @@
                         </ul>
                     </div>
                 </div>
-
-                <form class="steps-validation" action="{% url 'primeiro_setup' %}" method="post">
+                {# enctype is very important to upload file #}
+                <form class="steps-validation" action="{% url 'primeiro_setup' %}"
+                      method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <h6>Dados Pessoais</h6>
                     <fieldset>
                         <!-- Foto, Username and email -->
+{#                        <input title="" type="hidden" name="user_id" value="{{profile_form.user}}" />#}
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
@@ -369,7 +371,12 @@
                                 <div class="form-group">
                                     <label>Função na Campanha</label>
                                 {% if is_invited_candidato %}
-                                    <select title="" name="user_roles_list" data-placeholder="Candidato."
+                                    {% for item in user_roles_list %}
+                                        {% if item.1 == 'Candidato' %}
+                                            <input type="hidden" name="user_roles_list" value="{{ item.0 }}" />
+                                        {% endif %}
+                                    {% endfor %}
+                                    <select title="" name="user_roles_list_none" data-placeholder="Candidato."
                                             class="select required" disabled>
                                         {% for item in user_roles_list %}
                                             {% if item.1 == 'Candidato' %}

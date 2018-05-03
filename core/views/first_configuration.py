@@ -69,8 +69,8 @@ def primeiro_setup(request):
     if request.method == 'POST':
         print('post request in primeiro_setup')
         user_form = UserForm(instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.usuario)
-        candidate_form = CandidateForm(request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.usuario)
+        candidate_form = CandidateForm(request.POST, request.FILES)
 
         user_email = request.user.email
 
