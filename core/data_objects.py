@@ -4,7 +4,7 @@ from candidato.models import UserRoles_list
 
 def get_states():
     list_states = []
-    states = Estado.objects.all()
+    states = Estado.objects.all().order_by('Nome')
     for state in states:
         list_states.append((state.Uf, state.Nome))
     return list_states
