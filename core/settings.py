@@ -233,7 +233,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 AWS_STATIC_LOCATION = 'static'
 AWS_S3_RESION = 's3-sa-east-1'
-STATICFILES_STORAGE = 'core.s3_storage.StaticStorage'
+# STATICFILES_STORAGE = 'core.s3_storage.StaticStorage'
 
 # STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
 
