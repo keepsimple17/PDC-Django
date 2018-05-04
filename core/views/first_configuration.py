@@ -78,6 +78,7 @@ def primeiro_setup(request):
             user_roles_list_data = profile_form.cleaned_data.get('user_roles_list', None)
             role_name = user_roles_list_data.role_name
             profile_form.save()
+            profile_form = ProfileForm(instance=request.user.usuario)
             if role_name == 'Candidato':
                 # start user is candidate
                 print('case candidator')

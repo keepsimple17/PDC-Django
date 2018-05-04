@@ -79,6 +79,9 @@ TEMPLATES = [
                 'social_django.context_processors.backends',  # <--
                 'social_django.context_processors.login_redirect',  # <--
             ],
+            'builtins': [
+                'core.template_tags.media_uri',
+            ]
         },
     },
 ]
@@ -186,8 +189,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-# MEDIA_URL = '/media/'
-MEDIA_URL = 'http://dash.scopo.online.s3.amazonaws.com/media/public/'
+MEDIA_URL = '/media/'
+# MEDIA_URL = 'http://dash.scopo.online.s3.amazonaws.com/media/public/'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
@@ -228,6 +231,8 @@ DEFAULT_FILE_STORAGE = 'core.s3_storage.PublicMediaStorage'
 AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
 AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
 PRIVATE_FILE_STORAGE = 'core.s3_storage.PrivateMediaStorage'
+
+AWS_MEDIA_URL = 'http://' + AWS_S3_CUSTOM_DOMAIN
 
 
 STATIC_URL = '/static/'
