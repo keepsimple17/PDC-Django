@@ -391,11 +391,6 @@ def add_team_member(request, format=None):
         }, status=status.HTTP_201_CREATED)
         # end User not exist
 
-    print(team_member_name)
-    print(team_member_email)
-    print(team_member_cel)
-    print(permission_list[0])
-
     return Response({
         'status': 'Success',
         'message': 'System received your request.',
@@ -449,18 +444,20 @@ def account_accept_invite(request, uidb64=None):
         })
 
 
-# need to tweak by tulga
 def account_candidator_aprove_user(request, uidb64=None):
     uid = force_text(urlsafe_base64_decode(uidb64))
     invite = Usuario.objects.filter(pk=uid)
     candidate = Candidate.objects.filter(campaign_email=invite.invitator_email)
+    if candidate:
+        candidate.save()
     return HttpResponse("The Candidator approved your request")
 
 
-# need to tweak by tulga
 def account_accept_candidator_invite(request, uidb64=None):
     uid = force_text(urlsafe_base64_decode(uidb64))
     invite = Candidate.objects.filter(pk=uid)
     candidate = Usuario.objects.filter(campaign_email=invite.invitator_email)
+    if candidate:
+        candidate.save()
 
     return HttpResponse("You completed the invitation")
