@@ -1,4 +1,5 @@
 {% load staticfiles  %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -326,8 +327,8 @@
 
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-                        {% if profile_form %}
-                            <img src="{{ MEDIA_URL }}{{ profile_form.user_profile_photo.value }}" alt="">
+                        {% if profile_form.user_profile_photo.value %}
+                            <img src="{% media_uri profile_form.user_profile_photo.value %}" alt="" style="width: 30px;height: 30px">
                         {% else %}
                             <img src="{% static 'images/placeholder.jpg' %}" alt="">
                         {% endif %}
