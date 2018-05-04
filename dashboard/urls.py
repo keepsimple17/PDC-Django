@@ -21,6 +21,7 @@ from dashboard import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^stats/$', views.stats, name='stats'),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

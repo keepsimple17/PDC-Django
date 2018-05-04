@@ -22,3 +22,7 @@ def index(request):
     # excel_list = []
     # print(request.user)
     return render(request, 'index.html', {})
+
+@login_required
+def stats(request):
+    return  render(request,'stats/resumo.html')

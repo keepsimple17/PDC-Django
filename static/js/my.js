@@ -91,3 +91,5 @@ function get_fileicon(filename) {
 function get_filename(fileField) {
     return fileField.replace(/^.*[\\\/]/, '');
 }
+
+
