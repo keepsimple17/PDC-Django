@@ -160,7 +160,8 @@
                                     <label class="text-semibold">Foto:</label>
                                     <div class="media no-margin-top">
                                         <div class="media-left">
-                                            <a href="#"><img src="/static/images/avatar.png"
+                                            <a href="#"><img src="{% media_uri profile_form.user_profile_photo.value %}"
+                                                             onError="this.src='/static/images/avatar.png'"
                                                              id="avatar_img"
                                                              style="width: 58px; height: 58px; border-radius: 2px;" alt=""></a>
                                         </div>
