@@ -381,4 +381,9 @@ $(function () {
             // replace the contents of the city input with the data that came from the server
             }});
     }
+
+    // file input
+    $(".file-styled").uniform({
+        fileButtonClass: 'action btn bg-pink-400'
+    });
 });

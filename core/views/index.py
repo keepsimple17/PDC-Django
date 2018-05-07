@@ -182,12 +182,12 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
         user.is_staff = False
         user.save()
         profile_form = ProfileForm(instance=user.usuario)
-        print('user.usuario', user.usuario)
-        return render(request, "registration/firstsetup.html", {'form': form,
-                                                                'profile_form': profile_form,
-                                                                'political_legends': POLITICAL_PARTY_CHOICES,
-                                                                'user_id': user.id,
-                                                                'valid': True})
+        # return render(request, "registration/firstsetup.html", {'form': form,
+        #                                                         'profile_form': profile_form,
+        #                                                         'political_legends': POLITICAL_PARTY_CHOICES,
+        #                                                         'user_id': user.id,
+        #                                                         'valid': True})
+        return redirect('primeiro_setup')
     else:
         return render(request, "registration/firstsetup.html", {'form': form, 'valid': False})
         # return HttpResponse('Activation link is invalid!')
