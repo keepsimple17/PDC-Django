@@ -20,21 +20,21 @@ function timeSince(date) {
     }
     interval = Math.floor(seconds / 2592000);
     if (interval > 1) {
-        return interval + " months";
+        return `${interval} months`;
     }
     interval = Math.floor(seconds / 86400);
     if (interval > 1) {
-        return "In " + interval + " days";
+        return `In ${interval} days`;
     }
     interval = Math.floor(seconds / 3600);
     if (interval > 1) {
-        return interval + " hours ago";
+        return `${interval} hours ago`;
     }
     interval = Math.floor(seconds / 60);
     if (interval > 1) {
-        return interval + " minutes ago";
+        return `${interval} minutes ago`;
     }
-    return Math.floor(seconds) + " seconds ago";
+    return `${Math.floor(seconds)} seconds ago`;
 }
 
 function formatAMPM(date) {
