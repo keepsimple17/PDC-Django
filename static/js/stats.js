@@ -3,8 +3,8 @@
  */
 $(function () {
     // solid gauge start
-    var names = ['Temazepam', 'Guaifenesin', 'Salicylic Acid', 'Fluoride', 'Zinc Oxide', 'Acetaminophen'];
-    var data = [23, 34, 67, 93, 56, 100];
+    var names = ['Bolsonaro', 'Ciro Gomes', 'Alckmin', 'Marina Silva', 'Joaquim Barbosa', 'Collor', 'Paulino'];
+    var data = [22, 15, 6, 5, 7, 10, 65];
     var dataSet = anychart.data.set(data);
     var palette = anychart.palettes.distinctColors().items(['#64b5f6', '#1976d2', '#ef6c00', '#ffd54f', '#455a64', '#96a6a6', '#dd2c00', '#00838f', '#00bfa5', '#ffa000']);
 
@@ -68,8 +68,8 @@ $(function () {
         makeBarWithBar(gauge, 20, 4, 17, true);
 
         gauge.margin(50);
-        gauge.title().text('Medicine manufacturing progress' +
-                '<br/><span style="color:#929292; font-size: 12px;">(ACME CORPORATION)</span>').useHtml(true);
+        gauge.title().text('Lideranças em Pesquisas de Voto' +
+                '<br/><span style="color:#929292; font-size: 12px;">(Densidade de Citações - 94.6% precisão       )</span>').useHtml(true);
         gauge.title()
             .enabled(true)
             .hAlign('center')
