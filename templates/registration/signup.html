@@ -20,7 +20,8 @@
 					<div class="content-divider text-muted form-group"><span>Dados de Login</span></div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="username" type="text" class="form-control" placeholder="Nome de Usuário" required="required">
+						<input name="username" type="text" class="form-control"
+                               placeholder="Nome de Usuário" required="required">
 						<div class="form-control-feedback">
 							<i class="icon-user text-muted"></i>
 						</div>
@@ -39,7 +40,13 @@
                     {% endif %}
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="password1" type="password" class="form-control" placeholder="Senha" required="required">
+						<input name="password1" type="password" class="form-control"
+                               title="
+Sua senha não pode ser tão parecida com suas outras informações pessoais.
+Sua senha precisa conter pelo menos 8 caracteres.
+Sua senha não pode ser uma senha habitualmente utilizada.
+Sua senha não pode ser inteiramente numérica."
+                               placeholder="Senha" required="required">
 						<div class="form-control-feedback">
 							<i class="icon-lock2 text-muted"></i>
 						</div>
@@ -53,7 +60,9 @@
                     {% endif %}
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="password2" type="password" class="form-control" placeholder="Confirmar Senha" required="required">
+						<input name="password2" type="password" class="form-control"
+                               title="{{ form.password2.help_text }}"
+                               placeholder="Confirmar Senha" required="required">
 						<div class="form-control-feedback">
 							<i class="icon-lock2 text-muted"></i>
 						</div>
@@ -69,21 +78,27 @@
 					<div class="content-divider text-muted form-group"><span>Dados Pessoais</span></div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="first_name" type="text" class="form-control" placeholder="Nome">
+						<input name="first_name" type="text"
+                               title="{{ form.first_name.help_text }}"
+                               class="form-control" placeholder="Nome">
 						<div class="form-control-feedback">
 							<i class="icon-users2 text-muted"></i>
 						</div>
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="last_name" type="text" class="form-control" placeholder="Sobrenome">
+						<input name="last_name" type="text" class="form-control"
+                               title="{{ form.last_name.help_text }}"
+                               placeholder="Sobrenome">
 						<div class="form-control-feedback">
 							<i class="icon-users text-muted"></i>
 						</div>
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="email" type="text" class="form-control" placeholder="Email"  required="required">
+						<input name="email" type="text" class="form-control"
+                               title="{{ form.email.help_text }}"
+                               placeholder="Email"  required="required">
 						<div class="form-control-feedback">
 							<i class="icon-mail5 text-muted"></i>
 						</div>
