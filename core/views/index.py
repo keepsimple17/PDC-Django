@@ -48,7 +48,6 @@ def index(request):
 def signup(request, uidb64=None):
     if request.method == 'POST':
         form = UserForm(request.POST)
-        print('this is post request')
         if form.is_valid():
             print('form validated')
             user = form.save(commit=False)
