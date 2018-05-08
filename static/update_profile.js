@@ -46,8 +46,8 @@ $(function () {
                     var dataObj = JSON.parse(data);
                     updateCities(dataObj.state, function () {
                         // $("#" + address.street).val(arr.street);
-                        $("#address").val(`${dataObj.district} ${dataObj.street}`);
-                        $("#bairro").val(`${dataObj.district} ${dataObj.street}`);
+                        $("#address").val(`${dataObj.street}`);
+                        $("#bairro").val(`${dataObj.district}`);
                         $("#id_estado").val(dataObj.state);
                         $(`#id_estado option[value="${dataObj.state}"]`).attr('selected', 'selected');
                         $('#id_cidade option').filter(function () {

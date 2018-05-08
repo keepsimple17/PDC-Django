@@ -97,8 +97,8 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     choice_states = get_states()
     choice_cities = get_cities()
-    choice_states.insert(0, (None, "Enter State"))
-    choice_cities.insert(0, (None, "Enter City"))
+    choice_states.insert(0, (None, "Insira seu Estado"))
+    choice_cities.insert(0, (None, "Insira sua Cidade"))
 
     choice_states = tuple(choice_states)
     choice_cities = tuple(choice_cities)

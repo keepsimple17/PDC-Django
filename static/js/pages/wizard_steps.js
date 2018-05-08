@@ -145,11 +145,69 @@ $(function () {
     });
 
     // Date range picker
-    // ------------------------------
-    // Single picker
-    $('.daterange-single').daterangepicker({
-        singleDatePicker: true
+    $('#birthday_picker__span').click(function (e) {
+        var done = false;
+        $('#birthday_picker__input').AnyTime_noPicker().AnyTime_picker({
+            format: "%d/%m/%Z"
+        }).focus().focusout(function () {
+            if (!done) {
+                setTimeout(function () {
+                    console.log('exist');
+                    $('#birthday_picker__input').AnyTime_noPicker();
+                    done = true;
+                }, 300);
+            }
+        });
+        e.preventDefault();
     });
+    $('#birthday_picker__input').change(function (e) {
+        setTimeout(function () {
+            $('#birthday_picker__input').AnyTime_noPicker();
+            e.preventDefault();
+        }, 300);
+    });
+    $('#birthday_picker__input').keyup(birthDayMask);
+
+    function birthDayMask() {
+        const today = new Date();
+        var num = $(this).val().replace(/\D/g, '');
+        var birthString = '';
+        var day = num.substring(0, 2);
+        var month = num.substring(2, 4);
+        var year = num.substring(4, 8);
+        if (day && day > 31) {
+            day = 31;
+            birthString = `${day}/`;
+            $(this).val(birthString);
+        } else if (month && month > 12) {
+            month = 12;
+            birthString = `${day}/${month}`;
+            $(this).val(birthString);
+        } else if (year && year > today.getFullYear()) {
+            birthString = `${day}/${month}`;
+            $(this).val(birthString);
+        } else {
+            if (num.length === 8) {
+                var birthday = new Date(year, month - 1, day);
+                day = birthday.getDate();
+                month = birthday.getMonth() + 1;
+                year = birthday.getFullYear();
+                day = (day < 10)? `0${day}` : day;
+                month = (month < 10)? `0${month}` : month;
+            }
+            if (num.length < 3) {
+                birthString = `${day}/`;
+            } else if (num.length > 4) {
+                birthString = `${day}/${month}/${year}`;
+            } else {
+                birthString = `${day}/${month}`
+            }
+            $(this).val(birthString);
+        }
+    }
+    // $("#anytime-month-numeric").AnyTime_picker({
+    //     format: "%d/%m/%Z"
+    // });
 
     function notify(message) {
         noty({

@@ -12,10 +12,18 @@
     <script type="text/javascript" src="{% static 'js/core/libraries/jasny_bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/forms/validation/validate.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/extensions/cookie.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/plugins/pickers/pickadate/picker.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/plugins/pickers/pickadate/picker.date.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/plugins/pickers/daterangepicker.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/plugins/pickers/datepicker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/pickers/anytime.min.js' %}"></script>
+{#    <script type="text/javascript" src="{% static 'js/plugins/pickers/pickadate/picker.date.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static 'js/plugins/pickers/daterangepicker.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static 'js/plugins/pickers/datepicker.js' %}"></script>#}
+
+{#    <script type="text/javascript" src="assets/js/plugins/pickers/daterangepicker.js"></script>#}
+{#	<script type="text/javascript" src="assets/js/plugins/pickers/anytime.min.js"></script>#}
+{#	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/picker.js"></script>#}
+{#	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/picker.date.js"></script>#}
+{#	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/picker.time.js"></script>#}
+{#	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/legacy.js"></script>#}
+
     <script type="text/javascript" src="{% static 'js/plugins/notifications/noty.min.js' %}"></script>
 
     <meta name="sever_url" content="{{ sever_url }}">
@@ -161,7 +169,7 @@
                                     <div class="media no-margin-top">
                                         <div class="media-left">
                                             <a href="#"><img src="{% media_uri profile_form.user_profile_photo.value %}"
-                                                             onError="this.src='/static/images/avatar.png'"
+                                                             onError="this.src='/static/images/unknown-avatar.png'"
                                                              id="avatar_img"
                                                              style="width: 58px; height: 58px; border-radius: 2px;" alt=""></a>
                                         </div>
@@ -169,7 +177,7 @@
                                         <div class="media-body">
                                             <input type="file" id="photo" name="user_profile_photo"
                                                    class="file-styled" accept="image/*" onchange="readImg(this);">
-                                            <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+                                            <span class="help-block">Formatos aceitos: gif, png, jpg. Tamanho Max 2Mb</span>
                                         </div>
                                     </div>
                                 </div>
@@ -277,10 +285,10 @@
                                 <div class="form-group">
                                     <label>Data de Nascimento:</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="icon-calendar3"></i></span>
-                                        <input title="" type="text" class="form-control daterange-single"
+                                        <span class="input-group-addon" id="birthday_picker__span"><i class="icon-calendar3"></i></span>
+                                        <input title="" type="text" class="form-control" id="birthday_picker__input"
                                                value="{{ profile_form.birthday_date.value|default_if_none:"" }}"
-                                               name="birthday_date" readonly>
+                                               name="birthday_date">
                                     </div>
                                 </div>
                             </div>
@@ -371,6 +379,8 @@
                                     <input title="" type="text" name="predial_number" class="form-control">
                                 </div>
                             </div>
+                            <input title="" type="hidden" name="address" id="address"
+                                           value="{{ profile_form.address.value|default_if_none:"" }}">
                         </div>
                         <!-- Adreess, Predial number,  complement address -->
 
@@ -384,9 +394,9 @@
                                         <option></option>
                                         {% for item in political_parties %}
                                             {% if profile_form.user_political_party.value == item.0 %}
-                                                    <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+                                                    <option value="{{ item.0 }}" selected>{{ item.0 }}</option>
                                             {% else %}
-                                                <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                                <option value="{{ item.0 }}">{{ item.0 }}</option>
                                             {% endif %}
                                         {% endfor %}
                                     </select>
@@ -449,9 +459,9 @@
                                         <option selected></option>
                                         {% for item in political_parties %}
                                             {% if candidate_form.candidate_party.value == item.0 %}
-                                                <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+                                                <option value="{{ item.0 }}" selected>{{ item.0 }}</option>
                                             {% else %}
-                                                <option value="{{ item.0 }}">{{ item.1 }}</option>
+                                                <option value="{{ item.0 }}">{{ item.0 }}</option>
                                             {% endif %}
                                         {% endfor %}
                                     </select>
@@ -615,7 +625,7 @@
                                 <div class="form-group">
                                     <label>Currículo</label> <!-- Resume -->
                                     <label class="form-control input-file" for="photo">Send File...</label>
-                                    <input title="" type="file" id="photo" name="user_resume"
+                                    <input title="" type="file" id="photo" name="user_resume" style="display: none"
                                            class="form-control">
                                 </div>
                             </div>
@@ -1368,140 +1378,9 @@
     <div class="loder-layer" id="loading">
         <div class="loder-center">
             <div class="loader"></div>
-            <h3><b>Loading...</b></h3>
+            <h3><b>Carregando...</b></h3>
         </div>
     </div>
-
-    <!-- Login form -->
-{#    <div class="page-container">#}
-{#        <div class="modal-dialog">#}
-{#            <div class="login-form">#}
-{##}
-{#                <!-- Form -->#}
-{#                <form class="modal-body" method="post" action="{% url 'firstsetup' %}">#}
-{#                {% csrf_token %}#}
-{#                <!-- To reinclude Toke after tests -->#}
-{#                    <div class="text-center">#}
-{#                        <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>#}
-{#                        <!-- % if valid %} -->#}
-{#                        <h5 class="content-group">Primeira Configuração <small class="display-block">Seu Candidato</small></h5>#}
-{#                        <!-- % endif %} -->#}
-{#                    </div>#}
-{##}
-{#                    <!-- % if valid %} -->#}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        <input title="" name="candidate_political_nickname" type="text" class="form-control" placeholder="Name" required="required">#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-user text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        <input title="" name="candidate_dispute_number" type="text" class="form-control" placeholder="Number" required="required">#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-spinner9 text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        <input title="" name="campaign_email" type="email" class="form-control" placeholder="Email" required="required">#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-envelop text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        <input title="" name="cellPhone" type="number" class="form-control" placeholder="Telephone" required="required">#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-phone text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        <select title="" name="political_position" class="form-control">#}
-{#                            <option value="0">Por favor, Selecione o Partido Político</option>#}
-{#                            {% for political_legend in political_legends %}#}
-{#                            <option value="{{ political_legend.0 }}">{{ political_legend.1 }}</option>#}
-{#                            {% endfor %}#}
-{#                        </select>#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-profile text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <br>#}
-{#                    <div class="text-center">#}
-{#                        <h5 class="content-group">Informações Adicionais <small class="display-block">Seus Dados</small></h5>#}
-{#                    </div>#}
-{##}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        <input title="" name="user_birth" type="date" class="form-control" placeholder="Birthday">#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-gift text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        <input title="" name="address" type="text" class="form-control" placeholder="Address" required="required">#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-home text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        {{ profile_form.estado }}#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-home text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        <select title="" id="cidade" name="cidade" class="form-control">#}
-{#                            {% for city in cities %}#}
-{#                                {% if selected_city  ==  city.0   %}#}
-{#                            <option data="{{ city.1 }}" value="{{ city.0 }}" selected>{{ city.1 }}</option>#}
-{#                                    {% else %}#}
-{#                            <option value="{{ city.0 }}">{{ city.1 }}</option>#}
-{#                                {% endif %}#}
-{#                            {% endfor %}#}
-{#                        </select>#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-home text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                    <div class="form-group has-feedback has-feedback-left">#}
-{#                        <input title="" name="cpf" type="text" class="form-control" placeholder="CPF" required="required">#}
-{#                        <div class="form-control-feedback">#}
-{#                            <i class="icon-city text-muted"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <input title="" type="hidden" name="user_id" value="{{user_id}}" />#}
-{#                    <div class="form-group">#}
-{#                        <button type="submit" class="btn bg-green btn-block">Setup <i class="icon-arrow-right14 position-right"></i></button>#}
-{#                    </div>#}
-{##}
-{#                    <span id="alarmArea" class="text-danger"></span>#}
-{##}
-{##}
-{#                    <div class="content-divider text-muted form-group"><span>or sign in with</span>#}
-{#                    </div>#}
-{#                    <ul class="list-inline form-group list-inline-condensed text-center">#}
-{#                        <li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>#}
-{#                        <li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>#}
-{#                        <li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>#}
-{#                        <li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>#}
-{#                    </ul>#}
-{##}
-{#                    <div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>#}
-{#                    <a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Sign up</a>#}
-{#                    <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our#}
-{#                        <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a>#}
-{#                    </span>#}
-{##}
-{#                </form>#}
-{#                <!-- /form -->#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
 
     <script src="/static/cep/js/cep.js"></script>
     <script src="/static/update_profile.js"></script>
