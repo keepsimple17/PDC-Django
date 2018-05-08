@@ -54,12 +54,12 @@ function todayFormat(date) {
 }
 
 function yesterdayFormat(date) {
-    return "Yesterday, " +  formatAMPM(date);
+    return `Yesterday, ${formatAMPM(date)}`;
 }
 
 function otherdayFormat(date) {
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return date.getDate() + ", " + monthNames[date.getMonth()] + ", " + date.getFullYear() + "  " + formatAMPM(date);
+    return `${date.getDate()}, ${monthNames[date.getMonth()]}, ${date.getFullYear()} ${formatAMPM(date)}`;
 }
 // end of Date Time Control ----------------------------------------------------------
 
@@ -91,5 +91,3 @@ function get_fileicon(filename) {
 function get_filename(fileField) {
     return fileField.replace(/^.*[\\\/]/, '');
 }
-
-
