@@ -50,11 +50,12 @@
             <form class="modal-body">
                 {% csrf_token %}
                 <div class="text-center">
-                     <img src="http://scopoonline.com/images/SCOPO_300px.png" alt="SCOPO Online" style="display:block;">
+                     <img src="http://scopoonline.com/images/SCOPO_300px.png">
                     <br />
 
-                    <h2 class="content-group">Sua conta foi criada</h2>
+                    <h2 class="content-group"><marquee>Sua conta foi criada</marquee></h2>
                 </div>
+
 
                 <div class="block">
                     <div class="block-title">
@@ -78,7 +79,7 @@
                 <br />
 
                 <div class="content-divider text-muted form-group"><span>Ainda não recebeu a confirmação?</span></div>
-                <a href="{% url 'signup' %}" class="btn btn-default btn-block content-group">Solicitar reenvio</a>
+                <a href="{% url 'signup' %}" class="btn btn-warning btn-block content-group">Solicitar reenvio</a>
                 <span class="help-block text-center no-margin">Continuando você confirma que leu nossos
                     <a href="#modal_terms" data-toggle="modal" data-target="#modal_terms">Termos &amp; Condições</a>
                     e <a href="#">Política de Cookies</a></span>
