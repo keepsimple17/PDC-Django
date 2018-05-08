@@ -49,6 +49,9 @@ def get_political_parties():
     political_parties = []
     political_party_list = PoliticalParties.objects.all()
 
+    # The user or employee that will have access, sometimes doesn't have a political party
+    # Or even the candidate can be independent
+    political_parties.append(('Nenhum','Nenhum'))
     for item in political_party_list:
         political_parties.append((item.sigla, item.name))
 

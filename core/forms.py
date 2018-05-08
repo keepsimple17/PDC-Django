@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.data_objects import get_states, get_cities
 from dashboard.models import Usuario, Estado, Municipio
-from candidato.models import Candidate, UserRoles_list, CANDIDATE_POSITION_CHOICES
+from candidato.models import Candidate, UserRoles_list, CANDIDATE_POSITION_CHOICES, CANDIDATE_CURRENT_POSITION
 
 from cep.widgets import CEPInput
 
@@ -60,7 +60,7 @@ class CandidateForm(forms.ModelForm):
     holds_position = forms.CharField(max_length=50, required=False, help_text='Optional')
     candidate_desired_position = forms.ChoiceField(choices=CANDIDATE_POSITION_CHOICES, required=False,
                                                    help_text='Optional')
-    candidate_current_position = forms.ChoiceField(choices=CANDIDATE_POSITION_CHOICES, required=False,
+    candidate_current_position = forms.ChoiceField(choices=CANDIDATE_CURRENT_POSITION, required=False,
                                                    help_text='Optional')
 
     class Meta:
