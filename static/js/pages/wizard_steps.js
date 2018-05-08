@@ -17,6 +17,8 @@ $(function () {
     console.log(severUrl);
 
 
+
+
     // Initialize wizard
     $(".steps-validation").steps({
         headerTag: "h6",
@@ -24,6 +26,12 @@ $(function () {
         transitionEffect: "fade",
         titleTemplate: '<span class="number">#index#</span> #title#',
         autoFocus: true,
+        labels: {
+            finish: 'Enviar',
+            next: 'Proximo',
+            previous: 'Anterior'
+        },
+
 
         onStepChanging: function (event, currentIndex, newIndex) {
             console.log('step chaning', currentIndex, newIndex);
