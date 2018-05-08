@@ -115,4 +115,14 @@ $(function () {
     }
 
     $('#telephone').keyup(phoneNumberMask);
+
+    function landPhoneNumberMask() {
+        var num = $(this).val().replace(/\D/g, '');
+        // console.log(num);
+        // console.log(num.length);
+        var telString = `(${num.substring(0, 2)}) ${num.substring(2, 6)}-${num.substring(6, 10)}`;
+        $(this).val(telString);
+    }
+
+    $('#landphone').keyup(landPhoneNumberMask);
 });
