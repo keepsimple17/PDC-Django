@@ -296,7 +296,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Tel. Celular:</label> <!-- Cellphone -->
-                                    <input title="" type="text" name="cellPhone"
+                                    <input title="" type="text" name="cellPhone" id="telephone"
                                            value="{{ profile_form.cellPhone.value|default_if_none:"" }}"
                                            class="form-control">
                                 </div>
@@ -368,8 +368,8 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label>Endereço:</label>
-                                    <input title="" type="text" name="bairro" id="bairro"
-                                           value="{{ profile_form.bairro.value|default_if_none:"" }}"
+                                    <input title="" type="text" name="address" id="address"
+                                           value="{{ profile_form.address.value|default_if_none:"" }}"
                                            class="form-control" placeholder="Endereço" required>
                                 </div>
                             </div>
@@ -379,8 +379,8 @@
                                     <input title="" type="text" name="predial_number" class="form-control">
                                 </div>
                             </div>
-                            <input title="" type="hidden" name="address" id="address"
-                                           value="{{ profile_form.address.value|default_if_none:"" }}">
+                            <input title="" type="hidden" name="bairro" id="bairro"
+                                           value="{{ profile_form.bairro.value|default_if_none:"" }}">
                         </div>
                         <!-- Adreess, Predial number,  complement address -->
 
