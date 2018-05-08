@@ -193,12 +193,12 @@ class Usuario(models.Model):
     bairro = models.CharField("Bairro", max_length=255, blank=True, null=True)  # neiborhood
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
     company = models.CharField("Endereço", max_length=255, blank=True, null=True)
-    cellPhone = models.CharField(blank=True, null=True, max_length=15,
+    cellPhone = models.CharField(blank=True, null=True, max_length=17,
                                  validators=[RegexValidator(regex='^\(?([0-9]{2})\)? ([0-9]{4,5})[-. ]?([0-9]{4})$',
                                                             message="Phone number must be entered in the format:"
-                                                                    " '+999999999'. Up to 15 digits allowed.",
+                                                                    " '+999999999'. Up to 17 digits allowed.",
                                                             code='Invalid number')])
-    landlinePhone = models.CharField("Telefone Fixo", max_length=11, blank=True, null=True)
+    landlinePhone = models.CharField("Telefone Fixo", max_length=17, blank=True, null=True)
     email_verified = models.NullBooleanField(null=True)
     cellPhone_verified = models.BooleanField
     user_political_party = models.CharField(max_length=50, blank=True, null=True)
