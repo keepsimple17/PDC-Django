@@ -13,8 +13,10 @@ $(function () {
     // Show form
     var form = $(".steps-validation").show();
     var severUrl = $("meta[name=sever_url]").attr("content");
-    // var csrfToken = $("input[name=csrfmiddlewaretoken]").val();
-    console.log(severUrl);
+    // global required message for validator
+    jQuery.extend(jQuery.validator.messages, {
+        required: "Este campo é obrigatório."
+    });
 
 
     // Initialize wizard
@@ -23,6 +25,11 @@ $(function () {
         bodyTag: "fieldset",
         transitionEffect: "fade",
         titleTemplate: '<span class="number">#index#</span> #title#',
+        labels: {
+            finish: 'Enviar',
+            next: 'Proximo',
+            previous: 'Anterior'
+        },
         autoFocus: true,
 
         onStepChanging: function (event, currentIndex, newIndex) {
@@ -124,10 +131,9 @@ $(function () {
                 error.insertAfter(element);
             }
         },
-        rules: {
-            email: {
-                email: true
-            }
+        // can customize each fields
+        messages: {
+            name: "Please specify your name"
         }
     });
 
@@ -146,25 +152,14 @@ $(function () {
 
     // Date range picker
     $('#birthday_picker__span').click(function (e) {
-        var done = false;
         $('#birthday_picker__input').AnyTime_noPicker().AnyTime_picker({
             format: "%d/%m/%Z"
-        }).focus().focusout(function () {
-            if (!done) {
-                setTimeout(function () {
-                    console.log('exist');
-                    $('#birthday_picker__input').AnyTime_noPicker();
-                    done = true;
-                }, 300);
-            }
-        });
+        }).focus();
         e.preventDefault();
     });
-    $('#birthday_picker__input').change(function (e) {
-        setTimeout(function () {
-            $('#birthday_picker__input').AnyTime_noPicker();
-            e.preventDefault();
-        }, 300);
+    $('#birthday_picker__input').click(function (e) {
+        $('#birthday_picker__input').AnyTime_noPicker();
+        e.preventDefault();
     });
     $('#birthday_picker__input').keyup(birthDayMask);
 
