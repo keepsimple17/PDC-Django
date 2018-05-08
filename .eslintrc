@@ -16,5 +16,8 @@
     "commonjs": true,
     "es6": true,
     "jquery": true
+  },
+  "globals": {
+    "d3": false
   }
 }

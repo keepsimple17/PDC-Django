@@ -7,8 +7,7 @@ from xml.dom import minidom
 
 
 def cep(numero):
-    url = 'http://cep.republicavirtual.com.br/web_cep.php?formato=' \
-            'xml&cep=%s' % str(numero)
+    url = 'http://cep.republicavirtual.com.br/web_cep.php?formato=xml&cep=%s' % str(numero)
     dom = minidom.parse(urllib.request.urlopen(url))
 
     tags_name = ('uf',

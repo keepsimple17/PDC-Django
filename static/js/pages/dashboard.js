@@ -83,8 +83,6 @@ $(function () {
         // Colors
         var colorrange = ['#03A9F4', '#29B6F6', '#4FC3F7', '#81D4FA', '#B3E5FC', '#E1F5FE'];
 
-
-
         // Construct scales
         // ------------------------------
 
@@ -96,8 +94,6 @@ $(function () {
 
         // Colors
         var z = d3.scale.ordinal().range(colorrange);
-
-
 
         // Create axes
         // ------------------------------
@@ -118,7 +114,7 @@ $(function () {
             .innerTickSize(4)
             .outerTickSize(0)
             .tickPadding(8)
-            .tickFormat(function (d) { return (d/1000) + "k"; });
+            .tickFormat(function (d) { return (d / 1000) + "k"; });
 
         // Right vertical
         var yAxis2 = yAxis;
@@ -132,22 +128,18 @@ $(function () {
             .tickFormat("")
             .tickSize(-width, 0, 0);
 
-
-
         // Create chart
         // ------------------------------
 
         // Container
-        var container = d3Container.append("svg")
+        var container = d3Container.append("svg");
 
         // SVG element
         var svg = container
             .attr('width', width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         // Construct chart layout
         // ------------------------------
@@ -155,22 +147,20 @@ $(function () {
         // Stack
         var stack = d3.layout.stack()
             .offset("silhouette")
-            .values(function(d) { return d.values; })
-            .x(function(d) { return d.date; })
-            .y(function(d) { return d.value; });
+            .values(function (d) { return d.values; })
+            .x(function (d) { return d.date; })
+            .y(function (d) { return d.value; });
 
         // Nest
         var nest = d3.nest()
-            .key(function(d) { return d.key; });
+            .key(function (d) { return d.key; });
 
         // Area
         var area = d3.svg.area()
             .interpolate("cardinal")
-            .x(function(d) { return x(d.date); })
-            .y0(function(d) { return y(d.y0); })
-            .y1(function(d) { return y(d.y0 + d.y); });
-
-
+            .x(function (d) { return x(d.date); })
+            .y0(function (d) { return y(d.y0); })
+            .y1(function (d) { return y(d.y0 + d.y); });
 
         // Load data
         // ------------------------------
@@ -186,8 +176,6 @@ $(function () {
             // Stack and nest layers
             var layers = stack(nest.entries(data));
 
-
-
             // Set input domains
             // ------------------------------
 
@@ -197,8 +185,6 @@ $(function () {
             // Vertical
             y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
 
-
-
             // Add grid
             // ------------------------------
 
@@ -206,8 +192,6 @@ $(function () {
             svg.append("g")
                 .attr("class", "d3-grid-dashed")
                 .call(gridAxis);
-
-
 
             //
             // Append chart elements
@@ -224,22 +208,20 @@ $(function () {
             var layer = group.selectAll(".streamgraph-layer")
                 .data(layers)
                 .enter()
-                    .append("path")
-                    .attr("class", "streamgraph-layer")
-                    .attr("d", function(d) { return area(d.values); })
-                    .style('stroke', '#fff')
-                    .style('stroke-width', 0.5)
-                    .style("fill", function(d, i) { return z(i); });
+                .append("path")
+                .attr("class", "streamgraph-layer")
+                .attr("d", function (d) { return area(d.values); })
+                .style('stroke', '#fff')
+                .style('stroke-width', 0.5)
+                .style("fill", function(d, i) { return z(i); });
 
             // Add transition
             var layerTransition = layer
                 .style('opacity', 0)
                 .transition()
-                    .duration(750)
-                    .delay(function(d, i) { return i * 50; })
-                    .style('opacity', 1)
-
-
+                .duration(750)
+                .delay(function (d, i) { return i * 50; })
+                .style('opacity', 1);
 
             // Append axes
             // ------------------------------
@@ -256,7 +238,6 @@ $(function () {
             d3.select(svg.selectAll('.d3-axis-left .tick text')[0][0])
                 .style("visibility", "hidden");
 
-
             //
             // Right vertical
             //
@@ -270,7 +251,6 @@ $(function () {
             d3.select(svg.selectAll('.d3-axis-right .tick text')[0][0])
                 .style("visibility", "hidden");
 
-
             //
             // Horizontal
             //
@@ -282,7 +262,7 @@ $(function () {
 
             // Add extra subticks for hidden hours
             xaxisg.selectAll(".d3-axis-subticks")
-                .data(x.ticks(d3.time.hours), function(d) { return d; })
+                .data(x.ticks(d3.time.hours), function (d) { return d; })
                 .enter()
                 .append("line")
                 .attr("class", "d3-axis-subticks")
@@ -290,8 +270,6 @@ $(function () {
                 .attr("y2", 4)
                 .attr("x1", x)
                 .attr("x2", x);
-
-
 
             // Add hover line and pointer
             // ------------------------------
@@ -326,37 +304,34 @@ $(function () {
                 .style('pointer-events', 'none')
                 .style("opacity", 0);
 
-
-
             // Append events to the layers group
             // ------------------------------
 
-            layerTransition.each("end", function() {
+            layerTransition.each("end", function () {
                 layer
                     .on("mouseover", function (d, i) {
                         svg.selectAll(".streamgraph-layer")
                             .transition()
                             .duration(250)
-                            .style("opacity", function (d, j) {
-                                return j != i ? 0.75 : 1; // Mute all except hovered
+                            .style("opacity", function (_d, j) {
+                                return j !== i ? 0.75 : 1; // Mute all except hovered
                             });
                     })
 
                     .on("mousemove", function (d, i) {
-                        mouse = d3.mouse(this);
-                        mousex = mouse[0];
-                        mousey = mouse[1];
-                        datearray = [];
+                        var mouse = d3.mouse(this);
+                        var mousex = mouse[0];
+                        var mousey = mouse[1];
+                        var datearray = [];
                         var invertedx = x.invert(mousex);
                         invertedx = invertedx.getHours();
                         var selected = (d.values);
                         for (var k = 0; k < selected.length; k++) {
-                            datearray[k] = selected[k].date
+                            datearray[k] = selected[k].date;
                             datearray[k] = datearray[k].getHours();
                         }
-                        mousedate = datearray.indexOf(invertedx);
-                        pro = d.values[mousedate].value;
-
+                        var mousedate = datearray.indexOf(invertedx);
+                        var pro = d.values[mousedate].value;
 
                         // Display mouse pointer
                         hoverPointer
@@ -375,20 +350,17 @@ $(function () {
 
                         // Tooltip data
                         tooltip.html(
-                            "<ul class='list-unstyled mb-5'>" +
-                                "<li>" + "<div class='text-size-base mt-5 mb-5'><i class='icon-circle-left2 position-left'></i>" + d.key + "</div>" + "</li>" +
-                                "<li>" + "Visits: &nbsp;" + "<span class='text-semibold pull-right'>" + pro + "</span>" + "</li>" +
-                                "<li>" + "Time: &nbsp; " + "<span class='text-semibold pull-right'>" + formatDate(d.values[mousedate].date) + "</span>" + "</li>" +
-                            "</ul>"
-                        )
-                        .style("display", "block");
+                            `<ul class='list-unstyled mb-5'>
+                                <li><div class='text-size-base mt-5 mb-5'><i class='icon-circle-left2 position-left'></i>${d.key}</div></li>
+                                <li>Visits: &nbsp; <span class='text-semibold pull-right'>${pro}</span></li>
+                                <li>Time: &nbsp; <span class='text-semibold pull-right'>${formatDate(d.values[mousedate].date)}</span></li>
+                            </ul>`
+                        ).style("display", "block");
 
                         // Tooltip arrow
                         tooltip.append('div').attr('class', 'd3-tip-arrow');
                     })
-
                     .on("mouseout", function (d, i) {
-
                         // Revert full opacity to all paths
                         svg.selectAll(".streamgraph-layer")
                             .transition()
@@ -403,41 +375,35 @@ $(function () {
 
                         hoverLine.style("opacity", 0);
                     });
-                });
-
-
+            });
 
             // Append events to the chart container
             // ------------------------------
 
             d3Container
                 .on("mousemove", function (d, i) {
-                    mouse = d3.mouse(this);
-                    mousex = mouse[0];
-                    mousey = mouse[1];
+                    var mouse = d3.mouse(this);
+                    var mousex = mouse[0];
+                    var mousey = mouse[1];
 
                     // Display hover line
-                        //.style("opacity", 1);
-
-
+                    // .style("opacity", 1);
                     // Move tooltip vertically
-                    tooltip.style("top", (mousey - ($('.d3-tip').outerHeight() / 2)) - 2 + "px") // Half tooltip height - half arrow width
+                    // Half tooltip height - half arrow width
+                    tooltip.style("top", (mousey - ($('.d3-tip').outerHeight() / 2)) - 2 + "px")
 
                     // Move tooltip horizontally
-                    if(mousex >= ($(element).outerWidth() - $('.d3-tip').outerWidth() - margin.right - (tooltipOffset * 2))) {
+                    if (mousex >= ($(element).outerWidth() - $('.d3-tip').outerWidth() - margin.right - (tooltipOffset * 2))) {
                         tooltip
                             .style("left", (mousex - $('.d3-tip').outerWidth() - tooltipOffset) + "px") // Change tooltip direction from right to left to keep it inside graph area
                             .attr("class", "d3-tip w");
-                    }
-                    else {
+                    } else {
                         tooltip
                             .style("left", (mousex + tooltipOffset) + "px" )
                             .attr("class", "d3-tip e");
                     }
                 });
         });
-
-
 
         // Resize chart
         // ------------------------------
@@ -454,7 +420,6 @@ $(function () {
         // we need to manually specify parts of the graph that need to
         // be updated on window resize
         function resizeStream() {
-
             // Layout
             // -------------------------
 
@@ -481,7 +446,7 @@ $(function () {
             svg.selectAll('.d3-axis-subticks').attr("x1", x).attr("x2", x);
 
             // Grid lines width
-            svg.selectAll(".d3-grid-dashed").call(gridAxis.tickSize(-width, 0, 0))
+            svg.selectAll(".d3-grid-dashed").call(gridAxis.tickSize(-width, 0, 0));
 
             // Right vertical axis
             svg.selectAll(".d3-axis-right").attr("transform", "translate(" + width + ", 0)");
@@ -490,9 +455,6 @@ $(function () {
             svg.selectAll('.streamgraph-layer').attr("d", function(d) { return area(d.values); });
         }
     }
-
-
-
 
     // App sales lines chart
     // ------------------------------
