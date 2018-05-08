@@ -47,7 +47,7 @@ def primeiro_setup(request):
     # sever_url = request.build_absolute_uri('/')
     political_parties = get_political_parties()
     sever_url = get_current_site(request)
-    is_invited_candidato = True
+    is_invited_candidato = False
 
     choice_states = tuple(choice_states)
 
