@@ -113,8 +113,8 @@ class ProfileForm(forms.ModelForm):
     cpf = forms.CharField(max_length=11, required=False, help_text='Optional')
     birthday_date = forms.CharField(required=False, help_text='Optional')
     bairro = forms.CharField(max_length=255, required=False, help_text='Optional')
-    cellPhone = forms.CharField(max_length=15, required=False, help_text='Optional')
-    landlinePhone = forms.CharField(max_length=11, required=False, help_text='Optional')
+    cellPhone = forms.CharField(max_length=17, required=False, help_text='Optional')
+    landlinePhone = forms.CharField(max_length=17, required=False, help_text='Optional')
     user_political_party = forms.CharField(max_length=50, required=False, help_text='Optional')
 
     user_roles_list = forms.ModelChoiceField(queryset=UserRoles_list.objects.all(), required=False)
