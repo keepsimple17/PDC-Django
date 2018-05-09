@@ -1,5 +1,5 @@
 {
-  "extends": "eslint-config-airbnb-es5",
+  "extends": "airbnb",
   "rules": {
     "no-underscore-dangle": "off",
     "func-names": ["error", "never"],

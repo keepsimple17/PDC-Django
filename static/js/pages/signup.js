@@ -8,10 +8,10 @@
 *
 * ---------------------------------------------------------------------------- */
 
-$(function () {
+$(() => {
     // Basic initialization, based on Bloodhound
-    var termChk = $("#term_checkbox");
-    var signupBtn = $("#btncheck");
+    const termChk = $("#term_checkbox");
+    const signupBtn = $("#btncheck");
     const signupForm = $('.signup_form');
     // check to accepting terms of service
     termChk.on('change', function () {
@@ -34,16 +34,16 @@ $(function () {
             // Styled checkboxes, radios, bootstrap switch
             if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container') ) {
                 if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
-                    error.appendTo( element.parent().parent().parent().parent() );
+                    error.appendTo(element.parent().parent().parent().parent());
                 } else {
-                    error.appendTo( element.parent().parent().parent().parent().parent() );
+                    error.appendTo(element.parent().parent().parent().parent().parent());
                 }
             } else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
                 // Input with icons and Select2
-                error.appendTo( element.parent() );
+                error.appendTo(element.parent());
             } else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
                 // Inline checkboxes, radios
-                error.appendTo( element.parent().parent() );
+                error.appendTo(element.parent().parent());
             } else {
                 error.insertAfter(element);
             }
@@ -52,37 +52,37 @@ $(function () {
         messages: {
             username: {
                 required: "Please enter your username.",
-                remote: jQuery.validator.format("{0} is already taken.")
+                remote: jQuery.validator.format("{0} is already taken."),
             },
             email: {
                 required: "Please enter your valid email address.",
-                remote: jQuery.validator.format("{0} is already taken.")
+                remote: jQuery.validator.format("{0} is already taken."),
             },
             password1: {
-                required: "Please enter your password."
-            }
+                required: "Please enter your password.",
+            },
         },
         rules: {
             password1: {
-                minlength: 8
+                minlength: 8,
             },
             password2: {
-                equalTo: "#password1"
+                equalTo: "#password1",
             },
             username: {
                 required: true,
                 remote: {
                     url: "/account/check_username",
-                    type: "get"
-                }
+                    type: "get",
+                },
             },
             email: {
                 required: true,
                 remote: {
                     url: "/account/check_email",
-                    type: "get"
-                }
-            }
-        }
+                    type: "get",
+                },
+            },
+        },
     });
 });
