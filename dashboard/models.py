@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
 from django_extensions.db.models import (TitleSlugDescriptionModel, TimeStampedModel)
 
 event_hook_depth = 0
@@ -178,6 +179,24 @@ USER_ROLES_CHOICES = (
 )
 
 
+def phone_validators(value):
+    validator_fn = [
+        RegexValidator(r'^\(?([0-9]{2})\)? ([0-9]{1})? ([0-9]{4})[-. ]?([0-9]{4})$',
+                       "Digite apenas números. (XX) X XXXX-XXXX ou (XX) XXXX-XXXX"),
+        RegexValidator(r'^\(?([0-9]{2})\)? ([0-9]{4})[-. ]?([0-9]{4})$',
+                       "Digite apenas números. (XX) X XXXX-XXXX ou (XX) XXXX-XXXX")
+    ]
+    err = None
+    for validator in validator_fn:
+        try:
+            validator(value)
+            # Valid value, return it
+            return value
+        except ValidationError as exc:
+            err = exc
+    # Value match nothing, raise error
+    raise err
+
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
 class Usuario(models.Model):
     user = models.OneToOneField(User, null=False, blank=False)
@@ -193,11 +212,7 @@ class Usuario(models.Model):
     bairro = models.CharField("Bairro", max_length=255, blank=True, null=True)  # neiborhood
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
     company = models.CharField("Endereço", max_length=255, blank=True, null=True)
-    cellPhone = models.CharField(blank=True, null=True, max_length=17,
-                                 validators=[RegexValidator(regex='^\(?([0-9]{2})\)? ([0-9]{4,5})[-. ]?([0-9]{4})$',
-                                                            message="Phone number must be entered in the format:"
-                                                                    " '+999999999'. Up to 17 digits allowed.",
-                                                            code='Invalid number')])
+    cellPhone = models.CharField(blank=True, null=True, max_length=17, validators=[phone_validators])
     landlinePhone = models.CharField("Telefone Fixo", max_length=17, blank=True, null=True)
     email_verified = models.NullBooleanField(null=True)
     cellPhone_verified = models.BooleanField
