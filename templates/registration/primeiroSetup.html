@@ -448,6 +448,12 @@
 
                     <h6>Candidato</h6>
                     <fieldset>
+                        <!-- /info alert -->
+                        <div class="alert bg-danger-400 alert-styled-left">
+                            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                            <span class="text-semibold">Atenção!!!  </span> Insira os dados do <a href="#" class="alert-link">CANDIDATO</a> 
+                        </div>
+
                         <!-- Candidate Party, Nickname and Ballot-->
                         <div class="row">
                             <div class="col-md-3">
@@ -721,6 +727,12 @@
 
                     <h6>Equipe</h6>
                     <fieldset>
+                        <!-- /info alert -->
+                        <div class="alert alert-danger alert-styled-left">
+                            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                            Convide sua equipe para o SCOPO! Insira as informações necessárias para que eles recebam seu convite. 
+                        </div>
+
                         <!-- Nome do Membro da equipe, Email Membro da Equipe   -->
                         <div class="row">
                             <div class="col-md-6">
@@ -1067,13 +1079,20 @@
                                                     </div>
                                                 </div>
                                            
-                                            <div class="row">
-                                                <div class="form-group form-group-material">
-                                                    <label class="control-label has-margin is-visible">Bootstrap tags input</label>
-                                                    <div class="bootstrap-tagsinput"><span class="tag label label-info">Miami<span data-role="remove"></span></span> <span class="tag label label-info">Texas<span data-role="remove"></span></span> <span class="tag label label-info">teste<span data-role="remove"></span></span>  <input type="text" placeholder="" size="22"></div><input type="text" class="tags-input" value="Miami,Texas" placeholder="- Bootstrap tags input" style="display: none;">
-                                                 </div>
-                                        
+                                           <!-- Palavras chave Positivas e Negativas-->
+                                            <!-- Tag input Custom blue color -->
+                                            <div class="form-group">
+                                                 <label>Palavras chave Positivas</label>
+                                                    <div class="tokenfield form-control"><input type="text" class="form-control tokenfield-primary" value="Red,blue,green" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token bg-primary"><span class="token-label" style="max-width: 355px;">Red</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-primary"><span class="token-label" style="max-width: 355px;">blue</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-primary active"><span class="token-label" style="max-width: 355px;">green</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525894975397183-tokenfield" tabindex="0" style="min-width: 60px; width: 288.828px;"></div>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label>Custom green color</label>
+                                                    <div class="tokenfield form-control"><input type="text" class="form-control tokenfield-teal" value="Red,blue,green" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token bg-teal"><span class="token-label" style="max-width: 355px;">Red</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-teal"><span class="token-label" style="max-width: 355px;">blue</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-teal"><span class="token-label" style="max-width: 355px;">green</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525894975413129-tokenfield" tabindex="0" style="min-width: 60px; width: 288.828px;"></div>
+                                            </div>
+
+                                        
+                                        
                                             <div class="row">
                            <div class="table-responsive">
 							<table class="table">
