@@ -23,11 +23,18 @@
 
     <script type="text/javascript" src="{% static 'js/plugins/ui/ripple.min.js' %}"></script>
 
-    <!-- calendar pickup itens -->
-    <!-- for some reason the picker date is conflicting with the button effects -->
-    <!-- calendar pickup itens -->
     <!-- /theme JS files -->
     <!-- /Theme for step form wizard -->
+
+    <!-- Floating labels and aditional input forms plugins JS -->
+
+    <script type="text/javascript" src="{% static 'js/plugins/forms/editable/editable.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/forms/tags/tagsinput.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/forms/tags/tokenfield.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/pages/form_tags_input.js' %}"></script>
+
+
+     <!-- /Floating labels and aditional input forms plugins JS -->
 
     <!-- Buttons effects -->
     <script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.min.js' %}"></script>
@@ -1106,12 +1113,37 @@
 								</tbody>
 							</table>
 						</div>
-                                            </div>
+                    </div>
                                         </div>
 
+                                        <!-- location tab -->
                                         <div class="tab-pane" id="highlighted-justified-tab2">
-                                            Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid laeggin.
+
+                                           <div class="form-group">
+                                                <label>Basic example</label>
+                                                <div class="tokenfield form-control"><input type="text" class="form-control tokenfield" value="These,are,tokens" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 585px;">These</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 585px;">are</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 585px;">tokens</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525894038302123-tokenfield" tabindex="0" style="min-width: 60px; width: 328.703125px;"></div>
+                                            </div>
+
                                         </div>
+
+                                        <!-- with icon -->
+                                        <div class="form-group">
+										<label>Input group with addon</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="icon-price-tag"></i></span>
+											<div class="tokenfield form-control"><input type="text" class="form-control tokenfield" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 547px;">cool</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">nice</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">great</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015035104-tokenfield" tabindex="0" style="min-width: 60px; width: 300.4375px;"></div>
+										</div>
+									    </div>
+                                        <!-- /with icon -->
+
+                                        <div class="form-group">
+										<label>Custom green color</label>
+										<div class="tokenfield form-control"><input type="text" class="form-control tokenfield-teal" value="Red,blue,green" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token bg-teal"><span class="token-label" style="max-width: 588px;">Red</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-teal"><span class="token-label" style="max-width: 588px;">blue</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-teal"><span class="token-label" style="max-width: 588px;">green</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015148147-tokenfield" tabindex="0" style="min-width: 60px; width: 340.828125px;"></div>
+									</div>
+
+
+
+                                        <!-- /location tab -->
 
                                         <div class="tab-pane" id="highlighted-justified-tab3">
                                             <div class="row">
