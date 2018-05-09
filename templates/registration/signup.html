@@ -2,13 +2,15 @@
 {% load staticfiles %}
 
 {% block content %}
+    <script type="text/javascript" src="{% static 'js/plugins/forms/validation/validate.min.js' %}"></script>
+
     <!-- Login form -->
 	<div class="page-container">
 		<div class="modal-dialog">
 			<div class="login-form">
 
 				<!-- Form -->
-				<form class="modal-body" method="post" action="{% url 'signup' %}">
+				<form class="modal-body signup_form" method="post" action="{% url 'signup' %}">
       			{% csrf_token %}
 					<div class="text-center">
 						<img src="http://www.portaldocandidato.inf.br/images/SCOPO_300px.png"><br />
@@ -20,8 +22,8 @@
 					<div class="content-divider text-muted form-group"><span>Dados de Login</span></div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="username" type="text" class="form-control"
-                               placeholder="Nome de Usuário" required="required">
+						<input name="username" type="text" class="form-control" id="username"
+                               placeholder="Nome de Usuário" required>
 						<div class="form-control-feedback">
 							<i class="icon-user text-muted"></i>
 						</div>
@@ -41,12 +43,7 @@
 
 					<div class="form-group has-feedback has-feedback-left">
 						<input name="password1" type="password" class="form-control"
-                               title="
-Sua senha não pode ser tão parecida com suas outras informações pessoais.
-Sua senha precisa conter pelo menos 8 caracteres.
-Sua senha não pode ser uma senha habitualmente utilizada.
-Sua senha não pode ser inteiramente numérica."
-                               placeholder="Senha" required="required">
+                               placeholder="Senha" id="password1" required>
 						<div class="form-control-feedback">
 							<i class="icon-lock2 text-muted"></i>
 						</div>
@@ -96,9 +93,9 @@ Sua senha não pode ser inteiramente numérica."
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input name="email" type="text" class="form-control"
+						<input name="email" type="email" class="form-control"
                                title="{{ form.email.help_text }}"
-                               placeholder="Email"  required="required">
+                               placeholder="Email"  required>
 						<div class="form-control-feedback">
 							<i class="icon-mail5 text-muted"></i>
 						</div>
@@ -163,15 +160,6 @@ Sua senha não pode ser inteiramente numérica."
 	</div>
 
     {% include 'components/terms_modal.html' %}
-
-	<!-- /login form -->
-	<script>
-        // Basic initialization, based on Bloodhound
-        var chk = $("#term_checkbox");
-        var btn = $("#btncheck");
-        chk.on('change', function() {
-        	btn.prop('disabled', !this.checked);
-        }).trigger('change');
-    </script>
+    <script type="text/javascript" src="{% static 'js/pages/signup.js' %}"></script>
 
 {% endblock %}

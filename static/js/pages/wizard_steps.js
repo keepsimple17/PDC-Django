@@ -327,7 +327,6 @@ $(function () {
     });
 
     function getInvites() {
-        console.log('getInvites');
         var invitor_email = $("input[name=campaign_email]").val();
         axios.get('/candidato/invites/', {
             params: {
@@ -345,14 +344,14 @@ $(function () {
     }
 
     function renderInvites(invites) {
-        // console.log('invites', invites);
+        var inviteBody = $( ".invites_body" );
         var htmlString = '';
         for (var invite of invites) {
             console.log(invite);
             htmlString += changeVariable(invite.invited_name, invite.invited_email, invite.invite_status);
         }
-        $( ".invites_body" ).html('');
-        $( ".invites_body" ).append(htmlString);
+        inviteBody.html('');
+        inviteBody.append(htmlString);
     }
 
     function changeVariable(name, email, status) {
@@ -403,9 +402,10 @@ $(function () {
     }
 
     function pushInvit(invite) {
-        var oldStr = $( ".invites_body" ).html('');
+        var inviteBody = $('.invites_body');
+        var oldStr = inviteBody.html('');
         var newStr = changeVariable(invite.invited_name, invite.invited_email, invite.invite_status) + oldStr;
-        $( ".invites_body" ).append(newStr);
+        inviteBody.append(newStr);
     }
 
     // update candidate cicies
