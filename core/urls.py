@@ -47,6 +47,9 @@ urlpatterns = [
         name='account_candidator_aprove_user'),
     url(r'^account/account_accept_candidator_invite/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_accept_candidator_invite,
         name='account_accept_candidator_invite'),
+    # apis
+    url(r'^account/check_username', views.check_username, name='check_username'),
+    url(r'^account/check_email', views.check_email, name='check_email'),
     # password reset
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^approve_user/$', views.apporve_user, name='apporve_user'),

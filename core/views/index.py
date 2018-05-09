@@ -128,6 +128,28 @@ def candidate_signup(request, uidb64=None):
         return render(request, "registration/candidate_signup.html", {'form': form, 'uidb64': uidb64})
 
 
+@api_view(['GET'])
+def check_username(request):
+    if request.method == 'GET':
+        username = request.GET['username']
+        user = User.objects.filter(username=username)
+        if len(user) == 0:
+            return Response(True, status=status.HTTP_200_OK)
+        else:
+            return Response(False, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def check_email(request):
+    if request.method == 'GET':
+        email = request.GET['email']
+        user = User.objects.filter(email=email)
+        if len(user) == 0:
+            return Response(True, status=status.HTTP_200_OK)
+        else:
+            return Response(False, status=status.HTTP_200_OK)
+
+
 @csrf_protect
 def firstsetup(request):
 

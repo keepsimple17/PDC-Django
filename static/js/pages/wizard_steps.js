@@ -9,15 +9,16 @@
 *
 * ---------------------------------------------------------------------------- */
 
+'use strict';
+
 $(function () {
     // Show form
     var form = $(".steps-validation").show();
-    var severUrl = $("meta[name=sever_url]").attr("content");
+
     // global required message for validator
     jQuery.extend(jQuery.validator.messages, {
         required: "Este campo é obrigatório."
     });
-
 
     // Initialize wizard
     $(".steps-validation").steps({
@@ -25,12 +26,13 @@ $(function () {
         bodyTag: "fieldset",
         transitionEffect: "fade",
         titleTemplate: '<span class="number">#index#</span> #title#',
+        autoFocus: true,
         labels: {
             finish: 'Enviar',
             next: 'Proximo',
             previous: 'Anterior'
         },
-        autoFocus: true,
+
 
         onStepChanging: function (event, currentIndex, newIndex) {
             console.log('step chaning', currentIndex, newIndex);
@@ -67,12 +69,12 @@ $(function () {
         onStepChanged: function (event, currentIndex, priorIndex) {
             // Used to skip the "Warning" step if the user is old enough.
             if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
-                form.steps("next");
+                form.steps("Próximo");
             }
 
             // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
             if (currentIndex === 2 && priorIndex === 3) {
-                form.steps("previous");
+                form.steps("Anterior");
             }
         },
 
@@ -83,8 +85,6 @@ $(function () {
         },
 
         onFinished: function (event, currentIndex) {
-            console.log(event, currentIndex);
-            console.log($('.steps-validation'));
             // alert("Submitted!!!!!!!");
             $('.steps-validation')[0].submit(function (_event) {
                 // alert( "Handler for .submit() called." );
@@ -150,17 +150,37 @@ $(function () {
         minimumResultsForSearch: Infinity
     });
 
-    // Date range picker
+    // birthday picker
+    // we need following operation to enable to input birthday manually
+    // type dd/mm/year
     $('#birthday_picker__span').click(function (e) {
+        var done = false;
         $('#birthday_picker__input').AnyTime_noPicker().AnyTime_picker({
-            format: "%d/%m/%Z"
+            format: "%d/%m/%Z",
+            labelTitle: "Aniversário"
         }).focus();
         e.preventDefault();
+        // creating the hook of hide event
+        // couldn't find event hook of anytime plugin in doc
+        // doc link: https://www.ama3.com/anytime/#AnyTime.noPicker
+        // ref link: https://stackoverflow.com/questions/2857900/onhide-type-event-in-jquery
+        var _oldhide = $.fn.hide;
+        $.fn.hide = function (speed, callback) {
+            $(this).trigger('hide');
+            return _oldhide.apply(this, arguments);
+        };
+
+        setTimeout(function () {
+            $('#AnyTime--birthday_picker__input').bind('hide', function(){
+                if (!done) {
+                    $('#birthday_picker__input').AnyTime_noPicker();
+                    done = true;
+                }
+            });
+        }, 300);
     });
-    $('#birthday_picker__input').click(function (e) {
-        $('#birthday_picker__input').AnyTime_noPicker();
-        e.preventDefault();
-    });
+
+    // birthday input mask when entering manually
     $('#birthday_picker__input').keyup(birthDayMask);
 
     function birthDayMask() {
@@ -179,6 +199,7 @@ $(function () {
             birthString = `${day}/${month}`;
             $(this).val(birthString);
         } else if (year && year > today.getFullYear()) {
+            // next year is impossible
             birthString = `${day}/${month}`;
             $(this).val(birthString);
         } else {
@@ -200,9 +221,6 @@ $(function () {
             $(this).val(birthString);
         }
     }
-    // $("#anytime-month-numeric").AnyTime_picker({
-    //     format: "%d/%m/%Z"
-    // });
 
     function notify(message) {
         noty({
@@ -221,6 +239,7 @@ $(function () {
     // Button with progress
     Ladda.bind('.btn-ladda-progress', {
         callback: function (instance) {
+            // creating team member
             $('#team_member_name').addClass('required');
             $('#team_member_email').addClass('required');
             $('#team_member_role').addClass('required');
@@ -265,8 +284,7 @@ $(function () {
                 return val;
             }
             console.log(permissionArray);
-            var url = 'http://' + severUrl + '/account/add_team_member';
-            axios.post(url, {
+            axios.post('/account/add_team_member', {
                 team_member_name: team_member_name,
                 team_member_email: team_member_email,
                 team_member_cel: team_member_cel,
@@ -286,16 +304,6 @@ $(function () {
                     instance.stop();
                     console.log(error);
                 });
-            // var progress = 0;
-            // var interval = setInterval(function () {
-            //     progress = Math.min(progress + Math.random() * 0.1, 1);
-            //     instance.setProgress(progress);
-            //
-            //     if ( progress === 1 ) {
-            //         instance.stop();
-            //         clearInterval(interval);
-            //     }
-            // }, 200);
         }
     });
 
@@ -307,32 +315,18 @@ $(function () {
         var trs = $('#user_permission_table > tr');
         for (var index in Array.from(Array(trs.length).keys())) {
             var tds = $(trs[index]).find('.check-box');
-            // console.log('tds', tds);
             var str = permissionArray[index].toString();
             var bin = (+str).toString(2);
             if (tds.length === 3) {
-                if (bin[0] === '1') {
-                    tds[0].checked = true;
-                } else {
-                    tds[0].checked = false;
-                }
-                if (bin[1] === '1') {
-                    tds[1].checked = true;
-                } else {
-                    tds[1].checked = false;
-                }
-                if (bin[2] === '1') {
-                    tds[2].checked = true;
-                } else {
-                    tds[2].checked = false;
-                }
+                // best experience!!!
+                tds[0].checked = bin[0] === '1';
+                tds[1].checked = bin[1] === '1';
+                tds[2].checked = bin[2] === '1';
             }
         }
     });
 
     function getInvites() {
-        console.log('getInvites');
-        var url = 'http://' + severUrl + '/candidato/invites/';
         var invitor_email = $("input[name=campaign_email]").val();
         axios.get('/candidato/invites/', {
             params: {
@@ -350,14 +344,14 @@ $(function () {
     }
 
     function renderInvites(invites) {
-        // console.log('invites', invites);
+        var inviteBody = $( ".invites_body" );
         var htmlString = '';
         for (var invite of invites) {
             console.log(invite);
             htmlString += changeVariable(invite.invited_name, invite.invited_email, invite.invite_status);
         }
-        $( ".invites_body" ).html('');
-        $( ".invites_body" ).append(htmlString);
+        inviteBody.html('');
+        inviteBody.append(htmlString);
     }
 
     function changeVariable(name, email, status) {
@@ -408,9 +402,10 @@ $(function () {
     }
 
     function pushInvit(invite) {
-        var oldStr = $( ".invites_body" ).html('');
+        var inviteBody = $('.invites_body');
+        var oldStr = inviteBody.html('');
         var newStr = changeVariable(invite.invited_name, invite.invited_email, invite.invite_status) + oldStr;
-        $( ".invites_body" ).append(newStr);
+        inviteBody.append(newStr);
     }
 
     // update candidate cicies
@@ -435,12 +430,15 @@ $(function () {
             }});
     }
 
-    // file input
+    // photo upload form
     $(".file-styled").uniform({
-        fileButtonClass: 'action btn bg-pink-400'
+        fileButtonClass: 'action btn bg-warning-400',
+        fileButtonHtml: 'Escolher Arquivo',
+        fileDefaultHtml: 'Nenhum Arquivo'
     });
 });
 
+// showing the thumbnail of selected image
 function readImg(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

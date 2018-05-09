@@ -13,16 +13,6 @@
     <script type="text/javascript" src="{% static 'js/plugins/forms/validation/validate.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/extensions/cookie.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/pickers/anytime.min.js' %}"></script>
-{#    <script type="text/javascript" src="{% static 'js/plugins/pickers/pickadate/picker.date.js' %}"></script>#}
-{#    <script type="text/javascript" src="{% static 'js/plugins/pickers/daterangepicker.js' %}"></script>#}
-{#    <script type="text/javascript" src="{% static 'js/plugins/pickers/datepicker.js' %}"></script>#}
-
-{#    <script type="text/javascript" src="assets/js/plugins/pickers/daterangepicker.js"></script>#}
-{#	<script type="text/javascript" src="assets/js/plugins/pickers/anytime.min.js"></script>#}
-{#	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/picker.js"></script>#}
-{#	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/picker.date.js"></script>#}
-{#	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/picker.time.js"></script>#}
-{#	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/legacy.js"></script>#}
 
     <script type="text/javascript" src="{% static 'js/plugins/notifications/noty.min.js' %}"></script>
 
@@ -361,6 +351,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- /CEP, State and Citie -->
 
                         <!-- Adreess, Predial number,  complement address -->
@@ -388,8 +379,9 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Partido do Usuário</label>
-                                    <select title="" class="form-control select "
+
+                                    <label>Partido do <strong>Usuário</strong></label>
+                                    <select title="" class="form-control select"
                                             name="user_political_party">
                                         <option></option>
                                         {% for item in political_parties %}
@@ -412,7 +404,7 @@
                                         {% endif %}
                                     {% endfor %}
                                     <select title="" name="user_roles_list_none" data-placeholder="Candidato."
-                                            class="select required" disabled>
+                                            class="select" disabled>
                                         {% for item in user_roles_list %}
                                             {% if item.1 == 'Candidato' %}
                                                 <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
@@ -423,7 +415,7 @@
                                     </select>
                                 {% else %}
                                     <select title="" name="user_roles_list" data-placeholder="Preencha o papel."
-                                            class="select required">
+                                            class="select">
                                         {% for item in user_roles_list %}
                                             {% if profile_form.user_roles_list.value == item.0 %}
                                                 <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
@@ -453,8 +445,8 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Partido do Candidato</label>
-                                    <select title="" class="form-control select "
+                                    <label>Partido do <strong>Candidato</strong></label>
+                                    <select title="" class="form-control select"
                                             name="candidate_party">
                                         <option selected></option>
                                         {% for item in political_parties %}
@@ -1099,14 +1091,44 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label>Palavra chave</label>
-                                                <div class="description-input form-control">
-                                                    <div class="label label-success radio-lable">Security</div>
-                                                    <div class="label label-success radio-lable">Education</div>
-                                                    <div class="label label-success radio-lable">Lava-Jato</div>
-                                                    <div class="label label-danger radio-lable">Bolsonaro</div>
-                                                    <div class="label label-default radio-lable">Luna 2018</div>
-                                                </div>
+                           <div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Username</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Eugene</td>
+										<td>Kopyov</td>
+										<td>@Kopyov</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Victoria</td>
+										<td>Baker</td>
+										<td>@Vicky</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>James</td>
+										<td>Alexander</td>
+										<td>@Alex</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Franklin</td>
+										<td>Morrison</td>
+										<td>@Frank</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
                                             </div>
                                         </div>
 
