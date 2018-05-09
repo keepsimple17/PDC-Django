@@ -322,7 +322,7 @@
                                     <label>CEP:</label>
                                     <input title="" type="text"
                                            value="{{ profile_form.cep.value|default_if_none:"" }}"
-                                           name="cep" class="form-control zip-field" required>
+                                           name="cep" class="form-control zip-field" >
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -349,7 +349,7 @@
                                 <div class="form-group">
                                     <label>Cidade:</label> <!-- Citie -->
                                     <select title="" name="cidade" data-placeholder="Cidade" id="id_cidade"
-                                            class="form-control" required>
+                                            class="form-control" >
                                         {% for item in user_cities %}
                                             {% if profile_form.cidade.value == item.0|slugify %}
                                                 <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
@@ -370,7 +370,7 @@
                                     <label>Endereço:</label>
                                     <input title="" type="text" name="address" id="address"
                                            value="{{ profile_form.address.value|default_if_none:"" }}"
-                                           class="form-control" placeholder="Endereço" required>
+                                           class="form-control" placeholder="Endereço" >
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -389,7 +389,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Partido do Usuário</label>
-                                    <select title="" class="form-control select required"
+                                    <select title="" class="form-control select "
                                             name="user_political_party">
                                         <option></option>
                                         {% for item in political_parties %}
@@ -454,7 +454,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Partido do Candidato</label>
-                                    <select title="" class="form-control select required"
+                                    <select title="" class="form-control select "
                                             name="candidate_party">
                                         <option selected></option>
                                         {% for item in political_parties %}
@@ -492,7 +492,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Cargo Pretendido pelo Candidato</label> <!-- Candidate aspiration -->
-                                    <select title="" name="candidate_desired_position" class="select required">
+                                    <select title="" name="candidate_desired_position" class="select ">
                                         <option></option>
                                         <optgroup label="Cargo">
                                             {% for item in CANDIDATE_POSITION_CHOICES %}
@@ -580,7 +580,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Cargo que Exerce</label> <!-- Candidate current position -->
-                                    <select title="" name="candidate_current_position" class="select required">
+                                    <select title="" name="candidate_current_position" class="select">
                                         <option></option>
                                         <optgroup label="Cargo">
                                             {% for item in CANDIDATE_POSITION_CHOICES %}
@@ -645,7 +645,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email da Campanha</label><!-- Campaign email -->
-                                    <input title="" type="email" name="campaign_email" class="form-control required"
+                                    <input title="" type="email" name="campaign_email" class="form-control "
                                            value="{{ candidate_form.campaign_email.value|default_if_none:"" }}"
                                            placeholder="email@campanha.com.br">
                                 </div>
@@ -1019,16 +1019,17 @@
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
                                         <li class="active">
-                                            <a href="#highlighted-justified-tab1" data-toggle="tab">Palavras Chave &amp. Propostas</a>
+                                            <a href="#highlighted-justified-tab1" data-toggle="tab">Propostas &amp. Palavras Chave</a>
                                         </li>
                                         <li><a href="#highlighted-justified-tab2" data-toggle="tab">Localização</a></li>
                                         <li><a href="#highlighted-justified-tab3" data-toggle="tab">Comitês</a></li>
                                     </ul>
 
+                                    <!-- proposal, proposal description, add button -->
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="highlighted-justified-tab1">
                                             <div class="row">
-                                                <div class="col-md-5">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Propostas</label>
                                                         <input title="" type="text" name="proposal"
@@ -1040,12 +1041,20 @@
                                                                class="form-control description-input" placeholder="">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-1">
-                                                    <button type="button" class="btn bg-green proposal-btn">
-                                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                            <div class="row">
+                                                 <div class="col-md-4 col-md-offset-8">
+                                                    <button type="button"
+                                                            class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
+                                                            data-style="text">
+                                                        <span class="ladda-label">Adicionar Proposta
+                                                        </span>
                                                     </button>
                                                 </div>
-                                                <div class="col-md-6">
+                                            </div>
+
+                                            <!-- table with proposals list -->
+                                            <div class="row">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Lista de propostas</label>
                                                         <div class="proposal-list form-control">
