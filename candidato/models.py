@@ -89,6 +89,8 @@ CANDIDATE_POSITION_CHOICES = (
     ('ve', 'Vereador'),
 )
 
+CANDIDATE_CURRENT_POSITION = (('na','Nenhum'),('pt','Partidario Criminoso'),) + CANDIDATE_POSITION_CHOICES
+
 CANDIDATE_INVITE_CHOICES = (
     ('S', 'SUSPENSO'),
     ('I', 'INATIVO'),
