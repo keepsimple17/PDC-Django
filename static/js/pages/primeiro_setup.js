@@ -9,11 +9,9 @@
 *
 * ---------------------------------------------------------------------------- */
 
-'use strict';
-
-$(function () {
+$(() => {
   // Show form
-  var form = $(".steps-validation").show();
+  const form = $(".steps-validation").show();
 
   // global required message for validator
   jQuery.extend(jQuery.validator.messages, {
@@ -99,15 +97,15 @@ $(function () {
     ignore: 'input[type=hidden], .select2-search__field', // ignore hidden fields
     errorClass: 'validation-error-label',
     successClass: 'validation-valid-label',
-    highlight: function (element, errorClass) {
+    highlight(element, errorClass) {
       $(element).removeClass(errorClass);
     },
-    unhighlight: function (element, errorClass) {
+    unhighlight(element, errorClass) {
       $(element).removeClass(errorClass);
     },
 
     // Different components require proper error label placement
-    errorPlacement: function (error, element) {
+    errorPlacement(error, element) {
       // Styled checkboxes, radios, bootstrap switch
       if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container')) {
         if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
@@ -133,8 +131,8 @@ $(function () {
     },
     // can customize each fields
     messages: {
-      name: "Please specify your name"
-    }
+      name: "Please specify your name",
+    },
   });
 
 
@@ -147,17 +145,17 @@ $(function () {
 
   // Simple select without search
   $('.select-simple').select2({
-    minimumResultsForSearch: Infinity
+    minimumResultsForSearch: Infinity,
   });
 
   // birthday picker
   // we need following operation to enable to input birthday manually
   // type dd/mm/year
-  $('#birthday_picker__span').click(function (e) {
-    var done = false;
+  $('#birthday_picker__span').click((e) => {
+    let done = false;
     $('#birthday_picker__input').AnyTime_noPicker().AnyTime_picker({
       format: "%d/%m/%Z",
-      labelTitle: "Aniversário"
+      labelTitle: "Aniversário",
     }).focus();
     e.preventDefault();
     // creating the hook of hide event

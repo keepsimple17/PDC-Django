@@ -9,7 +9,7 @@
     "quotes": "off",
     "object-curly-spacing": "off",
     "no-else-return": "off",
-    "indent": ["error", 4]
+    "indent": ["error", 2]
   },
   "env": {
     "browser": true,
