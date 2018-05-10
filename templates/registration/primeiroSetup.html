@@ -23,11 +23,18 @@
 
     <script type="text/javascript" src="{% static 'js/plugins/ui/ripple.min.js' %}"></script>
 
-    <!-- calendar pickup itens -->
-    <!-- for some reason the picker date is conflicting with the button effects -->
-    <!-- calendar pickup itens -->
     <!-- /theme JS files -->
     <!-- /Theme for step form wizard -->
+
+    <!-- Floating labels and aditional input forms plugins JS -->
+
+    <script type="text/javascript" src="{% static 'js/plugins/forms/editable/editable.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/forms/tags/tagsinput.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/forms/tags/tokenfield.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/pages/form_tags_input.js' %}"></script>
+
+
+     <!-- /Floating labels and aditional input forms plugins JS -->
 
     <!-- Buttons effects -->
     <script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.min.js' %}"></script>
@@ -312,7 +319,7 @@
                                     <label>CEP:</label>
                                     <input title="" type="text"
                                            value="{{ profile_form.cep.value|default_if_none:"" }}"
-                                           name="cep" class="form-control zip-field" required>
+                                           name="cep" class="form-control zip-field" >
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -339,7 +346,7 @@
                                 <div class="form-group">
                                     <label>Cidade:</label> <!-- Citie -->
                                     <select title="" name="cidade" data-placeholder="Cidade" id="id_cidade"
-                                            class="form-control" required>
+                                            class="form-control" >
                                         {% for item in user_cities %}
                                             {% if profile_form.cidade.value == item.0|slugify %}
                                                 <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
@@ -351,6 +358,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- /CEP, State and Citie -->
 
                         <!-- Adreess, Predial number,  complement address -->
@@ -360,7 +368,7 @@
                                     <label>Endereço:</label>
                                     <input title="" type="text" name="address" id="address"
                                            value="{{ profile_form.address.value|default_if_none:"" }}"
-                                           class="form-control" placeholder="Endereço" required>
+                                           class="form-control" placeholder="Endereço" >
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -378,8 +386,9 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
+
                                     <label>Partido do <strong>Usuário</strong></label>
-                                    <select title="" class="form-control select required"
+                                    <select title="" class="form-control select"
                                             name="user_political_party">
                                         <option></option>
                                         {% for item in political_parties %}
@@ -402,7 +411,7 @@
                                         {% endif %}
                                     {% endfor %}
                                     <select title="" name="user_roles_list_none" data-placeholder="Candidato."
-                                            class="select required" disabled>
+                                            class="select" disabled>
                                         {% for item in user_roles_list %}
                                             {% if item.1 == 'Candidato' %}
                                                 <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
@@ -413,7 +422,7 @@
                                     </select>
                                 {% else %}
                                     <select title="" name="user_roles_list" data-placeholder="Preencha o papel."
-                                            class="select required">
+                                            class="select">
                                         {% for item in user_roles_list %}
                                             {% if profile_form.user_roles_list.value == item.0 %}
                                                 <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
@@ -439,12 +448,18 @@
 
                     <h6>Candidato</h6>
                     <fieldset>
+                        <!-- /info alert -->
+                        <div class="alert bg-danger-400 alert-styled-left">
+                            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                            <span class="text-semibold">Atenção!!!  </span> Insira os dados do <a href="#" class="alert-link">CANDIDATO</a> 
+                        </div>
+
                         <!-- Candidate Party, Nickname and Ballot-->
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Partido do <strong>Candidato</strong></label>
-                                    <select title="" class="form-control select required"
+                                    <select title="" class="form-control select"
                                             name="candidate_party">
                                         <option selected></option>
                                         {% for item in political_parties %}
@@ -482,7 +497,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Cargo Pretendido pelo Candidato</label> <!-- Candidate aspiration -->
-                                    <select title="" name="candidate_desired_position" class="select required">
+                                    <select title="" name="candidate_desired_position" class="select ">
                                         <option></option>
                                         <optgroup label="Cargo">
                                             {% for item in CANDIDATE_POSITION_CHOICES %}
@@ -570,7 +585,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Cargo que Exerce</label> <!-- Candidate current position -->
-                                    <select title="" name="candidate_current_position" class="select required">
+                                    <select title="" name="candidate_current_position" class="select">
                                         <option></option>
                                         <optgroup label="Cargo">
                                             {% for item in CANDIDATE_POSITION_CHOICES %}
@@ -635,7 +650,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email da Campanha</label><!-- Campaign email -->
-                                    <input title="" type="email" name="campaign_email" class="form-control required"
+                                    <input title="" type="email" name="campaign_email" class="form-control "
                                            value="{{ candidate_form.campaign_email.value|default_if_none:"" }}"
                                            placeholder="email@campanha.com.br">
                                 </div>
@@ -712,6 +727,12 @@
 
                     <h6>Equipe</h6>
                     <fieldset>
+                        <!-- /info alert -->
+                        <div class="alert alert-danger alert-styled-left">
+                            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                            Convide sua equipe para o SCOPO! Insira as informações necessárias para que eles recebam seu convite. 
+                        </div>
+
                         <!-- Nome do Membro da equipe, Email Membro da Equipe   -->
                         <div class="row">
                             <div class="col-md-6">
@@ -1009,33 +1030,42 @@
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
                                         <li class="active">
-                                            <a href="#highlighted-justified-tab1" data-toggle="tab">Palavras Chave &amp. Propostas</a>
+                                            <a href="#highlighted-justified-tab1" data-toggle="tab">Propostas &amp. Palavras Chave</a>
                                         </li>
                                         <li><a href="#highlighted-justified-tab2" data-toggle="tab">Localização</a></li>
                                         <li><a href="#highlighted-justified-tab3" data-toggle="tab">Comitês</a></li>
                                     </ul>
 
+                                    <!-- proposal, proposal description, add button -->
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="highlighted-justified-tab1">
-                                            <div class="row">
-                                                <div class="col-md-5">
+                                            
+                                                <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Propostas</label>
+                                                        <label>Proposta: </label>
                                                         <input title="" type="text" name="proposal"
                                                                class="form-control" placeholder="">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Descrição da proposta</label>
+                                                        <label>Descrição da proposta:</label>
                                                         <input title="" type="text" name="description"
                                                                class="form-control description-input" placeholder="">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-1">
-                                                    <button type="button" class="btn bg-green proposal-btn">
-                                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                            
+                                                 <div class="col-md-4 col-md-offset-8">
+                                                    <button type="button"
+                                                            class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
+                                                            data-style="text">
+                                                        <span class="ladda-label">Adicionar Proposta
+                                                        </span>
                                                     </button>
                                                 </div>
-                                                <div class="col-md-6">
+                                           
+
+                                            <!-- table with proposals list -->
+                                            
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Lista de propostas</label>
                                                         <div class="proposal-list form-control">
@@ -1048,37 +1078,27 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <label>Adicionar palavra-chave</label>
-                                                    <input title="" type="text" name="addkeyword" class="form-control" placeholder="">
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label>
-                                                        <input title="" type="radio" class="zoom" name="optradio">
-                                                        <span class="label label-success radio-lable">Positive</span>
-                                                    </label>
-                                                    <label>
-                                                        <input title="" type="radio" class="zoom" name="optradio">
-                                                        <span class="label label-danger radio-lable">Negative</span>
-                                                    </label>
-                                                    <label>
-                                                        <input title="" type="radio" class="zoom" name="optradio">
-                                                        <span class="label label-default radio-lable">Follow</span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right m-t-25"
-                                                            data-style="slide-down">
-                                                        <span class="ladda-label">Add Committees
-                                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                                        </span>
-                                                        <span class="ladda-spinner"></span>
-                                                        <span class="ladda-progress" style="width: 135px;"></span>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                           
+                                           <!-- Positives and Negatives Keywords-->
+                                            <!-- Tag input Positive Keywords-->
+                                            <div class="form-group">
+                                        <label>Palavras Chave Positivas</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class=" icon-thumbs-up2"></i></span>
+                                            <div class="tokenfield-success form-control"><input type="text" class="form-control tokenfield" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 547px;">cool</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">nice</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">great</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015035104-tokenfield" tabindex="0" style="min-width: 60px; width: 300.4375px;"></div>
+                                        </div>
+
+                                            <!-- Tag input Negative Keywords-->
+                                            
+                                             <div class="form-group">
+                                        <label>Palavras Chave Negativas</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class=" icon-thumbs-down2"></i></span>
+                                            <div class="tokenfield-danger form-control"><input type="text" class="form-control tokenfield" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 547px;">cool</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">nice</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">great</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015035104-tokenfield" tabindex="0" style="min-width: 60px; width: 300.4375px;"></div>
+                                        </div>
+
+                                        
+                                        
                                             <div class="row">
                            <div class="table-responsive">
 							<table class="table">
@@ -1118,12 +1138,37 @@
 								</tbody>
 							</table>
 						</div>
-                                            </div>
+                    </div>
                                         </div>
 
+                                        <!-- location tab -->
                                         <div class="tab-pane" id="highlighted-justified-tab2">
-                                            Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid laeggin.
+
+                                           <div class="form-group">
+                                                <label>Basic example</label>
+                                                <div class="tokenfield form-control"><input type="text" class="form-control tokenfield" value="These,are,tokens" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 585px;">These</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 585px;">are</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 585px;">tokens</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525894038302123-tokenfield" tabindex="0" style="min-width: 60px; width: 328.703125px;"></div>
+                                            </div>
+
                                         </div>
+
+                                        <!-- with icon -->
+                                        <div class="form-group">
+										<label>Input group with addon</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="icon-price-tag"></i></span>
+											<div class="tokenfield form-control"><input type="text" class="form-control tokenfield" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 547px;">cool</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">nice</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">great</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015035104-tokenfield" tabindex="0" style="min-width: 60px; width: 300.4375px;"></div>
+										</div>
+									    </div>
+                                        <!-- /with icon -->
+
+                                        <div class="form-group">
+										<label>Custom green color</label>
+										<div class="tokenfield form-control"><input type="text" class="form-control tokenfield-teal" value="Red,blue,green" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token bg-teal"><span class="token-label" style="max-width: 588px;">Red</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-teal"><span class="token-label" style="max-width: 588px;">blue</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-teal"><span class="token-label" style="max-width: 588px;">green</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015148147-tokenfield" tabindex="0" style="min-width: 60px; width: 340.828125px;"></div>
+									</div>
+
+
+
+                                        <!-- /location tab -->
 
                                         <div class="tab-pane" id="highlighted-justified-tab3">
                                             <div class="row">
