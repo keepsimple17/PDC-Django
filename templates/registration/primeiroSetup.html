@@ -340,18 +340,18 @@
               <div class="col-md-5">
                 <div class="form-group">
                   <label>Estado:</label> <!-- State -->
-                  {#                                    <select title="" name="estado" data-placeholder="Estado" id="id_estado"#}
-                  {#                                            class="select">#}
-                  {#                                        <optgroup label="Estado">#}
-                  {#                                            {% for item in states %}#}
-                  {#                                                {% if profile_form.estado.value == item.0 %}#}
-                  {#                                                    <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
-                  {#                                                {% else %}#}
-                  {#                                                    <option value="{{ item.0 }}">{{ item.1 }}</option>#}
-                  {#                                                {% endif %}#}
-                  {#                                            {% endfor %}#}
-                  {#                                        </optgroup>#}
-                  {#                                    </select>#}
+{#                  <select title="" name="estado" data-placeholder="Estado" id="id_estado"#}
+{#                          class="select">#}
+{#                      <optgroup label="Estado">#}
+{#                          {% for item in states %}#}
+{#                              {% if profile_form.estado.value == item.0 %}#}
+{#                                  <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
+{#                              {% else %}#}
+{#                                  <option value="{{ item.0 }}">{{ item.1 }}</option>#}
+{#                              {% endif %}#}
+{#                          {% endfor %}#}
+{#                      </optgroup>#}
+{#                  </select>#}
                   {{ profile_form.estado }}
                 </div>
               </div>
