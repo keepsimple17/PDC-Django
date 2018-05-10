@@ -134,9 +134,21 @@
     }
 
     .spacing {
-      margin-top: 50px;
+      margin-top: 20px;
       height: 10px;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
+    }
+
+    .spacing {
+      margin-top: 20px;
+      height: 10px;
+      margin-bottom: 20px;
+    }
+
+    .dbspacing {
+      margin-top: 40px;
+      height: 10px;
+      margin-bottom: 40px;
     }
   </style>
 
@@ -1055,6 +1067,15 @@
 
           <h6>Campanha</h6>
           <fieldset>
+
+             <!-- info alert -->
+            <div class="alert alert-danger alert-styled-left">
+              <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+              </button>
+              Preencha com cuidado as propostas do CANDIDATO e as melhores PALAVRAS CHAVE associadas `a sua campanha, para que o Scopo faça uma busca mais minusciosa.
+            </div>
+            <!-- /info alert -->
+
             <div class="panel panel-flat col-lg-12 p-0">
               <div class="panel-body" style="display: block;">
                 <div class="tabbable">
@@ -1108,7 +1129,7 @@
                     <div class="col-md-2 col-md-offset-10">
                         <button type="button" class="btn bg-success">Adicionar Proposta</button>
                     </div>
-                    <div class="spacing"></div>
+                    <div class="dbspacing"></div>
 
                       <!-- table with proposals list -->
                     <div class="panel panel-flat">
@@ -1117,8 +1138,7 @@
                                 <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Proposta: activate to sort column descending">Proposta</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Categoria: activate to sort column ascending">Categoria</th><th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">Actions</th></tr>
                             </thead>
                             <tbody>
-                             
-                            
+                              
                             <tr role="row" class="odd">
                                     <td class="sorting_1">Segurança nos transportes</td> 
                                     <td>Segurança</td>
@@ -1190,29 +1210,47 @@
                                 </tr>
                         </table></div>
                     </div>
-
+                    <div class="dbspacing"></div>
                       
                       <!-- Positives and Negatives Keywords-->
                       <!-- Tag input Positive Keywords-->
-                      <div class="form-group has-success">
-                        <label class="control-label">Palavras Chave Positivas</label>
-                        <div class="has-feedback">
-                          <input type="text" class="form-control tokenfield-success" title="" value="Red,blue,green">
-                          <div class="form-control-feedback">
-                            <i class="icon-checkmark-circle"></i>
+                      <div class="form-group"><label>Palavras Chave Positivas:</label></div>
+                
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-thumbs-up2"></i></span>
+                          <div class="tokenfield-success form-control">
+                              <input type="text" class="form-control tokenfield bg-success" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;">
+                              <input type="text" tabindex="-1" style="position: absolute; left: -10000px;">
+                            <div class="token"><span class="token-label" style="max-width: 313px;">cool</span><a href="#" class="close" tabindex="-1">×</a>
+                            </div>
+                            <div class="token"><span class="token-label" style="max-width: 313px;">nice</span><a href="#" class="close" tabindex="-1">×</a>
+                            </div>
+                            <div class="token"><span class="token-label" style="max-width: 313px;">great</span><a href="#" class="close" tabindex="-1">×</a>
+                            </div>
+                              <input type="text" class="token-input" autocomplete="off" placeholder="" id="1525973032485188-tokenfield" tabindex="0" style="min-width: 60px; width: 248.438px;">
                           </div>
-                        </div>
                       </div>
-
+                    <div class="spacing"></div>
 
                       <!-- Tag input Negative Keywords-->
-                      <div class="form-group">
-                        <label>Palavras Chave Negativas</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="icon-price-tag"></i></span>
-                          <input type="text" class="form-control tokenfield" value="cool,nice,great" title="">
-                        </div>
+                      <div class="form-group"><label>Palavras Chave Negativas:</label></div>
+                
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-thumbs-down2"></i></span>
+                          <div class="tokenfield-danger form-control">
+                              <input type="text" class="form-control tokenfield bg-success" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;">
+                              <input type="text" tabindex="-1" style="position: absolute; left: -10000px;">
+                            <div class="token"><span class="token-label" style="max-width: 313px;">cool</span><a href="#" class="close" tabindex="-1">×</a>
+                            </div>
+                            <div class="token"><span class="token-label" style="max-width: 313px;">nice</span><a href="#" class="close" tabindex="-1">×</a>
+                            </div>
+                            <div class="token"><span class="token-label" style="max-width: 313px;">great</span><a href="#" class="close" tabindex="-1">×</a>
+                            </div>
+                              <input type="text" class="token-input" autocomplete="off" placeholder="" id="1525973032485188-tokenfield" tabindex="0" style="min-width: 60px; width: 248.438px;">
+                          </div>
                       </div>
+
+                      <!-- Close Tab content-->
                     </div>
 
                     <!-- location tab -->
