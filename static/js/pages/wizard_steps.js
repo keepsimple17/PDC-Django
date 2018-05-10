@@ -30,7 +30,7 @@ $(function () {
         labels: {
             finish: 'Enviar',
             next: 'Proximo',
-            previous: 'Anterior'
+            previous: 'Anterior',
         },
 
 
@@ -99,42 +99,42 @@ $(function () {
         ignore: 'input[type=hidden], .select2-search__field', // ignore hidden fields
         errorClass: 'validation-error-label',
         successClass: 'validation-valid-label',
-        highlight: function (element, errorClass) {
+        highlight(element, errorClass) {
             $(element).removeClass(errorClass);
         },
-        unhighlight: function (element, errorClass) {
+        unhighlight(element, errorClass) {
             $(element).removeClass(errorClass);
         },
 
         // Different components require proper error label placement
-        errorPlacement: function (error, element) {
+        errorPlacement(error, element) {
             // Styled checkboxes, radios, bootstrap switch
             if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container') ) {
                 if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
-                    error.appendTo( element.parent().parent().parent().parent() );
+                    error.appendTo(element.parent().parent().parent().parent());
                 } else {
-                    error.appendTo( element.parent().parent().parent().parent().parent() );
+                    error.appendTo(element.parent().parent().parent().parent().parent());
                 }
             } else if (element.parents('div').hasClass('checkbox') || element.parents('div').hasClass('radio')) {
                 // Unstyled checkboxes, radios
-                error.appendTo( element.parent().parent().parent() );
+                error.appendTo(element.parent().parent().parent());
             } else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
                 // Input with icons and Select2
-                error.appendTo( element.parent() );
+                error.appendTo(element.parent());
             } else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
                 // Inline checkboxes, radios
-                error.appendTo( element.parent().parent() );
+                error.appendTo(element.parent().parent());
             } else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
                 // Input group, styled file input
-                error.appendTo( element.parent().parent() );
+                error.appendTo(element.parent().parent());
             } else {
                 error.insertAfter(element);
             }
         },
         // can customize each fields
         messages: {
-            name: "Please specify your name"
-        }
+            name: "Please specify your name",
+        },
     });
 
 
@@ -147,31 +147,31 @@ $(function () {
 
     // Simple select without search
     $('.select-simple').select2({
-        minimumResultsForSearch: Infinity
+        minimumResultsForSearch: Infinity,
     });
 
     // birthday picker
     // we need following operation to enable to input birthday manually
     // type dd/mm/year
     $('#birthday_picker__span').click(function (e) {
-        var done = false;
+        let done = false;
         $('#birthday_picker__input').AnyTime_noPicker().AnyTime_picker({
             format: "%d/%m/%Z",
-            labelTitle: "Aniversário"
+            labelTitle: "Aniversário",
         }).focus();
         e.preventDefault();
         // creating the hook of hide event
         // couldn't find event hook of anytime plugin in doc
         // doc link: https://www.ama3.com/anytime/#AnyTime.noPicker
         // ref link: https://stackoverflow.com/questions/2857900/onhide-type-event-in-jquery
-        var _oldhide = $.fn.hide;
+        const _oldhide = $.fn.hide;
         $.fn.hide = function (speed, callback) {
             $(this).trigger('hide');
             return _oldhide.apply(this, arguments);
         };
 
-        setTimeout(function () {
-            $('#AnyTime--birthday_picker__input').bind('hide', function(){
+        setTimeout(() => {
+            $('#AnyTime--birthday_picker__input').bind('hide', () => {
                 if (!done) {
                     $('#birthday_picker__input').AnyTime_noPicker();
                     done = true;
@@ -185,11 +185,11 @@ $(function () {
 
     function birthDayMask() {
         const today = new Date();
-        var num = $(this).val().replace(/\D/g, '');
-        var birthString = '';
-        var day = num.substring(0, 2);
-        var month = num.substring(2, 4);
-        var year = num.substring(4, 8);
+        const num = $(this).val().replace(/\D/g, '');
+        let birthString = '';
+        let day = num.substring(0, 2);
+        let month = num.substring(2, 4);
+        let year = num.substring(4, 8);
         if (day && day > 31) {
             day = 31;
             birthString = `${day}/`;
@@ -204,19 +204,19 @@ $(function () {
             $(this).val(birthString);
         } else {
             if (num.length === 8) {
-                var birthday = new Date(year, month - 1, day);
+                const birthday = new Date(year, month - 1, day);
                 day = birthday.getDate();
                 month = birthday.getMonth() + 1;
                 year = birthday.getFullYear();
-                day = (day < 10)? `0${day}` : day;
-                month = (month < 10)? `0${month}` : month;
+                day = (day < 10) ? `0${day}` : day;
+                month = (month < 10) ? `0${month}` : month;
             }
             if (num.length < 3) {
                 birthString = `${day}/`;
             } else if (num.length > 4) {
                 birthString = `${day}/${month}/${year}`;
             } else {
-                birthString = `${day}/${month}`
+                birthString = `${day}/${month}`;
             }
             $(this).val(birthString);
         }
@@ -229,7 +229,7 @@ $(function () {
             type: 'success',
             dismissQueue: true,
             timeout: 4000,
-            layout: 'topRight'
+            layout: 'topRight',
         });
         $('#team_member_name').removeClass('required');
         $('#team_member_email').removeClass('required');
@@ -245,10 +245,10 @@ $(function () {
             $('#team_member_role').addClass('required');
             form.validate().settings.ignore = ":disabled,:hidden";
 
-            var team_member_name = $("input[name=team_member_name]").val();
-            var team_member_email = $("input[name=team_member_email]").val();
-            var team_member_cel = $("input[name=team_member_cel]").val();
-            var invitor_email = $("input[name=campaign_email]").val();
+            const team_member_name = $("input[name=team_member_name]").val();
+            const team_member_email = $("input[name=team_member_email]").val();
+            const team_member_cel = $("input[name=team_member_cel]").val();
+            const invitor_email = $("input[name=campaign_email]").val();
             console.log('team_member_name', team_member_name);
             console.log('team_member_email', team_member_email);
             console.log('team_member_cel', team_member_cel);
@@ -258,20 +258,20 @@ $(function () {
                 return;
             }
 
-            var trs = $('#user_permission_table > tr');
+            const trs = $('#user_permission_table > tr');
             // console.log('cliecked', trs);
-            var permissionArray = [];
+            const permissionArray = [];
 
-            for (var index in Array.from(Array(trs.length).keys())) {
-                var tds = $(trs[index]).find('.check-box');
+            for (const index in Array.from(Array(trs.length).keys())) {
+                const tds = $(trs[index]).find('.check-box');
                 // console.log('tds', tds);
                 if (tds.length === 3) {
-                    var value = calcPermissionValue(tds);
+                    const value = calcPermissionValue(tds);
                     permissionArray.push(value);
                 }
             }
             function calcPermissionValue(_tds) {
-                var val = 0;
+                let val = 0;
                 if (_tds[0].checked) {
                     val += 4;
                 }
@@ -285,17 +285,17 @@ $(function () {
             }
             console.log(permissionArray);
             axios.post('/account/add_team_member', {
-                team_member_name: team_member_name,
-                team_member_email: team_member_email,
-                team_member_cel: team_member_cel,
+                team_member_name,
+                team_member_email,
+                team_member_cel,
                 permission_list: permissionArray,
-                invitor_email: invitor_email
+                invitor_email,
             })
                 .then(function (response) {
                     instance.stop();
                     // console.log(response.data.message);
                     notify(response.data.message);
-                    var _status = response.data.status;
+                    const _status = response.data.status;
                     if ((_status === 'invited' || _status === 'created') && response.data.body) {
                         pushInvit(response.data.body);
                     }
@@ -304,19 +304,19 @@ $(function () {
                     instance.stop();
                     console.log(error);
                 });
-        }
+        },
     });
 
     $('.team-user-roles_select').change(function () {
-        var valueList = $('option:selected', this).attr('data-values');
+        const valueList = $('option:selected', this).attr('data-values');
         console.log('valueList', JSON.parse(valueList)[0]);
-        var permissionArray = JSON.parse(valueList);
+        const permissionArray = JSON.parse(valueList);
 
-        var trs = $('#user_permission_table > tr');
-        for (var index in Array.from(Array(trs.length).keys())) {
-            var tds = $(trs[index]).find('.check-box');
-            var str = permissionArray[index].toString();
-            var bin = (+str).toString(2);
+        const trs = $('#user_permission_table > tr');
+        for (const index in Array.from(Array(trs.length).keys())) {
+            const tds = $(trs[index]).find('.check-box');
+            const str = permissionArray[index].toString();
+            const bin = (+str).toString(2);
             if (tds.length === 3) {
                 // best experience!!!
                 tds[0].checked = bin[0] === '1';
@@ -327,26 +327,26 @@ $(function () {
     });
 
     function getInvites() {
-        var invitor_email = $("input[name=campaign_email]").val();
+        const invitor_email = $("input[name=campaign_email]").val();
         axios.get('/candidato/invites/', {
             params: {
                 invitator_email: invitor_email,
-                limit: 4
-            }
+                limit: 4,
+            },
         })
-            .then(function (response) {
+            .then((response) => {
                 console.log(response);
                 renderInvites(response.data.results);
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error);
             });
     }
 
     function renderInvites(invites) {
-        var inviteBody = $( ".invites_body" );
-        var htmlString = '';
-        for (var invite of invites) {
+        const inviteBody = $(".invites_body");
+        let htmlString = '';
+        for (const invite of invites) {
             console.log(invite);
             htmlString += changeVariable(invite.invited_name, invite.invited_email, invite.invite_status);
         }
@@ -379,7 +379,7 @@ $(function () {
         `;
 
         function getStatus(_status) {
-            var htmlStr = '';
+            let htmlStr = '';
             switch (_status) {
             case 'I':
                 htmlStr = `<span class="label label-default">INATIVO</span>`;
@@ -402,39 +402,40 @@ $(function () {
     }
 
     function pushInvit(invite) {
-        var inviteBody = $('.invites_body');
-        var oldStr = inviteBody.html('');
-        var newStr = changeVariable(invite.invited_name, invite.invited_email, invite.invite_status) + oldStr;
+        const inviteBody = $('.invites_body');
+        const oldStr = inviteBody.html('');
+        const newStr = changeVariable(invite.invited_name, invite.invited_email, invite.invite_status) + oldStr;
         inviteBody.append(newStr);
     }
 
     // update candidate cicies
     $('select#candidate_state').change(function () {
-        updateCandidateCities(this.value, function () {
+        updateCandidateCities(this.value, () => {
             console.log('updating cities');
         });
     });
 
     function updateCandidateCities(state, next) {
-        var url = '/updateCities';
+        const url = '/updateCities';
         // initialize an AJAX request
         $.ajax({
-            url: url,
+            url,
             data: {
-                stateId: state  // add the state id to the GET parameters
+                stateId: state,
             },
-            success: function (data) {
+            success: (data) => {
                 $("#candidate_city").html(data);
                 next();
             // replace the contents of the city input with the data that came from the server
-            }});
+            },
+        });
     }
 
     // photo upload form
     $(".file-styled").uniform({
         fileButtonClass: 'action btn bg-warning-400',
         fileButtonHtml: 'Escolher Arquivo',
-        fileDefaultHtml: 'Nenhum Arquivo'
+        fileDefaultHtml: 'Nenhum Arquivo',
     });
 });
 
