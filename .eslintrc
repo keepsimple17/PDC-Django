@@ -9,7 +9,17 @@
     "quotes": "off",
     "object-curly-spacing": "off",
     "no-else-return": "off",
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "no-use-before-define": ["error", { "functions": false, "classes": true }],
+    "func-style": ["error", "declaration"],
+    "max-len": ["error", { "code": 120 }],
+    "comma-dangle": ["error", {
+      "arrays": "never",
+      "objects": "never",
+      "imports": "never",
+      "exports": "never",
+      "functions": "ignore"
+    }]
   },
   "env": {
     "browser": true,
