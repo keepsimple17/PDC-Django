@@ -14,8 +14,8 @@
     "func-style": ["error", "declaration"],
     "max-len": ["error", { "code": 120 }],
     "comma-dangle": ["error", {
-      "arrays": "never",
-      "objects": "never",
+      "arrays": "ignore",
+      "objects": "ignore",
       "imports": "never",
       "exports": "never",
       "functions": "ignore"
