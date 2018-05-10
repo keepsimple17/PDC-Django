@@ -264,7 +264,6 @@
                                     </select>
                                  </div>
                             </div>
-
                         </div>
                         <!-- /Name, Surname, Civil Status, Gender -->
 
@@ -308,7 +307,6 @@
                                            class="form-control">
                                  </div>
                             </div>
-
                         </div>
                         <!-- /CPF, Birthday_Date, CellPhone, Landline -->
 
@@ -561,7 +559,6 @@
                                     </select>
                                 </div>
                             </div>
-
                         </div>
 
                         <!-- has position, current position, reelection, first election, resume -->
@@ -727,11 +724,12 @@
 
                     <h6>Equipe</h6>
                     <fieldset>
-                        <!-- /info alert -->
+                        <!-- info alert -->
                         <div class="alert alert-danger alert-styled-left">
                             <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
                             Convide sua equipe para o SCOPO! Insira as informações necessárias para que eles recebam seu convite. 
                         </div>
+                        <!-- /info alert -->
 
                         <!-- Nome do Membro da equipe, Email Membro da Equipe   -->
                         <div class="row">
@@ -856,8 +854,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-
                         </div>
+
                         <div class="col-md-4 col-md-offset-8">
                             <button type="button"
                                     class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
@@ -868,7 +866,6 @@
                                 <span class="ladda-spinner"></span>
                                 <span class="ladda-progress" style="width: 135px;"></span>
                             </button>
-
                         </div>
 
                         <!-- table with invited team members -->
@@ -1017,15 +1014,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- table with invited team members -->
+                        <!-- /table with invited team members -->
 
                     </fieldset>
 
                     <h6>Campanha</h6>
                     <fieldset>
-
                         <div class="panel panel-flat col-lg-12 p-0">
-
                             <div class="panel-body" style="display: block;">
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
@@ -1036,140 +1031,89 @@
                                         <li><a href="#highlighted-justified-tab3" data-toggle="tab">Comitês</a></li>
                                     </ul>
 
-                                    <!-- proposal, proposal description, add button -->
                                     <div class="tab-content">
-                                        <div class="tab-pane active" id="highlighted-justified-tab1">
-                                            
-                                                <div class="col-md-12">
+
+                                        <!-- Proposals and keywords -->
+                                        <div class="tab-pane active" id="highlighted-justified-tab1">       
+                                            <div class="row">
+                                                <div class="col-md-8">
                                                     <div class="form-group">
                                                         <label>Proposta: </label>
                                                         <input title="" type="text" name="proposal"
                                                                class="form-control" placeholder="">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Descrição da proposta:</label>
-                                                        <input title="" type="text" name="description"
-                                                               class="form-control description-input" placeholder="">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Categoria</label>
+                                                    <div class="col-md-4">
+                                                        <select name="select" class="form-control">
+                                                            <option value="opt1">Área</option>
+                                                            <option value="opt2">Saúde</option>
+                                                            <option value="opt3">Educação</option>
+                                                            <option value="opt4">Social</option>
+                                                            <option value="opt5">Infra Estrutura</option>
+                                                            <option value="opt6">Meio Ambiente</option>
+                                                            <option value="opt7">Moradia</option>
+                                                            <option value="opt8">Trabalho</option>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                            
-                                                 <div class="col-md-4 col-md-offset-8">
-                                                    <button type="button"
-                                                            class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
-                                                            data-style="text">
-                                                        <span class="ladda-label">Adicionar Proposta
-                                                        </span>
-                                                    </button>
-                                                </div>
+                                            </div>
+
+                                            <!-- Proposal description -->
+                                            <div class="form-group">
+                                                <label>Descrição da proposta:</label>
+                                                <input title="" type="text" name="description"
+                                                       class="form-control description-input" placeholder="">
+                                            </div>
                                            
 
                                             <!-- table with proposals list -->
                                             
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Lista de propostas</label>
-                                                        <div class="proposal-list form-control">
-                                                            <div class="proposal-item"> Libertar o transporte de armas no Brasil<span class="glyphicon glyphicon-remove-sign "></span></div>
-                                                            <div class="proposal-item odd"> Criminalização do Aborto<span class="glyphicon glyphicon-remove-sign"></span></div>
-                                                            <div class="proposal-item"> Fim do fórum privilegiado<span class="glyphicon glyphicon-remove-sign"></span></div>
-                                                            <div class="proposal-item odd"> Expansão do Bolsa Família<span class="glyphicon glyphicon-remove-sign"></span></div>
-                                                            <div class="proposal-item"> Criação de novas universidades<span class="glyphicon glyphicon-remove-sign"></span></div>
-                                                            <div class="proposal-item odd"> Prevatização do sistema penitenciário<span class="glyphicon glyphicon-remove-sign"></span></div>
-                                                        </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Lista de propostas</label>
+                                                    <div class="proposal-list form-control">
+                                                        <div class="proposal-item"> Libertar o transporte de armas no Brasil<span class="glyphicon glyphicon-remove-sign "></span></div>
+                                                        <div class="proposal-item odd"> Criminalização do Aborto<span class="glyphicon glyphicon-remove-sign"></span></div>
+                                                        <div class="proposal-item"> Fim do fórum privilegiado<span class="glyphicon glyphicon-remove-sign"></span></div>
+                                                        <div class="proposal-item odd"> Expansão do Bolsa Família<span class="glyphicon glyphicon-remove-sign"></span></div>
+                                                        <div class="proposal-item"> Criação de novas universidades<span class="glyphicon glyphicon-remove-sign"></span></div>
+                                                        <div class="proposal-item odd"> Prevatização do sistema penitenciário<span class="glyphicon glyphicon-remove-sign"></span></div>
                                                     </div>
                                                 </div>
+                                            </div>
                                            
                                            <!-- Positives and Negatives Keywords-->
                                             <!-- Tag input Positive Keywords-->
                                             <div class="form-group">
-                                        <label>Palavras Chave Positivas</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class=" icon-thumbs-up2"></i></span>
-                                            <div class="tokenfield-success form-control"><input type="text" class="form-control tokenfield" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 547px;">cool</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">nice</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">great</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015035104-tokenfield" tabindex="0" style="min-width: 60px; width: 300.4375px;"></div>
-                                        </div>
+                                                <label>Palavras Chave Positivas</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class=" icon-thumbs-up2"></i></span>
+                                                    <div class="tokenfield-success form-control"><input type="text" class="form-control tokenfield" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 547px;">cool</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">nice</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">great</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015035104-tokenfield" tabindex="0" style="min-width: 60px; width: 300.4375px;"></div>
+                                                </div>
+                                            </div>
+
 
                                             <!-- Tag input Negative Keywords-->
                                             
-                                             <div class="form-group">
-                                        <label>Palavras Chave Negativas</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class=" icon-thumbs-down2"></i></span>
-                                            <div class="tokenfield-danger form-control"><input type="text" class="form-control tokenfield" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 547px;">cool</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">nice</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">great</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015035104-tokenfield" tabindex="0" style="min-width: 60px; width: 300.4375px;"></div>
-                                        </div>
-
-                                        
-                                        
-                                            <div class="row">
-                           <div class="table-responsive">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Username</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Eugene</td>
-										<td>Kopyov</td>
-										<td>@Kopyov</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>Victoria</td>
-										<td>Baker</td>
-										<td>@Vicky</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>James</td>
-										<td>Alexander</td>
-										<td>@Alex</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>Franklin</td>
-										<td>Morrison</td>
-										<td>@Frank</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-                    </div>
-                                        </div>
-
+                                            <div class="form-group">
+                                                <label>Palavras Chave Negativas</label>
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class=" icon-thumbs-down2"></i></span>
+                                                 <div class="tokenfield-danger form-control"><input type="text" class="form-control tokenfield" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 547px;">cool</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">nice</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">great</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015035104-tokenfield" tabindex="0" style="min-width: 60px; width: 300.4375px;"></div>
+                                                </div>
+                                            </div>
+                                            
+		
                                         <!-- location tab -->
                                         <div class="tab-pane" id="highlighted-justified-tab2">
-
-                                           <div class="form-group">
-                                                <label>Basic example</label>
-                                                <div class="tokenfield form-control"><input type="text" class="form-control tokenfield" value="These,are,tokens" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 585px;">These</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 585px;">are</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 585px;">tokens</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525894038302123-tokenfield" tabindex="0" style="min-width: 60px; width: 328.703125px;"></div>
-                                            </div>
-
+                                         here
                                         </div>
-
-                                        <!-- with icon -->
-                                        <div class="form-group">
-										<label>Input group with addon</label>
-										<div class="input-group">
-											<span class="input-group-addon"><i class="icon-price-tag"></i></span>
-											<div class="tokenfield form-control"><input type="text" class="form-control tokenfield" value="cool,nice,great" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token"><span class="token-label" style="max-width: 547px;">cool</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">nice</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token"><span class="token-label" style="max-width: 547px;">great</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015035104-tokenfield" tabindex="0" style="min-width: 60px; width: 300.4375px;"></div>
-										</div>
-									    </div>
-                                        <!-- /with icon -->
-
-                                        <div class="form-group">
-										<label>Custom green color</label>
-										<div class="tokenfield form-control"><input type="text" class="form-control tokenfield-teal" value="Red,blue,green" tabindex="-1" style="position: absolute; left: -10000px;"><input type="text" tabindex="-1" style="position: absolute; left: -10000px;"><div class="token bg-teal"><span class="token-label" style="max-width: 588px;">Red</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-teal"><span class="token-label" style="max-width: 588px;">blue</span><a href="#" class="close" tabindex="-1">×</a></div><div class="token bg-teal"><span class="token-label" style="max-width: 588px;">green</span><a href="#" class="close" tabindex="-1">×</a></div><input type="text" class="token-input" autocomplete="off" placeholder="" id="1525895015148147-tokenfield" tabindex="0" style="min-width: 60px; width: 340.828125px;"></div>
-									</div>
-
-
-
                                         <!-- /location tab -->
 
+                                        <!-- Committees tab -->
                                         <div class="tab-pane" id="highlighted-justified-tab3">
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -1234,7 +1178,6 @@
                                                                class="form-control" placeholder="">
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="row">
                                                 <button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
@@ -1387,6 +1330,7 @@
                                                 <!-- table with invited Committees members -->
                                             </div>
                                         </div>
+                                        <!-- /committess tab -->
                                     </div>
                                 </div>
                             </div>
