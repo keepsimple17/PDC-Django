@@ -1061,7 +1061,7 @@
 
                   <div class="tab-content">
 
-                    <!-- Proposals and keywords -->
+                    <!-- Proposal and category -->
                     <div class="tab-pane active" id="highlighted-justified-tab1">
                       <div class="row">
                         <div class="col-md-8">
@@ -1076,14 +1076,14 @@
                           <label class="control-label col-md-4">Categoria</label>
                           <div class="col-md-4">
                             <select name="select" class="form-control" title="">
-                              <option value="opt1">Área</option>
-                              <option value="opt2">Saúde</option>
+                              <option value="opt1">Saúde</option>
+                              <option value="opt2">Segurança</option>
                               <option value="opt3">Educação</option>
                               <option value="opt4">Social</option>
                               <option value="opt5">Infra Estrutura</option>
                               <option value="opt6">Meio Ambiente</option>
                               <option value="opt7">Moradia</option>
-                              <option value="opt8">Trabalho</option>
+                              <option value="opt8">Adicionar Categoria</option>
                             </select>
                           </div>
                         </div>
@@ -1093,32 +1093,95 @@
                       <div class="form-group">
                         <label>Descrição da proposta:</label>
                         <input title="" type="text" name="description"
-                               class="form-control description-input" placeholder="">
+                               class="form-control description-input" placeholder="descreva sua proposta"></input>
                       </div>
+
+                      <!-- Proposal add button -->
+                    <div class="col-md-2 col-md-offset-10">
+                        <button type="button" class="btn bg-success">Adicionar Proposta</button>
+                    </div>
 
 
                       <!-- table with proposals list -->
+                      <div class="datatable-scroll"><table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                            <thead>
+                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Proposta: activate to sort column descending">Proposta</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Categoria: activate to sort column ascending">Categoria</th><th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">Actions</th></tr>
+                            </thead>
+                            <tbody>
+                             
+                            
+                            <tr role="row" class="odd">
+                                    <td class="sorting_1">Segurança nos transportes</td> 
+                                    <td>Segurança</td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
 
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="control-label">Lista de propostas</label>
-                          <div class="proposal-list form-control">
-                            <div class="proposal-item"> Libertar o transporte de armas no Brasil<span
-                                class="glyphicon glyphicon-remove-sign "></span></div>
-                            <div class="proposal-item odd"> Criminalização do Aborto<span
-                                class="glyphicon glyphicon-remove-sign"></span></div>
-                            <div class="proposal-item"> Fim do fórum privilegiado<span
-                                class="glyphicon glyphicon-remove-sign"></span></div>
-                            <div class="proposal-item odd"> Expansão do Bolsa Família<span
-                                class="glyphicon glyphicon-remove-sign"></span></div>
-                            <div class="proposal-item"> Criação de novas universidades<span
-                                class="glyphicon glyphicon-remove-sign"></span></div>
-                            <div class="proposal-item odd"> Prevatização do sistema penitenciário<span
-                                class="glyphicon glyphicon-remove-sign"></span></div>
-                          </div>
-                        </div>
-                      </div>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-file-pdf"></i> Editar</a></li>
+                                                    <li><a href="#"><i class="icon-file-excel"></i> Excluir</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr><tr role="row" class="even">
+                                    <td class="sorting_1">Médicos de plantão</td>
+                                    <td>Saúde</td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
 
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-file-pdf"></i> Editar</a></li>
+                                                    <li><a href="#"><i class="icon-file-excel"></i> Excluir</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr><tr role="row" class="odd">
+                                    <td class="sorting_1">Contrução de casas</td>
+                                    <td>Habitação</td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-file-pdf"></i> Editar</a></li>
+                                                    <li><a href="#"><i class="icon-file-excel"></i> Excluir</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr><tr role="row" class="even">
+                                    <td class="sorting_1">Aumentar salário professores</td>
+                                    <td>Educação</td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="#"><i class="icon-file-pdf"></i> Editar</a></li>
+                                                    <li><a href="#"><i class="icon-file-excel"></i> Excluir</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                        </table></div>
+
+                      
                       <!-- Positives and Negatives Keywords-->
                       <!-- Tag input Positive Keywords-->
                       <div class="form-group has-success">
