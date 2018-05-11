@@ -1,0 +1,286 @@
+<!-- Foto, Username and email -->
+{#<input title="" type="hidden" name="user_id" value="{{profile_form.user}}" />#}
+<div class="row">
+  <div class="col-md-4">
+    {% comment %}old photo input{% endcomment %}
+{#    <div class="form-group">#}
+{#      <label>Foto</label><!-- User Photo -->#}
+{#      <label class="form-control input-file" for="photo">Send File...</label>#}
+{#      <input title="" type="file" id="photo" name="user_profile_photo"#}
+{#             class="form-control">#}
+{#    </div>#}
+{#    <div class="form-group">#}
+{#      <label>Foto</label><!-- User Photo -->#}
+{#      <input type="file" id="photo" name="user_profile_photo"#}
+{#             class="file-styled" accept="image/*">#}
+{#    </div>#}
+    <div class="form-group">
+      <label class="text-semibold">Foto:</label>
+      <div class="media no-margin-top">
+        <div class="media-left">
+          <a href="#">
+            <img src="{% media_uri profile_form.user_profile_photo.value %}"
+                 onError="this.src='/static/images/unknown-avatar.png'"
+                 id="avatar_img"
+                 style="width: 58px; height: 58px; border-radius: 2px;" alt="">
+          </a>
+        </div>
+
+        <div class="media-body">
+          {% comment %}should be moved to jquery selector in the future{% endcomment %}
+          <input type="file" id="photo" name="user_profile_photo" class="file-styled"
+                 accept="image/*" onchange="readImg(this);">
+          <span class="help-block">Formatos aceitos: gif, png, jpg. Tamanho Max 2Mb</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Nome de Usuário:</label> <!-- Username -->
+      <input title="" type="text" name="name" readonly class="form-control"
+             value="{{ request.user.username }}">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>E-mail:</label>
+      <input title="" type="email" name="email" class="form-control" placeholder="your@email.com" readonly
+             value="{{ request.user.email }}">
+    </div>
+  </div>
+</div>
+<!-- /Foto, Username and email -->
+
+<!-- Name, Surname, Gender, Civil Status, -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Nome</label> <!-- Name -->
+      <input title="" type="text" name="first_name" class="form-control"
+             value="{{ request.user.first_name }}">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Sobrenome:</label> <!-- Surname -->
+      <input title="" type="text" name="last_name" value="{{ request.user.last_name }}" class="form-control">
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Gênero:</label>
+      <select title="" name="gender" data-placeholder="Gênero"
+              class="select">
+        <option></option>
+        <optgroup label="Pessoa Física">1
+          {% for item in GENDER_CHOICES|get_item:'physical' %}
+            {% if profile_form.gender.value == item.0 %}
+              <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+            {% else %}
+              <option value="{{ item.0 }}">{{ item.1 }}</option>
+            {% endif %}
+          {% endfor %}
+        </optgroup>
+
+        <optgroup label="Pessoa Jurídica">
+          {% for item in GENDER_CHOICES|get_item:'legal' %}
+            {% if profile_form.gender.value == item.0 %}
+              <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+            {% else %}
+              <option value="{{ item.0 }}">{{ item.1 }}</option>
+            {% endif %}
+          {% endfor %}
+        </optgroup>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Estado Civil:</label>
+      <select title="" name="marital_status" data-placeholder="Estado Civil" class="select">
+        <option></option>
+        <optgroup label="Estado Civil">
+          {% for item in ESTADO_CIVIL_CHOICES %}
+            {% if profile_form.marital_status.value == item.0 %}
+              <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+            {% else %}
+              <option value="{{ item.0 }}">{{ item.1 }}</option>
+            {% endif %}
+          {% endfor %}
+        </optgroup>
+
+      </select>
+    </div>
+  </div>
+</div>
+<!-- /Name, Surname, Civil Status, Gender -->
+
+<!-- CPF, Birthday_Date, CellPhone, Landline -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>CPF:</label> <!-- CPF - (social ID) -->
+      <input title="" type="text" name="cpf" class="form-control"
+             value="{{ profile_form.cpf.value|default_if_none:"" }}">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Data de Nascimento:</label>
+      <div class="input-group">
+        <span class="input-group-addon" id="birthday_picker__span"><i class="icon-calendar3"></i></span>
+        <input title="" type="text" class="form-control" id="birthday_picker__input" name="birthday_date"
+               value="{{ profile_form.birthday_date.value|default_if_none:"" }}">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Tel. Celular:</label> <!-- Cellphone -->
+      <input title="" type="text" name="cellPhone" id="telephone" class="form-control"
+             value="{{ profile_form.cellPhone.value|default_if_none:"" }}">
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Tel. Fixo:</label>
+      <input title="" type="text" name="landlinePhone" id="landphone" class="form-control"
+             value="{{ profile_form.landlinePhone.value|default_if_none:"" }}">
+    </div>
+  </div>
+</div>
+<!-- /CPF, Birthday_Date, CellPhone, Landline -->
+
+<!-- CEP, State and Citie -->
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>CEP:</label>
+      <input title="" type="text" name="cep" class="form-control zip-field"
+             value="{{ profile_form.cep.value|default_if_none:"" }}">
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="form-group">
+      <label>Estado:</label> <!-- State -->
+      {% comment %}need to update as select2 style in the future{% endcomment %}
+
+{#        <select title="" name="estado" data-placeholder="Estado" id="id_estado"#}
+{#                class="select">#}
+{#          <optgroup label="Estado">#}
+{#            {% for item in states %}#}
+{#              {% if profile_form.estado.value == item.0 %}#}
+{#                  <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
+{#              {% else %}#}
+{#                  <option value="{{ item.0 }}">{{ item.1 }}</option>#}
+{#              {% endif %}#}
+{#            {% endfor %}#}
+{#          </optgroup>#}
+{#        </select>#}
+      {{ profile_form.estado }}
+    </div>
+  </div>
+
+
+  <div class="col-md-5">
+    <div class="form-group">
+      <label>Cidade:</label> <!-- Citie -->
+      <select title="" name="cidade" data-placeholder="Cidade" id="id_cidade" class="form-control">
+        {% for item in user_cities %}
+          {% if profile_form.cidade.value == item.0|slugify %}
+            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+          {% else %}
+            <option value="{{ item.0 }}">{{ item.1 }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- /CEP, State and Citie -->
+
+<!-- Adreess, Predial number,  complement address -->
+<div class="row">
+  <div class="col-md-8">
+    <div class="form-group">
+      <label>Endereço:</label>
+      <input title="" type="text" name="address" id="address" class="form-control" placeholder="Endereço"
+             value="{{ profile_form.address.value|default_if_none:"" }}">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Complemento</label> <!-- predial number - complement address -->
+      <input title="" type="text" name="predial_number" class="form-control">
+    </div>
+  </div>
+  <input title="" type="hidden" name="bairro" id="bairro"
+         value="{{ profile_form.bairro.value|default_if_none:"" }}">
+</div>
+<!-- Adreess, Predial number,  complement address -->
+
+<!-- Political Party, User Role, Company -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+
+      <label>Partido do <strong>Usuário</strong></label>
+      <select title="" class="form-control select"
+              name="user_political_party">
+        <option></option>
+        {% for item in political_parties %}
+          {% if profile_form.user_political_party.value == item.0 %}
+            <option value="{{ item.0 }}" selected>{{ item.0 }}</option>
+          {% else %}
+            <option value="{{ item.0 }}">{{ item.0 }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Função na Campanha</label>
+      {% if is_invited_candidato %}
+        {% for item in user_roles_list %}
+          {% if item.1 == 'Candidato' %}
+            <input type="hidden" name="user_roles_list" value="{{ item.0 }}"/>
+          {% endif %}
+        {% endfor %}
+        <select title="" name="user_roles_list_none" data-placeholder="Candidato." class="select" disabled>
+          {% for item in user_roles_list %}
+            {% if item.1 == 'Candidato' %}
+              <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+            {% else %}
+              <option value="{{ item.0 }}">{{ item.1 }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      {% else %}
+        <select title="" name="user_roles_list" data-placeholder="Preencha o papel." class="select">
+          {% for item in user_roles_list %}
+            {% if profile_form.user_roles_list.value == item.0 %}
+              <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+            {% else %}
+              <option value="{{ item.0 }}">{{ item.1 }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Empresa</label> <!-- predial number - complement address -->
+      <input title="" type="text" name="company" placeholder="empresa se houver" class="form-control"
+             value="{{ profile_form.company.value|default_if_none:"" }}">
+    </div>
+  </div>
+</div>
+<!-- Political Party, User Role, Company -->

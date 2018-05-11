@@ -1,0 +1,263 @@
+<!-- /info alert -->
+<div class="alert bg-danger-400 alert-styled-left">
+  <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+  </button>
+  <span class="text-semibold">Atenção!!!  </span> Insira os dados do <a href="#" class="alert-link">CANDIDATO</a>
+</div>
+
+<!-- Candidate Party, Nickname and Ballot-->
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>Partido do <strong>Candidato</strong></label>
+      <select title="" class="form-control select" name="candidate_party">
+        <option selected></option>
+        {% for item in political_parties %}
+          {% if candidate_form.candidate_party.value == item.0 %}
+            <option value="{{ item.0 }}" selected>{{ item.0 }}</option>
+          {% else %}
+            <option value="{{ item.0 }}">{{ item.0 }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="form-group">
+      <label>Apelido Político do Candidato</label> <!-- Candidate nickname -->
+      <input title="" type="text" name="candidate_political_nickname" class="form-control"
+             value="{{ candidate_form.candidate_political_nickname.value|default_if_none:"" }}">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Pleito Eleitoral</label> <!-- Election Ballot -->
+      <input title="" type="text" name="canditate_Election_Ballot" class="form-control" placeholder="Eleições 2018"
+             value="{{ candidate_form.canditate_Election_Ballot.value|default_if_none:"" }}">
+    </div>
+  </div>
+</div>
+<!-- /Candidate Party, Nickname and Ballot-->
+
+<!-- desired position, dispute number, state and citie  -->
+<div class="row">
+
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>Cargo Pretendido pelo Candidato</label> <!-- Candidate aspiration -->
+      <select title="" name="candidate_desired_position" class="select ">
+        <option></option>
+        <optgroup label="Cargo">
+          {% for item in CANDIDATE_POSITION_CHOICES %}
+            {% if candidate_form.candidate_desired_position.value == item.0 %}
+              <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+            {% else %}
+              <option value="{{ item.0 }}">{{ item.1 }}</option>
+            {% endif %}
+          {% endfor %}
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Nº Eleitoral</label> <!-- Candidate Dispute Number -->
+      <input title="" type="text" name="candidate_dispute_number" class="form-control"
+             value="{{ candidate_form.candidate_dispute_number.value|default_if_none:"" }}">
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>Identificação</label> <!-- slug -->
+      <input title="" type="text" name="slug" class="form-control" placeholder="gerado automaticamente"
+             value="{{ candidate_form.slug.value|default_if_none:"" }}">
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>UF</label> <!-- Candidate State -->
+      <select title="" name="candidate_state" class="select" id="candidate_state">
+        <option></option>
+        {% for item in states %}
+          {% if candidate_form.candidate_state.value == item.0 %}
+            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+          {% else %}
+            <option value="{{ item.0 }}">{{ item.1 }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Cidade</label> <!-- Candidate City -->
+      <select title="" name="candidate_city" class="select" id="candidate_city">
+        <option></option>
+        {% for item in candidate_cities %}
+          {% if candidate_form.candidate_city.value == item.0|slugify %}
+            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+          {% else %}
+            <option value="{{ item.0 }}">{{ item.1 }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- has position, current position, reelection, first election, resume -->
+<div class="row">
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Exerce Cargo?</label> <!-- holds political position -->
+      <select title="" name="holds_position" class="select">
+        <option></option>
+        <optgroup label="Exerce Cargo Público?">
+          <option value="S">Sim</option>
+          <option value="N">Não</option>
+          <option value="O">Já exerceu</option>
+        </optgroup>
+
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>Cargo que Exerce</label> <!-- Candidate current position -->
+      <select title="" name="candidate_current_position" class="select">
+        <option></option>
+        <optgroup label="Cargo">
+          {% for item in CANDIDATE_POSITION_CHOICES %}
+            {% if candidate_form.candidate_current_position.value == item.0 %}
+              <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+            {% else %}
+              <option value="{{ item.0 }}">{{ item.1 }}</option>
+            {% endif %}
+          {% endfor %}
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-1">
+    <div class="form-group">
+      <label>Reeleição?</label> <!-- Reelection? -->
+      <select title="" name="reelection" class="select">
+        <option></option>
+        <optgroup label="_">
+          <option value="S">Sim</option>
+          <option value="N">Não</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Primeira Eleição?</label> <!-- First election? -->
+      <select title="" name="first_election" class="select">
+        <option></option>
+        <optgroup label="Primeira vez que concorre?">
+          <option value="S">Sim</option>
+          <option value="N">Não</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Currículo</label> <!-- Resume -->
+      <label class="form-control input-file" for="photo">Send File...</label>
+      <input title="" type="file" id="photo" name="user_resume" style="display: none" class="form-control">
+    </div>
+  </div>
+</div>
+
+<!-- candidate site, campaign email  -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Site do Candidato</label> <!-- Candidate Site -->
+      <input title="" type="text" name="candidate_site" class="form-control"
+             value="{{ candidate_form.candidate_site.value|default_if_none:"" }}"
+             placeholder="www.sitedocandidato.com.br">
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Email da Campanha</label><!-- Campaign email -->
+      <input title="" type="email" name="campaign_email" class="form-control "
+             value="{{ candidate_form.campaign_email.value|default_if_none:"" }}"
+             placeholder="email@campanha.com.br">
+    </div>
+  </div>
+</div>
+
+<!-- Twitter, Facebook, Instagram  -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <i class="icon-twitter"></i>
+      <label>Twitter</label> <!-- candidate Twitter -->
+      <input title="" type="text" name="twitter" class="form-control"
+             value="{{ candidate_form.twitter.value|default_if_none:"" }}">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <i class="icon-facebook2"></i>
+      <label>Facebook</label><!-- Candidate Facebook -->
+      <input title="" type="text" name="facebook" class="form-control"
+             value="{{ candidate_form.facebook.value|default_if_none:"" }}">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <i class="icon-instagram"></i>
+      <label>Instagram</label><!-- Candidate Instagram -->
+      <input title="" type="text" name="instagram" class="form-control"
+             value="{{ candidate_form.instagram.value|default_if_none:"" }}">
+    </div>
+  </div>
+</div>
+
+<!-- Google+, Youtube, Blog  -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <i class="icon-google-plus"></i>
+      <label>Google+</label> <!-- candidate Google+ -->
+      <input title="" type="text" name="google" class="form-control"
+             value="{{ candidate_form.google.value|default_if_none:"" }}">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <i class="icon-youtube3"></i>
+      <label>Youtube</label><!-- Candidate Youtube -->
+      <input title="" type="text" name="youtube" class="form-control"
+             value="{{ candidate_form.youtube.value|default_if_none:"" }}">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <i class="icon-blogger"></i>
+      <label>Blog/Rss</label><!-- Candidate Blog/Rss -->
+      <input title="" type="text" name="candidate_blog_rss" class="form-control"
+             value="{{ candidate_form.candidate_blog_rss.value|default_if_none:"" }}">
+    </div>
+  </div>
+</div>
