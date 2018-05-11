@@ -1,0 +1,298 @@
+{% extends '_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+  <!-- Theme for step form wizard -->
+  <!-- Theme JS files -->
+  <script type="text/javascript" src="{% static 'js/plugins/forms/wizards/steps.min.js' %}"
+          xmlns="http://www.w3.org/1999/html"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/forms/selects/select2.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/forms/styling/uniform.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/core/libraries/jasny_bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/forms/validation/validate.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/extensions/cookie.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/pickers/anytime.min.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'js/plugins/notifications/noty.min.js' %}"></script>
+
+  <meta name="sever_url" content="{{ sever_url }}">
+
+  <script type="text/javascript" src="{% static 'js/plugins/ui/ripple.min.js' %}"></script>
+
+  <!-- /theme JS files -->
+  <!-- /Theme for step form wizard -->
+
+  <!-- Floating labels and aditional input forms plugins JS -->
+
+  <script type="text/javascript" src="{% static 'js/plugins/forms/editable/editable.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/forms/tags/tagsinput.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/forms/tags/tokenfield.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/ui/prism.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js' %}"></script>
+  {#  need to use custom js file  #}
+{#  <script type="text/javascript" src="{% static 'js/pages/form_tags_input.js' %}"></script>#}
+
+
+  <!-- /Floating labels and aditional input forms plugins JS -->
+
+  <!-- Buttons effects -->
+  <script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/velocity/velocity.ui.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/buttons/spin.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/buttons/ladda.min.js' %}"></script>
+  <!-- /Buttons effects -->
+
+
+  <script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/pages/primeiro_setup.js' %}"></script>
+
+  <div class="breadcrumb-line breadcrumb-line-component">
+    <ul class="breadcrumb">
+      <li><a href="#"><i class="icon-home2 position-left"></i> Painel</a></li>
+      <li><a href="#">Configuração</a></li>
+      <li class="#">Configurações Iniciais</li>
+    </ul>
+
+    <ul class="breadcrumb-elements">
+      <li><a href="#"><i class="icon-comment-discussion position-left"></i> Fale Conosco</a></li>
+    </ul>
+  </div>
+
+
+  <style>
+    body {
+      background-color: #f5f5f5;
+    }
+
+    {#input[type="file"] {#}
+    {#  display: none !important;#}
+    {#}#}
+
+    input[type="radio"] {
+      zoom: 1.3;
+      margin-left: 25px;
+    }
+
+    @media (max-width: 1025px) {
+      .proposal-btn {
+        height: 45px !important;
+      }
+    }
+
+    .input-file {
+      background: #fafafa;
+    }
+
+    .description-input {
+      height: 150px!important;
+    }
+
+    .proposal-list {
+      height: 235px;
+      overflow-y: scroll;
+    }
+
+    .radio-lable {
+      margin-left: 5px;
+    }
+
+    .m-t-25 {
+      margin-top: 25px;
+    }
+
+    .proposal-btn {
+      height: 250px;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .proposal-btn .glyphicon {
+      font-size: 20px;
+    }
+
+    .glyphicon-remove-sign {
+      color: #F44336;
+      float: right;
+    }
+
+    .proposal-item {
+      padding: 5px;
+      font-size: 15px;
+    }
+
+    .proposal-item.odd {
+      background: #F5F5F5;
+    }
+
+    .dropdown-toggle.legitRipple .legitRipple-ripple {
+      display: none;
+    }
+
+    .filename {
+      max-width: 50px;
+    }
+
+    .spacing {
+      margin-top: 20px;
+      height: 10px;
+      margin-bottom: 20px;
+    }
+
+    .spacing {
+      margin-top: 20px;
+      height: 10px;
+      margin-bottom: 20px;
+    }
+
+    .dbspacing {
+      margin-top: 40px;
+      height: 10px;
+      margin-bottom: 40px;
+    }
+
+    #svg-map path { fill:#0094d9 }
+    #svg-map text { fill:#fff; font:12px Arial-BoldMT, sans-serif; cursor:pointer }
+    #svg-map a{ text-decoration:none }
+    #svg-map a:hover { cursor:pointer; text-decoration:none }
+    #svg-map a:hover path{ fill:#003399 !important }
+    #svg-map .circle { fill:#66ccff }
+    #svg-map a:hover .circle { fill:#003399 !important; cursor:pointer }
+    .panel-location {
+      padding: 40px;
+      padding-top: 20px;
+    }
+    .radio input[type="radio"] {
+      margin-top: 2px;
+    }
+    div.locais-label {
+      font-weight: 500;
+    }
+    div.bold-panel {
+      background-color: #e6e6e6;
+      border-radius: 3px;
+      padding: 14px;
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+    div.panel-location input[type="submit"] {
+      background: #2196F3;
+      color: #fff;
+      padding: 7px 12px;
+      border-radius: 3px;
+      border: 1px solid transparent;
+    }
+    input#btn-cancel {
+      margin-left: 4px;
+      background-color: #fcfcfc;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+  </style>
+
+  <!-- Main navbar -->
+  <span style="display:block; height: 40px;"></span>
+  <div class="container">
+    <div class="row">
+      <div class="text-center">
+        <img src="http://www.portaldocandidato.inf.br/images/SCOPO_300px.png">
+        <!-- % if valid %} -->
+        <h5 class="content-group">Primeira Configuração</h5>
+        <!-- % endif %} -->
+      </div>
+    </div>
+    <!-- Content area -->
+    <div class="content page-content">
+      <!-- Basic setup -->
+      <div class="panel panel-white">
+        <div class="panel-heading">
+          <h6 class="panel-title">Primeira Configuração</h6>
+          <div class="heading-elements">
+            <ul class="icons-list">
+              {#                            <li><a data-action="collapse"></a></li>#}
+              <li><a data-action="reload"></a></li>
+            </ul>
+          </div>
+        </div>
+        {# enctype is very important to upload file #}
+        <form class="steps-validation" action="{% url 'primeiro_setup' %}"
+              method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h6>Dados Pessoais</h6>
+          <fieldset>
+            {% include 'registration/primeiro_setup/personal_data.html' %}
+          </fieldset>
+
+          <h6>Candidato</h6>
+          <fieldset>
+            {% include 'registration/primeiro_setup/candidator.html' %}
+          </fieldset>
+
+          <h6>Equipe</h6>
+          <fieldset>
+            {% include 'registration/primeiro_setup/team.html' %}
+          </fieldset>
+
+          <h6>Campanha</h6>
+          <fieldset>
+            {% include 'registration/primeiro_setup/campaign.html' %}
+          </fieldset>
+        </form>
+      </div>
+      <!-- /basic setup -->
+      <div class="prepend-top-default append-bottom-default">
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li{% if message.tags %} class="alert alert-{{ message.tags }} alert-styled-left"{% endif %}>{{ message }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      {% if user_form.errors %}
+        {% for field in user_form %}
+          {% for error in field.errors %}
+            <div class="alert alert-danger">
+              {{ field.name }}
+              <strong>{{ error|escape }}</strong>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
+      {% if profile_form.errors %}
+        {% for field in profile_form %}
+          {% for error in field.errors %}
+            <div class="alert alert-danger">
+              {{ field.name }}
+              <strong>{{ error|escape }}</strong>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
+      {% if candidate_form.errors %}
+        {% for field in candidate_form %}
+          {% for error in field.errors %}
+            <div class="alert alert-danger">
+              {{ field.name }}
+              <strong>{{ error|escape }}</strong>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    <!-- /Content area -->
+  </div>
+
+  <!-- /main navbar -->
+  <div class="loder-layer" id="loading">
+    <div class="loder-center">
+      <div class="loader"></div>
+      <h3><b>Carregando...</b></h3>
+    </div>
+  </div>
+
+  <script src="{% static 'cep/js/cep.js' %}"></script>
+  <script src="{% static 'update_profile.js' %}"></script>
+
+{% endblock %}

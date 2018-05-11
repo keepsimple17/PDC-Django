@@ -195,7 +195,7 @@ def primeiro_setup(request):
         else:
             print('testing now errors->', profile_form.errors)
 
-    return render(request, "registration/primeiroSetup.html", {
+    return render(request, "registration/primeiro_setup/primeiroSetup.html", {
         'user_form': user_form,
         'profile_form': profile_form,
         'candidate_form': candidate_form,
