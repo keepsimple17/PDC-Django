@@ -885,7 +885,7 @@
                 </tr>
                 <tr>
                   <td>7</td>
-                  <td>Ações Internas</td>
+                  <td>Interações na Internet</td>
                   <td><input title="" type="checkbox" class="check-box" value=""></td>
                   <td><input title="" type="checkbox" class="check-box" value=""></td>
                   <td><input title="" type="checkbox" class="check-box" value=""></td>
@@ -1067,15 +1067,6 @@
 
           <h6>Campanha</h6>
           <fieldset>
-
-             <!-- info alert -->
-            <div class="alert alert-danger alert-styled-left">
-              <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
-              </button>
-              Preencha com cuidado as propostas do CANDIDATO e as melhores PALAVRAS CHAVE associadas `a sua campanha, para que o Scopo faça uma busca mais minusciosa.
-            </div>
-            <!-- /info alert -->
-
             <div class="panel panel-flat col-lg-12 p-0">
               <div class="panel-body" style="display: block;">
                 <div class="tabbable">
@@ -1086,12 +1077,21 @@
                     <li><a href="#highlighted-justified-tab2" data-toggle="tab">Localização</a></li>
                     <li><a href="#highlighted-justified-tab3" data-toggle="tab">Comitês</a></li>
                   </ul>
-
                   <div class="tab-content">
 
                     <!-- Proposal and category -->
                     <div class="spacing"></div>
                     <div class="tab-pane active" id="highlighted-justified-tab1">
+
+
+             <!-- info alert -->
+            <div class="alert alert-danger alert-styled-left">
+              <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+              </button>
+              Preencha com cuidado as propostas do CANDIDATO e as melhores PALAVRAS CHAVE associadas `a sua campanha, para que o Scopo faça uma busca mais minusciosa.
+            </div>
+            <!-- /info alert -->
+
                       <div class="row">
                         <div class="col-md-8">
                           <div class="form-group">
@@ -1259,40 +1259,75 @@
 
                     <!-- Committees tab -->
                     <div class="tab-pane" id="highlighted-justified-tab3">
+
+                        <!-- info alert -->
+            <div class="alert alert-danger alert-styled-left">
+              <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+              </button>Insira os dados dos Responsáveis pelos comitês.
+            </div>
+                        <!-- /info alert -->
+
+                        <!-- Comittees Info-->
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label>Responsible for the Committee (name)</label>
+                            <label>Nome do Responsável pelo Comitê </label>
                             <input title="" type="text" name="committeename"
                                    class="form-control" placeholder="">
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label>Responsible for the Committee (email)</label>
+                            <label>Email do Responsável pelo Comitê</label>
                             <input title="" type="email" name="committeeemail"
                                    class="form-control" placeholder="">
                           </div>
                         </div>
                       </div>
+
+                       <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Identificação (nome) do Comitê</label>
+                            <input title="" type="text" name="committeeidname"
+                                   class="form-control" placeholder="">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Telefone Celular</label>
+                            <input title="" type="text" name="committeecellPhone"
+                                   class="form-control" placeholder="">
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Telefone Fixo</label>
+                            <input title="" type="text" name="committeelandline"
+                                   class="form-control" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+
                       <div class="row">
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label>ZIP CODE</label>
+                            <label>CEP</label>
                             <input title="" type="text" name="committeezip"
                                    class="form-control" placeholder="">
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
-                            <label>State</label>
+                            <label>Estado</label>
                             <input title="" type="text" name="committeestate"
                                    class="form-control" placeholder="">
                           </div>
                         </div>
                         <div class="col-md-5">
                           <div class="form-group">
-                            <label>City</label>
+                            <label>Cidade</label>
                             <input title="" type="text" name="committeecity"
                                    class="form-control" placeholder="">
                           </div>
@@ -1301,47 +1336,41 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label>Address</label>
+                            <label>Endereço</label>
                             <input title="" type="text" name="committeeadd"
                                    class="form-control" placeholder="">
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label>Complement</label>
+                            <label>Complemento</label>
                             <input title="" type="text" name="committeecomplement"
                                    class="form-control" placeholder="">
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Committee Name or identitication</label>
-                            <input title="" type="text" name="identitication"
-                                   class="form-control" placeholder="">
-                          </div>
-                        </div>
-                      </div>
+                     
+
                       <div class="row">
                         <button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
                                 data-style="slide-down">
                                                     <span class="ladda-label">
-                                                        <i class="icon-user-plus"> Add Committees</i>
+                                                        <i class="icon-user-plus"> Adicionar Comitê</i>
                                                     </span>
                           <span class="ladda-spinner"></span>
                           <span class="ladda-progress" style="width: 135px;"></span>
                         </button>
                       </div>
+
                       <!-- table with invited Committees members -->
                       <div class="row">
-                        <label><i class="icon-people">Committees List</i> </label>
+                        <label><i class="icon-people">  Lista dos Comitês  </i> </label>
                         <div class="panel panel-white col-lg-12 p-0">
                           <div class="configurations-heading table-heading"></div>
 
                           <div class="configurations-text table-text">
                             <br/>
-                            <p>Acompanhe, abaixo, a integração dos seus comitês com o SCOPO.</p>
+                            <p>Veja a lista dos seus comitês e acompanhe a integração deles com o SCOPO.</p>
                             <hr/>
                           </div>
                           <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
@@ -1353,15 +1382,19 @@
                                   <th class="sorting_asc" tabindex="0"
                                       aria-controls="DataTables_Table_2"
                                       rowspan="1" colspan="1" aria-sort="ascending"
-                                      aria-label="First Name: activate to sort column descending">Name
+                                      aria-label="committeeidname: activate to sort column descending">Nome do Comitê
+                                  </th>
+                                  <th class="sorting_asc" tabindex="0"
+                                      aria-controls="DataTables_Table_2"
+                                      rowspan="1" colspan="1" aria-sort="ascending"
+                                      aria-label="committeename: activate to sort column descending">Responsável
                                   </th>
                                   <th class="sorting" tabindex="0"
                                       aria-controls="DataTables_Table_2" rowspan="1"
-                                      colspan="1" aria-label="Last Name: activate to sort column ascending">E-mail
-                                    Responsible
+                                      colspan="1" aria-label="committeecellPhone: activate to sort column ascending"> Telefone Celular
                                   </th>
                                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
-                                      colspan="1" aria-label="Job Title: activate to sort column ascending">Location
+                                      colspan="1" aria-label="committeecity: activate to sort column ascending">Localização
                                   </th>
                                   <th class="text-center sorting_disabled" rowspan="1"
                                       colspan="1">Registerd
@@ -1374,7 +1407,8 @@
                                 <tbody>
                                 <tr role="row" class="odd">
                                   <td class="sorting_1">Comite lgualdade</td>
-                                  <td>paulino@neoplace.com.br</td>
+                                  <td>paulino</td>
+                                  <td>(99) 99999-9999 </td>
                                   <td>Curitiba/PR</td>
                                   <td><input title="" type="radio" value=""></td>
                                   <td class="text-center">
@@ -1395,7 +1429,8 @@
                                 </tr>
                                 <tr role="row" class="even">
                                   <td class="sorting_1">Brasil Melhor</td>
-                                  <td>mary@poppins.com.br</td>
+                                  <td>Maria</td>
+                                  <td>(99) 99999-9999 </td>
                                   <td>Rio de Janerio/RJ</td>
                                   <td><input title="" type="radio" value=""></td>
                                   <td class="text-center">
@@ -1415,8 +1450,9 @@
                                   </td>
                                 </tr>
                                 <tr role="row" class="odd">
-                                  <td class="sorting_1">Agua Verde</td>
-                                  <td>james@taylor.com.br</td>
+                                  <td class="sorting_1">Conversa boa/td>
+                                  <td>João</td>
+                                  <td>(99) 99999-9999 </td>
                                   <td>Curitiba/PR</td>
                                   <td><input title="" type="radio" value=""></td>
                                   <td class="text-center">
@@ -1437,7 +1473,8 @@
                                 </tr>
                                 <tr role="row" class="even">
                                   <td class="sorting_1">ABC Paulista</td>
-                                  <td>fernando@innovators.com.br</td>
+                                  <td>fernando</td>
+                                  <td>(99) 99999-9999 </td>
                                   <td>Sao Paulo/SP</td>
                                   <td><input title="" type="radio" value=""></td>
                                   <td class="text-center">
