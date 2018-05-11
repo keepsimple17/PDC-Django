@@ -9,7 +9,7 @@
 		<div class="login-form">
 
 			<!-- Form -->
-			<form class="modal-body" method="post" action="{% url 'firstsetup' %}">
+			<form class="modal-body" method="post" action="{% url 'activate' uidb64=uid token=token %}">
   			{% csrf_token %}
 				<div class="text-center">
 					  <img src="http://scopoonline.com/images/SCOPO_300px.png" alt="SCOPO Online" style="display:block;margin: auto">
@@ -126,7 +126,40 @@
                         <div class="alert alert-success">
                             <h3><i class="icon-warning" style="font-size: 33px;margin-right: 10px;"></i> Seu Token Expirou.</h3>
                         </div>
+                    </div>
+                    <a id="request_new_token" class="btn bg-green btn-block">Solicitar um novo token</a>
+                    <span id="alarmArea" class="text-danger"></span>
+                    <hr>
+                    <div class="row prepend-top-default append-bottom-default">
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="alert alert-{{ message.tags }} alert-styled-left"{% endif %}>{{ message }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
 
+                    <div class="modal-body" id="request_token_form" style="display: none">
+      			        {% csrf_token %}
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input name="username" type="text" class="form-control" placeholder="Nome de Usuário" required="required">
+                            <div class="form-control-feedback">
+                                <i class="icon-user text-muted"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input name="password" type="password" autocomplete="current-password" class="form-control" placeholder="Senha" required="required">
+                            <div class="form-control-feedback">
+                                <i class="icon-lock2 text-muted"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn bg-green btn-block">Solicitar um novo token</button>
+                        </div>
                     </div>
                 {% endif %}
 
@@ -137,6 +170,6 @@
 </div>
 <script src="/static/cep/js/cep.js"></script>
 <script src="/static/update_profile.js"></script>
-<!-- /login form -->
+<script type="text/javascript" src="{% static 'js/pages/first_setup.js' %}"></script>
 
 {% endblock %}
