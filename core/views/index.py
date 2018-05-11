@@ -414,7 +414,7 @@ def user_configuration(request):
 
         choice_states = tuple(choice_states)
         choice_cities = tuple(choice_cities)
-        return render(request, "registration/primeiroSetup.html", {
+        return render(request, "registration/primeiro_setup/primeiroSetup.html", {
             'user_form': user_form,
             'profile_form': profile_form,
             'candidate_form': candidate_form,
