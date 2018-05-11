@@ -158,6 +158,13 @@
     #svg-map a:hover path{ fill:#003399 !important }
     #svg-map .circle { fill:#66ccff }
     #svg-map a:hover .circle { fill:#003399 !important; cursor:pointer }
+    .panel-location {
+      padding: 40px;
+      padding-top: 20px;
+    }
+    .radio input[type="radio"] {
+      margin-top: 2px;
+    }
   </style>
 
   <!-- Main navbar -->
@@ -1268,7 +1275,7 @@
                         Selecione aqui os locais de avaliação e campanha.
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                           <svg version="1.1" id="svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="450px" height="460px" viewBox="0 0 450 460" enable-background="new 0 0 450 460" xml:space="preserve">
                             <g>
                               <a xlink:href="to" class="estado">
@@ -1584,13 +1591,26 @@
                             </g>
                           </svg>
                         </div>
-                        <div class="col-md-6">
-                          <div class="panel">
+                        <div class="col-md-7">
+                          <div class="panel panel-location">
                             <div class="row">
-                              <div class="col-md-3">
+                              <div class="col-md-2">
                                 Locais
                               </div>
-                              <div class="col-md-9">
+                              <div class="col-md-10">
+                                <div class="col-md-6">
+                                  <div class="radio">
+                                    <label><input type="radio" name="choose_search">Todos os países e territórios</label>
+                                  </div>
+                                  <div class="radio">
+                                    <label><input type="radio" name="choose_search">Deixe-me escolher...</label>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="radio">
+                                    <label><input type="radio" name="choose_search">Brazil</label>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
