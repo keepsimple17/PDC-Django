@@ -85,7 +85,7 @@
     }
 
     .description-input {
-      height: 150px;
+      height: 150px!important;
     }
 
     .proposal-list {
@@ -1158,8 +1158,7 @@
                       <!-- Proposal description -->
                       <div class="form-group">
                         <label>Descrição da proposta:</label>
-                        <input title="" type="text" name="description"
-                               class="form-control description-input" placeholder="descreva sua proposta"></input>
+                        <textarea name="description" class="form-control description-input" placeholder="descreva sua proposta"></textarea>
                       </div>
 
                       <!-- Proposal add button -->
@@ -1175,9 +1174,9 @@
                                 <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Proposta: activate to sort column descending">Proposta</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Categoria: activate to sort column ascending">Categoria</th><th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 100px;">Actions</th></tr>
                             </thead>
                             <tbody>
-                              
+
                             <tr role="row" class="odd">
-                                    <td class="sorting_1">Segurança nos transportes</td> 
+                                    <td class="sorting_1">Segurança nos transportes</td>
                                     <td>Segurança</td>
                                     <td class="text-center">
                                         <ul class="icons-list">
@@ -1248,11 +1247,11 @@
                         </table></div>
                     </div>
                     <div class="dbspacing"></div>
-                      
+
                       <!-- Positives and Negatives Keywords-->
                       <!-- Tag input Positive Keywords-->
                       <div class="form-group"><label>Palavras Chave Positivas:</label></div>
-                
+
                       <div class="input-group">
                         <span class="input-group-addon"><i class="icon-thumbs-up2"></i></span>
                           <div class="tokenfield-success form-control">
@@ -1271,7 +1270,7 @@
 
                       <!-- Tag input Negative Keywords-->
                       <div class="form-group"><label>Palavras Chave Negativas:</label></div>
-                
+
                       <div class="input-group">
                         <span class="input-group-addon"><i class="icon-thumbs-down2"></i></span>
                           <div class="tokenfield-danger form-control">
@@ -1641,7 +1640,7 @@
                                     </div>
                                     <div style="color:#777777">
                                       Por exemplo, pais, cidade, região ou CEP
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div class="col-md-12">
                                     <input type="submit" value="Salvar">
@@ -1747,7 +1746,7 @@
                           </div>
                         </div>
                       </div>
-                     
+
 
                       <div class="row">
                         <button type="button" class="btn bg-green-700 btn-ladda btn-ladda-progress pull-right"
