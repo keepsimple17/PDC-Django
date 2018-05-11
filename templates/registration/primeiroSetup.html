@@ -168,6 +168,26 @@
     div.locais-label {
       font-weight: 500;
     }
+    div.bold-panel {
+      background-color: #e6e6e6;
+      border-radius: 3px;
+      padding: 14px;
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+    div.panel-location input[type="submit"] {
+      background: #2196F3;
+      color: #fff;
+      padding: 7px 12px;
+      border-radius: 3px;
+      border: 1px solid transparent;
+    }
+    input#btn-cancel {
+      margin-left: 4px;
+      background-color: #fcfcfc;
+      color: #333;
+      border: 1px solid #ddd;
+    }
   </style>
 
   <!-- Main navbar -->
@@ -1614,6 +1634,19 @@
                                     <label><input type="radio" name="choose_search">Brazil</label>
                                   </div>
                                 </div>
+                                <div class="col-md-11 bold-panel">
+                                    <input type="text" class="form-control" name="search_query" placeholder="Insira um local para segmentar ou excluir">
+                                    <div>
+                                      <a>Pesquisa avançada</a>
+                                    </div>
+                                    <div style="color:#777777">
+                                      Por exemplo, pais, cidade, região ou CEP
+                                    </div>                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="submit" value="Salvar">
+                                    <input type="submit" id="btn-cancel" value="Cancelar">
+                                  </div>
                               </div>
                             </div>
                           </div>
