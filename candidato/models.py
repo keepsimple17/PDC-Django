@@ -151,6 +151,7 @@ class Candidate(models.Model):
     instagram = models.CharField(max_length=40, blank=True, null=True)
     candidate_blog_rss = models.CharField(max_length=40, blank=True, null=True)
     usuarioes = models.ManyToManyField('dashboard.Usuario', blank=True)
+    proposals = models.ManyToManyField('candidato.Proposal', blank=True)
 
     foto = models.ImageField(
         # if diferent from the user photo in the dashboard.profile
@@ -273,4 +274,19 @@ class CandidateRequests(models.Model):
     request_status = models.CharField(max_length=10, blank=True, null=True)
     # REQUEST or INVITE
     request_type = models.CharField(max_length=10, blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+
+class ScopeList(models.Model):
+    name = models.CharField(max_length=60)
+    is_template = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+
+class Proposal(models.Model):
+    name = models.CharField(max_length=60)
+    description = models.CharField(max_length=255, null=True, blank=True)
+    scope = models.ForeignKey(ScopeList, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, null=True)

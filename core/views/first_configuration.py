@@ -13,7 +13,8 @@ import datetime
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
-from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list, get_political_parties)
+from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list, get_political_parties,
+                               get_scope_template)
 from dashboard.models import (Usuario, Estado, Municipio, Candidate, GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
 from dashboard.serializers import UsuarioSerializer
 from candidato.models import CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate
@@ -43,11 +44,13 @@ def primeiro_setup(request):
     user_cities = get_cities_by_state(request.user.usuario.estado)
     candidate_cities = ()
     user_roles_list = get_user_roles_list()
+    scope_list = get_scope_template()
     choice_states.insert(0, ('', "Preencha o estado."))
     # sever_url = request.build_absolute_uri('/')
     political_parties = get_political_parties()
     sever_url = get_current_site(request)
     is_invited_candidato = False
+    user_id = request.user.id
 
     choice_states = tuple(choice_states)
 
@@ -196,12 +199,14 @@ def primeiro_setup(request):
             print('testing now errors->', profile_form.errors)
 
     return render(request, "registration/primeiro_setup/primeiroSetup.html", {
+        'user_id': user_id,
         'user_form': user_form,
         'profile_form': profile_form,
         'candidate_form': candidate_form,
         'sever_url': sever_url,
         'user_cities': user_cities,
         'candidate_cities': candidate_cities,
+        'scope_list': scope_list,
         'states': choice_states,
         'user_roles_list': user_roles_list,
         'GENDER_CHOICES': GENDER_CHOICES,

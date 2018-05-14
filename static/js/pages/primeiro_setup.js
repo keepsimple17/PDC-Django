@@ -12,6 +12,7 @@
 $(() => {
   // Show form
   const form = $(".steps-validation").show();
+  const proposalSaveBtn = $('#save_proposal');
 
   // global required message for validator
   jQuery.extend(jQuery.validator.messages, {
@@ -457,6 +458,32 @@ $(() => {
   $('.tokenfield-success').on('tokenfield:createdtoken', function (e) {
     $(e.relatedTarget).addClass('bg-success');
   });
+
+  $('#save_proposal').click(() => {
+    const name = $('input[name=proposal_name]').val();
+    const description = $('textarea[name=proposal_description]').val();
+    const scope = $('select[name=proposal_scope]').val();
+    const candidator = $('input[name=user_id]').val();
+    console.log(name, description, scope, 'candidator:', candidator);
+    if (name === '' || description === '' || scope === '') {
+      notify('Please fill the all fields.');
+      return false;
+    }
+
+    axios.post('/candidato/save_proposal/', {
+      name,
+      description,
+      scope,
+      candidator,
+    })
+      .then(res => {
+        notify('Your proposal is saved successfully.');
+      })
+      .catch(_err => {
+        notify(`Occured any error ${_err}.`);
+      });
+  });
+
 });
 
 // showing the thumbnail of selected image

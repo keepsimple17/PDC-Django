@@ -28,7 +28,7 @@
             <div class="col-md-8">
               <div class="form-group">
                 <label>Proposta: </label>
-                <input title="" type="text" name="proposal"
+                <input title="" type="text" name="proposal_name"
                        class="form-control" placeholder="">
               </div>
             </div>
@@ -36,15 +36,10 @@
             <div class="form-group">
               <label class="control-label col-md-4">Categoria</label>
               <div class="col-md-4">
-                <select name="select" class="form-control" title="">
-                  <option value="opt1">Saúde</option>
-                  <option value="opt2">Segurança</option>
-                  <option value="opt3">Educação</option>
-                  <option value="opt4">Social</option>
-                  <option value="opt5">Infra Estrutura</option>
-                  <option value="opt6">Meio Ambiente</option>
-                  <option value="opt7">Moradia</option>
-                  <option value="opt8">Adicionar Categoria</option>
+                <select name="proposal_scope" class="form-control" title="">
+                  {% for item in scope_list %}
+                    <option value="{{ item.0 }}">{{ item.1 }}</option>
+                  {% endfor %}
                 </select>
               </div>
             </div>
@@ -53,13 +48,13 @@
           <!-- Proposal description -->
           <div class="form-group">
             <label>Descrição da proposta:</label>
-            <textarea name="description" class="form-control description-input"
+            <textarea name="proposal_description" class="form-control description-input"
                       placeholder="descreva sua proposta"></textarea>
           </div>
 
           <!-- Proposal add button -->
           <div class="col-md-2 col-md-offset-10">
-            <button type="button" class="btn bg-success">Adicionar Proposta</button>
+            <button id="save_proposal" type="button" class="btn bg-success">Adicionar Proposta</button>
           </div>
           <div class="dbspacing"></div>
 

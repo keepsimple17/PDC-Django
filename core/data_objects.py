@@ -1,5 +1,5 @@
 from dashboard.models import Estado, Municipio, PoliticalParties
-from candidato.models import UserRoles_list
+from candidato.models import UserRoles_list, ScopeList
 
 
 def get_states():
@@ -51,8 +51,20 @@ def get_political_parties():
 
     # The user or employee that will have access, sometimes doesn't have a political party
     # Or even the candidate can be independent
-    political_parties.append(('Nenhum','Nenhum'))
+    political_parties.append(('Nenhum', 'Nenhum'))
     for item in political_party_list:
         political_parties.append((item.sigla, item.name))
 
     return political_parties
+
+
+def get_scope_template():
+    scopes = []
+
+    scopes_list = ScopeList.objects.filter(is_template=True).order_by('name')
+
+    for scope in scopes_list:
+        scopes.append((scope.id, scope.name))
+
+    scopes.insert(0, ("", ""))
+    return scopes
