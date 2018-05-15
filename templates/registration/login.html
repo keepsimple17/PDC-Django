@@ -2,80 +2,92 @@
 {% load staticfiles %}
 
 {% block content %}
-	<!-- Main navbar -->
-	<div class="">
+  <!-- Main navbar -->
+  <div class="">
 
-		<div class="container">
-			<div class="row">
+    <div class="container">
+      <div class="row">
 
-			</div>
-		</div>
+      </div>
+    </div>
 
-	</div>
-	<!-- /main navbar -->
+  </div>
+  <!-- /main navbar -->
 
-    <!-- Login form -->
-	<div class="page-container">
-		<div class="modal-dialog">
-			<div class="login-form">
-				<!-- Form -->
-				<form class="modal-body" method="post" action="{% url 'login' %}">
-      			{% csrf_token %}
-					<div class="text-center">
-						<img src="http://www.portaldocandidato.inf.br/images/SCOPO_300px.png">
+  <!-- Login form -->
+  <div class="page-container">
+    <div class="modal-dialog">
+      <div class="login-form">
+        <!-- Form -->
+        <form class="modal-body" method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          <div class="text-center">
+            <img src="http://www.portaldocandidato.inf.br/images/SCOPO_300px.png">
 
-						<h4 class="content-group"><small class="display-block">Insira Seus Dados de Acesso</small></h4>
-					</div>
+            <h4 class="content-group">
+              <small class="display-block">Insira Seus Dados de Acesso</small>
+            </h4>
+          </div>
 
-					<div class="form-group has-feedback has-feedback-left">
-						<input name="username" type="text" class="form-control" placeholder="Nome de Usuário" required="required">
-						<div class="form-control-feedback">
-							<i class="icon-user text-muted"></i>
-						</div>
-					</div>
+          <div class="form-group has-feedback has-feedback-left">
+            <input name="username" type="text" class="form-control" placeholder="Nome de Usuário" required="required">
+            <div class="form-control-feedback">
+              <i class="icon-user text-muted"></i>
+            </div>
+          </div>
 
-					<div class="form-group has-feedback has-feedback-left">
-						<input name="password" type="password" autocomplete="current-password" class="form-control" placeholder="Senha" required="required">
-						<div class="form-control-feedback">
-							<i class="icon-lock2 text-muted"></i>
-						</div>
-					</div>
+          <div class="form-group has-feedback has-feedback-left">
+            <input name="password" type="password" autocomplete="current-password" class="form-control"
+                   placeholder="Senha" required="required">
+            <div class="form-control-feedback">
+              <i class="icon-lock2 text-muted"></i>
+            </div>
+          </div>
 
-					<div class="form-group login-options">
-						<div class="row">
-							<div class="col-sm-6 text-right col-sm-offset-6">
-								<a href="{% url 'password_reset' %}">Esqueceu a Senha?</a>
-							</div>
-						</div>
-					</div>
-					<input type="hidden" name="next" value="{{request.GET.next}}" />
+          <div class="form-group login-options">
+            <div class="row">
+              <div class="col-sm-6 text-right col-sm-offset-6">
+                <a href="{% url 'password_reset' %}">Esqueceu a Senha?</a>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" name="next" value="{{ request.GET.next }}"/>
 
-					<div class="form-group">
-						<button type="submit" class="btn bg-green btn-block">Entrar <i class="icon-arrow-right14 position-right"></i></button>
-					</div>
+          <div class="form-group">
+            <button type="submit" class="btn bg-green btn-block">Entrar <i
+                class="icon-arrow-right14 position-right"></i></button>
+          </div>
 
-					<span id="alarmArea" class="text-danger"></span>
+          <span id="alarmArea" class="text-danger"></span>
 
 
-					<div class="content-divider text-muted form-group"><span>Ou Entre com sua Rede-Social</span></div>
+          <div class="content-divider text-muted form-group"><span>Ou Entre com sua Rede-Social</span></div>
 
-                    <ul class="list-inline form-group list-inline-condensed text-center">
-                        <li><a href="{% url 'social:begin' 'facebook' %}" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-google-plus"></i></a></li>
-                        <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
-                        <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
-                    </ul>
+          <ul class="list-inline form-group list-inline-condensed text-center">
+            <li><a href="{% url 'social:begin' 'facebook' %}"
+                   class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a>
+            </li>
+            <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i
+                class="icon-google-plus"></i></a></li>
+            <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i
+                class="icon-github"></i></a></li>
+            <li><a href="#" class="btn border-grey-300 text-grey-300 btn-flat btn-icon btn-rounded"><i
+                class="icon-twitter"></i></a></li>
+          </ul>
 
-                    <div class="content-divider text-muted form-group"><span>Ainda não tem conta?</span></div>
-                    <a href="{% url 'signup' %}" class="btn btn-warning btn-block content-group">Registrar</a>
-                    <span class="help-block text-center no-margin">Ao continuar você está aceitando os <a href="#modal_terms" data-toggle="modal" data-target="#modal_terms">Termos &amp; Condições</a> do SCOPO e nossa <a href="#">Política de Cookies</a></span>
+          <div class="content-divider text-muted form-group"><span>Ainda não tem conta?</span></div>
+          <a href="{% url 'signup' %}" class="btn btn-warning btn-block content-group">Registrar</a>
+          <span class="help-block text-center no-margin">Ao continuar você está aceitando os
+            <a href="#modal_terms" data-toggle="modal" data-target="#modal_terms">Termos &amp; Condições</a> do SCOPO e nossa
+            <a href="#">Política de Cookies</a>
+          </span>
 
-				</form>
-				<!-- /form -->
-			</div>
-		</div>
-	</div>
-	<!-- /login form -->
-    {% include 'components/terms_modal.html' %}
+        </form>
+        <!-- /form -->
+      </div>
+    </div>
+  </div>
+  <!-- /login form -->
+  {% include 'components/terms_modal.html' %}
 
 {% endblock %}

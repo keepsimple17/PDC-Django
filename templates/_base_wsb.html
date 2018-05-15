@@ -1,701 +1,733 @@
-{% load staticfiles  %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SCOPO - Sistema de Controle Político</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCOPO - Sistema de Controle Político</title>
 
-	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="{% static 'css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'css/core.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'css/components.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'css/colors.css' %}" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
+  <!-- Global stylesheets -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/core.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/components.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/colors.css' %}" rel="stylesheet" type="text/css">
+  <!-- /global stylesheets -->
 
-    <!-- Animation stylesheets -->
-    <!-- todo include 'css/​extras/​animate.min.css' stylesheet -->
-    <!-- /Animation stylesheets -->
+  <!-- Animation stylesheets -->
+  <!-- todo include 'css/​extras/​animate.min.css' stylesheet -->
+  <!-- /Animation stylesheets -->
 
 
-    <style>
-        .btn-rounded {
-            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
-            -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
-        }
+  <style>
+    .btn-rounded {
+      box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+      -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+    }
 
-        .loader {
-          border: 16px solid #f3f3f3;
-          border-radius: 50%;
-          border-top: 16px solid blue;
-          border-right: 16px solid green;
-          border-bottom: 16px solid red;
-          width: 120px;
-          height: 120px;
-          -webkit-animation: spin 2s linear infinite;
-          animation: spin 2s linear infinite;
-        }
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid blue;
+      border-right: 16px solid green;
+      border-bottom: 16px solid red;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
 
-        @-webkit-keyframes spin {
-          0% { -webkit-transform: rotate(0deg); }
-          100% { -webkit-transform: rotate(360deg); }
-        }
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
 
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
 
-        .loder-center {
-          position: absolute;
-          top: 0;
-          left: 0;
-          margin: 15% 45%;
-          bottom: 0;
-          right: 0;
-        }
+    .loder-center {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 15% 45%;
+      bottom: 0;
+      right: 0;
+    }
 
-        .loder-layer {
-          background-color: rgba(44, 154, 179, 0.65);
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          display: none;
-        }
-        body{
-            background-color: #f5f5f5;
-        }
-        .page-container1{
-            background-color: #dedede;
-            box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-        }
-        .navbar-inverse{
-            /*background-color: #676b74;
-            box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);*/
-        }
-        .navbar{
-            /*min-height: 60px;*/
-        }
-        .navbar-brand {
-            display: inline-block;
-            padding-top: 1.3125rem;
-            padding-bottom: .3125rem;
-            margin-right: 1rem;
-            font-size: 1.95rem;
-            line-height: inherit;
-            white-space: nowrap;
-            background-color: transparent;
-            font-weight: 300;
-        }
-    </style>
+    .loder-layer {
+      background-color: rgba(44, 154, 179, 0.65);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
 
-	<!-- Core JS files -->
-	<script type="text/javascript" src="{% static 'js/plugins/loaders/pace.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/core/libraries/jquery1.11.1/jquery.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/core/libraries/jquery1.11.1/jquery-ui.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/core/libraries/bootstrap.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/plugins/loaders/blockui.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/plugins/http/axios.min.js' %}"></script>
-	<!-- /core JS files -->
+    body {
+      background-color: #f5f5f5;
+    }
 
-	<!-- Theme JS files -->
-	<script type="text/javascript" src="{% static 'js/plugins/visualization/d3/d3.min.js' %}"></script>
-{#	<script type="text/javascript" src="{% static 'js/plugins/visualization/d3/d3_tooltip.js' %}"></script>#}
-	<script type="text/javascript" src="{% static 'js/plugins/forms/styling/switchery.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/plugins/forms/styling/uniform.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/plugins/forms/selects/bootstrap_multiselect.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/plugins/ui/moment/moment.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/plugins/pickers/daterangepicker.js' %}"></script>
+    .page-container1 {
+      background-color: #dedede;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+    }
 
-	<script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
-	<!-- /theme JS files -->
-	<script type="text/javascript" src="{% static 'js/my.js' %}"></script>
+    .navbar-inverse {
+      /*background-color: #676b74;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);*/
+    }
+
+    .navbar {
+      /*min-height: 60px;*/
+    }
+
+    .navbar-brand {
+      display: inline-block;
+      padding-top: 1.3125rem;
+      padding-bottom: .3125rem;
+      margin-right: 1rem;
+      font-size: 1.95rem;
+      line-height: inherit;
+      white-space: nowrap;
+      background-color: transparent;
+      font-weight: 300;
+    }
+  </style>
+
+  <!-- Core JS files -->
+  <script type="text/javascript" src="{% static 'js/plugins/loaders/pace.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/core/libraries/jquery1.11.1/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/core/libraries/jquery1.11.1/jquery-ui.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/core/libraries/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/loaders/blockui.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/http/axios.min.js' %}"></script>
+  <!-- /core JS files -->
+
+  <!-- Theme JS files -->
+  <script type="text/javascript" src="{% static 'js/plugins/visualization/d3/d3.min.js' %}"></script>
+  {#	<script type="text/javascript" src="{% static 'js/plugins/visualization/d3/d3_tooltip.js' %}"></script>#}
+  <script type="text/javascript" src="{% static 'js/plugins/forms/styling/switchery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/forms/styling/uniform.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/forms/selects/bootstrap_multiselect.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/ui/moment/moment.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/pickers/daterangepicker.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
+  <!-- /theme JS files -->
+  <script type="text/javascript" src="{% static 'js/my.js' %}"></script>
 
 </head>
 
 <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-	<!-- Main navbar -->
-	<div class="navbar navbar-inverse">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="/"><img src="{% static 'images/logoScopoHeader3.png'%}" alt=""></a>
-
-			<ul class="nav navbar-nav visible-xs-block">
-				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
-				<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
-			</ul>
-		</div>
-    {% if user.is_authenticated %}
-		<div class="navbar-collapse collapse" id="navbar-mobile">
-			<ul class="nav navbar-nav">
-                {% if request.user.is_staff %}
-                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-megaphone"></i>
-						<span class="visible-xs-inline-block position-right">Alertas do Candidato</span>
-						<span class="badge bg-warning-400">9</span>
-					</a>
-
-					<div class="dropdown-menu dropdown-content">
-						<div class="dropdown-content-heading">
-							Git updates
-							<ul class="icons-list">
-								<li><a href="#"><i class="icon-sync"></i></a></li>
-							</ul>
-						</div>
-                        <!-- Those information should comes from the candidate alerts, in app activities (been developed) -->
-						<ul class="media-list dropdown-content-body width-350">
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
-								</div>
-
-								<div class="media-body">
-									Nova Solicitação de Amizade de <a href="#">Paulino R. e Silva</a>
-									<div class="media-annotation">4 minutos atrás</div>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-commit"></i></a>
-								</div>
-
-								<div class="media-body">
-									Nova Solicitação de Marketing
-									<div class="media-annotation">36 minutos atrás</div>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-branch"></i></a>
-								</div>
-
-								<div class="media-body">
-									<a href="#">Social Play</a> criou um novo <span class="text-semibold">Design</span>
-									<div class="media-annotation">2 horas atrás</div>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-merge"></i></a>
-								</div>
-
-								<div class="media-body">
-									<a href="#">Multiplay</a> solicitou envio de <span class="text-semibold">mensagens</span> e <span class="text-semibold">Dev</span> Revisão
-									<div class="media-annotation">Março 18, 18:36</div>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
-								</div>
-
-								<div class="media-body">
-									Inicio de configuração
-									<div class="media-annotation">Jan 12, 05:46</div>
-								</div>
-							</li>
-						</ul>
-
-						<div class="dropdown-content-footer">
-							<a href="#" data-popup="tooltip" title="All activity"><i class="icon-menu display-block"></i></a>
-						</div>
-					</div>
-				</li>
-                {% endif %}
-			</ul>
-
-			{% if request.user.is_staff %}
-			<p class="navbar-text"><span class="label bg-success">Online</span></p>
-			{% else %}
-{#			<p class="navbar-text"><span class="label bg-warning">Waiting for Authorization</span></p>#}
-			{% endif %}
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown language-switch">
-					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="{% static 'images/flags/br.png' %}" class="position-left" alt="">
-						Português
-						<span class="caret"></span>
-					</a>
-
-					<ul class="dropdown-menu">
-						<li><a class="english"><img src="{% static 'images/flags/gb.png' %}" alt=""> Inglês</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-bubbles4"></i>
-						<span class="visible-xs-inline-block position-right">Mensagens</span>
-						<span class="badge bg-warning-400">2</span>
-					</a>
-
-					<div class="dropdown-menu dropdown-content width-350">
-						<div class="dropdown-content-heading">
-							Messages
-							<ul class="icons-list">
-								<li><a href="#"><i class="icon-compose"></i></a></li>
-							</ul>
-						</div>
-
-						<ul class="media-list dropdown-content-body">
-							<li class="media">
-								<div class="media-left">
-									<img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
-									<span class="badge bg-danger-400 media-badge">5</span>
-								</div>
-
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Marcelo Senise</span>
-										<span class="media-annotation pull-right">04:58</span>
-									</a>
-
-									<span class="text-muted">Organização de Envio de Mensagens</span>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left">
-									<img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
-									<span class="badge bg-danger-400 media-badge">4</span>
-								</div>
-
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Fernando Priolli</span>
-										<span class="media-annotation pull-right">12:16</span>
-									</a>
-
-									<span class="text-muted">Comitê Central no RJ</span>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Marcelo Victorino</span>
-										<span class="media-annotation pull-right">22:48</span>
-									</a>
-
-									<span class="text-muted">Como está o vídeo de divulgação?</span>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Beatriz Diaz</span>
-										<span class="media-annotation pull-right">Tue</span>
-									</a>
-
-									<span class="text-muted">O relatório de tendências em São Paulo está pronto...</span>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Comitê Bahia</span>
-										<span class="media-annotation pull-right">Mon</span>
-									</a>
-
-									<span class="text-muted">Reunião de mobilizão online as 22:00hs.</span>
-								</div>
-							</li>
-						</ul>
-
-						<div class="dropdown-content-footer">
-							<a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
-						</div>
-					</div>
-				</li>
-
-				<li class="dropdown dropdown-user">
-					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="{% static 'images/placeholder.jpg' %}" alt="">
-						<span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
-						<i class="caret"></i>
-					</a>
-
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="{% url 'profile' %}"><i class="icon-user-plus"></i> Meu Perfil</a></li>
-						<li><a href="#"><i class="icon-coins"></i> Livro-Caixa</a></li>
-						<li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Mensagens</a></li>
-						<li class="divider"></li>
-						<li><a href="#"><i class="icon-cog5"></i> Configurações</a></li>
-						<li><a href="{% url 'logout' %}"><i class="icon-switch2"></i> Sair</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-{% endif %}
-	</div>
-	<!-- /main navbar -->
-
-    <!-- Page container -->
-        <div class="page-container">
-            {% if request.user.is_staff %}
-            <!-- Page content -->
-             <div class="page-content">
-
-                <!-- Main sidebar -->
-                <div class="sidebar sidebar-main">
-                    <div class="sidebar-content">
-
-                        <!-- User menu -->
-                        <div class="sidebar-user">
-                            <div class="category-content">
-                                <div class="media">
-                                    <a href="#" class="media-left"><img src="{% static '/images/placeholder.jpg' %}" class="img-circle img-sm" alt=""></a>
-                                    <div class="media-body">
-                                        <span class="media-heading text-semibold">Fernando Collor</span> <!--the Candidate -->
-                                        <div class="text-size-mini text-muted">
-                                            <i class="icon-pin text-size-small"></i> &nbsp;Maceió, AL
-                                        </div>
-                                    </div>
-
-                                    <div class="media-right media-middle">
-                                        <ul class="icons-list">
-                                            <li>
-                                                <a href="#"><i class="icon-cog3"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /user menu -->
-
-
-                        <!-- Main navigation -->
-                        <div class="sidebar-category sidebar-category-visible">
-                            <div class="category-content no-padding">
-                                <ul class="navigation navigation-main navigation-accordion">
-
-                                    <!-- Main -->
-
-                                    <li class="active"><a href="index.html"><i class="icon-home4"></i> <span>Painel</span></a></li>
-
-                                     <li class="navigation-header"><span>CENTRAL ADMINISTRATIVA</span> <i class="icon-menu" title="Main pages"></i></li>
-
-                                    <!-- BEGINS GENERAL CONTROL -->
-                                    <li>
-                                        <a href="#"><i class="icon-collaboration"></i> <span>Central de Controle</span></a>
-
-                                        <ul>
-                                            <!-- sidebar staff and users -->
-                                            <li>
-                                                <a href="#" class="has-ul legitRipple"><i class="icon-users"></i>
-                                                    Equipe  &amp; Usuários<span class="legitRipple-ripple"
-                                                                                 style="left: 56.5385%; top: 45%;
-                                                                                  transform: translate3d(-50%, -50%, 0px);
-                                                                                  transition-duration: 0.2s, 0.5s; width:
-                                                                                  202.353%;"></span></a>
-                                            <ul class="hidden-ul" style="display: none;">
-
-                                                <li>
-                                                    <a href="#" class="legitRipple">Gestão de Acesso</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Gestão de Equipe</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Gerentes &amp; Usuários</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple"><i class="icon-key"></i>Políticas de Acesso</a>
-                                                </li>
-                                            </ul>
-                                             <li><a href="#"><i class="icon-stack-text"></i>Relatórios</a></li>
-                                            <li><a href="#"><i class="icon-chart"></i>Estatísticas</a></li>
-                                        </ul>
-                                    </li>
-                                    <!--END GENERAL CONTROL -->
-
-                                    <!-- BEGINS FINANCIAL SIDEBAR -->
-                                    <li>
-                                        <a href="#"><i class="icon-coins"></i> <span>Financeiro</span></a>
-
-                                        <ul>
-                                            <!-- sidebar staff and users -->
-                                            <li>
-                                                <a href="#" class="has-ul legitRipple"><i class="icon-user-tie"></i>
-                                                    Gestão de Recursos<span class="legitRipple-ripple"
-                                                                                 style="left: 56.5385%; top: 45%;
-                                                                                  transform: translate3d(-50%, -50%, 0px);
-                                                                                  transition-duration: 0.2s, 0.5s; width:
-                                                                                  202.353%;"></span></a>
-                                            <ul class="hidden-ul" style="display: none;">
-
-                                                <li>
-                                                    <a href="#" class="legitRipple">Solicitações Pgto</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Efetuar Pagto</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Cadastrar Recurso</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Livro Caixa</a>
-                                                </li>
-                                            </ul>
-                                             <li><a href="#"><i class="icon-coin-dollar"></i>Doações de Campanha</a></li>
-                                            <li><a href="#"><i class="icon-file-stats"></i>Relatórios</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- BEGINS FINANCIAL SIDEBAR -->
-                                    <li><a href="#"><i class="icon-magazine"></i> <span>Relatórios de Acesso</span></a></li>
-
-                                    <li class="navigation-divider"></li>
-
-                                    <li class="navigation-header"><span>CENTRAL DO CANDIDATO</span> <i class="icon-menu" title="Main pages"></i></li>
-
-                                    <li><a href="#"><i class="icon-calendar2"></i>Agenda</a></li>
-                                    <li>
-                                        <a href="#"><i class="icon-user-tie"></i> <span>Gestão de Campanha</span></a>
-
-                                        <ul>
-                                            <!-- sidebar list do registers in database -->
-                                            <li>
-                                                <a href="#" class="has-ul legitRipple"><i class="icon-pencil4"></i>
-                                                    Cadastro<span class="legitRipple-ripple"
-                                                                                 style="left: 56.5385%; top: 45%;
-                                                                                  transform: translate3d(-50%, -50%, 0px);
-                                                                                  transition-duration: 0.2s, 0.5s; width:
-                                                                                  202.353%;"></span></a>
-                                            <ul class="hidden-ul" style="display: none;">
-
-                                                <li>
-                                                    <a href="#" class="legitRipple">Áreas Geográficas</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Campanha de Mkt</a>
-                                                </li>
-
-                                                 <li>
-                                                    <a href="#" class="legitRipple">Comitês</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Gerentes &amp; Usuários</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Voluntários</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Palavras Chave</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Midias Sociais</a>
-                                                </li>
-                                                 <li>
-                                                    <a href="#" class="legitRipple">#Hashtags</a>
-                                                </li>
-                                            </ul>
-                                            </li>
-                                            <!-- END sidebar list do registers in database -->
-
-
-                                                <!-- sidebar list do query in database -->
-                                            <li>
-                                                <a href="#" class="has-ul legitRipple"><i class="icon-search4"></i>
-                                                    Consulta<span class="legitRipple-ripple"
-                                                                                 style="left: 56.5385%; top: 45%;
-                                                                                  transform: translate3d(-50%, -50%, 0px);
-                                                                                  transition-duration: 0.2s, 0.5s; width:
-                                                                                  202.353%;"></span></a>
-                                            <ul class="hidden-ul" style="display: none;">
-                                                <li>
-                                                    <a href="#" class="legitRipple">Áreas Geográficas</a>
-                                                </li>
-                                                 <li>
-                                                    <a href="#" class="legitRipple">Campanhas Sociais</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Campanha de Mkt</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Comitês</a>
-                                                </li>
-                                                 <li>
-                                                    <a href="#" class="legitRipple">Eleitores</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Equipe</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="legitRipple">Recursos</a>
-                                                </li>
-                                                 <li>
-                                                    <a href="#" class="legitRipple">Tendências</a>
-                                                </li>
-                                            </ul>
-                                            </li>
-                                            <!-- END sidebar list do query in database -->
-
-                                            <!-- sidebar list do control the Candidate Campaign (mobilizations) -->
-                                            <li>
-                                                <a href="#" class="has-ul legitRipple"><i class="icon-bus"></i>
-                                                    Mobilização<span class="legitRipple-ripple"
-                                                                                 style="left: 56.5385%; top: 45%;
-                                                                                  transform: translate3d(-50%, -50%, 0px);
-                                                                                  transition-duration: 0.2s, 0.5s; width:
-                                                                                  202.353%;"></span></a>
-                                                <ul class="hidden-ul" style="display: none;">
-                                                    <li>
-                                                        <a href="#" class="legitRipple">Ações</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="legitRipple">Estatísticas</a>
-                                                    </li>
-                                                     <li>
-                                                        <a href="#" class="legitRipple">Filtros de Pesquisa</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="legitRipple">Gestão de Coligados</a>
-                                                    </li>
-                                                     <li>
-                                                        <a href="#" class="legitRipple">Redes de Relacionamento</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <!-- END sidebar list do query in database -->
-
-
-                                            <!-- sidebar Reports and Statistics  -->
-                                            <li class="navigation-divider"></li>
-                                            <li><a href="#"><i class="icon-stack-text"></i>Relatórios</a></li>
-                                            <li><a href="#"><i class="icon-chart"></i>Estatísticas</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li>
-                                        <a href="#"><i class="icon-users4"></i> <span>Redes Sociais</span></a>
-                                        <ul>
-                                            <li><a href="#"><i class="icon-facebook2"></i>Facebook<span class="label bg-success-400">Conectado</span></a></li>
-                                            <li><a href="#"><i class="icon-google-plus2"></i>Google+<span class="label bg-warning-400">Conecte</span></a></li>
-                                            <li><a href="#"><i class="icon-twitter2"></i>Twitter<span class="label bg-warning-400">Conecte</span></a></li>
-                                            <li><a href="#"><i class="icon-instagram"></i>Instagram<span class="label bg-danger-400">Erro</span><i class="icon-spinner2 spinner"></i></a></li>
-                                            <li><a href="#"><i class="icon-phone2"></i>WhatsApp<span class="label bg-warning-400">Conecte</span></a></li>
-
-                                            <li class="navigation-divider"></li>
-                                            <li><a href="#">Páginas do Candidato</a></li>
-                                            <li><a href="boxed_mini.html">Blogs</a></li>
-                                            <li><a href="boxed_full.html">Fontes de Notícias</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#"><i class="icon-earth"></i>Geomarketing</a></li>
-                                    <li class="navigation-divider"></li>
-
-                                    <li class="navigation-header"><span>CENTRAL DO USUÁRIO</span> <i class="icon-menu" title="Main pages"></i></li>
-                                    <li><a href="#"><i class="icon-calendar52"></i>Agenda do Usuário</a></li>
-                                    <li>
-                                        <a href="#"><i class="icon-briefcase"></i> <span>Recursos</span></a>
-                                        <ul>
-                                            <li><a href="#">Solicitar Recurso</a></li>
-                                            <li><a href="#">Solicitar Reembolso</a></li>
-                                            <li><a href="#">Baixa de Pagamento</a></li>
-                                            <li><a href="#">Livro Caixa</a></li>
-                                            <li><a href="#">Consolidação &amp; Relatório</a></li>
-                                            <!-- END sidebar list do query in database -->
-                                        </ul>
-                                    </li>
-                                     <li>
-                                                <a href="#" class="has-ul legitRipple"><i class="icon-bus"></i>
-                                                    Mobilização Campanha<span class="legitRipple-ripple"
-                                                                                 style="left: 56.5385%; top: 45%;
-                                                                                  transform: translate3d(-50%, -50%, 0px);
-                                                                                  transition-duration: 0.2s, 0.5s; width:
-                                                                                  202.353%;"></span></a>
-                                                <ul class="hidden-ul" style="display: none;">
-                                                    <li>
-                                                        <a href="#" class="legitRipple">Ações</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="legitRipple">Estatísticas</a>
-                                                    </li>
-                                                     <li>
-                                                        <a href="#" class="legitRipple">Filtros de Pesquisa</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="legitRipple">Gestão de Coligados</a>
-                                                    </li>
-                                                     <li>
-                                                        <a href="#" class="legitRipple">Redes de Relacionamento</a>
-                                                    </li>
-                                                </ul>
-                                     </li>
-
-                                    <li>
-                                        <a href="#"><i class="icon-people"></i> <span>Redes Usuário</span></a>
-                                        <ul>
-                                            <li><a href="#">Facebook<span class="label bg-success-400">Conectado</span></a></li>
-                                            <li><a href="#">Google+<span class="label bg-warning-400">Conecte</span></a></li>
-                                            <li><a href="#">Twitter<span class="label bg-warning-400">Conecte</span></a></li>
-                                            <li><a href="#">Instagram<span class="label bg-warning-400">Conecte</span></a></li>
-                                            <li><a href="#">WhatsApp<span class="label bg-warning-400">Conecte</span></a></li>
-                                            <li><a href="#">Telegram<span class="label bg-warning-400">Conecte</span></a></li>
-                                            <li class="navigation-divider"></li>
-                                            <li><a href="#">Páginas do Usuário</a></li>
-                                            <li><a href="boxed_mini.html">Blogs</a></li>
-                                            <li><a href="boxed_full.html">Fontes de Notícias</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="navigation-divider"></li>
-
-                                    <li><a href="#"><i class="icon-list-unordered"></i> <span>Solicitar Suporte</span></a></li>
-                                    <!-- /main -->
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /main navigation -->
-                    </div>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<!-- Main navbar -->
+<div class="navbar navbar-inverse">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/"><img src="{% static 'images/logoScopoHeader3.png' %}" alt=""></a>
+
+    <ul class="nav navbar-nav visible-xs-block">
+      <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+      <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+    </ul>
+  </div>
+  {% if user.is_authenticated %}
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+      <ul class="nav navbar-nav">
+        {% if request.user.is_staff %}
+          <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-megaphone"></i>
+              <span class="visible-xs-inline-block position-right">Alertas do Candidato</span>
+              <span class="badge bg-warning-400">9</span>
+            </a>
+
+            <div class="dropdown-menu dropdown-content">
+              <div class="dropdown-content-heading">
+                Git updates
+                <ul class="icons-list">
+                  <li><a href="#"><i class="icon-sync"></i></a></li>
+                </ul>
+              </div>
+              <!-- Those information should comes from the candidate alerts, in app activities (been developed) -->
+              <ul class="media-list dropdown-content-body width-350">
+                <li class="media">
+                  <div class="media-left">
+                    <a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i
+                        class="icon-git-pull-request"></i></a>
+                  </div>
+
+                  <div class="media-body">
+                    Nova Solicitação de Amizade de <a href="#">Paulino R. e Silva</a>
+                    <div class="media-annotation">4 minutos atrás</div>
+                  </div>
+                </li>
+
+                <li class="media">
+                  <div class="media-left">
+                    <a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i
+                        class="icon-git-commit"></i></a>
+                  </div>
+
+                  <div class="media-body">
+                    Nova Solicitação de Marketing
+                    <div class="media-annotation">36 minutos atrás</div>
+                  </div>
+                </li>
+
+                <li class="media">
+                  <div class="media-left">
+                    <a href="#" class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i
+                        class="icon-git-branch"></i></a>
+                  </div>
+
+                  <div class="media-body">
+                    <a href="#">Social Play</a> criou um novo <span class="text-semibold">Design</span>
+                    <div class="media-annotation">2 horas atrás</div>
+                  </div>
+                </li>
+
+                <li class="media">
+                  <div class="media-left">
+                    <a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i
+                        class="icon-git-merge"></i></a>
+                  </div>
+
+                  <div class="media-body">
+                    <a href="#">Multiplay</a> solicitou envio de <span class="text-semibold">mensagens</span> e <span
+                      class="text-semibold">Dev</span> Revisão
+                    <div class="media-annotation">Março 18, 18:36</div>
+                  </div>
+                </li>
+
+                <li class="media">
+                  <div class="media-left">
+                    <a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i
+                        class="icon-git-pull-request"></i></a>
+                  </div>
+
+                  <div class="media-body">
+                    Inicio de configuração
+                    <div class="media-annotation">Jan 12, 05:46</div>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="dropdown-content-footer">
+                <a href="#" data-popup="tooltip" title="All activity"><i class="icon-menu display-block"></i></a>
+              </div>
+            </div>
+          </li>
+        {% endif %}
+      </ul>
+
+      {% if request.user.is_staff %}
+        <p class="navbar-text"><span class="label bg-success">Online</span></p>
+      {% else %}
+        {#			<p class="navbar-text"><span class="label bg-warning">Waiting for Authorization</span></p>#}
+      {% endif %}
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown language-switch">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <img src="{% static 'images/flags/br.png' %}" class="position-left" alt="">
+            Português
+            <span class="caret"></span>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a class="english"><img src="{% static 'images/flags/gb.png' %}" alt=""> Inglês</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-bubbles4"></i>
+            <span class="visible-xs-inline-block position-right">Mensagens</span>
+            <span class="badge bg-warning-400">2</span>
+          </a>
+
+          <div class="dropdown-menu dropdown-content width-350">
+            <div class="dropdown-content-heading">
+              Messages
+              <ul class="icons-list">
+                <li><a href="#"><i class="icon-compose"></i></a></li>
+              </ul>
+            </div>
+
+            <ul class="media-list dropdown-content-body">
+              <li class="media">
+                <div class="media-left">
+                  <img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
+                  <span class="badge bg-danger-400 media-badge">5</span>
                 </div>
-                <!-- /main sidebar -->
 
-                <!-- Main content -->
-                 {% block content %}
-                 {% endblock %}
-                <!-- /main content -->
+                <div class="media-body">
+                  <a href="#" class="media-heading">
+                    <span class="text-semibold">Marcelo Senise</span>
+                    <span class="media-annotation pull-right">04:58</span>
+                  </a>
 
-             </div>
-            <!-- /page content -->
-{#            <script type="text/javascript" src="{% static 'js/pages/dashboard.js' %}"></script>#}
-            {% else %}
-            <div class="modal-dialog">
-                <div class="login-form">
-                    <div class="block">
-                        <div class="block-title text-center">
-                            <h2>Notificação</h2>
-                        </div>
-                        <div class="alert alert-warning" style="display: inline-flex">
-                            <i class="icon-warning" style="font-size: 33px;margin-right: 10px;"></i>
-                            <span>
+                  <span class="text-muted">Organização de Envio de Mensagens</span>
+                </div>
+              </li>
+
+              <li class="media">
+                <div class="media-left">
+                  <img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
+                  <span class="badge bg-danger-400 media-badge">4</span>
+                </div>
+
+                <div class="media-body">
+                  <a href="#" class="media-heading">
+                    <span class="text-semibold">Fernando Priolli</span>
+                    <span class="media-annotation pull-right">12:16</span>
+                  </a>
+
+                  <span class="text-muted">Comitê Central no RJ</span>
+                </div>
+              </li>
+
+              <li class="media">
+                <div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm"
+                                             alt=""></div>
+                <div class="media-body">
+                  <a href="#" class="media-heading">
+                    <span class="text-semibold">Marcelo Victorino</span>
+                    <span class="media-annotation pull-right">22:48</span>
+                  </a>
+
+                  <span class="text-muted">Como está o vídeo de divulgação?</span>
+                </div>
+              </li>
+
+              <li class="media">
+                <div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm"
+                                             alt=""></div>
+                <div class="media-body">
+                  <a href="#" class="media-heading">
+                    <span class="text-semibold">Beatriz Diaz</span>
+                    <span class="media-annotation pull-right">Tue</span>
+                  </a>
+
+                  <span class="text-muted">O relatório de tendências em São Paulo está pronto...</span>
+                </div>
+              </li>
+
+              <li class="media">
+                <div class="media-left"><img src="{% static 'images/placeholder.jpg' %}" class="img-circle img-sm"
+                                             alt=""></div>
+                <div class="media-body">
+                  <a href="#" class="media-heading">
+                    <span class="text-semibold">Comitê Bahia</span>
+                    <span class="media-annotation pull-right">Mon</span>
+                  </a>
+
+                  <span class="text-muted">Reunião de mobilizão online as 22:00hs.</span>
+                </div>
+              </li>
+            </ul>
+
+            <div class="dropdown-content-footer">
+              <a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
+            </div>
+          </div>
+        </li>
+
+        <li class="dropdown dropdown-user">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <img src="{% static 'images/placeholder.jpg' %}" alt="">
+            <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
+            <i class="caret"></i>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="{% url 'profile' %}"><i class="icon-user-plus"></i> Meu Perfil</a></li>
+            <li><a href="#"><i class="icon-coins"></i> Livro-Caixa</a></li>
+            <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i>
+              Mensagens</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="icon-cog5"></i> Configurações</a></li>
+            <li><a href="{% url 'logout' %}"><i class="icon-switch2"></i> Sair</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  {% endif %}
+</div>
+<!-- /main navbar -->
+
+<!-- Page container -->
+<div class="page-container">
+  {% if request.user.is_staff %}
+    <!-- Page content -->
+    <div class="page-content">
+
+      <!-- Main sidebar -->
+      <div class="sidebar sidebar-main">
+        <div class="sidebar-content">
+
+          <!-- User menu -->
+          <div class="sidebar-user">
+            <div class="category-content">
+              <div class="media">
+                <a href="#" class="media-left"><img src="{% static '/images/placeholder.jpg' %}"
+                                                    class="img-circle img-sm" alt=""></a>
+                <div class="media-body">
+                  <span class="media-heading text-semibold">Fernando Collor</span> <!--the Candidate -->
+                  <div class="text-size-mini text-muted">
+                    <i class="icon-pin text-size-small"></i> &nbsp;Maceió, AL
+                  </div>
+                </div>
+
+                <div class="media-right media-middle">
+                  <ul class="icons-list">
+                    <li>
+                      <a href="#"><i class="icon-cog3"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /user menu -->
+
+
+          <!-- Main navigation -->
+          <div class="sidebar-category sidebar-category-visible">
+            <div class="category-content no-padding">
+              <ul class="navigation navigation-main navigation-accordion">
+
+                <!-- Main -->
+
+                <li class="active"><a href="index.html"><i class="icon-home4"></i> <span>Painel</span></a></li>
+
+                <li class="navigation-header"><span>CENTRAL ADMINISTRATIVA</span> <i class="icon-menu"
+                                                                                     title="Main pages"></i></li>
+
+                <!-- BEGINS GENERAL CONTROL -->
+                <li>
+                  <a href="#"><i class="icon-collaboration"></i> <span>Central de Controle</span></a>
+
+                  <ul>
+                    <!-- sidebar staff and users -->
+                    <li>
+                      <a href="#" class="has-ul legitRipple"><i class="icon-users"></i>
+                        Equipe &amp; Usuários<span class="legitRipple-ripple"
+                                                   style="left: 56.5385%; top: 45%;
+                                                                                  transform: translate3d(-50%, -50%, 0px);
+                                                                                  transition-duration: 0.2s, 0.5s; width:
+                                                                                  202.353%;"></span></a>
+                      <ul class="hidden-ul" style="display: none;">
+
+                        <li>
+                          <a href="#" class="legitRipple">Gestão de Acesso</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Gestão de Equipe</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Gerentes &amp; Usuários</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple"><i class="icon-key"></i>Políticas de Acesso</a>
+                        </li>
+                      </ul>
+                    <li><a href="#"><i class="icon-stack-text"></i>Relatórios</a></li>
+                    <li><a href="#"><i class="icon-chart"></i>Estatísticas</a></li>
+                  </ul>
+                </li>
+                <!--END GENERAL CONTROL -->
+
+                <!-- BEGINS FINANCIAL SIDEBAR -->
+                <li>
+                  <a href="#"><i class="icon-coins"></i> <span>Financeiro</span></a>
+
+                  <ul>
+                    <!-- sidebar staff and users -->
+                    <li>
+                      <a href="#" class="has-ul legitRipple"><i class="icon-user-tie"></i>
+                        Gestão de Recursos<span class="legitRipple-ripple"
+                                                style="left: 56.5385%; top: 45%;
+                                                                                  transform: translate3d(-50%, -50%, 0px);
+                                                                                  transition-duration: 0.2s, 0.5s; width:
+                                                                                  202.353%;"></span></a>
+                      <ul class="hidden-ul" style="display: none;">
+
+                        <li>
+                          <a href="#" class="legitRipple">Solicitações Pgto</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Efetuar Pagto</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Cadastrar Recurso</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Livro Caixa</a>
+                        </li>
+                      </ul>
+                    <li><a href="#"><i class="icon-coin-dollar"></i>Doações de Campanha</a></li>
+                    <li><a href="#"><i class="icon-file-stats"></i>Relatórios</a></li>
+                  </ul>
+                </li>
+                <!-- BEGINS FINANCIAL SIDEBAR -->
+                <li><a href="#"><i class="icon-magazine"></i> <span>Relatórios de Acesso</span></a></li>
+
+                <li class="navigation-divider"></li>
+
+                <li class="navigation-header"><span>CENTRAL DO CANDIDATO</span> <i class="icon-menu"
+                                                                                   title="Main pages"></i></li>
+
+                <li><a href="#"><i class="icon-calendar2"></i>Agenda</a></li>
+                <li>
+                  <a href="#"><i class="icon-user-tie"></i> <span>Gestão de Campanha</span></a>
+
+                  <ul>
+                    <!-- sidebar list do registers in database -->
+                    <li>
+                      <a href="#" class="has-ul legitRipple"><i class="icon-pencil4"></i>
+                        Cadastro<span class="legitRipple-ripple"
+                                      style="left: 56.5385%; top: 45%;
+                                                                                  transform: translate3d(-50%, -50%, 0px);
+                                                                                  transition-duration: 0.2s, 0.5s; width:
+                                                                                  202.353%;"></span></a>
+                      <ul class="hidden-ul" style="display: none;">
+
+                        <li>
+                          <a href="#" class="legitRipple">Áreas Geográficas</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Campanha de Mkt</a>
+                        </li>
+
+                        <li>
+                          <a href="#" class="legitRipple">Comitês</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Gerentes &amp; Usuários</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Voluntários</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Palavras Chave</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Midias Sociais</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">#Hashtags</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- END sidebar list do registers in database -->
+
+
+                    <!-- sidebar list do query in database -->
+                    <li>
+                      <a href="#" class="has-ul legitRipple"><i class="icon-search4"></i>
+                        Consulta<span class="legitRipple-ripple"
+                                      style="left: 56.5385%; top: 45%;
+                                                                                  transform: translate3d(-50%, -50%, 0px);
+                                                                                  transition-duration: 0.2s, 0.5s; width:
+                                                                                  202.353%;"></span></a>
+                      <ul class="hidden-ul" style="display: none;">
+                        <li>
+                          <a href="#" class="legitRipple">Áreas Geográficas</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Campanhas Sociais</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Campanha de Mkt</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Comitês</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Eleitores</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Equipe</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Recursos</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Tendências</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- END sidebar list do query in database -->
+
+                    <!-- sidebar list do control the Candidate Campaign (mobilizations) -->
+                    <li>
+                      <a href="#" class="has-ul legitRipple"><i class="icon-bus"></i>
+                        Mobilização<span class="legitRipple-ripple"
+                                         style="left: 56.5385%; top: 45%;
+                                                                                  transform: translate3d(-50%, -50%, 0px);
+                                                                                  transition-duration: 0.2s, 0.5s; width:
+                                                                                  202.353%;"></span></a>
+                      <ul class="hidden-ul" style="display: none;">
+                        <li>
+                          <a href="#" class="legitRipple">Ações</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Estatísticas</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Filtros de Pesquisa</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Gestão de Coligados</a>
+                        </li>
+                        <li>
+                          <a href="#" class="legitRipple">Redes de Relacionamento</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- END sidebar list do query in database -->
+
+
+                    <!-- sidebar Reports and Statistics  -->
+                    <li class="navigation-divider"></li>
+                    <li><a href="#"><i class="icon-stack-text"></i>Relatórios</a></li>
+                    <li><a href="#"><i class="icon-chart"></i>Estatísticas</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#"><i class="icon-users4"></i> <span>Redes Sociais</span></a>
+                  <ul>
+                    <li><a href="#"><i class="icon-facebook2"></i>Facebook<span
+                        class="label bg-success-400">Conectado</span></a></li>
+                    <li><a href="#"><i class="icon-google-plus2"></i>Google+<span
+                        class="label bg-warning-400">Conecte</span></a></li>
+                    <li><a href="#"><i class="icon-twitter2"></i>Twitter<span
+                        class="label bg-warning-400">Conecte</span></a></li>
+                    <li><a href="#"><i class="icon-instagram"></i>Instagram<span class="label bg-danger-400">Erro</span><i
+                        class="icon-spinner2 spinner"></i></a></li>
+                    <li><a href="#"><i class="icon-phone2"></i>WhatsApp<span class="label bg-warning-400">Conecte</span></a>
+                    </li>
+
+                    <li class="navigation-divider"></li>
+                    <li><a href="#">Páginas do Candidato</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">Fontes de Notícias</a></li>
+                  </ul>
+                </li>
+                <li><a href="#"><i class="icon-earth"></i>Geomarketing</a></li>
+                <li class="navigation-divider"></li>
+
+                <li class="navigation-header"><span>CENTRAL DO USUÁRIO</span> <i class="icon-menu"
+                                                                                 title="Main pages"></i></li>
+                <li><a href="#"><i class="icon-calendar52"></i>Agenda do Usuário</a></li>
+                <li>
+                  <a href="#"><i class="icon-briefcase"></i> <span>Recursos</span></a>
+                  <ul>
+                    <li><a href="#">Solicitar Recurso</a></li>
+                    <li><a href="#">Solicitar Reembolso</a></li>
+                    <li><a href="#">Baixa de Pagamento</a></li>
+                    <li><a href="#">Livro Caixa</a></li>
+                    <li><a href="#">Consolidação &amp; Relatório</a></li>
+                    <!-- END sidebar list do query in database -->
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" class="has-ul legitRipple"><i class="icon-bus"></i>
+                    Mobilização Campanha<span class="legitRipple-ripple"
+                                              style="left: 56.5385%; top: 45%;
+                                                                                  transform: translate3d(-50%, -50%, 0px);
+                                                                                  transition-duration: 0.2s, 0.5s; width:
+                                                                                  202.353%;"></span></a>
+                  <ul class="hidden-ul" style="display: none;">
+                    <li>
+                      <a href="#" class="legitRipple">Ações</a>
+                    </li>
+                    <li>
+                      <a href="#" class="legitRipple">Estatísticas</a>
+                    </li>
+                    <li>
+                      <a href="#" class="legitRipple">Filtros de Pesquisa</a>
+                    </li>
+                    <li>
+                      <a href="#" class="legitRipple">Gestão de Coligados</a>
+                    </li>
+                    <li>
+                      <a href="#" class="legitRipple">Redes de Relacionamento</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#"><i class="icon-people"></i> <span>Redes Usuário</span></a>
+                  <ul>
+                    <li><a href="#">Facebook<span class="label bg-success-400">Conectado</span></a></li>
+                    <li><a href="#">Google+<span class="label bg-warning-400">Conecte</span></a></li>
+                    <li><a href="#">Twitter<span class="label bg-warning-400">Conecte</span></a></li>
+                    <li><a href="#">Instagram<span class="label bg-warning-400">Conecte</span></a></li>
+                    <li><a href="#">WhatsApp<span class="label bg-warning-400">Conecte</span></a></li>
+                    <li><a href="#">Telegram<span class="label bg-warning-400">Conecte</span></a></li>
+                    <li class="navigation-divider"></li>
+                    <li><a href="#">Páginas do Usuário</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">Fontes de Notícias</a></li>
+                  </ul>
+                </li>
+
+                <li class="navigation-divider"></li>
+
+                <li><a href="#"><i class="icon-list-unordered"></i> <span>Solicitar Suporte</span></a></li>
+                <!-- /main -->
+              </ul>
+            </div>
+          </div>
+          <!-- /main navigation -->
+        </div>
+      </div>
+      <!-- /main sidebar -->
+
+      <!-- Main content -->
+      {% block content %}
+      {% endblock %}
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+    {#            <script type="text/javascript" src="{% static 'js/pages/dashboard.js' %}"></script>#}
+  {% else %}
+    <div class="modal-dialog">
+      <div class="login-form">
+        <div class="block">
+          <div class="block-title text-center">
+            <h2>Notificação</h2>
+          </div>
+          <div class="alert alert-warning" style="display: inline-flex">
+            <i class="icon-warning" style="font-size: 33px;margin-right: 10px;"></i>
+            <span>
                                 Seu registro no scopo.online foi efetuado com sucesso. Parabéns. Por favor, aguarde sua aprovação pelo seu candidato.
                             </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
+          </div>
         </div>
-    <!-- /page container -->
+      </div>
+    </div>
+  {% endif %}
+</div>
+<!-- /page container -->
 </body>
 </html>

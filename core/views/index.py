@@ -22,7 +22,7 @@ from candidato.serializers import InvitesSerializer
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
 from django.conf import settings
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.core.mail import EmailMessage
 from smtplib import SMTPException
 from django.contrib.auth.models import User
@@ -53,6 +53,12 @@ def signup(request, uidb64=None):
             user = form.save(commit=False)
             user.is_active = False
             user.save()
+            # let log the user in.
+            # user can skip login process next time
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
 
             current_site = get_current_site(request)
             mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
@@ -96,6 +102,77 @@ def signup(request, uidb64=None):
         form = UserForm()
 
     return render(request, "registration/signup.html", {'form': form})
+
+
+@csrf_protect
+def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
+    if request.method == 'GET':
+        form = UserForm()
+        try:
+            uid = force_text(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+        if user is not None and account_activation_token.check_token(user, token):
+            user.is_active = True
+            user.is_staff = False
+            user.save()
+
+            return redirect('primeiro_setup')
+        else:
+            logout(request)
+            return render(request, "registration/firstsetup.html", {'form': form,
+                                                                    'uid': uidb64,
+                                                                    'token': token,
+                                                                    'valid': False})
+    else:
+        # Requesting token again.
+        data = request.POST
+        username = data.get('username', None)
+        password = data.get('password', None)
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            current_site = get_current_site(request)
+            mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
+            # should save the user before getting user.pk
+            message = render_to_string('authorization.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user)})
+
+            to_email = user.email
+            email = EmailMessage(
+                mail_subject, message, to=[to_email]
+            )
+            email.content_subtype = 'html'
+
+            try:
+                email.send()
+            except SMTPException as e:
+                print('There was an SMTPException: ', e)
+                # when occurring any exception, remove the user from user table.
+                user.delete()
+                messages.warning(request, _('There was an SMTPException: ' + str(e)))
+                return render(request, "registration/firstsetup.html", {'valid': False,
+                                                                        'uid': uidb64,
+                                                                        'token': token})
+            except Exception as e:
+                print('There was an error sending an email: ', e)
+                user.delete()
+                messages.warning(request, _('There was an error sending an email: ' + str(e)))
+                return render(request, "registration/firstsetup.html", {'valid': False,
+                                                                        'uid': uidb64,
+                                                                        'token': token})
+            messages.success(request, _('Por favor, confirme seu email para completar seu cadastro.'))
+            return render(request, "registration/firstsetup.html", {'valid': False,
+                                                                    'uid': uidb64,
+                                                                    'token': token})
+        else:
+            messages.warning(request, _('Not Authorized.'))
+            return render(request, "registration/firstsetup.html", {'valid': False,
+                                                                    'uid': uidb64,
+                                                                    'token': token})
 
 
 @csrf_protect
@@ -177,7 +254,7 @@ def firstsetup(request):
         email = EmailMessage(
             mail_subject, message, to=[to_email]
         )
-        email.content_subtype = "html "
+        email.content_subtype = "html"
         print('to_email', to_email)
         email.send()
 
@@ -188,75 +265,6 @@ def firstsetup(request):
 
     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
     return redirect('home')
-
-
-@csrf_protect
-def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
-    if request.method == 'GET':
-        form = UserForm()
-        try:
-            uid = force_text(urlsafe_base64_decode(uidb64))
-            user = User.objects.get(pk=uid)
-        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-            user = None
-        if user is not None and account_activation_token.check_token(user, token):
-            user.is_active = True
-            user.is_staff = False
-            user.save()
-
-            return redirect('primeiro_setup')
-        else:
-            return render(request, "registration/firstsetup.html", {'form': form,
-                                                                    'uid': uidb64,
-                                                                    'token': token,
-                                                                    'valid': False})
-    else:
-        data = request.POST
-        username = data.get('username', None)
-        password = data.get('password', None)
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            current_site = get_current_site(request)
-            mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
-            # should save the user before getting user.pk
-            message = render_to_string('authorization.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user)})
-
-            to_email = user.email
-            email = EmailMessage(
-                mail_subject, message, to=[to_email]
-            )
-            email.content_subtype = 'html'
-
-            try:
-                email.send()
-            except SMTPException as e:
-                print('There was an SMTPException: ', e)
-                # when occurring any exception, remove the user from user table.
-                user.delete()
-                messages.warning(request, _('There was an SMTPException: ' + str(e)))
-                return render(request, "registration/firstsetup.html", {'valid': False,
-                                                                        'uid': uidb64,
-                                                                        'token': token})
-            except Exception as e:
-                print('There was an error sending an email: ', e)
-                user.delete()
-                messages.warning(request, _('There was an error sending an email: ' + str(e)))
-                return render(request, "registration/firstsetup.html", {'valid': False,
-                                                                        'uid': uidb64,
-                                                                        'token': token})
-            messages.success(request, _('Por favor, confirme seu email para completar seu cadastro.'))
-            return render(request, "registration/firstsetup.html", {'valid': False,
-                                                                    'uid': uidb64,
-                                                                    'token': token})
-        else:
-            messages.warning(request, _('Not Authorized.'))
-            return render(request, "registration/firstsetup.html", {'valid': False,
-                                                                    'uid': uidb64,
-                                                                    'token': token})
 
 
 def signup_confirm(request):

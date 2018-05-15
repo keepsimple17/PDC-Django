@@ -2,164 +2,168 @@
 {% load staticfiles %}
 
 {% block content %}
-    <script type="text/javascript" src="{% static 'js/plugins/forms/validation/validate.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/forms/validation/validate.min.js' %}"></script>
 
-    <!-- Login form -->
-	<div class="page-container">
-		<div class="modal-dialog">
-			<div class="login-form">
+  <!-- Login form -->
+  <div class="page-container">
+    <div class="modal-dialog">
+      <div class="login-form">
 
-				<!-- Form -->
-				<form class="modal-body signup_form" method="post" action="{% url 'signup' %}">
-      			{% csrf_token %}
-					<div class="text-center">
-						<img src="http://www.portaldocandidato.inf.br/images/SCOPO_300px.png"><br />
-                        <div class="content-divider text-muted form-group"> <span>//</span></div>
+        <!-- Form -->
+        <form class="modal-body signup_form" method="post" action="{% url 'signup' %}">
+          {% csrf_token %}
+          <div class="text-center">
+            <img src="http://www.portaldocandidato.inf.br/images/SCOPO_300px.png"><br/>
+            <div class="content-divider text-muted form-group"><span>//</span></div>
 
-						<h5 class="content-group">Criar Conta <small class="display-block">Todos os campos são obrigatórios</small></h5>
-					</div>
+            <h5 class="content-group">Criar Conta
+              <small class="display-block">Todos os campos são obrigatórios</small>
+            </h5>
+          </div>
 
-					<div class="content-divider text-muted form-group"><span>Dados de Login</span></div>
+          <div class="content-divider text-muted form-group"><span>Dados de Login</span></div>
 
-					<div class="form-group has-feedback has-feedback-left">
-						<input name="username" type="text" class="form-control" id="username"
-                               placeholder="Nome de Usuário" required>
-						<div class="form-control-feedback">
-							<i class="icon-user text-muted"></i>
-						</div>
-					</div>
-                    {% if form.errors %}
-                        {% for error in form.username.errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
-                            </div>
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+          <div class="form-group has-feedback has-feedback-left">
+            <input name="username" type="text" class="form-control" id="username"
+                   placeholder="Nome de Usuário" required>
+            <div class="form-control-feedback">
+              <i class="icon-user text-muted"></i>
+            </div>
+          </div>
+          {% if form.errors %}
+            {% for error in form.username.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+              </div>
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
 
-					<div class="form-group has-feedback has-feedback-left">
-						<input name="password1" type="password" class="form-control"
-                               placeholder="Senha" id="password1" required>
-						<div class="form-control-feedback">
-							<i class="icon-lock2 text-muted"></i>
-						</div>
-					</div>
-                    {% if form.errors %}
-                        {% for error in form.password1.errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+          <div class="form-group has-feedback has-feedback-left">
+            <input name="password1" type="password" class="form-control"
+                   placeholder="Senha" id="password1" required>
+            <div class="form-control-feedback">
+              <i class="icon-lock2 text-muted"></i>
+            </div>
+          </div>
+          {% if form.errors %}
+            {% for error in form.password1.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
 
-					<div class="form-group has-feedback has-feedback-left">
-						<input name="password2" type="password" class="form-control"
-                               title="{{ form.password2.help_text }}"
-                               placeholder="Confirmar Senha" required="required">
-						<div class="form-control-feedback">
-							<i class="icon-lock2 text-muted"></i>
-						</div>
-					</div>
-                    {% if form.errors %}
-                        {% for error in form.password2.errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+          <div class="form-group has-feedback has-feedback-left">
+            <input name="password2" type="password" class="form-control"
+                   title="{{ form.password2.help_text }}"
+                   placeholder="Confirmar Senha" required="required">
+            <div class="form-control-feedback">
+              <i class="icon-lock2 text-muted"></i>
+            </div>
+          </div>
+          {% if form.errors %}
+            {% for error in form.password2.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
 
-					<div class="content-divider text-muted form-group"><span>Dados Pessoais</span></div>
+          <div class="content-divider text-muted form-group"><span>Dados Pessoais</span></div>
 
-					<div class="form-group has-feedback has-feedback-left">
-						<input name="first_name" type="text"
-                               title="{{ form.first_name.help_text }}"
-                               class="form-control" placeholder="Nome">
-						<div class="form-control-feedback">
-							<i class="icon-users2 text-muted"></i>
-						</div>
-					</div>
+          <div class="form-group has-feedback has-feedback-left">
+            <input name="first_name" type="text"
+                   title="{{ form.first_name.help_text }}"
+                   class="form-control" placeholder="Nome">
+            <div class="form-control-feedback">
+              <i class="icon-users2 text-muted"></i>
+            </div>
+          </div>
 
-					<div class="form-group has-feedback has-feedback-left">
-						<input name="last_name" type="text" class="form-control"
-                               title="{{ form.last_name.help_text }}"
-                               placeholder="Sobrenome">
-						<div class="form-control-feedback">
-							<i class="icon-users text-muted"></i>
-						</div>
-					</div>
+          <div class="form-group has-feedback has-feedback-left">
+            <input name="last_name" type="text" class="form-control"
+                   title="{{ form.last_name.help_text }}"
+                   placeholder="Sobrenome">
+            <div class="form-control-feedback">
+              <i class="icon-users text-muted"></i>
+            </div>
+          </div>
 
-					<div class="form-group has-feedback has-feedback-left">
-						<input name="email" type="email" class="form-control"
-                               title="{{ form.email.help_text }}"
-                               placeholder="Email"  required>
-						<div class="form-control-feedback">
-							<i class="icon-mail5 text-muted"></i>
-						</div>
-					</div>
-                    {% if form.errors %}
-                        {% for error in form.email.errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+          <div class="form-group has-feedback has-feedback-left">
+            <input name="email" type="email" class="form-control"
+                   title="{{ form.email.help_text }}"
+                   placeholder="Email" required>
+            <div class="form-control-feedback">
+              <i class="icon-mail5 text-muted"></i>
+            </div>
+          </div>
+          {% if form.errors %}
+            {% for error in form.email.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
 
-					<div class="content-divider text-muted form-group"><span>Adicionais</span></div>
+          <div class="content-divider text-muted form-group"><span>Adicionais</span></div>
 
-					<div class="form-group">
+          <div class="form-group">
 
-						<div class="checkbox">
-							<label>
-                                <input type="checkbox" class="styled" checked="checked">
-								Assinar a Newsletter
-							</label>
-						</div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" class="styled" checked="checked">
+                Assinar a Newsletter
+              </label>
+            </div>
 
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" class="styled" id="term_checkbox">
-								Aceitar os <a href="#modal_terms" data-toggle="modal"
-                                    data-target="#modal_terms">Termos de Serviço</a>
-							</label>
-						</div>
-					</div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" class="styled" id="term_checkbox">
+                Aceitar os <a href="#modal_terms" data-toggle="modal"
+                              data-target="#modal_terms">Termos de Serviço</a>
+              </label>
+            </div>
+          </div>
 
-					<div class="form-group">
-						<button type="submit" class="btn bg-teal btn-block btn-lg" id="btncheck">Registrar <i class="icon-circle-right2 position-right"></i></button>
-					</div>
-                    <hr>
-                    <div class="form-group login-options">
-                        <div class="row">
-                            <div class="col-sm-6 text-right col-sm-offset-6">
-                                Já tem Cadastro? Faça seu <a href="{% url 'login' %}">Login</a>
-                            </div>
-                        </div>
-                    </div>
+          <div class="form-group">
+            <button type="submit" class="btn bg-teal btn-block btn-lg" id="btncheck">Registrar <i
+                class="icon-circle-right2 position-right"></i></button>
+          </div>
+          <hr>
+          <div class="form-group login-options">
+            <div class="row">
+              <div class="col-sm-6 text-right col-sm-offset-6">
+                Já tem Cadastro? Faça seu <a href="{% url 'login' %}">Login</a>
+              </div>
+            </div>
+          </div>
 
-					<span id="alarmArea" class="text-danger"></span>
-                    <hr>
-                    <div class="row prepend-top-default append-bottom-default">
-                        {% if messages %}
-                        <ul class="messages">
-                            {% for message in messages %}
-                            <li{% if message.tags %} class="alert alert-{{ message.tags }} alert-styled-left"{% endif %}>{{ message }}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                    </div>
+          <span id="alarmArea" class="text-danger"></span>
+          <hr>
+          <div class="row prepend-top-default append-bottom-default">
+            {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                  <li{% if message.tags %}
+                    class="alert alert-{{ message.tags }} alert-styled-left"{% endif %}>{{ message }}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
 
-				</form>
-				<!-- /form -->
-			</div>
-		</div>
-	</div>
+        </form>
+        <!-- /form -->
+      </div>
+    </div>
+  </div>
 
-    {% include 'components/terms_modal.html' %}
-    <script type="text/javascript" src="{% static 'js/pages/signup.js' %}"></script>
+  {% include 'components/terms_modal.html' %}
+  <script type="text/javascript" src="{% static 'js/pages/signup.js' %}"></script>
 
 {% endblock %}

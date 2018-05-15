@@ -2,87 +2,91 @@
 {% load static %}
 {% block content %}
 
-<link href="{% static 'css/plugins/anychart/anychart-ui.min.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'css/plugins/anychart/anychart-font.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/plugins/anychart/anychart-ui.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/plugins/anychart/anychart-font.min.css' %}" rel="stylesheet" type="text/css">
 
-<link href="{% static 'css/stats.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/stats.css' %}" rel="stylesheet" type="text/css">
 
-<script type="text/javascript" src="{% static 'js/plugins/anychart/anychart-base.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/anychart/anychart-base.min.js' %}"></script>
 
-{# gauge #}
-<script type="text/javascript" src="{% static 'js/plugins/anychart/anychart-circular-gauge.min.js' %}"></script>
+  {# gauge #}
+  <script type="text/javascript" src="{% static 'js/plugins/anychart/anychart-circular-gauge.min.js' %}"></script>
 
-{# svg map #}
-<script type="text/javascript" src="{% static 'js/plugins/anychart/map/brazil.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/plugins/anychart/map/anychart-map.min.js' %}"></script>
+  {# svg map #}
+  <script type="text/javascript" src="{% static 'js/plugins/anychart/map/brazil.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins/anychart/map/anychart-map.min.js' %}"></script>
 
-{# tree map #}
-<script type="text/javascript" src="{% static 'js/plugins/anychart/anychart-treemap.min.js' %}"></script>
+  {# tree map #}
+  <script type="text/javascript" src="{% static 'js/plugins/anychart/anychart-treemap.min.js' %}"></script>
 
-<script type="text/javascript" src="{% static 'js/stats.js' %}"></script>
-    <!-- Page header -->
-    <div class="page-header page-header-default">
-        <div class="page-header-content">
-            <div class="page-title">
-                <h4><a href="/dashboard/"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">Painel</span> - Estatísticas</h4>
-            </div>
+  <script type="text/javascript" src="{% static 'js/stats.js' %}"></script>
+  <!-- Page header -->
+  <div class="page-header page-header-default">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4><a href="/dashboard/"><i class="icon-arrow-left52 position-left"></i></a> <span
+            class="text-semibold">Painel</span> - Estatísticas</h4>
+      </div>
 
-            <div class="heading-elements">
-                <div class="heading-btn-group">
-                    <a href="/dashboard/stats/" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-orange-800 animation" data-animation="shake"></i><span>Estatísticas</span></a>
-                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Faturas</span></a>
-                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Agenda</span></a>
-                </div>
-            </div>
+      <div class="heading-elements">
+        <div class="heading-btn-group">
+          <a href="/dashboard/stats/" class="btn btn-link btn-float has-text"><i
+              class="icon-bars-alt text-orange-800 animation" data-animation="shake"></i><span>Estatísticas</span></a>
+          <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i>
+            <span>Faturas</span></a>
+          <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i>
+            <span>Agenda</span></a>
         </div>
-
-        <div class="breadcrumb-line">
-            <ul class="breadcrumb">
-                <li><a href="/dashboard/"><i class="icon-home2 position-left"></i> Painel</a></li>
-                <li class="active">Estatísticas</li>
-            </ul>
-
-            <ul class="breadcrumb-elements">
-                <li><a href="#"><i class="icon-comment-discussion position-left"></i> Suporte</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-gear position-left"></i>
-                        Configurações
-                        <span class="caret"></span>
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#"><i class="icon-user-lock"></i> Acesso &amp; Segurança </a></li>
-                        <li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
-                        <li><a href="#"><i class="icon-accessibility"></i> Acessibilidade</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><i class="icon-gear"></i> Configurações</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+      </div>
     </div>
-    <!-- /page header -->
 
-    <!-- Content Area -->
-    <div class="content">
+    <div class="breadcrumb-line">
+      <ul class="breadcrumb">
+        <li><a href="/dashboard/"><i class="icon-home2 position-left"></i> Painel</a></li>
+        <li class="active">Estatísticas</li>
+      </ul>
+
+      <ul class="breadcrumb-elements">
+        <li><a href="#"><i class="icon-comment-discussion position-left"></i> Suporte</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-gear position-left"></i>
+            Configurações
+            <span class="caret"></span>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#"><i class="icon-user-lock"></i> Acesso &amp; Segurança </a></li>
+            <li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+            <li><a href="#"><i class="icon-accessibility"></i> Acessibilidade</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="icon-gear"></i> Configurações</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- /page header -->
+
+  <!-- Content Area -->
+  <div class="content">
     <!-- General Overview -->
-        <div class="row">
-            <div class="col-lg-6" style="height: 500px">
-                <div id="gauge_container"></div>
-            </div>
-            <div class="col-lg-6" style="height: 500px">
-                <div id="svg_map_container"></div>
-            </div>
-        </div>
+    <div class="row">
+      <div class="col-lg-6" style="height: 500px">
+        <div id="gauge_container"></div>
+      </div>
+      <div class="col-lg-6" style="height: 500px">
+        <div id="svg_map_container"></div>
+      </div>
+    </div>
     <!-- /general overview -->
 
     <!-- Social Network Citations -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div id="tree_map_container" style="height: 700px;"></div>
-            </div>
-        </div>
-    <!-- /social network citations -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div id="tree_map_container" style="height: 700px;"></div>
+      </div>
     </div>
+    <!-- /social network citations -->
+  </div>
 {% endblock %}
