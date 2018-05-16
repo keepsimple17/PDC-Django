@@ -13,6 +13,12 @@ $(() => {
   // Show form
   const form = $(".steps-validation").show();
   const proposalSaveBtn = $('#save_proposal');
+  const campaignTab = $('#campaign_tab');
+
+  // page init
+  // disable campaign tab as default
+  campaignTab.addClass('disable_event');
+  const availCampaignIdList = [1, 2, 3, 7];
 
   // global required message for validator
   jQuery.extend(jQuery.validator.messages, {
@@ -34,10 +40,13 @@ $(() => {
 
 
     onStepChanging(event, currentIndex, newIndex) {
-      console.log('step chaning', currentIndex, newIndex);
       // Allways allow previous action even if the current form is not valid!
       if (currentIndex === 1 && newIndex === 2) {
         getInvites();
+      }
+
+      if (newIndex === 3) {
+        checkCampaignAvaility();
       }
 
       if (currentIndex === 2 && newIndex === 3) {
@@ -72,9 +81,9 @@ $(() => {
       }
 
       // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
-      if (currentIndex === 2 && priorIndex === 3) {
-        form.steps("Anterior");
-      }
+      // if (currentIndex === 2 && priorIndex === 3) {
+      //   form.steps("Anterior");
+      // }
     },
 
     onFinishing(event, currentIndex) {
@@ -496,6 +505,14 @@ $(() => {
         notify(`Occured any error ${_err}.`);
       });
   });
+
+  const checkCampaignAvaility = () => {
+    const campaignRole = $('select[name=user_roles_list]').val();
+    const isAvail = availCampaignIdList.includes(parseInt(campaignRole, 10));
+    if (isAvail) {
+      $('#campaign_tab').removeClass('disable_event');
+    }
+  };
 
 });
 
