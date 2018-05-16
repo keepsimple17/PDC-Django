@@ -66,5 +66,5 @@ def get_scope_template():
     for scope in scopes_list:
         scopes.append((scope.id, scope.name))
 
-    scopes.insert(0, ("", ""))
+    scopes.insert(0, ("create", "Create New Scope"))
     return scopes
