@@ -282,6 +282,7 @@ class ScopeList(models.Model):
     is_template = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
 
 
 class Proposal(models.Model):
