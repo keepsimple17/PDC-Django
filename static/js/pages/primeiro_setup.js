@@ -517,6 +517,36 @@ $(() => {
     }
   };
 
+  $('#proposal_select').change(() => {
+    const val = $('#proposal_select').val();
+    if (val === 'create') {
+      bootbox.prompt("Please enter Scope Name", function(result) {
+        console.log(result);
+        if (result === null) {
+          notify('Please enter scope name');
+        } else {
+          addScope(result);
+        }
+      });
+    }
+  });
+
+  const addScope = (_name) => {
+    const userId = $('input[name=user_id]').val();
+    axios.post('/candidato/scope_list/', {
+      name: _name,
+      user: userId
+    })
+      .then(res => {
+        notify('Your new scope is added successfully.');
+        const tmp = `<option value="${res.data.id}">${res.data.name}</option>`;
+        $('#proposal_select').append(tmp);
+      })
+      .catch(_err => {
+        notify(`Occured any error ${_err}.`);
+      });
+  };
+
 });
 
 // showing the thumbnail of selected image

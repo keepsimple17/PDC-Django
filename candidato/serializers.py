@@ -16,7 +16,7 @@ class InvitesSerializer(serializers.ModelSerializer):
 class ScopeListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScopeList
-        fields = ('id', 'name', 'is_template', 'created_at', 'updated_at', )
+        fields = ('id', 'name', 'is_template', 'created_at', 'updated_at', 'user')
 
         read_only_fields = ('created_at',)
 

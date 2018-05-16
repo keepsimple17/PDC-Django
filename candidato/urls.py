@@ -5,6 +5,7 @@ from candidato import views as CandidateViews
 router = DefaultRouter()
 
 router.register(r'invites', CandidateViews.InvitesViewSet)
+router.register(r'scope_list', CandidateViews.ScopeListViewSet)
 router.register(r'proposal_list', CandidateViews.ProposalListViewSet)
 
 urlpatterns = [

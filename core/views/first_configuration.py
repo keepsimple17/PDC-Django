@@ -40,17 +40,18 @@ from rest_framework.decorators import api_view
 @login_required()
 @csrf_protect
 def primeiro_setup(request):
+    user = request.user
+    user_id = user.id
     choice_states = get_states()
     user_cities = get_cities_by_state(request.user.usuario.estado)
     candidate_cities = ()
     user_roles_list = get_user_roles_list()
-    scope_list = get_scope_template()
+    scope_list = get_scope_template(user_id)
     choice_states.insert(0, ('', "Preencha o estado."))
     # sever_url = request.build_absolute_uri('/')
     political_parties = get_political_parties()
     sever_url = get_current_site(request)
     is_invited_candidato = False
-    user_id = request.user.id
 
     choice_states = tuple(choice_states)
 

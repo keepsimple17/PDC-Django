@@ -1,5 +1,6 @@
 from dashboard.models import Estado, Municipio, PoliticalParties
 from candidato.models import UserRoles_list, ScopeList
+from django.db.models import Q
 
 
 def get_states():
@@ -58,10 +59,13 @@ def get_political_parties():
     return political_parties
 
 
-def get_scope_template():
+def get_scope_template(user_id=None):
     scopes = []
 
-    scopes_list = ScopeList.objects.filter(is_template=True).order_by('name')
+    if user_id:
+        scopes_list = ScopeList.objects.filter(Q(is_template=True) | Q(user_id=user_id)).order_by('name')
+    else:
+        scopes_list = ScopeList.objects.filter(is_template=True).order_by('name')
 
     for scope in scopes_list:
         scopes.append((scope.id, scope.name))

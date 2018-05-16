@@ -2,8 +2,8 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics, permissions, filters, status, views, viewsets
-from candidato.models import Invites, Proposal, Candidate
-from candidato.serializers import InvitesSerializer, ProposalListSerializer
+from candidato.models import Invites, Proposal, Candidate, ScopeList
+from candidato.serializers import InvitesSerializer, ProposalListSerializer, ScopeListSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
@@ -89,3 +89,12 @@ class ProposalListViewSet(viewsets.ModelViewSet):
     ordering_fields = ('-id',)
     ordering = ('-id',)
     filter_fields = ('id', 'name', 'description', 'scope_id')
+
+
+class ScopeListViewSet(viewsets.ModelViewSet):
+    queryset = ScopeList.objects.all()
+    serializer_class = ScopeListSerializer
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter, )
+    ordering_fields = ('-id',)
+    ordering = ('-id',)
+    filter_fields = ('id', 'user_id')
