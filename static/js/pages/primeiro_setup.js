@@ -500,6 +500,9 @@ $(() => {
     })
       .then(res => {
         notify('Your proposal is saved successfully.');
+        $('input[name=proposal_name]').val('');
+        $('textarea[name=proposal_description]').val('');
+        $('select[name=proposal_scope]').val('');
       })
       .catch(_err => {
         notify(`Occured any error ${_err}.`);
