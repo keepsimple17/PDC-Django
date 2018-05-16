@@ -459,6 +459,19 @@ $(() => {
     $(e.relatedTarget).addClass('bg-success');
   });
 
+  // Add class on init
+  $('.tokenfield-danger').on('tokenfield:initialize', function (e) {
+      $(this).parent().find('.token').addClass('bg-danger')
+  });
+
+  // Initialize plugin
+  $('.tokenfield-danger').tokenfield();
+
+  // Add class when token is created
+  $('.tokenfield-danger').on('tokenfield:createdtoken', function (e) {
+      $(e.relatedTarget).addClass('bg-danger')
+  });
+
   $('#save_proposal').click(() => {
     const name = $('input[name=proposal_name]').val();
     const description = $('textarea[name=proposal_description]').val();
