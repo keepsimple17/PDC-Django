@@ -157,20 +157,21 @@
 
           <!-- Positives and Negatives Keywords-->
           {% comment %}this is form tag. never need to change{% endcomment %}
-          <div class="form-group has-success">
+          <div class="form-group">
             <label class="control-label">Palavras Chave Positivas:</label>
-            <div class="has-feedback">
-              <input type="text" class="form-control tokenfield-success" value="Red,blue,green" title="">
-              <div class="form-control-feedback">
-                <i class="icon-checkmark-circle"></i>
-              </div>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon-thumbs-up2"></i></span>
+              <input type="text" class="form-control tokenfield-success" value="Positive,key,word" title="">
             </div>
           </div>
           <div class="spacing"></div>
 
           <div class="form-group">
             <label>Palavras Chave Negativas:</label>
-            <input type="text" class="form-control tokenfield" value="These,are,tokens" title="">
+            <div class="input-group">
+              <span class="input-group-addon"><i class=" icon-thumbs-down2"></i></span>
+              <input type="text" class="form-control tokenfield-danger" value="Negative,key,word" title="">
+            </div>
           </div>
 
           <!-- Close Tab content-->
