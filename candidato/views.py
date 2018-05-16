@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics, permissions, filters, status, views, viewsets
 from candidato.models import Invites, Proposal, Candidate, ScopeList
-from candidato.serializers import InvitesSerializer, ProposalListSerializer, ScopeListSerializer
+from candidato.serializers import InvitesSerializer, ProposalListSerializer, ScopeListSerializer, ProposalSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
@@ -62,6 +62,7 @@ def save_proposal(request, format=None):
         candidator.save()
         return Response({
             'status': 'Success',
+            'body': ProposalSerializer(proposal).data,
             'message': 'Your Proposal is saved successfully.',
         }, status=status.HTTP_200_OK)
     else:

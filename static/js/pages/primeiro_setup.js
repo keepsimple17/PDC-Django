@@ -499,6 +499,7 @@ $(() => {
       candidator,
     })
       .then(res => {
+        appendProposal(res.data.body);
         notify('Your proposal is saved successfully.');
         $('input[name=proposal_name]').val('');
         $('textarea[name=proposal_description]').val('');
@@ -508,6 +509,30 @@ $(() => {
         notify(`Occured any error ${_err}.`);
       });
   });
+
+  const appendProposal = (proposal) => {
+    const body = $('#proposals_body');
+    const tpl = `
+    <tr role="row" class="odd">
+      <td class="sorting_1">${proposal.name}</td>
+      <td>${proposal.scope.name}</td>
+      <td class="text-center">
+        <ul class="icons-list">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-menu9"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
+              <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    `;
+    body.append(tpl);
+  };
 
   const checkCampaignAvaility = () => {
     const campaignRole = $('select[name=user_roles_list]').val();

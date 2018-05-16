@@ -18,7 +18,7 @@ from core.data_objects import (get_cities_by_state, get_states, get_cities, get_
 from dashboard.models import (Usuario, Estado, Municipio, Candidate, GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
 from dashboard.serializers import UsuarioSerializer
 from candidato.models import CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate
-from candidato.serializers import InvitesSerializer
+from candidato.serializers import InvitesSerializer, CandidateSerializer
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
 from django.conf import settings
@@ -52,6 +52,7 @@ def primeiro_setup(request):
     political_parties = get_political_parties()
     sever_url = get_current_site(request)
     is_invited_candidato = False
+    proposals = []
 
     choice_states = tuple(choice_states)
 
@@ -64,6 +65,8 @@ def primeiro_setup(request):
         if candidator:
             candidate_form = CandidateForm(instance=candidator)
             candidate_cities = get_cities_by_state(candidator.candidate_state)
+            candidator_data = CandidateSerializer(candidator).data
+            proposals = candidator_data['proposals']
     except:
         candidate_form = CandidateForm()
 
@@ -215,6 +218,7 @@ def primeiro_setup(request):
         'ESTADO_CIVIL_CHOICES': ESTADO_CIVIL_CHOICES,
         'political_parties': political_parties,
         'is_invited_candidato': is_invited_candidato,
+        'proposals': proposals,
     })
 
 

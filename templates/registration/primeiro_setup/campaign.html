@@ -65,92 +65,39 @@
               <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid"
                      aria-describedby="DataTables_Table_0_info">
                 <thead>
-                <tr role="row">
-                  <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                      aria-sort="ascending" aria-label="Proposta: activate to sort column descending">Proposta
-                  </th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                      aria-label="Categoria: activate to sort column ascending">Categoria
-                  </th>
-                  <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions"
-                      style="width: 100px;">Actions
-                  </th>
-                </tr>
+                  <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                        aria-sort="ascending" aria-label="Proposta: activate to sort column descending">Proposta
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                        aria-label="Categoria: activate to sort column ascending">Categoria
+                    </th>
+                    <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions"
+                        style="width: 100px;">Actions
+                    </th>
+                  </tr>
                 </thead>
-                <tbody>
-
-                <tr role="row" class="odd">
-                  <td class="sorting_1">Segurança nos transportes</td>
-                  <td>Segurança</td>
-                  <td class="text-center">
-                    <ul class="icons-list">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="icon-menu9"></i>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right">
-                          <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
-                          <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
+                <tbody id="proposals_body">
+                  {% for item in proposals %}
+                    <tr role="row" class="odd">
+                      <td class="sorting_1">{{ item.name }}</td>
+                      <td>{{ item.scope.name }}</td>
+                      <td class="text-center">
+                        <ul class="icons-list">
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                              <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
+                              <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
+                            </ul>
+                          </li>
                         </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr role="row" class="even">
-                  <td class="sorting_1">Médicos de plantão</td>
-                  <td>Saúde</td>
-                  <td class="text-center">
-                    <ul class="icons-list">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="icon-menu9"></i>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right">
-                          <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
-                          <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td class="sorting_1">Contrução de casas</td>
-                  <td>Habitação</td>
-                  <td class="text-center">
-                    <ul class="icons-list">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="icon-menu9"></i>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right">
-                          <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
-                          <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr role="row" class="even">
-                  <td class="sorting_1">Aumentar salário professores</td>
-                  <td>Educação</td>
-                  <td class="text-center">
-                    <ul class="icons-list">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="icon-menu9"></i>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right">
-                          <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
-                          <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
               </table>
             </div>
           </div>
