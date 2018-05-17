@@ -291,3 +291,11 @@ class Proposal(models.Model):
     scope = models.ForeignKey(ScopeList, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, null=True)
+
+
+class Keyword(models.Model):
+    keyword = models.CharField(max_length=60)
+    # Positive(P) and Negative(N)
+    type = models.CharField(max_length=10, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(blank=True, null=True)

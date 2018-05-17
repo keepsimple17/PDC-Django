@@ -347,7 +347,6 @@ $(() => {
       },
     })
       .then((response) => {
-        console.log(response);
         renderInvites(response.data.results);
       })
       .catch((error) => {
@@ -368,27 +367,27 @@ $(() => {
 
   function changeVariable(name, email, status) {
     const template = `
-        <tr role="row" class="odd">
-            <td class="sorting_1">${name}</td>
-            <td>${email}</td>
-            <td>Agência de Marketing</td>
-            <td>${getStatus(status)}</td>
-            <td class="text-center">
-                <ul class="icons-list">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-menu9"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li>
-                            <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
-                            <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        `;
+      <tr role="row" class="odd">
+        <td class="sorting_1">${name}</td>
+        <td>${email}</td>
+        <td>Agência de Marketing</td>
+        <td>${getStatus(status)}</td>
+        <td class="text-center">
+          <ul class="icons-list">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-menu9"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li>
+                <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
+              </ul>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      `;
 
     function getStatus(_status) {
       let htmlStr = '';
