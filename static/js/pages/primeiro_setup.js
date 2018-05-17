@@ -15,7 +15,7 @@ $(() => {
   const proposalSaveBtn = $('#save_proposal');
   const campaignTab = $('#campaign_tab');
 
-  // page init
+  // page and plugins init
   // disable campaign tab as default
   campaignTab.addClass('disable_event');
   const availCampaignIdList = [1, 2, 3, 7];
@@ -25,7 +25,10 @@ $(() => {
     required: "Este campo é obrigatório."
   });
 
-  // Initialize wizard
+  // Select2 selects
+  $('.select').select2();
+
+  // step wizard init
   $(".steps-validation").steps({
     headerTag: "h6",
     bodyTag: "fieldset",
@@ -38,9 +41,7 @@ $(() => {
       previous: 'Anterior'
     },
 
-
     onStepChanging(event, currentIndex, newIndex) {
-      // Allways allow previous action even if the current form is not valid!
       if (currentIndex === 1 && newIndex === 2) {
         getInvites();
       }
@@ -79,21 +80,14 @@ $(() => {
       if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
         form.steps("Próximo");
       }
-
-      // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
-      // if (currentIndex === 2 && priorIndex === 3) {
-      //   form.steps("Anterior");
-      // }
     },
 
     onFinishing(event, currentIndex) {
-      // console.log(event, currentIndex);
       form.validate().settings.ignore = ":disabled";
       return form.valid();
     },
 
     onFinished(event, currentIndex) {
-      // alert("Submitted!!!!!!!");
       $('.steps-validation')[0].submit(function (_event) {
         // alert( "Handler for .submit() called." );
         _event.preventDefault();
@@ -145,19 +139,6 @@ $(() => {
     messages: {
       name: "Please specify your name"
     }
-  });
-
-
-  // Initialize plugins
-  // ------------------------------
-
-  // Select2 selects
-  $('.select').select2();
-
-
-  // Simple select without search
-  $('.select-simple').select2({
-    minimumResultsForSearch: Infinity
   });
 
   // birthday picker
@@ -214,7 +195,7 @@ $(() => {
       $(this).val(birthString);
     } else {
       if (num.length === 8) {
-        const birthday = new Date(year, month - 1, day);
+        const birthday = new Date(year, month-1, day);
         day = birthday.getDate();
         month = birthday.getMonth() + 1;
         year = birthday.getFullYear();
@@ -246,8 +227,17 @@ $(() => {
     $('#team_member_role').removeClass('required');
   }
 
-  // Button with progress
-  Ladda.bind('.btn-ladda-progress', {
+  // committee submit
+  Ladda.bind('.btn-committee-progress', {
+    callback(instance) {
+      setTimeout(() => {
+        instance.stop();
+      }, 1500);
+    }
+  });
+
+  // user roles submit
+  Ladda.bind('.btn-user-roles-progress', {
     callback(instance) {
       // creating team member
       $('#team_member_name').addClass('required');
