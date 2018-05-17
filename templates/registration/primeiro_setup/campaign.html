@@ -1,4 +1,4 @@
-<div class="panel panel-flat col-lg-12 p-0">
+<div class="panel panel-flat col-lg-12 p-0" id="campaign_tab">
   <div class="panel-body" style="display: block;">
     <div class="tabbable">
       <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
@@ -36,7 +36,8 @@
             <div class="form-group">
               <label class="control-label col-md-4">Categoria</label>
               <div class="col-md-4">
-                <select name="proposal_scope" class="form-control" title="">
+                <select name="proposal_scope" class="form-control" title="" id="proposal_select">
+                  <option>Select Category</option>
                   {% for item in scope_list %}
                     <option value="{{ item.0 }}">{{ item.1 }}</option>
                   {% endfor %}
@@ -64,92 +65,39 @@
               <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid"
                      aria-describedby="DataTables_Table_0_info">
                 <thead>
-                <tr role="row">
-                  <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                      aria-sort="ascending" aria-label="Proposta: activate to sort column descending">Proposta
-                  </th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                      aria-label="Categoria: activate to sort column ascending">Categoria
-                  </th>
-                  <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions"
-                      style="width: 100px;">Actions
-                  </th>
-                </tr>
+                  <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                        aria-sort="ascending" aria-label="Proposta: activate to sort column descending">Proposta
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                        aria-label="Categoria: activate to sort column ascending">Categoria
+                    </th>
+                    <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions"
+                        style="width: 100px;">Actions
+                    </th>
+                  </tr>
                 </thead>
-                <tbody>
-
-                <tr role="row" class="odd">
-                  <td class="sorting_1">Segurança nos transportes</td>
-                  <td>Segurança</td>
-                  <td class="text-center">
-                    <ul class="icons-list">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="icon-menu9"></i>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right">
-                          <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
-                          <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
+                <tbody id="proposals_body">
+                  {% for item in proposals %}
+                    <tr role="row" class="odd">
+                      <td class="sorting_1">{{ item.name }}</td>
+                      <td>{{ item.scope.name }}</td>
+                      <td class="text-center">
+                        <ul class="icons-list">
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                              <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
+                              <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
+                            </ul>
+                          </li>
                         </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr role="row" class="even">
-                  <td class="sorting_1">Médicos de plantão</td>
-                  <td>Saúde</td>
-                  <td class="text-center">
-                    <ul class="icons-list">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="icon-menu9"></i>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right">
-                          <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
-                          <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td class="sorting_1">Contrução de casas</td>
-                  <td>Habitação</td>
-                  <td class="text-center">
-                    <ul class="icons-list">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="icon-menu9"></i>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right">
-                          <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
-                          <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr role="row" class="even">
-                  <td class="sorting_1">Aumentar salário professores</td>
-                  <td>Educação</td>
-                  <td class="text-center">
-                    <ul class="icons-list">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="icon-menu9"></i>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right">
-                          <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
-                          <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
               </table>
             </div>
           </div>
@@ -161,7 +109,11 @@
             <label class="control-label">Palavras Chave Positivas:</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="icon-thumbs-up2"></i></span>
-              <input type="text" class="form-control tokenfield-success" value="Positive,key,word" title="">
+              <input type="text" class="form-control tokenfield-success" title=""
+                     value="
+                     {% for item in positive_keywords %}
+                        {{ item.keyword }},
+                     {% endfor %} ">
             </div>
           </div>
           <div class="spacing"></div>
@@ -170,7 +122,10 @@
             <label>Palavras Chave Negativas:</label>
             <div class="input-group">
               <span class="input-group-addon"><i class=" icon-thumbs-down2"></i></span>
-              <input type="text" class="form-control tokenfield-danger" value="Negative,key,word" title="">
+              <input type="text" class="form-control tokenfield-danger" title="" value="
+                {% for item in negative_keywords %}
+                  {{ item.keyword }},
+                {% endfor %} ">
             </div>
           </div>
 

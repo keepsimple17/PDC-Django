@@ -13,6 +13,12 @@ $(() => {
   // Show form
   const form = $(".steps-validation").show();
   const proposalSaveBtn = $('#save_proposal');
+  const campaignTab = $('#campaign_tab');
+
+  // page init
+  // disable campaign tab as default
+  campaignTab.addClass('disable_event');
+  const availCampaignIdList = [1, 2, 3, 7];
 
   // global required message for validator
   jQuery.extend(jQuery.validator.messages, {
@@ -34,10 +40,13 @@ $(() => {
 
 
     onStepChanging(event, currentIndex, newIndex) {
-      console.log('step chaning', currentIndex, newIndex);
       // Allways allow previous action even if the current form is not valid!
       if (currentIndex === 1 && newIndex === 2) {
         getInvites();
+      }
+
+      if (newIndex === 3) {
+        checkCampaignAvaility();
       }
 
       if (currentIndex === 2 && newIndex === 3) {
@@ -72,9 +81,9 @@ $(() => {
       }
 
       // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
-      if (currentIndex === 2 && priorIndex === 3) {
-        form.steps("Anterior");
-      }
+      // if (currentIndex === 2 && priorIndex === 3) {
+      //   form.steps("Anterior");
+      // }
     },
 
     onFinishing(event, currentIndex) {
@@ -338,7 +347,6 @@ $(() => {
       },
     })
       .then((response) => {
-        console.log(response);
         renderInvites(response.data.results);
       })
       .catch((error) => {
@@ -359,27 +367,27 @@ $(() => {
 
   function changeVariable(name, email, status) {
     const template = `
-        <tr role="row" class="odd">
-            <td class="sorting_1">${name}</td>
-            <td>${email}</td>
-            <td>Agência de Marketing</td>
-            <td>${getStatus(status)}</td>
-            <td class="text-center">
-                <ul class="icons-list">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-menu9"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li>
-                            <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
-                            <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        `;
+      <tr role="row" class="odd">
+        <td class="sorting_1">${name}</td>
+        <td>${email}</td>
+        <td>Agência de Marketing</td>
+        <td>${getStatus(status)}</td>
+        <td class="text-center">
+          <ul class="icons-list">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-menu9"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li>
+                <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
+              </ul>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      `;
 
     function getStatus(_status) {
       let htmlStr = '';
@@ -442,10 +450,6 @@ $(() => {
     fileDefaultHtml: 'Nenhum Arquivo'
   });
 
-  // tab
-
-  $('.tokenfield').tokenfield();
-
   // Add class on init
   $('.tokenfield-success').on('tokenfield:initialize', function (e) {
     $(this).parent().find('.token').addClass('bg-success');
@@ -456,7 +460,12 @@ $(() => {
 
   // Add class when token is created
   $('.tokenfield-success').on('tokenfield:createdtoken', function (e) {
+    processKeyword('save', 'P', e.attrs.value);
     $(e.relatedTarget).addClass('bg-success');
+  });
+
+  $('.tokenfield-success').on('tokenfield:removetoken', function (e) {
+    processKeyword('remove', 'P', e.attrs.value);
   });
 
   // Add class on init
@@ -469,8 +478,30 @@ $(() => {
 
   // Add class when token is created
   $('.tokenfield-danger').on('tokenfield:createdtoken', function (e) {
-      $(e.relatedTarget).addClass('bg-danger')
+    processKeyword('save', 'N', e.attrs.value);
+    $(e.relatedTarget).addClass('bg-danger')
   });
+
+  $('.tokenfield-danger').on('tokenfield:removetoken', function (e) {
+    processKeyword('remove', 'N', e.attrs.value);
+    console.log('removed', e.attrs.value);
+  });
+
+  const processKeyword = (process_type, keyword_type, keyword) => {
+    const userId = $('input[name=user_id]').val();
+    axios.post('/candidato/process_keyword/', {
+      process_type,
+      keyword_type,
+      keyword,
+      user_id: userId
+    })
+      .then(res => {
+        notify('Your keyword is changed successfully.');
+      })
+      .catch(_err => {
+        notify(`Occured any error ${_err}.`);
+      });
+  };
 
   $('#save_proposal').click(() => {
     const name = $('input[name=proposal_name]').val();
@@ -490,12 +521,78 @@ $(() => {
       candidator,
     })
       .then(res => {
+        appendProposal(res.data.body);
         notify('Your proposal is saved successfully.');
+        $('input[name=proposal_name]').val('');
+        $('textarea[name=proposal_description]').val('');
+        $('select[name=proposal_scope]').val('');
       })
       .catch(_err => {
         notify(`Occured any error ${_err}.`);
       });
   });
+
+  const appendProposal = (proposal) => {
+    const body = $('#proposals_body');
+    const tpl = `
+    <tr role="row" class="odd">
+      <td class="sorting_1">${proposal.name}</td>
+      <td>${proposal.scope.name}</td>
+      <td class="text-center">
+        <ul class="icons-list">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-menu9"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#"><i class="icon-pencil3"></i> Editar</a></li>
+              <li><a href="#"><i class="icon-cross3"></i> Excluir</a></li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    `;
+    body.append(tpl);
+  };
+
+  const checkCampaignAvaility = () => {
+    const campaignRole = $('select[name=user_roles_list]').val();
+    const isAvail = availCampaignIdList.includes(parseInt(campaignRole, 10));
+    if (isAvail) {
+      $('#campaign_tab').removeClass('disable_event');
+    }
+  };
+
+  $('#proposal_select').change(() => {
+    const val = $('#proposal_select').val();
+    if (val === 'create') {
+      bootbox.prompt("Please enter Scope Name", function(result) {
+        console.log(result);
+        if (result === null) {
+          notify('Please enter scope name');
+        } else {
+          addScope(result);
+        }
+      });
+    }
+  });
+
+  const addScope = (_name) => {
+    const userId = $('input[name=user_id]').val();
+    axios.post('/candidato/scope_list/', {
+      name: _name,
+      user: userId
+    })
+      .then(res => {
+        notify('Your new scope is added successfully.');
+        const tmp = `<option value="${res.data.id}">${res.data.name}</option>`;
+        $('#proposal_select').append(tmp);
+      })
+      .catch(_err => {
+        notify(`Occured any error ${_err}.`);
+      });
+  };
 
 });
 

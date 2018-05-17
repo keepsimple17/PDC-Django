@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils import timezone
 import json
+import sys
 import datetime
 # from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -18,7 +19,7 @@ from core.data_objects import (get_cities_by_state, get_states, get_cities, get_
 from dashboard.models import (Usuario, Estado, Municipio, Candidate, GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
 from dashboard.serializers import UsuarioSerializer
 from candidato.models import CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate
-from candidato.serializers import InvitesSerializer
+from candidato.serializers import InvitesSerializer, CandidateSerializer
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
 from django.conf import settings
@@ -40,17 +41,21 @@ from rest_framework.decorators import api_view
 @login_required()
 @csrf_protect
 def primeiro_setup(request):
+    user = request.user
+    user_id = user.id
     choice_states = get_states()
     user_cities = get_cities_by_state(request.user.usuario.estado)
     candidate_cities = ()
     user_roles_list = get_user_roles_list()
-    scope_list = get_scope_template()
+    scope_list = get_scope_template(user_id)
     choice_states.insert(0, ('', "Preencha o estado."))
     # sever_url = request.build_absolute_uri('/')
     political_parties = get_political_parties()
     sever_url = get_current_site(request)
     is_invited_candidato = False
-    user_id = request.user.id
+    proposals = []
+    positive_keywords = []
+    negative_keywords = []
 
     choice_states = tuple(choice_states)
 
@@ -63,6 +68,10 @@ def primeiro_setup(request):
         if candidator:
             candidate_form = CandidateForm(instance=candidator)
             candidate_cities = get_cities_by_state(candidator.candidate_state)
+            candidator_data = CandidateSerializer(candidator).data
+            proposals = candidator_data['proposals']
+            positive_keywords = candidator_data['positive_keywords']
+            negative_keywords = candidator_data['negative_keywords']
     except:
         candidate_form = CandidateForm()
 
@@ -214,6 +223,9 @@ def primeiro_setup(request):
         'ESTADO_CIVIL_CHOICES': ESTADO_CIVIL_CHOICES,
         'political_parties': political_parties,
         'is_invited_candidato': is_invited_candidato,
+        'proposals': proposals,
+        'positive_keywords': positive_keywords,
+        'negative_keywords': negative_keywords,
     })
 
 
