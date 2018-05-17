@@ -3,7 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash
 # app
-from candidato.models import (Invites, Proposal, ScopeList, Candidate)
+from candidato.models import (Invites, Proposal, ScopeList, Candidate, Keyword)
 
 
 class InvitesSerializer(serializers.ModelSerializer):
@@ -52,5 +52,23 @@ class CandidateSerializer(serializers.ModelSerializer):
                   'first_political_campaign',  'candidate_site', 'campaign_email', 'facebook', 'twitter', 'google',
                   'youtube', 'instagram', 'candidate_blog_rss', 'usuarioes', 'proposals', 'foto',  'Resume', 'Obs',
                   'candidate_situation', 'created_at', 'updated_at', )
+
+        read_only_fields = ('created_at',)
+
+
+class KeywordSerializer(serializers.ModelSerializer):
+    # user = CandidateSerializer
+
+    class Meta:
+        model = Keyword
+        fields = ('id', 'keyword', 'type', 'user', 'created_at', 'updated_at', )
+
+        read_only_fields = ('created_at',)
+
+
+class KeywordListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Keyword
+        fields = ('id', 'keyword', 'type', 'user', 'created_at', 'updated_at', )
 
         read_only_fields = ('created_at',)

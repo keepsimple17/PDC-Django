@@ -295,6 +295,7 @@ class Proposal(models.Model):
 
 class Keyword(models.Model):
     keyword = models.CharField(max_length=60)
+    user = models.ForeignKey(User, blank=True, null=True)
     # Positive(P) and Negative(N)
     type = models.CharField(max_length=10, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

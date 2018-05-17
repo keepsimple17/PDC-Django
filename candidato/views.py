@@ -2,8 +2,9 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics, permissions, filters, status, views, viewsets
-from candidato.models import Invites, Proposal, Candidate, ScopeList
-from candidato.serializers import InvitesSerializer, ProposalListSerializer, ScopeListSerializer, ProposalSerializer
+from candidato.models import (Invites, Proposal, Candidate, ScopeList, Keyword)
+from candidato.serializers import (InvitesSerializer, ProposalListSerializer, ScopeListSerializer, ProposalSerializer,
+                                   KeywordSerializer, KeywordListSerializer)
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
@@ -99,3 +100,21 @@ class ScopeListViewSet(viewsets.ModelViewSet):
     ordering_fields = ('-id',)
     ordering = ('-id',)
     filter_fields = ('id', 'user_id')
+
+
+class KeywordViewSet(viewsets.ModelViewSet):
+    queryset = Keyword.objects.all()
+    serializer_class = KeywordSerializer
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter, )
+    ordering_fields = ('-id',)
+    ordering = ('-id',)
+    filter_fields = ('id', 'type', 'keyword')
+
+
+class KeywordListViewSet(viewsets.ModelViewSet):
+    queryset = Keyword.objects.all()
+    serializer_class = KeywordListSerializer
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter, )
+    ordering_fields = ('-id',)
+    ordering = ('-id',)
+    filter_fields = ('id', 'type', 'keyword')

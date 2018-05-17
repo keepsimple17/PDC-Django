@@ -7,6 +7,8 @@ router = DefaultRouter()
 router.register(r'invites', CandidateViews.InvitesViewSet)
 router.register(r'scope_list', CandidateViews.ScopeListViewSet)
 router.register(r'proposal_list', CandidateViews.ProposalListViewSet)
+router.register(r'keyword', CandidateViews.KeywordViewSet)
+router.register(r'keyword_list', CandidateViews.KeywordListViewSet)
 
 urlpatterns = [
     url(r'', include(router.urls), name='api'),
