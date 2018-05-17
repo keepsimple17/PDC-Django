@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils import timezone
 import json
+import sys
 import datetime
 # from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -53,6 +54,8 @@ def primeiro_setup(request):
     sever_url = get_current_site(request)
     is_invited_candidato = False
     proposals = []
+    positive_keywords = []
+    negative_keywords = []
 
     choice_states = tuple(choice_states)
 
@@ -67,6 +70,8 @@ def primeiro_setup(request):
             candidate_cities = get_cities_by_state(candidator.candidate_state)
             candidator_data = CandidateSerializer(candidator).data
             proposals = candidator_data['proposals']
+            positive_keywords = candidator_data['positive_keywords']
+            negative_keywords = candidator_data['negative_keywords']
     except:
         candidate_form = CandidateForm()
 
@@ -219,6 +224,8 @@ def primeiro_setup(request):
         'political_parties': political_parties,
         'is_invited_candidato': is_invited_candidato,
         'proposals': proposals,
+        'positive_keywords': positive_keywords,
+        'negative_keywords': negative_keywords,
     })
 
 

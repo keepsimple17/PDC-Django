@@ -44,7 +44,7 @@ class KeywordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Keyword
-        fields = ('id', 'keyword', 'type', 'user', 'created_at', 'updated_at', )
+        fields = ('id', 'keyword', 'type', 'created_at', 'updated_at', )
 
         read_only_fields = ('created_at',)
 
@@ -71,6 +71,6 @@ class CandidateSerializer(serializers.ModelSerializer):
                   'holds_political_position', 'political_position', 'reelection', 'first_election',
                   'first_political_campaign',  'candidate_site', 'campaign_email', 'facebook', 'twitter', 'google',
                   'youtube', 'instagram', 'candidate_blog_rss', 'usuarioes', 'proposals', 'foto',  'Resume', 'Obs',
-                  'candidate_situation', 'positive_keywords', 'negative_keywords' 'created_at', 'updated_at', )
+                  'candidate_situation', 'positive_keywords', 'negative_keywords', 'created_at', 'updated_at', )
 
         read_only_fields = ('created_at',)

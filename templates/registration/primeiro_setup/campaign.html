@@ -109,7 +109,11 @@
             <label class="control-label">Palavras Chave Positivas:</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="icon-thumbs-up2"></i></span>
-              <input type="text" class="form-control tokenfield-success" value="Positive,key,word" title="">
+              <input type="text" class="form-control tokenfield-success" title=""
+                     value="
+                     {% for item in positive_keywords %}
+                        {{ item.keyword }},
+                     {% endfor %} ">
             </div>
           </div>
           <div class="spacing"></div>
@@ -118,7 +122,10 @@
             <label>Palavras Chave Negativas:</label>
             <div class="input-group">
               <span class="input-group-addon"><i class=" icon-thumbs-down2"></i></span>
-              <input type="text" class="form-control tokenfield-danger" value="Negative,key,word" title="">
+              <input type="text" class="form-control tokenfield-danger" title="" value="
+                {% for item in negative_keywords %}
+                  {{ item.keyword }},
+                {% endfor %} ">
             </div>
           </div>
 

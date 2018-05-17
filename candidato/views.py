@@ -73,6 +73,61 @@ def save_proposal(request, format=None):
         }, status=status.HTTP_404_NOT_FOUND)
 
 
+@api_view(['GET', 'POST', ])
+def process_keyword(request, format=None):
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+    except:
+        # data = request.POST
+        data = request.data
+    process_type = data.get('process_type', None)
+    keyword_type = data.get('keyword_type', None)
+    keyword = data.get('keyword', None)
+    user_id = data.get('user_id', None)
+
+    candidator = Candidate.objects.filter(user=user_id)
+    if candidator:
+        candidator = candidator.first()
+        if process_type == 'save':
+            keyword_doc = Keyword(
+                keyword=keyword,
+                type=keyword_type,
+            )
+            keyword_doc.save()
+            if keyword_type == 'P':
+                candidator.positive_keywords.add(keyword_doc)
+
+            if keyword_type == 'N':
+                candidator.negative_keywords.add(keyword_doc)
+
+            candidator.save()
+
+        if process_type == 'remove':
+            if keyword_type == 'P':
+                keyword = candidator.positive_keywords.filter(keyword=keyword)
+                if keyword:
+                    keyword = keyword.first()
+                    candidator.positive_keywords.remove(keyword)
+
+            if keyword_type == 'N':
+                keyword = candidator.negative_keywords.filter(keyword=keyword)
+                if keyword:
+                    keyword = keyword.first()
+                    candidator.negative_keywords.remove(keyword)
+
+            candidator.save()
+        return Response({
+            'status': 'Success',
+            # 'body': KeywordSerializer(keyword_doc).data,
+            'message': 'Your keyword is changed successfully.',
+        }, status=status.HTTP_200_OK)
+    else:
+        return Response({
+            'status': 'Error',
+            'message': 'You are not candidator.',
+        }, status=status.HTTP_404_NOT_FOUND)
+
+
 class InvitesViewSet(viewsets.ModelViewSet):
     # permission_classes = (permissions.IsAdminUser,)
     queryset = Invites.objects.all()

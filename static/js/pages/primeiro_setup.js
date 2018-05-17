@@ -450,10 +450,6 @@ $(() => {
     fileDefaultHtml: 'Nenhum Arquivo'
   });
 
-  // tab
-
-  $('.tokenfield').tokenfield();
-
   // Add class on init
   $('.tokenfield-success').on('tokenfield:initialize', function (e) {
     $(this).parent().find('.token').addClass('bg-success');
@@ -464,7 +460,12 @@ $(() => {
 
   // Add class when token is created
   $('.tokenfield-success').on('tokenfield:createdtoken', function (e) {
+    processKeyword('save', 'P', e.attrs.value);
     $(e.relatedTarget).addClass('bg-success');
+  });
+
+  $('.tokenfield-success').on('tokenfield:removetoken', function (e) {
+    processKeyword('remove', 'P', e.attrs.value);
   });
 
   // Add class on init
@@ -477,8 +478,30 @@ $(() => {
 
   // Add class when token is created
   $('.tokenfield-danger').on('tokenfield:createdtoken', function (e) {
-      $(e.relatedTarget).addClass('bg-danger')
+    processKeyword('save', 'N', e.attrs.value);
+    $(e.relatedTarget).addClass('bg-danger')
   });
+
+  $('.tokenfield-danger').on('tokenfield:removetoken', function (e) {
+    processKeyword('remove', 'N', e.attrs.value);
+    console.log('removed', e.attrs.value);
+  });
+
+  const processKeyword = (process_type, keyword_type, keyword) => {
+    const userId = $('input[name=user_id]').val();
+    axios.post('/candidato/process_keyword/', {
+      process_type,
+      keyword_type,
+      keyword,
+      user_id: userId
+    })
+      .then(res => {
+        notify('Your keyword is changed successfully.');
+      })
+      .catch(_err => {
+        notify(`Occured any error ${_err}.`);
+      });
+  };
 
   $('#save_proposal').click(() => {
     const name = $('input[name=proposal_name]').val();
