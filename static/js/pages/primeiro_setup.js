@@ -15,6 +15,29 @@ $(() => {
   const proposalSaveBtn = $('#save_proposal');
   const campaignTab = $('#campaign_tab');
 
+  // utils
+  function notify(message) {
+    noty({
+      width: 200,
+      text: message,
+      type: 'success',
+      dismissQueue: true,
+      timeout: 4000,
+      layout: 'topRight'
+    });
+    $('#team_member_name').removeClass('required');
+    $('#team_member_email').removeClass('required');
+    $('#team_member_role').removeClass('required');
+  }
+
+  const checkCampaignAvaility = () => {
+    const campaignRole = $('select[name=user_roles_list]').val();
+    const isAvail = availCampaignIdList.includes(parseInt(campaignRole, 10));
+    if (isAvail) {
+      $('#campaign_tab').removeClass('disable_event');
+    }
+  };
+
   // page and plugins init
   // disable campaign tab as default
   campaignTab.addClass('disable_event');
@@ -42,6 +65,7 @@ $(() => {
     },
 
     onStepChanging(event, currentIndex, newIndex) {
+      // getting team invites
       if (currentIndex === 1 && newIndex === 2) {
         getInvites();
       }
@@ -89,7 +113,6 @@ $(() => {
 
     onFinished(event, currentIndex) {
       $('.steps-validation')[0].submit(function (_event) {
-        // alert( "Handler for .submit() called." );
         _event.preventDefault();
       });
     }
@@ -141,6 +164,7 @@ $(() => {
     }
   });
 
+  // Personal data tab
   // birthday picker
   // we need following operation to enable to input birthday manually
   // type dd/mm/year
@@ -213,29 +237,51 @@ $(() => {
     }
   }
 
-  function notify(message) {
-    noty({
-      width: 200,
-      text: message,
-      type: 'success',
-      dismissQueue: true,
-      timeout: 4000,
-      layout: 'topRight'
+  // update candidate cicies
+  $('select#candidate_state').change(function () {
+    updateCandidateCities(this.value, () => {
+      console.log('updating cities');
     });
-    $('#team_member_name').removeClass('required');
-    $('#team_member_email').removeClass('required');
-    $('#team_member_role').removeClass('required');
+  });
+
+  function updateCandidateCities(state, next) {
+    const url = '/updateCities';
+    // initialize an AJAX request
+    $.ajax({
+      url,
+      data: {
+        stateId: state
+      },
+      success(data) {
+        $("#candidate_city").html(data);
+        next();
+        // replace the contents of the city input with the data that came from the server
+      }
+    });
   }
 
-  // committee submit
-  Ladda.bind('.btn-committee-progress', {
-    callback(instance) {
-      setTimeout(() => {
-        instance.stop();
-      }, 1500);
+  // photo upload form
+  $(".file-styled").uniform({
+    fileButtonClass: 'action btn bg-warning-400',
+    fileButtonHtml: 'Escolher Arquivo',
+    fileDefaultHtml: 'Nenhum Arquivo'
+  });
+  $('#user_photo').change((e) => {
+    console.log('hey');
+    const input = e.target;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (_e) {
+        $('#avatar_img')
+          .attr('src', _e.target.result);
+      };
+
+      reader.readAsDataURL(input.files[0]);
     }
   });
 
+  // Team tab
   // user roles submit
   Ladda.bind('.btn-user-roles-progress', {
     callback(instance) {
@@ -410,71 +456,46 @@ $(() => {
     inviteBody.append(newStr);
   }
 
-  // update candidate cicies
-  $('select#candidate_state').change(function () {
-    updateCandidateCities(this.value, () => {
-      console.log('updating cities');
-    });
+  // Campaign tab
+  // committee submit
+  Ladda.bind('.btn-committee-progress', {
+    callback(instance) {
+      setTimeout(() => {
+        instance.stop();
+      }, 1500);
+    }
   });
 
-  function updateCandidateCities(state, next) {
-    const url = '/updateCities';
-    // initialize an AJAX request
-    $.ajax({
-      url,
-      data: {
-        stateId: state
-      },
-      success(data) {
-        $("#candidate_city").html(data);
-        next();
-        // replace the contents of the city input with the data that came from the server
-      }
-    });
-  }
-
-  // photo upload form
-  $(".file-styled").uniform({
-    fileButtonClass: 'action btn bg-warning-400',
-    fileButtonHtml: 'Escolher Arquivo',
-    fileDefaultHtml: 'Nenhum Arquivo'
-  });
-
-  // Add class on init
-  $('.tokenfield-success').on('tokenfield:initialize', function (e) {
+  // positive keywords
+  $('.tokenfield-success').on('tokenfield:initialize', (e) => {
     $(this).parent().find('.token').addClass('bg-success');
   });
 
-  // Initialize plugin
   $('.tokenfield-success').tokenfield();
 
-  // Add class when token is created
-  $('.tokenfield-success').on('tokenfield:createdtoken', function (e) {
+  $('.tokenfield-success').on('tokenfield:createdtoken', (e) => {
     processKeyword('save', 'P', e.attrs.value);
     $(e.relatedTarget).addClass('bg-success');
   });
 
-  $('.tokenfield-success').on('tokenfield:removetoken', function (e) {
+  $('.tokenfield-success').on('tokenfield:removetoken', (e) => {
     processKeyword('remove', 'P', e.attrs.value);
   });
 
-  // Add class on init
-  $('.tokenfield-danger').on('tokenfield:initialize', function (e) {
+  // negative keywords
+  $('.tokenfield-danger').on('tokenfield:initialize', (e) => {
       $(this).parent().find('.token').addClass('bg-danger')
   });
 
-  // Initialize plugin
   $('.tokenfield-danger').tokenfield();
 
-  // Add class when token is created
-  $('.tokenfield-danger').on('tokenfield:createdtoken', function (e) {
+  $('.tokenfield-danger').on('tokenfield:createdtoken', (e) => {
     processKeyword('save', 'N', e.attrs.value);
     $(e.relatedTarget).addClass('bg-danger')
   });
 
-  $('.tokenfield-danger').on('tokenfield:removetoken', function (e) {
+  $('.tokenfield-danger').on('tokenfield:removetoken', (e) => {
     processKeyword('remove', 'N', e.attrs.value);
-    console.log('removed', e.attrs.value);
   });
 
   const processKeyword = (process_type, keyword_type, keyword) => {
@@ -546,14 +567,7 @@ $(() => {
     body.append(tpl);
   };
 
-  const checkCampaignAvaility = () => {
-    const campaignRole = $('select[name=user_roles_list]').val();
-    const isAvail = availCampaignIdList.includes(parseInt(campaignRole, 10));
-    if (isAvail) {
-      $('#campaign_tab').removeClass('disable_event');
-    }
-  };
-
+  // create new keywords
   $('#proposal_select').change(() => {
     const val = $('#proposal_select').val();
     if (val === 'create') {
@@ -585,17 +599,3 @@ $(() => {
   };
 
 });
-
-// showing the thumbnail of selected image
-function readImg(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-      $('#avatar_img')
-        .attr('src', e.target.result);
-    };
-
-    reader.readAsDataURL(input.files[0]);
-  }
-}
