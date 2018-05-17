@@ -165,9 +165,9 @@ class Candidate(models.Model):
 
     candidate_situation = models.CharField("Situation", max_length=40,
                                            choices=CANDIDATE_STATUS_CHOICES, default='pending')
-    created_at = models.DateTimeField(
-        'Criado em', auto_now_add=True
-    )
+    positive_keywords = models.ManyToManyField('candidato.Keyword', blank=True, related_name='p_keyword_in_candidato')
+    negative_keywords = models.ManyToManyField('candidato.Keyword', blank=True, related_name='n_keyword_in_candidato')
+    created_at = models.DateTimeField('Criado em', auto_now_add=True)
     updated_at = models.DateTimeField('Atualizado em', auto_now_add=True)
 
 # user = models.OneToOneField(User, null=False, blank=False)
@@ -295,7 +295,7 @@ class Proposal(models.Model):
 
 class Keyword(models.Model):
     keyword = models.CharField(max_length=60)
-    user = models.ForeignKey(User, blank=True, null=True)
+    # user = models.ForeignKey(User, blank=True, null=True)
     # Positive(P) and Negative(N)
     type = models.CharField(max_length=10, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -39,23 +39,6 @@ class ProposalListSerializer(serializers.ModelSerializer):
         read_only_fields = ('created_at',)
 
 
-class CandidateSerializer(serializers.ModelSerializer):
-    proposals = ProposalSerializer(many=True)
-
-    class Meta:
-        model = Candidate
-        fields = ('id', 'user', 'reference_id', 'candidate_political_nickname', 'candidate_dispute_party',
-                  'candidate_party', 'canditate_Election_Ballot', 'campaign_desired_position',
-                  'candidate_desired_position', 'candidate_current_position', 'state_campaign', 'candidate_state',
-                  'candidate_city', 'holds_position', 'city_campaign', 'candidate_dispute_number', 'slug',
-                  'holds_political_position', 'political_position', 'reelection', 'first_election',
-                  'first_political_campaign',  'candidate_site', 'campaign_email', 'facebook', 'twitter', 'google',
-                  'youtube', 'instagram', 'candidate_blog_rss', 'usuarioes', 'proposals', 'foto',  'Resume', 'Obs',
-                  'candidate_situation', 'created_at', 'updated_at', )
-
-        read_only_fields = ('created_at',)
-
-
 class KeywordSerializer(serializers.ModelSerializer):
     # user = CandidateSerializer
 
@@ -69,6 +52,25 @@ class KeywordSerializer(serializers.ModelSerializer):
 class KeywordListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Keyword
-        fields = ('id', 'keyword', 'type', 'user', 'created_at', 'updated_at', )
+        fields = ('id', 'keyword', 'type', 'created_at', 'updated_at', )
+
+        read_only_fields = ('created_at',)
+
+
+class CandidateSerializer(serializers.ModelSerializer):
+    proposals = ProposalSerializer(many=True)
+    positive_keywords = KeywordSerializer(many=True)
+    negative_keywords = KeywordSerializer(many=True)
+
+    class Meta:
+        model = Candidate
+        fields = ('id', 'user', 'reference_id', 'candidate_political_nickname', 'candidate_dispute_party',
+                  'candidate_party', 'canditate_Election_Ballot', 'campaign_desired_position',
+                  'candidate_desired_position', 'candidate_current_position', 'state_campaign', 'candidate_state',
+                  'candidate_city', 'holds_position', 'city_campaign', 'candidate_dispute_number', 'slug',
+                  'holds_political_position', 'political_position', 'reelection', 'first_election',
+                  'first_political_campaign',  'candidate_site', 'campaign_email', 'facebook', 'twitter', 'google',
+                  'youtube', 'instagram', 'candidate_blog_rss', 'usuarioes', 'proposals', 'foto',  'Resume', 'Obs',
+                  'candidate_situation', 'positive_keywords', 'negative_keywords' 'created_at', 'updated_at', )
 
         read_only_fields = ('created_at',)
