@@ -2,7 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-  <script type="text/javascript" src="{% static 'js/pages/dashboard.js' %}"></script>
   <style>
     .btn-rounded {
       box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
@@ -2284,4 +2283,8 @@
       </div>
     {% endif %}
   <!-- /page container -->
+  {% comment %}plugins{% endcomment %}
+  <script type="text/javascript" src="{% static 'js/plugins/pickers/daterangepicker.js' %}"></script>
+  {% comment %}page js{% endcomment %}
+  <script type="text/javascript" src="{% static 'js/pages/dashboard.js' %}"></script>
 {% endblock %}

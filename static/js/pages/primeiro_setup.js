@@ -15,7 +15,30 @@ $(() => {
   const proposalSaveBtn = $('#save_proposal');
   const campaignTab = $('#campaign_tab');
 
-  // page init
+  // utils
+  function notify(message) {
+    noty({
+      width: 200,
+      text: message,
+      type: 'success',
+      dismissQueue: true,
+      timeout: 4000,
+      layout: 'topRight'
+    });
+    $('#team_member_name').removeClass('required');
+    $('#team_member_email').removeClass('required');
+    $('#team_member_role').removeClass('required');
+  }
+
+  const checkCampaignAvaility = () => {
+    const campaignRole = $('select[name=user_roles_list]').val();
+    const isAvail = availCampaignIdList.includes(parseInt(campaignRole, 10));
+    if (isAvail) {
+      $('#campaign_tab').removeClass('disable_event');
+    }
+  };
+
+  // page and plugins init
   // disable campaign tab as default
   campaignTab.addClass('disable_event');
   const availCampaignIdList = [1, 2, 3, 7];
@@ -25,7 +48,10 @@ $(() => {
     required: "Este campo é obrigatório."
   });
 
-  // Initialize wizard
+  // Select2 selects
+  $('.select').select2();
+
+  // step wizard init
   $(".steps-validation").steps({
     headerTag: "h6",
     bodyTag: "fieldset",
@@ -38,9 +64,8 @@ $(() => {
       previous: 'Anterior'
     },
 
-
     onStepChanging(event, currentIndex, newIndex) {
-      // Allways allow previous action even if the current form is not valid!
+      // getting team invites
       if (currentIndex === 1 && newIndex === 2) {
         getInvites();
       }
@@ -79,23 +104,15 @@ $(() => {
       if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
         form.steps("Próximo");
       }
-
-      // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
-      // if (currentIndex === 2 && priorIndex === 3) {
-      //   form.steps("Anterior");
-      // }
     },
 
     onFinishing(event, currentIndex) {
-      // console.log(event, currentIndex);
       form.validate().settings.ignore = ":disabled";
       return form.valid();
     },
 
     onFinished(event, currentIndex) {
-      // alert("Submitted!!!!!!!");
       $('.steps-validation')[0].submit(function (_event) {
-        // alert( "Handler for .submit() called." );
         _event.preventDefault();
       });
     }
@@ -147,19 +164,7 @@ $(() => {
     }
   });
 
-
-  // Initialize plugins
-  // ------------------------------
-
-  // Select2 selects
-  $('.select').select2();
-
-
-  // Simple select without search
-  $('.select-simple').select2({
-    minimumResultsForSearch: Infinity
-  });
-
+  // Personal data tab
   // birthday picker
   // we need following operation to enable to input birthday manually
   // type dd/mm/year
@@ -214,7 +219,7 @@ $(() => {
       $(this).val(birthString);
     } else {
       if (num.length === 8) {
-        const birthday = new Date(year, month - 1, day);
+        const birthday = new Date(year, month-1, day);
         day = birthday.getDate();
         month = birthday.getMonth() + 1;
         year = birthday.getFullYear();
@@ -232,22 +237,53 @@ $(() => {
     }
   }
 
-  function notify(message) {
-    noty({
-      width: 200,
-      text: message,
-      type: 'success',
-      dismissQueue: true,
-      timeout: 4000,
-      layout: 'topRight'
+  // update candidate cicies
+  $('select#candidate_state').change(function () {
+    updateCandidateCities(this.value, () => {
+      console.log('updating cities');
     });
-    $('#team_member_name').removeClass('required');
-    $('#team_member_email').removeClass('required');
-    $('#team_member_role').removeClass('required');
+  });
+
+  function updateCandidateCities(state, next) {
+    const url = '/updateCities';
+    // initialize an AJAX request
+    $.ajax({
+      url,
+      data: {
+        stateId: state
+      },
+      success(data) {
+        $("#candidate_city").html(data);
+        next();
+        // replace the contents of the city input with the data that came from the server
+      }
+    });
   }
 
-  // Button with progress
-  Ladda.bind('.btn-ladda-progress', {
+  // photo upload form
+  $(".file-styled").uniform({
+    fileButtonClass: 'action btn bg-warning-400',
+    fileButtonHtml: 'Escolher Arquivo',
+    fileDefaultHtml: 'Nenhum Arquivo'
+  });
+  $('#user_photo').change((e) => {
+    console.log('hey');
+    const input = e.target;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (_e) {
+        $('#avatar_img')
+          .attr('src', _e.target.result);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  });
+
+  // Team tab
+  // user roles submit
+  Ladda.bind('.btn-user-roles-progress', {
     callback(instance) {
       // creating team member
       $('#team_member_name').addClass('required');
@@ -420,71 +456,46 @@ $(() => {
     inviteBody.append(newStr);
   }
 
-  // update candidate cicies
-  $('select#candidate_state').change(function () {
-    updateCandidateCities(this.value, () => {
-      console.log('updating cities');
-    });
+  // Campaign tab
+  // committee submit
+  Ladda.bind('.btn-committee-progress', {
+    callback(instance) {
+      setTimeout(() => {
+        instance.stop();
+      }, 1500);
+    }
   });
 
-  function updateCandidateCities(state, next) {
-    const url = '/updateCities';
-    // initialize an AJAX request
-    $.ajax({
-      url,
-      data: {
-        stateId: state
-      },
-      success(data) {
-        $("#candidate_city").html(data);
-        next();
-        // replace the contents of the city input with the data that came from the server
-      }
-    });
-  }
-
-  // photo upload form
-  $(".file-styled").uniform({
-    fileButtonClass: 'action btn bg-warning-400',
-    fileButtonHtml: 'Escolher Arquivo',
-    fileDefaultHtml: 'Nenhum Arquivo'
-  });
-
-  // Add class on init
-  $('.tokenfield-success').on('tokenfield:initialize', function (e) {
+  // positive keywords
+  $('.tokenfield-success').on('tokenfield:initialize', (e) => {
     $(this).parent().find('.token').addClass('bg-success');
   });
 
-  // Initialize plugin
   $('.tokenfield-success').tokenfield();
 
-  // Add class when token is created
-  $('.tokenfield-success').on('tokenfield:createdtoken', function (e) {
+  $('.tokenfield-success').on('tokenfield:createdtoken', (e) => {
     processKeyword('save', 'P', e.attrs.value);
     $(e.relatedTarget).addClass('bg-success');
   });
 
-  $('.tokenfield-success').on('tokenfield:removetoken', function (e) {
+  $('.tokenfield-success').on('tokenfield:removetoken', (e) => {
     processKeyword('remove', 'P', e.attrs.value);
   });
 
-  // Add class on init
-  $('.tokenfield-danger').on('tokenfield:initialize', function (e) {
+  // negative keywords
+  $('.tokenfield-danger').on('tokenfield:initialize', (e) => {
       $(this).parent().find('.token').addClass('bg-danger')
   });
 
-  // Initialize plugin
   $('.tokenfield-danger').tokenfield();
 
-  // Add class when token is created
-  $('.tokenfield-danger').on('tokenfield:createdtoken', function (e) {
+  $('.tokenfield-danger').on('tokenfield:createdtoken', (e) => {
     processKeyword('save', 'N', e.attrs.value);
     $(e.relatedTarget).addClass('bg-danger')
   });
 
-  $('.tokenfield-danger').on('tokenfield:removetoken', function (e) {
+  $('.tokenfield-danger').on('tokenfield:removetoken', (e) => {
     processKeyword('remove', 'N', e.attrs.value);
-    console.log('removed', e.attrs.value);
   });
 
   const processKeyword = (process_type, keyword_type, keyword) => {
@@ -556,14 +567,7 @@ $(() => {
     body.append(tpl);
   };
 
-  const checkCampaignAvaility = () => {
-    const campaignRole = $('select[name=user_roles_list]').val();
-    const isAvail = availCampaignIdList.includes(parseInt(campaignRole, 10));
-    if (isAvail) {
-      $('#campaign_tab').removeClass('disable_event');
-    }
-  };
-
+  // create new keywords
   $('#proposal_select').change(() => {
     const val = $('#proposal_select').val();
     if (val === 'create') {
@@ -595,17 +599,3 @@ $(() => {
   };
 
 });
-
-// showing the thumbnail of selected image
-function readImg(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-      $('#avatar_img')
-        .attr('src', e.target.result);
-    };
-
-    reader.readAsDataURL(input.files[0]);
-  }
-}
