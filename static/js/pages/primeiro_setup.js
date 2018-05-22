@@ -40,7 +40,7 @@ $(() => {
 
   // page and plugins init
   // disable campaign tab as default
-  campaignTab.addClass('disable_event');
+  // campaignTab.addClass('disable_event');
   const availCampaignIdList = [1, 2, 3, 7];
 
   // global required message for validator

@@ -2,11 +2,10 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from candidato.models import Candidate
+from core.utils.model_utils import phone_validators
 from django.db.models.signals import post_save
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
-from django.core.validators import RegexValidator
-from django.core.exceptions import ValidationError
 from django_extensions.db.models import (TitleSlugDescriptionModel, TimeStampedModel)
 
 event_hook_depth = 0
@@ -126,7 +125,7 @@ class Bairro(models.Model):
     Uf = models.CharField(max_length=2)
 
 
-class relationship_network(models.Model):
+class RelationshipNetwork(models.Model):
     id_actor_a = models.IntegerField()  # index from the first actor
     kind_of_relationship = models.CharField("Tipo de Relacionamento", max_length=40, blank=True, null=True)
     id_actor_b = models.IntegerField()  # index from the second actor
@@ -179,24 +178,6 @@ USER_ROLES_CHOICES = (
 )
 
 
-def phone_validators(value):
-    validator_fn = [
-        RegexValidator(r'^\(?([0-9]{2})\)? ([0-9]{1})? ([0-9]{4})[-. ]?([0-9]{4})$',
-                       "Digite apenas números. (XX) X XXXX-XXXX ou (XX) XXXX-XXXX"),
-        RegexValidator(r'^\(?([0-9]{2})\)? ([0-9]{4})[-. ]?([0-9]{4})$',
-                       "Digite apenas números. (XX) X XXXX-XXXX ou (XX) XXXX-XXXX")
-    ]
-    err = None
-    for validator in validator_fn:
-        try:
-            validator(value)
-            # Valid value, return it
-            return value
-        except ValidationError as exc:
-            err = exc
-    # Value match nothing, raise error
-    raise err
-
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
 class Usuario(models.Model):
     user = models.OneToOneField(User, null=False, blank=False)
@@ -213,13 +194,12 @@ class Usuario(models.Model):
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
     company = models.CharField("Endereço", max_length=255, blank=True, null=True)
     cellPhone = models.CharField(blank=True, null=True, max_length=17, validators=[phone_validators])
-    landlinePhone = models.CharField("Telefone Fixo", max_length=17, blank=True, null=True)
+    landlinePhone = models.CharField("Telefone Fixo", max_length=17, blank=True, null=True,
+                                     validators=[phone_validators])
     email_verified = models.NullBooleanField(null=True)
-    cellPhone_verified = models.BooleanField
+    cellPhone_verified = models.BooleanField(default=False)
     user_political_party = models.CharField(max_length=50, blank=True, null=True)
-    user_profile_photo = models.ImageField(
-        upload_to='images/users', verbose_name='foto', null=True, blank=True
-    )
+    user_profile_photo = models.ImageField(upload_to='images/users', verbose_name='foto', null=True, blank=True)
     created_date = models.DateField(auto_now=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
@@ -227,7 +207,8 @@ class Usuario(models.Model):
 
     user_status = models.CharField("Status", max_length=40, choices=USER_STATUS_CHOICES)
     # user_role = models.CharField("Tipo de Acesso", max_length=40, choices=USER_ROLES_CHOICES)
-    user_roles_list = models.ForeignKey('candidato.UserRolesList', blank=True, null=True)
+    user_roles_list = models.ForeignKey('candidato.UserRolesList', blank=True,
+                                        null=True, related_name='user_roles_list_in_usuario')
     candidates = models.ManyToManyField(Candidate, blank=True)
 
     def __str__(self):              # __unicode__ on Python 2
