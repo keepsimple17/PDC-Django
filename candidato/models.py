@@ -89,7 +89,7 @@ CANDIDATE_POSITION_CHOICES = (
     ('ve', 'Vereador'),
 )
 
-CANDIDATE_CURRENT_POSITION = (('na','Nenhum'),('pt','Partidario Criminoso'),) + CANDIDATE_POSITION_CHOICES
+CANDIDATE_CURRENT_POSITION = (('na', 'Nenhum'), ('pt', 'Partidario Criminoso'),) + CANDIDATE_POSITION_CHOICES
 
 CANDIDATE_INVITE_CHOICES = (
     ('S', 'SUSPENSO'),
@@ -211,7 +211,7 @@ class Committees(models.Model):
     landlinePhone = models.CharField("Telefone Fixo", max_length=11, blank=True, null=True)
 
 
-class Committee_Members(models.Model):
+class CommitteeMembers(models.Model):
     # the Commitee id
     id_commitee = models.IntegerField
     # the user ID of the User in commitee (dashboard.models.Profile)
@@ -242,7 +242,7 @@ class UserRoles(models.Model):
 
 
 # Predefined list of user possibilites to the UserRoles table
-class UserRoles_list(models.Model):
+class UserRolesList(models.Model):
     role_name = models.CharField('Função do Usuário', max_length=40, blank=False)
     budget_managment = models.PositiveSmallIntegerField('Controle Financeiro', default=0)
     members_managment = models.PositiveSmallIntegerField('Gestão de Usuários', default=4)

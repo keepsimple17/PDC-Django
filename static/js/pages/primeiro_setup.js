@@ -55,6 +55,7 @@ $(() => {
   $(".steps-validation").steps({
     headerTag: "h6",
     bodyTag: "fieldset",
+    startIndex: 3,
     transitionEffect: "fade",
     titleTemplate: '<span class="number">#index#</span> #title#',
     autoFocus: true,

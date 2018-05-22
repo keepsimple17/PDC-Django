@@ -1,5 +1,5 @@
 from dashboard.models import Estado, Municipio, PoliticalParties
-from candidato.models import UserRoles_list, ScopeList
+from candidato.models import UserRolesList, ScopeList
 from django.db.models import Q
 
 
@@ -36,7 +36,7 @@ def get_cities_by_state(state_id):
 
 def get_user_roles_list():
     user_roles_list = []
-    user_roles = UserRoles_list.objects.all()
+    user_roles = UserRolesList.objects.all()
 
     for role in user_roles:
         user_roles_list.append((role.id, role.role_name, role.budget_managment, role.members_managment,

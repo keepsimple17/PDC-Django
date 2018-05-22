@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-if os.environ.get('USER', '') == 'ubuntu':
+if os.environ.get('USER', '') == 'acer':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
