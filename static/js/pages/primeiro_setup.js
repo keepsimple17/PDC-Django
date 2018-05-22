@@ -40,7 +40,7 @@ $(() => {
 
   // page and plugins init
   // disable campaign tab as default
-  campaignTab.addClass('disable_event');
+  // campaignTab.addClass('disable_event');
   const availCampaignIdList = [1, 2, 3, 7];
 
   // global required message for validator
@@ -55,6 +55,7 @@ $(() => {
   $(".steps-validation").steps({
     headerTag: "h6",
     bodyTag: "fieldset",
+    startIndex: 3,
     transitionEffect: "fade",
     titleTemplate: '<span class="number">#index#</span> #title#',
     autoFocus: true,
@@ -457,15 +458,6 @@ $(() => {
   }
 
   // Campaign tab
-  // committee submit
-  Ladda.bind('.btn-committee-progress', {
-    callback(instance) {
-      setTimeout(() => {
-        instance.stop();
-      }, 1500);
-    }
-  });
-
   // positive keywords
   $('.tokenfield-success').on('tokenfield:initialize', (e) => {
     $(this).parent().find('.token').addClass('bg-success');
@@ -598,4 +590,163 @@ $(() => {
       });
   };
 
+  // Committee tab
+  $('#committee_telephone').keyup(phoneNumberMask);
+  $('#committee_landphone').keyup(landPhoneNumberMask);
+
+  function phoneNumberMask() {
+    var num = $(this).val().replace(/\D/g, '');
+    // console.log(num);
+    // console.log(num.length);
+    var telString = '';
+    if (num.length > 10) {
+      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 3) + ' ' + num.substring(3, 7) + '-' + num.substring(7, 11);
+    } else {
+      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 6) + '-' + num.substring(6, 10);
+    }
+    $(this).val(telString);
+  }
+
+  function landPhoneNumberMask() {
+    var num = $(this).val().replace(/\D/g, '');
+    // console.log(num);
+    // console.log(num.length);
+    var telString = `(${num.substring(0, 2)}) ${num.substring(2, 6)}-${num.substring(6, 10)}`;
+    $(this).val(telString);
+  }
+
+  $('#committee_zip').change(function () {
+    if ($(this).val() !== "") {
+        $('#loading').show();
+        update_with_zipcode(0, function () {
+          $('#loading').hide();
+        });
+      }
+  });
+
+  function update_with_zipcode(state, next) {
+    const zipCode = $('#committee_zip').val();
+    // validates CEP
+    var regex = /^([0-9]{5})[-. ]?([0-9]{3})$/;
+    if (regex.test($(".zip-field").val())) {
+      $.get('/cep/' + $(".zip-field").val() + '/', function (data, status) {
+        if (data.indexOf("not_found_error_message") >= 0) {
+          if (zipCode !== "") {
+            notify('enter correct zipcode');
+            next();
+          }
+        } else if (data.indexOf("url_error_message") >= 0) {
+          if (zipCode !== "") {
+            alert("sorry, could not get details of zipcode...please try again");
+            next();
+          }
+        } else {
+          var dataObj = JSON.parse(data);
+          updateCities(dataObj.state, function () {
+            // $("#" + address.street).val(arr.street);
+            $("#committee_address").val(`${dataObj.street}`);
+            $("#committee_bairro").val(`${dataObj.district}`);
+            $("#committee_estado").val(dataObj.state);
+            $(`#committee_estado option[value="${dataObj.state}"]`).attr('selected', 'selected');
+            $('#committee_cidade option').filter(function () {
+              return this.text === dataObj.city;
+            }).attr('selected', 'selected');
+          });
+          next();
+        }
+      });
+    } else if (zipCode !== "") {
+      notify('enter correct zipcode format');
+      next();
+    }
+  }
+
+  function updateCities(state, next) {
+    var url = '/updateCities';
+    // initialize an AJAX request
+    $.ajax({
+      url: url,
+      data: {
+        stateId: state  // add the state id to the GET parameters
+      },
+      success: function (data) {
+        $('#committee_cidade').html(data);
+        next();
+        // replace the contents of the city input with the data that came from the server
+      }
+    });
+  }
+
+  $('#committee_estado').change(function () {
+    updateCities(this.value, function () {
+      console.log('updating cities');
+    });
+  });
+  // committee submit
+  Ladda.bind('.btn-committee-progress', {
+    callback(instance) {
+      // instance.stop();
+      $('#committee_res_name').addClass('required');
+      $('#committee_res_email').addClass('required');
+      $('#committee_name').addClass('required');
+      $('#committee_zip').addClass('required');
+
+      form.validate().settings.ignore = ":disabled,:hidden";
+
+      const res_name = $('#committee_res_name').val() || '';
+      const res_email = $('#committee_res_email').val() || '';
+      const name = $('#committee_name').val() || '';
+      const zip = $('#committee_zip').val() || '';
+      const cell_phone = $('#committee_telephone').val() || '';
+      const land_phone = $('#committee_landphone').val() || '';
+      const state = $('#committee_estado').val() || '';
+      const city = $('#committee_cidade').val() || '';
+      const address = $('#committee_address').val() || '';
+      const bairro = $('#committee_bairro').val() || '';
+      const userId = $('input[name=user_id]').val();
+
+      console.log('res_name', res_name);
+      console.log('res_email', res_email);
+      console.log('name', name);
+      console.log('zip', zip);
+
+      if (!form.valid()) {
+        instance.stop();
+        return;
+      }
+      axios.post('/account/add_committee', {
+        res_name,
+        res_email,
+        name,
+        zip,
+        cell_phone,
+        land_phone,
+        state,
+        city,
+        address,
+        bairro,
+        user_id: userId,
+      })
+        .then((response) => {
+          instance.stop();
+          // console.log(response.data.message);
+          notify(response.data.message);
+          const _status = response.data.status;
+          $('#committee_res_name').val('');
+          $('#committee_res_email').val('');
+          $('#committee_name').val('');
+          $('#committee_zip').val('');
+          $('#committee_telephone').val('');
+          $('#committee_landphone').val('');
+          $('#committee_estado').val('');
+          $('#committee_cidade').val('');
+          $('#committee_address').val('');
+          $('#committee_bairro').val('');
+        })
+        .catch((error) => {
+          instance.stop();
+          console.log(error);
+        });
+    }
+  });
 });

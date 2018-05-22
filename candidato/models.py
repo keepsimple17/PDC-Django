@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import RegexValidator
 import os
+from core.utils.model_utils import phone_validators
 
 POLITICAL_PARTY_CHOICES = (
     ('pmdb', 'PMDB'),
@@ -89,7 +90,7 @@ CANDIDATE_POSITION_CHOICES = (
     ('ve', 'Vereador'),
 )
 
-CANDIDATE_CURRENT_POSITION = (('na','Nenhum'),('pt','Partidario Criminoso'),) + CANDIDATE_POSITION_CHOICES
+CANDIDATE_CURRENT_POSITION = (('na', 'Nenhum'), ('pt', 'Partidario Criminoso'),) + CANDIDATE_POSITION_CHOICES
 
 CANDIDATE_INVITE_CHOICES = (
     ('S', 'SUSPENSO'),
@@ -190,33 +191,34 @@ class Staff(models.Model):
 
 # Election Committee
 class Committees(models.Model):
+    name = models.TextField(blank=True, null=True)
     # the Candidate who owns the Commitee
-    id_candidate = models.IntegerField
+    candidate = models.ForeignKey('candidato.Candidate', blank=True, null=True)
     # the staff user responsible in Commitee
-    id_responsible = models.IntegerField
+    responsible = models.ForeignKey('dashboard.Usuario', blank=True, null=True)
+    responsible_tmp = models.ForeignKey('candidato.TempUser', blank=True, null=True)
     # The Brazilian zipCode
-    cep = models.CharField("CEP", max_length=9, blank=True, null=True)
+    cep = models.CharField("CEP", max_length=17, blank=True, null=True)
     # Federal State (in dashboard_estado table)
-    estado = models.CharField("UF", max_length=2, blank=True, null=True)
+    estado = models.CharField("UF", max_length=17, blank=True, null=True)
     # city
     cidade = models.CharField("Cidade", max_length=255, blank=True, null=True)
-    # neiborhood
+    # neighbourhood
     bairro = models.CharField("Bairro", max_length=255, blank=True, null=True)
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
-    cellPhone = models.CharField(blank=True, null=True, max_length=15,
-                                 validators=[RegexValidator(regex='^\+?1?\d{9,15}$',
-                                                            message="Phone number must be entered in the format: "
-                                                                    "'+999999999'. Up to 15 digits allowed.",
-                                                            code='Invalid number')])
-    landlinePhone = models.CharField("Telefone Fixo", max_length=11, blank=True, null=True)
+    cell_phone = models.CharField(blank=True, null=True, max_length=17, validators=[phone_validators])
+    landline_phone = models.CharField("Telefone Fixo", max_length=17, blank=True,
+                                      null=True, validators=[phone_validators])
+    members = models.ManyToManyField('candidato.CommitteeMembers',
+                                     blank=True, related_name='committee_members_in_committee')
 
 
-class Committee_Members(models.Model):
+class CommitteeMembers(models.Model):
     # the Commitee id
-    id_commitee = models.IntegerField
+    commitee = models.ForeignKey('candidato.Committees', blank=True, null=True)
     # the user ID of the User in commitee (dashboard.models.Profile)
-    id_user = models.IntegerField
-    # User assignments in Commitee
+    usuario = models.ForeignKey('dashboard.Usuario', blank=True, null=True)
+    # User assignments in Committee
     assignments = models.CharField("Atribuições", max_length=255, null=True, blank=True)
     observations = models.TextField('Observações', null=True, blank=True)
 
@@ -242,7 +244,7 @@ class UserRoles(models.Model):
 
 
 # Predefined list of user possibilites to the UserRoles table
-class UserRoles_list(models.Model):
+class UserRolesList(models.Model):
     role_name = models.CharField('Função do Usuário', max_length=40, blank=False)
     budget_managment = models.PositiveSmallIntegerField('Controle Financeiro', default=0)
     members_managment = models.PositiveSmallIntegerField('Gestão de Usuários', default=4)
@@ -298,5 +300,14 @@ class Keyword(models.Model):
     # user = models.ForeignKey(User, blank=True, null=True)
     # Positive(P) and Negative(N)
     type = models.CharField(max_length=10, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+
+class TempUser(models.Model):
+    username = models.TextField('User Name', blank=True, null=True)
+    email = models.TextField('Email', blank=True, null=True)
+    # ex 'Committees'
+    kind = models.TextField('Type', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, null=True)

@@ -18,7 +18,8 @@ from core.data_objects import (get_cities_by_state, get_states, get_cities, get_
                                get_scope_template)
 from dashboard.models import (Usuario, Estado, Municipio, Candidate, GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
 from dashboard.serializers import UsuarioSerializer
-from candidato.models import CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate
+from candidato.models import (CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate, Committees,
+                              TempUser)
 from candidato.serializers import InvitesSerializer, CandidateSerializer
 from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
 from core.tokens import account_activation_token
@@ -478,3 +479,82 @@ def account_accept_candidator_invite(request, uidb64=None):
         candidate.save()
 
     return HttpResponse("You completed the invitation")
+
+
+@api_view(['GET', 'POST', ])
+def add_committee(request, format=None):
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+    except:
+        # data = request.POST
+        data = request.data
+    user_id = data.get('user_id', None)
+    res_name = data.get('res_name', None)
+    res_email = data.get('res_email', None)
+    name = data.get('name', None)
+    zip = data.get('zip', None)
+    cell_phone = data.get('cell_phone', None)
+    land_phone = data.get('land_phone', None)
+    state = data.get('state', None)
+    city = data.get('city', None)
+    address = data.get('address', None)
+    bairro = data.get('bairro', None)
+
+    original_committee = Committees.objects.filter(name=name)
+    if original_committee:
+        return Response({
+            'status': 'fail',
+            'message': 'The committee name already exist in system.',
+        }, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+    committee = Committees(
+        name=name,
+        cep=zip,
+        estado=state,
+        cidade=city,
+        bairro=bairro,
+        address=address,
+        cell_phone=cell_phone,
+        landline_phone=land_phone,
+    )
+    body = {
+        'name': committee.name,
+        'resonable_name': res_name,
+        'cell_phone': cell_phone,
+        'location': address,
+    }
+
+    user = User.objects.filter(username=res_name, email=res_email)
+    if user:
+        user = user.first()
+        candidate = Candidate.objects.filter(user_id=user_id)
+        usuario = Usuario.objects.get(user_id=user.id)
+        if candidate:
+            candidate = candidate.first()
+            committee.candidate = candidate,
+            committee.responsible_id = usuario.id,
+            committee.save()
+            return Response({
+                'status': 'registered',
+                'body': body,
+                'message': 'System received your request.',
+            }, status=status.HTTP_200_OK)
+        else:
+            return Response({
+                'status': 'fail',
+                'message': 'You are not candidator.',
+            }, status=status.HTTP_404_NOT_FOUND)
+    else:
+        tem_user = TempUser(
+            username=res_name,
+            email=res_email,
+            kind='Committee',
+        )
+        tem_user.save()
+        committee.responsible_tmp = tem_user
+        committee.save()
+        return Response({
+            'status': 'success',
+            'body': body,
+            'message': 'Responsible does not exist in system. System sent invite email.',
+        }, status=status.HTTP_200_OK)
