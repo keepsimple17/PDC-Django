@@ -191,6 +191,7 @@ class Staff(models.Model):
 
 # Election Committee
 class Committees(models.Model):
+    name = models.TextField(blank=True, null=True)
     # the Candidate who owns the Commitee
     candidate = models.ForeignKey('candidato.Candidate', blank=True, null=True)
     # the staff user responsible in Commitee

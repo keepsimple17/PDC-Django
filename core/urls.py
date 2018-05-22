@@ -40,6 +40,7 @@ urlpatterns = [
     # the template update for the firstsetup
     url(r'^account/primeiroSetup', fc_views.primeiro_setup, name="primeiro_setup"),
     url(r'^account/add_team_member', fc_views.add_team_member, name='account_add_user_roles'),
+    url(r'^account/add_committee', fc_views.add_committee, name='account_add_committee'),
     # email confirmation
     url(r'^account/account_accept_invite/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_accept_invite,
         name='account_accept_invite'),

@@ -514,15 +514,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Nome do Responsável pelo Comitê </label>
-                <input title="" type="text" name="committeename"
-                       class="form-control" placeholder="">
+                <input title="" type="text" name="committeename" class="form-control" id="committee_res_name">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Email do Responsável pelo Comitê</label>
-                <input title="" type="email" name="committeeemail"
-                       class="form-control" placeholder="">
+                <input title="" type="email" name="committeeemail" class="form-control" id="committee_res_email">
               </div>
             </div>
           </div>
@@ -531,14 +529,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Identificação (nome) do Comitê</label>
-                <input title="" type="text" name="committeeidname"
-                       class="form-control" placeholder="">
+                <input title="" type="text" name="committeeidname" class="form-control" id="committee_name">
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label>Telefone Celular</label>
-                <input title="" type="text" name="committeecellPhone"
+                <input title="" type="text" name="committeecellPhone" id="committee_telephone"
                        class="form-control" placeholder="">
               </div>
             </div>
@@ -546,7 +543,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>Telefone Fixo</label>
-                <input title="" type="text" name="committeelandline"
+                <input title="" type="text" name="committeelandline" id="committee_landphone"
                        class="form-control" placeholder="">
               </div>
             </div>
@@ -556,22 +553,27 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>CEP</label>
-                <input title="" type="text" name="committeezip"
-                       class="form-control" placeholder="">
+                <input title="" type="text" name="committeezip" class="form-control" id="committee_zip" placeholder="">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>Estado</label>
-                <input title="" type="text" name="committeestate"
-                       class="form-control" placeholder="">
+                <select title="" name="committeestate" data-placeholder="Cidade" id="committee_estado" class="form-control">
+                  {% for item in states %}
+                    <option value="{{ item.0 }}">{{ item.1 }}</option>
+                  {% endfor %}
+                </select>
               </div>
             </div>
             <div class="col-md-5">
               <div class="form-group">
                 <label>Cidade</label>
-                <input title="" type="text" name="committeecity"
-                       class="form-control" placeholder="">
+                <select title="" name="committeecity" data-placeholder="Cidade" id="committee_cidade" class="form-control">
+                  {% for item in user_cities %}
+                    <option value="{{ item.0 }}">{{ item.1 }}</option>
+                  {% endfor %}
+                </select>
               </div>
             </div>
           </div>
@@ -579,15 +581,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Endereço</label>
-                <input title="" type="text" name="committeeadd"
-                       class="form-control" placeholder="">
+                <input title="" type="text" name="committeeadd" id="committee_address" class="form-control" placeholder="">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Complemento</label>
-                <input title="" type="text" name="committeecomplement"
-                       class="form-control" placeholder="">
+                <input title="" type="text" name="committeecomplement" class="form-control" id="committee_bairro">
               </div>
             </div>
           </div>
