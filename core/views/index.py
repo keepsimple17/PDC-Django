@@ -55,10 +55,10 @@ def signup(request, uidb64=None):
             user.save()
             # let log the user in.
             # user can skip login process next time
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            # username = form.cleaned_data.get('username')
+            # raw_password = form.cleaned_data.get('password1')
+            # account = authenticate(username=username, password=raw_password)
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
             current_site = get_current_site(request)
             mail_subject = 'Ative sua conta na SCOPO (Sistema de COntrole POlítico)'
