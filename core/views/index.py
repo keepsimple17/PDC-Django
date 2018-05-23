@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils import timezone
 import json
+import requests
 import datetime
 # from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -225,6 +226,25 @@ def check_email(request):
             return Response(True, status=status.HTTP_200_OK)
         else:
             return Response(False, status=status.HTTP_200_OK)
+
+
+@api_view(['GET', 'POST'])
+def cors_request(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+        except:
+            data = request.data
+        url = data.get('url')
+        print('cors response start')
+        res = requests.get(url, headers={"content-type": "text/html"})
+        print('cors response end')
+        if res.status_code == 200:
+            return Response({'data': res.text}, status=status.HTTP_200_OK)
+        elif res.status_code == 404:
+            return Response({'data': res.text}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({'data': res.text}, status=status.HTTP_202_ACCEPTED)
 
 
 @csrf_protect

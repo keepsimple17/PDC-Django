@@ -48,14 +48,11 @@ $(() => {
     required: "Este campo é obrigatório."
   });
 
-  // Select2 selects
-  $('.select').select2();
-
   // step wizard init
   $(".steps-validation").steps({
     headerTag: "h6",
     bodyTag: "fieldset",
-    startIndex: 3,
+    startIndex: 1,
     transitionEffect: "fade",
     titleTemplate: '<span class="number">#index#</span> #title#',
     autoFocus: true,
@@ -165,7 +162,10 @@ $(() => {
     }
   });
 
-  // Personal data tab
+  // Select2 selects
+  $('.select').select2();
+
+  //// Personal data tab
   // birthday picker
   // we need following operation to enable to input birthday manually
   // type dd/mm/year
@@ -282,7 +282,81 @@ $(() => {
     }
   });
 
-  // Team tab
+  //// Candidate tab
+  $('#social_twitter').change(function () {
+    console.log('twitter', this.value);
+    // const url = `https://twitter.com/${this.value}`;
+    const url = `https://twitter.com/${this.value}`;
+    axios.post('/cors_request/', {
+      url,
+    })
+      .then((res) => {
+        console.log('twitter', res.data);
+        const el = $('<div></div>');
+        el.html(res.data.data);
+        const image_src = $('.profile-details img', el).attr('src');
+        $('#social_twitter__media img').attr('src', image_src);
+        $('#social_twitter__media a').attr('href', url);
+        $('#social_twitter__media').addClass('media-show');
+        $('#social_twitter-error').hide();
+      })
+      .catch((err) => {
+        console.log(err);
+        $('#social_twitter-error').show();
+      });
+  });
+
+  $('#social_facebook').change(function () {
+    console.log('twitter', this.value);
+    // const url = `https://twitter.com/${this.value}`;
+    const url = `https://www.facebook.com/${this.value}/`;
+    axios.post('/cors_request/', {
+      url,
+    })
+    // axios.get(url)
+      .then((res) => {
+        console.log('twitter', res.data);
+        const el = $('<div></div>');
+        el.html(res.data.data);
+        const image_src = $('meta[property="og:image"]', el).attr('content');
+        console.log('image_src', image_src);
+        $('#social_facebook__media img').attr('src', image_src);
+        $('#social_facebook__media a').attr('href', url);
+        $('#social_facebook__media').addClass('media-show');
+        $('#social_facebook-error').hide();
+      })
+      .catch((err) => {
+        console.log(err);
+        $('#social_facebook-error').show();
+      });
+  });
+
+  $('#social_instagram').change(function () {
+    console.log('twitter', this.value);
+    // const url = `https://twitter.com/${this.value}`;
+    const url = `https://www.instagram.com/${this.value}/`;
+    axios.post('/cors_request/', {
+      url,
+    })
+    // axios.get(url)
+      .then((res) => {
+        console.log('twitter', res.data);
+        const el = $('<div></div>');
+        el.html(res.data.data);
+        const image_src = $('meta[property="og:image"]', el).attr('content');
+        console.log('image_src', image_src);
+        $('#social_instagram__media img').attr('src', image_src);
+        $('#social_instagram__media a').attr('href', url);
+        $('#social_instagram__media').addClass('media-show');
+        $('#social_instagram-error').hide();
+      })
+      .catch((err) => {
+        console.log(err);
+        $('#social_instagram-error').show();
+      });
+  });
+
+  //// Team tab
   // user roles submit
   Ladda.bind('.btn-user-roles-progress', {
     callback(instance) {
