@@ -40,7 +40,7 @@ $(() => {
 
   // page and plugins init
   // disable campaign tab as default
-  // campaignTab.addClass('disable_event');
+  campaignTab.addClass('disable_event');
   const availCampaignIdList = [1, 2, 3, 7];
 
   // global required message for validator
@@ -52,7 +52,7 @@ $(() => {
   $(".steps-validation").steps({
     headerTag: "h6",
     bodyTag: "fieldset",
-    startIndex: 1,
+    startIndex: 0,
     transitionEffect: "fade",
     titleTemplate: '<span class="number">#index#</span> #title#',
     autoFocus: true,
@@ -302,6 +302,7 @@ $(() => {
       })
       .catch((err) => {
         console.log(err);
+        $('#social_twitter__media').removeClass('media-show');
         $('#social_twitter-error').show();
       });
   });
@@ -327,6 +328,7 @@ $(() => {
       })
       .catch((err) => {
         console.log(err);
+        $('#social_facebook__media').removeClass('media-show');
         $('#social_facebook-error').show();
       });
   });
@@ -352,6 +354,7 @@ $(() => {
       })
       .catch((err) => {
         console.log(err);
+        $('#social_instagram__media').removeClass('media-show');
         $('#social_instagram-error').show();
       });
   });
