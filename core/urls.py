@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='home'),
     url(r'^profile/$', views.profile, name='profile'),
+    url(r'^cors_request/$', views.cors_request, name='cors_request'),
     url(r'^updateCities', views.update_cities, name='updateCities'),
     url(r'^accounts/login/$', auth_views.login, name="login"),
     url(r'^accounts/signup/$', views.signup, name="signup"),

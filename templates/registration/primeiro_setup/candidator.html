@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!-- /info alert -->
 <div class="alert bg-danger-400 alert-styled-left">
   <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
@@ -208,8 +209,18 @@
     <div class="form-group">
       <i class="icon-twitter"></i>
       <label>Twitter</label> <!-- candidate Twitter -->
-      <input title="" type="text" name="twitter" class="form-control"
+      <div class="media no-margin-top">
+        <div class="media-body">
+          <input title="" type="text" name="twitter" class="form-control" id="social_twitter"
              value="{{ candidate_form.twitter.value|default_if_none:"" }}">
+        </div>
+        <div class="media-right" id="social_twitter__media">
+          <a href="#" target="_blank">
+            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+          </a>
+        </div>
+      </div>
+      <label id="social_twitter-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
     </div>
   </div>
 
@@ -217,8 +228,18 @@
     <div class="form-group">
       <i class="icon-facebook2"></i>
       <label>Facebook</label><!-- Candidate Facebook -->
-      <input title="" type="text" name="facebook" class="form-control"
+      <div class="media no-margin-top">
+        <div class="media-body">
+          <input title="" type="text" name="facebook" class="form-control" id="social_facebook"
              value="{{ candidate_form.facebook.value|default_if_none:"" }}">
+        </div>
+        <div class="media-right" id="social_facebook__media">
+          <a href="#" target="_blank">
+            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+          </a>
+        </div>
+      </div>
+      <label id="social_facebook-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
     </div>
   </div>
 
@@ -226,8 +247,18 @@
     <div class="form-group">
       <i class="icon-instagram"></i>
       <label>Instagram</label><!-- Candidate Instagram -->
-      <input title="" type="text" name="instagram" class="form-control"
+      <div class="media no-margin-top">
+        <div class="media-body">
+          <input title="" type="text" name="instagram" class="form-control" id="social_instagram"
              value="{{ candidate_form.instagram.value|default_if_none:"" }}">
+        </div>
+        <div class="media-right" id="social_instagram__media">
+          <a href="#" target="_blank">
+            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+          </a>
+        </div>
+      </div>
+      <label id="social_instagram-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
     </div>
   </div>
 </div>
@@ -238,8 +269,17 @@
     <div class="form-group">
       <i class="icon-google-plus"></i>
       <label>Google+</label> <!-- candidate Google+ -->
-      <input title="" type="text" name="google" class="form-control"
+      <div class="media no-margin-top">
+        <div class="media-body">
+          <input title="" type="text" name="google" class="form-control" id="social_googleplus"
              value="{{ candidate_form.google.value|default_if_none:"" }}">
+        </div>
+        <div class="media-right" id="social_googleplus__media">
+          <a href="#" target="_blank">
+            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -247,8 +287,17 @@
     <div class="form-group">
       <i class="icon-youtube3"></i>
       <label>Youtube</label><!-- Candidate Youtube -->
-      <input title="" type="text" name="youtube" class="form-control"
+      <div class="media no-margin-top">
+        <div class="media-body">
+          <input title="" type="text" name="youtube" class="form-control" id="social_youtube"
              value="{{ candidate_form.youtube.value|default_if_none:"" }}">
+        </div>
+        <div class="media-right" id="social_youtube__media">
+          <a href="#" target="_blank">
+            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -261,3 +310,11 @@
     </div>
   </div>
 </div>
+<style>
+  .media-right {
+    display: none;
+  }
+  .media-show {
+    display: table-cell!important;
+  }
+</style>
