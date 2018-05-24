@@ -9,8 +9,10 @@ from candidato.models import (Invites, Proposal, ScopeList, Candidate, Keyword)
 class InvitesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invites
-        fields = ('id', 'invitator_email', 'invited_name', 'invited_email', 'invited_cel',
-                  'candidate', 'invite_status', 'updated_at')
+        fields = (
+            'id', 'invitator_email', 'invited_name', 'invited_email', 'invited_cel', 'candidate', 'invite_status',
+            'updated_at',
+        )
 
 
 class ScopeListSerializer(serializers.ModelSerializer):

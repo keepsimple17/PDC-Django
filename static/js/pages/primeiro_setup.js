@@ -285,13 +285,13 @@ $(() => {
   //// Candidate tab
   $('#social_twitter').change(function () {
     console.log('twitter', this.value);
-    // const url = `https://twitter.com/${this.value}`;
+    $('#loading').show();
     const url = `https://twitter.com/${this.value}`;
     axios.post('/cors_request/', {
       url,
     })
       .then((res) => {
-        console.log('twitter', res.data);
+        $('#loading').hide();
         const el = $('<div></div>');
         el.html(res.data.data);
         const image_src = $('.profile-details img', el).attr('src');
@@ -299,24 +299,25 @@ $(() => {
         $('#social_twitter__media a').attr('href', url);
         $('#social_twitter__media').addClass('media-show');
         $('#social_twitter-error').hide();
+        $('input[name=twitter_img]').val(image_src);
+        $('input[name=twitter_url]').val(url);
       })
       .catch((err) => {
-        console.log(err);
+        $('#loading').hide();
+        $('#social_twitter').val('');
         $('#social_twitter__media').removeClass('media-show');
         $('#social_twitter-error').show();
       });
   });
 
   $('#social_facebook').change(function () {
-    console.log('twitter', this.value);
-    // const url = `https://twitter.com/${this.value}`;
     const url = `https://www.facebook.com/${this.value}/`;
+    $('#loading').show();
     axios.post('/cors_request/', {
       url,
     })
-    // axios.get(url)
       .then((res) => {
-        console.log('twitter', res.data);
+        $('#loading').hide();
         const el = $('<div></div>');
         el.html(res.data.data);
         const image_src = $('meta[property="og:image"]', el).attr('content');
@@ -325,24 +326,25 @@ $(() => {
         $('#social_facebook__media a').attr('href', url);
         $('#social_facebook__media').addClass('media-show');
         $('#social_facebook-error').hide();
+        $('input[name=facebook_img]').val(image_src);
+        $('input[name=facebook_url]').val(url);
       })
       .catch((err) => {
-        console.log(err);
+        $('#loading').hide();
+        $('#social_facebook').val('');
         $('#social_facebook__media').removeClass('media-show');
         $('#social_facebook-error').show();
       });
   });
 
   $('#social_instagram').change(function () {
-    console.log('twitter', this.value);
-    // const url = `https://twitter.com/${this.value}`;
     const url = `https://www.instagram.com/${this.value}/`;
+    $('#loading').show();
     axios.post('/cors_request/', {
       url,
     })
-    // axios.get(url)
       .then((res) => {
-        console.log('twitter', res.data);
+        $('#loading').hide();
         const el = $('<div></div>');
         el.html(res.data.data);
         const image_src = $('meta[property="og:image"]', el).attr('content');
@@ -351,11 +353,68 @@ $(() => {
         $('#social_instagram__media a').attr('href', url);
         $('#social_instagram__media').addClass('media-show');
         $('#social_instagram-error').hide();
+        $('input[name=instagram_img]').val(image_src);
+        $('input[name=instagram_url]').val(url);
       })
       .catch((err) => {
-        console.log(err);
+        $('#loading').hide();
+        $('#social_instagram').val('');
         $('#social_instagram__media').removeClass('media-show');
         $('#social_instagram-error').show();
+      });
+  });
+
+  $('#social_youtube').change(function () {
+    const url = `https://www.youtube.com/user/${this.value}/`;
+    $('#loading').show();
+    axios.post('/cors_request/', {
+      url,
+    })
+      .then((res) => {
+        $('#loading').hide();
+        const el = $('<div></div>');
+        el.html(res.data.data);
+        const image_src = $('meta[property="og:image"]', el).attr('content');
+        console.log('image_src', image_src);
+        $('#social_youtube__media img').attr('src', image_src);
+        $('#social_youtube__media a').attr('href', url);
+        $('#social_youtube__media').addClass('media-show');
+        $('#social_youtube-error').hide();
+        $('input[name=youtube_img]').val(image_src);
+        $('input[name=youtube_url]').val(url);
+      })
+      .catch((err) => {
+        $('#loading').hide();
+        $('#social_youtube').val('');
+        $('#social_youtube__media').removeClass('media-show');
+        $('#social_youtube-error').show();
+      });
+  });
+
+  $('#social_googleplus').change(function () {
+    const url = `https://plus.google.com/u/0/+${this.value}/`;
+    $('#loading').show();
+    axios.post('/cors_request/', {
+      url,
+    })
+      .then((res) => {
+        $('#loading').hide();
+        const el = $('<div></div>');
+        el.html(res.data.data);
+        const image_src = $('meta[property="og:image"]', el).attr('content');
+        console.log('image_src', image_src);
+        $('#social_googleplus__media img').attr('src', image_src);
+        $('#social_googleplus__media a').attr('href', url);
+        $('#social_googleplus__media').addClass('media-show');
+        $('#social_googleplus-error').hide();
+        $('input[name=googlep_img]').val(image_src);
+        $('input[name=googlep_url]').val(url);
+      })
+      .catch((err) => {
+        $('#loading').hide();
+        $('#social_googleplus').val('');
+        $('#social_googleplus__media').removeClass('media-show');
+        $('#social_googleplus-error').show();
       });
   });
 

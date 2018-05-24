@@ -214,13 +214,16 @@
           <input title="" type="text" name="twitter" class="form-control" id="social_twitter"
              value="{{ candidate_form.twitter.value|default_if_none:"" }}">
         </div>
-        <div class="media-right" id="social_twitter__media">
-          <a href="#" target="_blank">
-            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+        <div class="media-right {% if candidate_form.twitter_url.value %} media-show {% endif %}" id="social_twitter__media">
+          <a href="{{ candidate_form.twitter_url.value|default_if_none:'#' }}" target="_blank">
+            <img src="{{ candidate_form.twitter_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
+                 onError="this.src='{% static '/images/avatar.png' %}'" alt="">
           </a>
         </div>
       </div>
       <label id="social_twitter-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <input type="hidden" name="twitter_img" value="{{ candidate_form.twitter_img.value|default_if_none:"" }}">
+      <input type="hidden" name="twitter_url" value="{{ candidate_form.twitter_url.value|default_if_none:"" }}">
     </div>
   </div>
 
@@ -233,13 +236,16 @@
           <input title="" type="text" name="facebook" class="form-control" id="social_facebook"
              value="{{ candidate_form.facebook.value|default_if_none:"" }}">
         </div>
-        <div class="media-right" id="social_facebook__media">
-          <a href="#" target="_blank">
-            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+        <div class="media-right {% if candidate_form.facebook_url.value %} media-show {% endif %}" id="social_facebook__media">
+          <a href="{{ candidate_form.facebook_url.value|default_if_none:"" }}" target="_blank">
+            <img src="{{ candidate_form.facebook_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
+                 alt="" onError="this.src='{% static '/images/avatar.png' %}'">
           </a>
         </div>
       </div>
       <label id="social_facebook-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <input type="hidden" name="facebook_img" value="{{ candidate_form.facebook_img.value|default_if_none:"" }}">
+      <input type="hidden" name="facebook_url" value="{{ candidate_form.facebook_url.value|default_if_none:"" }}">
     </div>
   </div>
 
@@ -252,13 +258,17 @@
           <input title="" type="text" name="instagram" class="form-control" id="social_instagram"
              value="{{ candidate_form.instagram.value|default_if_none:"" }}">
         </div>
-        <div class="media-right" id="social_instagram__media">
-          <a href="#" target="_blank">
-            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+        <div class="media-right {% if candidate_form.instagram_url.value %} media-show {% endif %}" id="social_instagram__media">
+          <a href="{{ candidate_form.instagram_url.value|default_if_none:"" }}" target="_blank">
+            <img src="{{ candidate_form.instagram_img.value|default_if_none:"" }}"
+                 style="width: 58px; height: 58px;" class="img-rounded"
+                 alt="" onError="this.src='{% static '/images/avatar.png' %}'">
           </a>
         </div>
       </div>
       <label id="social_instagram-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <input type="hidden" name="instagram_img" value="{{ candidate_form.instagram_img.value|default_if_none:"" }}">
+      <input type="hidden" name="instagram_url" value="{{ candidate_form.instagram_url.value|default_if_none:"" }}">
     </div>
   </div>
 </div>
@@ -271,15 +281,19 @@
       <label>Google+</label> <!-- candidate Google+ -->
       <div class="media no-margin-top">
         <div class="media-body">
-          <input title="" type="text" name="google" class="form-control" id="social_googleplus"
+          <input title="" type="text" name="googlep" class="form-control" id="social_googleplus"
              value="{{ candidate_form.google.value|default_if_none:"" }}">
         </div>
-        <div class="media-right" id="social_googleplus__media">
-          <a href="#" target="_blank">
-            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+        <div class="media-right {% if candidate_form.googlep_url.value %} media-show {% endif %}" id="social_googleplus__media">
+          <a href="{{ candidate_form.googlep_url.value|default_if_none:"" }}" target="_blank">
+            <img src="{{ candidate_form.googlep_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
+                 alt="" onError="this.src='{% static '/images/avatar.png' %}'">
           </a>
         </div>
       </div>
+      <label id="social_googlep-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <input type="hidden" name="googlep_img" value="{{ candidate_form.googlep_img.value|default_if_none:"" }}">
+      <input type="hidden" name="googlep_url" value="{{ candidate_form.googlep_url.value|default_if_none:"" }}">
     </div>
   </div>
 
@@ -292,12 +306,16 @@
           <input title="" type="text" name="youtube" class="form-control" id="social_youtube"
              value="{{ candidate_form.youtube.value|default_if_none:"" }}">
         </div>
-        <div class="media-right" id="social_youtube__media">
-          <a href="#" target="_blank">
-            <img src="{% static '/images/avatar.png' %}" style="width: 58px; height: 58px;" class="img-rounded" alt="">
+        <div class="media-right {% if candidate_form.youtube_url.value %} media-show {% endif %}" id="social_youtube__media">
+          <a href="{{ candidate_form.youtube_url.value|default_if_none:"" }}" target="_blank">
+            <img src="{{ candidate_form.youtube_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
+                 alt="" onError="this.src='{% static '/images/avatar.png' %}'">
           </a>
         </div>
       </div>
+      <label id="social_youtube-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <input type="hidden" name="youtube_img" value="{{ candidate_form.youtube_img.value|default_if_none:"" }}">
+      <input type="hidden" name="youtube_url" value="{{ candidate_form.youtube_url.value|default_if_none:"" }}">
     </div>
   </div>
 
