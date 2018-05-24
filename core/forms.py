@@ -47,12 +47,24 @@ class CandidateForm(forms.ModelForm):
     reelection = forms.BooleanField(required=False)
     first_election = forms.BooleanField(required=False)
     candidate_site = forms.CharField(max_length=50, required=False)
-    facebook = forms.CharField(max_length=40, required=False)
     twitter = forms.CharField(max_length=40, required=False)
-    google = forms.CharField(max_length=40, required=False)
+    twitter_img = forms.CharField(required=False)
+    twitter_url = forms.CharField(required=False)
+    facebook = forms.CharField(max_length=40, required=False)
+    facebook_img = forms.CharField(required=False)
+    facebook_url = forms.CharField(required=False)
+    googlep = forms.CharField(max_length=40, required=False)
+    googlep_img = forms.CharField(required=False)
+    googlep_url = forms.CharField(required=False)
     youtube = forms.CharField(max_length=40, required=False)
+    youtube_img = forms.CharField(required=False)
+    youtube_url = forms.CharField(required=False)
     instagram = forms.CharField(max_length=40, required=False)
+    instagram_img = forms.CharField(required=False)
+    instagram_url = forms.CharField(required=False)
     candidate_blog_rss = forms.CharField(max_length=40, required=False)
+    candidate_blog_rss_img = forms.CharField(required=False)
+    candidate_blog_rss_url = forms.CharField(required=False)
     canditate_Election_Ballot = forms.CharField(max_length=50, required=False, help_text='Optional')
     slug = forms.CharField(max_length=50, required=False, help_text='Optional')
     candidate_state = forms.CharField(max_length=50, required=False, help_text='Optional')
@@ -65,11 +77,15 @@ class CandidateForm(forms.ModelForm):
 
     class Meta:
         model = Candidate
-        fields = ('candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email',
-                  'reelection', 'candidate_site', 'facebook', 'twitter', 'google', 'youtube', 'instagram',
-                  'canditate_Election_Ballot', 'candidate_desired_position', 'slug', 'candidate_state',
-                  'candidate_city', 'holds_position', 'candidate_current_position', 'first_election',
-                  'candidate_blog_rss', 'candidate_party')
+        fields = (
+            'candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email',
+            'reelection', 'candidate_site', 'facebook', 'facebook_img', 'facebook_url', 'twitter', 'twitter_img',
+            'twitter_url', 'googlep', 'googlep_img', 'googlep_url', 'youtube', 'youtube_img', 'youtube_url',
+            'instagram', 'instagram_img', 'instagram_url', 'candidate_blog_rss', 'candidate_blog_rss_img',
+            'candidate_blog_rss_url', 'canditate_Election_Ballot', 'candidate_desired_position', 'slug',
+            'candidate_state', 'candidate_city', 'holds_position', 'candidate_current_position', 'first_election',
+            'candidate_party'
+        )
         widgets = {
             'candidate_political_nickname': forms.TextInput(attrs={'class': "form-control"}),
             'candidate_dispute_number': forms.TextInput(attrs={'class': "form-control"}),
