@@ -64,13 +64,18 @@ class CandidateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Candidate
-        fields = ('id', 'user', 'reference_id', 'candidate_political_nickname', 'candidate_dispute_party',
-                  'candidate_party', 'canditate_Election_Ballot', 'campaign_desired_position',
-                  'candidate_desired_position', 'candidate_current_position', 'state_campaign', 'candidate_state',
-                  'candidate_city', 'holds_position', 'city_campaign', 'candidate_dispute_number', 'slug',
-                  'holds_political_position', 'political_position', 'reelection', 'first_election',
-                  'first_political_campaign',  'candidate_site', 'campaign_email', 'facebook', 'twitter', 'google',
-                  'youtube', 'instagram', 'candidate_blog_rss', 'usuarioes', 'proposals', 'foto',  'Resume', 'Obs',
-                  'candidate_situation', 'positive_keywords', 'negative_keywords', 'created_at', 'updated_at', )
+        fields = (
+            'id', 'user', 'reference_id', 'candidate_political_nickname', 'candidate_dispute_party',
+            'candidate_party', 'canditate_Election_Ballot', 'campaign_desired_position',
+            'candidate_desired_position', 'candidate_current_position', 'state_campaign', 'candidate_state',
+            'candidate_city', 'holds_position', 'city_campaign', 'candidate_dispute_number', 'slug',
+            'holds_political_position', 'political_position', 'reelection', 'first_election',
+            'first_political_campaign',  'candidate_site', 'campaign_email',
+            'facebook', 'facebook_img', 'facebook_url', 'twitter', 'twitter_img', 'twitter_url', 'googlep',
+            'googlep_img', 'googlep_url', 'youtube', 'youtube_img', 'youtube_url', 'instagram', 'instagram_img',
+            'instagram_url', 'candidate_blog_rss', 'candidate_blog_rss_img', 'candidate_blog_rss_url',
+            'usuarioes', 'proposals', 'foto',  'Resume', 'Obs', 'candidate_situation', 'positive_keywords',
+            'negative_keywords', 'created_at', 'updated_at',
+        )
 
         read_only_fields = ('created_at',)
