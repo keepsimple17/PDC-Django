@@ -425,6 +425,13 @@ $(() => {
       });
   });
 
+  $('#candidate__holds_political_position').change(function () {
+    console.log('changed hold political position', this.value);
+    if (this.value === 'N') {
+      $('#candidate__candidate_current_position').val('');
+    }
+  });
+
   //// Team tab
   // user roles submit
   Ladda.bind('.btn-user-roles-progress', {
