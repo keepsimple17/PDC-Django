@@ -51,8 +51,9 @@ class CandidateForm(forms.ModelForm):
     candidate_dispute_number = forms.CharField(max_length=40, required=False, help_text='Optional.')
     campaign_email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     political_position = forms.CharField(max_length=40, required=False, help_text='Optional.')
-    reelection = forms.BooleanField(required=False)
-    first_election = forms.BooleanField(required=False)
+    reelection = forms.CharField(required=False, max_length=4)
+    holds_political_position = forms.CharField(required=False, max_length=4)
+    first_election = forms.CharField(required=False, max_length=4)
     candidate_site = forms.CharField(max_length=50, required=False)
     twitter = forms.CharField(max_length=40, required=False)
     twitter_img = forms.CharField(required=False)
@@ -85,6 +86,7 @@ class CandidateForm(forms.ModelForm):
         choices=CANDIDATE_POSITION_CHOICES, required=False, help_text='Optional')
     candidate_current_position = forms.ChoiceField(
         choices=CANDIDATE_CURRENT_POSITION, required=False, help_text='Optional')
+    resume = forms.FileField(required=False)
 
     class Meta:
         model = Candidate
@@ -95,7 +97,7 @@ class CandidateForm(forms.ModelForm):
             'instagram', 'instagram_img', 'instagram_url', 'candidate_blog_rss', 'candidate_blog_rss_img',
             'candidate_blog_rss_url', 'canditate_Election_Ballot', 'candidate_desired_position', 'slug',
             'candidate_state', 'candidate_city', 'holds_position', 'candidate_current_position', 'first_election',
-            'candidate_party'
+            'candidate_party', 'holds_political_position', 'resume',
         )
         widgets = {
             'candidate_political_nickname': forms.TextInput(attrs={'class': "form-control"}),

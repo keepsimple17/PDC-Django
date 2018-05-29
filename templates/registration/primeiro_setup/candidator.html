@@ -115,18 +115,16 @@
 
 <!-- has position, current position, reelection, first election, resume -->
 <div class="row">
-
   <div class="col-md-2">
     <div class="form-group">
       <label>Exerce Cargo?</label> <!-- holds political position -->
-      <select title="" name="holds_position" class="select">
+      <select title="" name="holds_political_position" class="select" id="candidate__holds_political_position">
         <option></option>
         <optgroup label="Exerce Cargo Público?">
-          <option value="S">Sim</option>
-          <option value="N">Não</option>
-          <option value="O">Já exerceu</option>
+          <option value="S" {% if candidate_form.holds_political_position.value == 'S' %} selected {% endif %}>Sim</option>
+          <option value="N" {% if candidate_form.holds_political_position.value == 'N' %} selected {% endif %}>Não</option>
+          <option value="O" {% if candidate_form.holds_political_position.value == 'O' %} selected {% endif %}>Já exerceu</option>
         </optgroup>
-
       </select>
     </div>
   </div>
@@ -134,7 +132,7 @@
   <div class="col-md-3">
     <div class="form-group">
       <label>Cargo que Exerce</label> <!-- Candidate current position -->
-      <select title="" name="candidate_current_position" class="select">
+      <select title="" name="candidate_current_position" class="form-control">
         <option></option>
         <optgroup label="Cargo">
           {% for item in CANDIDATE_POSITION_CHOICES %}
@@ -154,10 +152,8 @@
       <label>Reeleição?</label> <!-- Reelection? -->
       <select title="" name="reelection" class="select">
         <option></option>
-        <optgroup label="_">
-          <option value="S">Sim</option>
-          <option value="N">Não</option>
-        </optgroup>
+        <option value="S" {% if candidate_form.reelection.value == 'S' %} selected {% endif %}>Sim</option>
+        <option value="N" {% if candidate_form.reelection.value == 'N' %} selected {% endif %}>Não</option>
       </select>
     </div>
   </div>
@@ -168,8 +164,8 @@
       <select title="" name="first_election" class="select">
         <option></option>
         <optgroup label="Primeira vez que concorre?">
-          <option value="S">Sim</option>
-          <option value="N">Não</option>
+          <option value="S" {% if candidate_form.first_election.value == 'S' %} selected {% endif %}>Sim</option>
+          <option value="N" {% if candidate_form.first_election.value == 'N' %} selected {% endif %}>Não</option>
         </optgroup>
       </select>
     </div>
@@ -179,7 +175,7 @@
     <div class="form-group">
       <label>Currículo</label> <!-- Resume -->
       <label class="form-control input-file" for="photo">Send File...</label>
-      <input title="" type="file" id="photo" name="user_resume" style="display: none" class="form-control">
+      <input title="" type="file" id="photo" name="resume" style="display: none" class="form-control">
     </div>
   </div>
 </div>

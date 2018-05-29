@@ -124,8 +124,8 @@ class Candidate(models.Model):
     # State of the electoral campaign
     state_campaign = models.CharField("UF de Campanha", max_length=2, blank=True, null=True)
     candidate_state = models.CharField("UF", max_length=2, blank=True, null=True)
-    candidate_city = models.CharField("Cidade", max_length=255, blank=True, null=True)  # city
-    holds_position = models.CharField("Exerce Cargo", max_length=255, blank=True, null=True)  # city
+    candidate_city = models.CharField("Cidade", max_length=255, blank=True, null=True)
+    holds_position = models.CharField("Exerce Cargo", max_length=255, blank=True, null=True)
     # City of the electoral campaign
     city_campaign = models.CharField("Cidade de Campanha", max_length=255, blank=True, null=True)
     # todo the number should sugest to begins with the dispute_party number
@@ -134,11 +134,11 @@ class Candidate(models.Model):
     # candidate' Slug used to create map url
     slug = models.SlugField('Atalho', blank=True)
 
-    holds_political_position = models.BooleanField("Detém Cargo Político", default="False")
+    holds_political_position = models.CharField("Detém Cargo Político", max_length=4, blank=True, null=True)
     # todo If the candidate does not holds political position, disable political position
     political_position = models.CharField("Posição Politica que Exerce", max_length=40, null=True, blank=True)
-    reelection = models.BooleanField("Tentando Reeleição", default="False")
-    first_election = models.BooleanField("Primeira Eleição", default="False")
+    reelection = models.CharField("Tentando Reeleição", max_length=40, null=True, blank=True)
+    first_election = models.CharField("Primeira Eleição", max_length=40, null=True, blank=True)
     first_political_campaign = models.BooleanField("Detém Cargo Político", default="False")
 
     # Candidate web site
@@ -172,12 +172,12 @@ class Candidate(models.Model):
     )
 
     # Field to put Candidate's Resume
-    Resume = models.TextField("Currículo", blank=True, null=True)
+    resume = models.FileField(upload_to='files/candidatos', verbose_name="Currículo", blank=True, null=True)
     # Field to put observations about Candidate
-    Obs = models.TextField("Observação", blank=True, null=True)
+    obs = models.TextField("Observação", blank=True, null=True)
 
-    candidate_situation = models.CharField("Situation", max_length=40,
-                                           choices=CANDIDATE_STATUS_CHOICES, default='pending')
+    candidate_situation = models.CharField(
+        "Situation", max_length=40, choices=CANDIDATE_STATUS_CHOICES, default='pending')
     positive_keywords = models.ManyToManyField('candidato.Keyword', blank=True, related_name='p_keyword_in_candidato')
     negative_keywords = models.ManyToManyField('candidato.Keyword', blank=True, related_name='n_keyword_in_candidato')
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
