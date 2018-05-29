@@ -220,6 +220,7 @@
         {# enctype is very important to upload file #}
         <form class="steps-validation" action="{% url 'primeiro_setup' %}"
               method="post" enctype="multipart/form-data">
+{#        <form class="steps-validation" method="post" enctype="multipart/form-data">#}
           {% csrf_token %}
           <h6>Dados Pessoais</h6>
           <fieldset>

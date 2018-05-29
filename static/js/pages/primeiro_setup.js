@@ -38,6 +38,17 @@ $(() => {
     }
   };
 
+  const clearRequire = () => {
+    $('#team_member_name').removeClass('required');
+    $('#team_member_email').removeClass('required');
+    $('#team_member_role').removeClass('required');
+
+    $('#committee_res_name').removeClass('required');
+    $('#committee_res_email').removeClass('required');
+    $('#committee_name').removeClass('required');
+    $('#committee_zip').removeClass('required');
+  };
+
   // page and plugins init
   // disable campaign tab as default
   campaignTab.addClass('disable_event');
@@ -63,6 +74,7 @@ $(() => {
     },
 
     onStepChanging(event, currentIndex, newIndex) {
+      clearRequire();
       // getting team invites
       if (currentIndex === 1 && newIndex === 2) {
         getInvites();
@@ -72,11 +84,6 @@ $(() => {
         checkCampaignAvaility();
       }
 
-      if (currentIndex === 2 && newIndex === 3) {
-        $('#team_member_name').removeClass('required');
-        $('#team_member_email').removeClass('required');
-        $('#team_member_role').removeClass('required');
-      }
       if (currentIndex > newIndex) {
         return true;
       }
@@ -98,10 +105,9 @@ $(() => {
     },
 
     onStepChanged(event, currentIndex, priorIndex) {
-      // Used to skip the "Warning" step if the user is old enough.
-      if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
-        form.steps("Próximo");
-      }
+      // $('.steps-validation')[0].submit(function (_event) {
+      //   _event.preventDefault();
+      // });
     },
 
     onFinishing(event, currentIndex) {
@@ -267,6 +273,7 @@ $(() => {
     fileButtonHtml: 'Escolher Arquivo',
     fileDefaultHtml: 'Nenhum Arquivo'
   });
+
   $('#user_photo').change((e) => {
     console.log('hey');
     const input = e.target;
@@ -596,7 +603,7 @@ $(() => {
   // Campaign tab
   // positive keywords
   $('.tokenfield-success').on('tokenfield:initialize', (e) => {
-    $(this).parent().find('.token').addClass('bg-success');
+    $(e.currentTarget).parent().find('.token').addClass('bg-success');
   });
 
   $('.tokenfield-success').tokenfield();
@@ -612,7 +619,7 @@ $(() => {
 
   // negative keywords
   $('.tokenfield-danger').on('tokenfield:initialize', (e) => {
-      $(this).parent().find('.token').addClass('bg-danger')
+      $(e.currentTarget).parent().find('.token').addClass('bg-danger')
   });
 
   $('.tokenfield-danger').tokenfield();
@@ -647,8 +654,8 @@ $(() => {
     const description = $('textarea[name=proposal_description]').val();
     const scope = $('select[name=proposal_scope]').val();
     const candidator = $('input[name=user_id]').val();
-    console.log(name, description, scope, 'candidator:', candidator);
-    if (name === '' || description === '' || scope === '') {
+    console.log(name, description, 'scope', scope, 'candidator:', candidator);
+    if (name === '' || description === '' || scope === '' || scope === 0 || scope === '0') {
       notify('Please fill the all fields.');
       return false;
     }
@@ -700,6 +707,7 @@ $(() => {
     const val = $('#proposal_select').val();
     if (val === 'create') {
       bootbox.prompt("Please enter Scope Name", function(result) {
+        $('#proposal_select').val('0');
         console.log(result);
         if (result === null) {
           notify('Please enter scope name');
@@ -865,7 +873,9 @@ $(() => {
       })
         .then((response) => {
           instance.stop();
+          clearRequire();
           // console.log(response.data.message);
+          appendCommittee(response.data.body);
           notify(response.data.message);
           const _status = response.data.status;
           $('#committee_res_name').val('');
@@ -880,9 +890,37 @@ $(() => {
           $('#committee_bairro').val('');
         })
         .catch((error) => {
+          clearRequire();
           instance.stop();
           console.log(error);
         });
     }
   });
+
+  function appendCommittee(body) {
+    const tem = `
+      <tr role="row" class="odd">
+        <td class="sorting_1">${body.name}</td>
+        <td>${body.resonable_name}</td>
+        <td>${body.cell_phone}</td>
+        <td>${body.address}</td>
+        <td><input title="" type="radio" value=""></td>
+        <td class="text-center">
+          <ul class="icons-list">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-menu9"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li>
+                <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
+              </ul>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    `;
+    $('#committee_body').append(tem);
+  }
 });

@@ -149,7 +149,7 @@
   <div class="col-md-2">
     <div class="form-group">
       <label>Tel. Fixo:</label>
-      <input title="" type="text" name="landlinePhone" id="landphone" class="form-control" required
+      <input title="" type="text" name="landlinePhone" id="landphone" class="form-control"
              value="{{ profile_form.landlinePhone.value|default_if_none:"" }}">
     </div>
   </div>
@@ -190,15 +190,16 @@
   <div class="col-md-5">
     <div class="form-group">
       <label>Cidade:</label> <!-- Citie -->
-      <select title="" name="cidade" data-placeholder="Cidade" id="id_cidade" class="form-control">
-        {% for item in user_cities %}
-          {% if profile_form.cidade.value == item.0|slugify %}
-            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
-          {% else %}
-            <option value="{{ item.0 }}">{{ item.1 }}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
+      {{ profile_form.cidade }}
+{#      <select title="" name="cidade" data-placeholder="Cidade" id="id_cidade" class="form-control">#}
+{#        {% for item in user_cities %}#}
+{#          {% if profile_form.cidade.value == item.0|slugify %}#}
+{#            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
+{#          {% else %}#}
+{#            <option value="{{ item.0 }}">{{ item.1 }}</option>#}
+{#          {% endif %}#}
+{#        {% endfor %}#}
+{#      </select>#}
     </div>
   </div>
 </div>

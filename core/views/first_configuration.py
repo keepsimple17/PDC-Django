@@ -38,6 +38,29 @@ from rest_framework import generics, status
 from rest_framework.decorators import api_view
 
 
+def get_committes(candidator):
+    committees = []
+    committees_list = Committees.objects.filter(candidate=candidator)
+    for committee in committees_list:
+        body = {
+            'name': committee.name,
+            'cell_phone': committee.cell_phone,
+            'address': committee.address,
+        }
+        # print('name', committee.name)
+        # print('cell_phone', committee.cell_phone)
+        # print('address', committee.address)
+        # print('resonable_name', committee.responsible_tmp.username)
+        if committee.responsible_tmp:
+            # print('resonable_name', committee.responsible_tmp.username)
+            body['resonable_name'] = committee.responsible_tmp.username
+        if committee.responsible:
+            # print('resonable_name', committee.responsible.username)
+            body['resonable_name'] = committee.responsible.username
+        committees.append(body)
+    return committees
+
+
 # It' the firstSetup, with updated template
 @login_required()
 @csrf_protect
@@ -57,6 +80,7 @@ def primeiro_setup(request):
     proposals = []
     positive_keywords = []
     negative_keywords = []
+    committees = []
 
     choice_states = tuple(choice_states)
 
@@ -73,6 +97,7 @@ def primeiro_setup(request):
             proposals = candidator_data['proposals']
             positive_keywords = candidator_data['positive_keywords']
             negative_keywords = candidator_data['negative_keywords']
+            committees = get_committes(candidator)
     except:
         candidate_form = CandidateForm()
 
@@ -227,6 +252,7 @@ def primeiro_setup(request):
         'proposals': proposals,
         'positive_keywords': positive_keywords,
         'negative_keywords': negative_keywords,
+        'committees': committees,
     })
 
 
@@ -521,7 +547,7 @@ def add_committee(request, format=None):
         'name': committee.name,
         'resonable_name': res_name,
         'cell_phone': cell_phone,
-        'location': address,
+        'address': address,
     }
 
     user = User.objects.filter(username=res_name, email=res_email)
@@ -545,16 +571,25 @@ def add_committee(request, format=None):
                 'message': 'You are not candidator.',
             }, status=status.HTTP_404_NOT_FOUND)
     else:
-        tem_user = TempUser(
-            username=res_name,
-            email=res_email,
-            kind='Committee',
-        )
-        tem_user.save()
-        committee.responsible_tmp = tem_user
-        committee.save()
-        return Response({
-            'status': 'success',
-            'body': body,
-            'message': 'Responsible does not exist in system. System sent invite email.',
-        }, status=status.HTTP_200_OK)
+        candidate = Candidate.objects.filter(user_id=user_id)
+        if candidate:
+            candidate = candidate.first()
+            committee.candidate = candidate,
+            tem_user = TempUser(
+                username=res_name,
+                email=res_email,
+                kind='Committee',
+            )
+            tem_user.save()
+            committee.responsible_tmp = tem_user
+            committee.save()
+            return Response({
+                'status': 'success',
+                'body': body,
+                'message': 'Responsible does not exist in system. System sent invite email.',
+            }, status=status.HTTP_200_OK)
+        else:
+            return Response({
+                'status': 'fail',
+                'message': 'You are not candidator.',
+            }, status=status.HTTP_404_NOT_FOUND)

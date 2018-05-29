@@ -19,10 +19,11 @@ def get_cities():
     return list_cities
 
 
-def get_cities_by_state(state_id):
+def get_cities_by_state(state_id=''):
+    # print('state_id->', state_id)
     list_cities = []
     try:
-        if state_id == str(0):
+        if state_id == str(0) or state_id is None or state_id == '':
             cities = Municipio.objects.all().order_by('Nome')
         else:
             cities = Municipio.objects.filter(Uf=state_id).order_by('Nome')
@@ -70,5 +71,5 @@ def get_scope_template(user_id=None):
     for scope in scopes_list:
         scopes.append((scope.id, scope.name))
 
-    scopes.insert(0, ("create", "Create New Scope"))
+    scopes.insert(0, ("create", "Criar nova Categoria"))
     return scopes

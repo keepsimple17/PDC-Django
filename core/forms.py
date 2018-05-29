@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
-from core.data_objects import get_states, get_cities
+from core.data_objects import get_states, get_cities, get_cities_by_state
 from dashboard.models import Usuario, Estado, Municipio
 from candidato.models import Candidate, UserRolesList, CANDIDATE_POSITION_CHOICES, CANDIDATE_CURRENT_POSITION
 
@@ -17,8 +17,7 @@ class UniqueEmailForm:
         if self.instance:
             qs = qs.exclude(pk=self.instance.pk)
         if qs.count():
-            raise forms.ValidationError(
-                'Esse endereço de email já esta em uso.')
+            raise forms.ValidationError('Esse endereço de email já esta em uso.')
         else:
             return self.cleaned_data['email']
 
@@ -39,6 +38,14 @@ class UserForm(UserCreationForm, UniqueEmailForm):
 
 
 class CandidateForm(forms.ModelForm):
+    choice_states = get_states()
+    choice_cities = get_cities()
+    choice_states.insert(0, (None, "Insira seu Estado"))
+    choice_cities.insert(0, (None, "Insira sua Cidade"))
+
+    choice_states = tuple(choice_states)
+    choice_cities = tuple(choice_cities)
+
     candidate_political_nickname = forms.CharField(max_length=40, required=False, help_text='Optional.')
     candidate_party = forms.CharField(max_length=40, required=False, help_text='Optional.')
     candidate_dispute_number = forms.CharField(max_length=40, required=False, help_text='Optional.')
@@ -67,13 +74,17 @@ class CandidateForm(forms.ModelForm):
     candidate_blog_rss_url = forms.CharField(required=False)
     canditate_Election_Ballot = forms.CharField(max_length=50, required=False, help_text='Optional')
     slug = forms.CharField(max_length=50, required=False, help_text='Optional')
-    candidate_state = forms.CharField(max_length=50, required=False, help_text='Optional')
-    candidate_city = forms.CharField(max_length=50, required=False, help_text='Optional')
+    candidate_state = forms.ChoiceField(
+        required=False, help_text='Optional', choices=choice_states,
+        widget=forms.Select(attrs={'class': 'form-control select', 'id': 'candidate_state'}))
+    candidate_city = forms.ChoiceField(
+        required=False, help_text='Optional', choices=choice_cities,
+        widget=forms.Select(attrs={'class': 'form-control', 'id': 'candidate_city'}))
     holds_position = forms.CharField(max_length=50, required=False, help_text='Optional')
-    candidate_desired_position = forms.ChoiceField(choices=CANDIDATE_POSITION_CHOICES, required=False,
-                                                   help_text='Optional')
-    candidate_current_position = forms.ChoiceField(choices=CANDIDATE_CURRENT_POSITION, required=False,
-                                                   help_text='Optional')
+    candidate_desired_position = forms.ChoiceField(
+        choices=CANDIDATE_POSITION_CHOICES, required=False, help_text='Optional')
+    candidate_current_position = forms.ChoiceField(
+        choices=CANDIDATE_CURRENT_POSITION, required=False, help_text='Optional')
 
     class Meta:
         model = Candidate
@@ -111,17 +122,35 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        # super(ProfileForm, self).is_valid()
+        # print('testing now-->', args)
+        # print('testing now-->', kwargs)
+        # print('testing now-->', self.instance.estado)
+        # print('testing now-->', len(args))
+        # if len(args) > 0:
+        #     print('testing now-->', args[0]['estado'])
+        # print('testing now-->', self.data.get('estado'))
+        # print('test values', get_cities_by_state(self.fields['estado']))
+        self.fields['cidade'].choices = get_cities_by_state()
+        # if len(args) == 0:
+        #     self.fields['cidade'].choices = get_cities_by_state()
+        # else:
+        #     self.fields['cidade'].choices = get_cities_by_state(args[0]['estado'])
+
     choice_states = get_states()
-    choice_cities = get_cities()
+    # choice_cities = get_cities()
     choice_states.insert(0, (None, "Insira seu Estado"))
-    choice_cities.insert(0, (None, "Insira sua Cidade"))
+    # choice_cities.insert(0, (None, "Insira sua Cidade"))
 
     choice_states = tuple(choice_states)
-    choice_cities = tuple(choice_cities)
+    # choice_cities = tuple(choice_cities)
     estado = forms.ChoiceField(choices=choice_states, required=False, help_text='Optional.',
-                               widget=forms.Select(attrs={'class': 'form-control'}))
+                               widget=forms.Select(attrs={'class': 'form-control select'}))
 
-    cidade = forms.ChoiceField(choices=choice_cities, required=False, help_text='Optional.')
+    cidade = forms.ChoiceField(required=False, help_text='Optional.',
+                               widget=forms.Select(attrs={'class': 'form-control'}))
     address = forms.CharField(max_length=255, required=False, help_text='Optional')
     company = forms.CharField(max_length=255, required=False, help_text='Optional')
     gender = forms.CharField(max_length=1, required=False, help_text='Optional')

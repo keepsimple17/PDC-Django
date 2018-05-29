@@ -37,7 +37,7 @@
               <label class="control-label col-md-4">Categoria</label>
               <div class="col-md-4">
                 <select name="proposal_scope" class="form-control" title="" id="proposal_select">
-                  <option>Select Category</option>
+                  <option value="0">Selecione a Categoria</option>
                   {% for item in scope_list %}
                     <option value="{{ item.0 }}">{{ item.1 }}</option>
                   {% endfor %}
@@ -619,122 +619,57 @@
                   <table class="table datatable-save-state dataTable no-footer"
                          id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
                     <thead>
-                    <tr role="row">
-                      <th class="sorting_asc" tabindex="0"
-                          aria-controls="DataTables_Table_2"
-                          rowspan="1" colspan="1" aria-sort="ascending"
-                          aria-label="committeeidname: activate to sort column descending">Nome do Comitê
-                      </th>
-                      <th class="sorting_asc" tabindex="0"
-                          aria-controls="DataTables_Table_2"
-                          rowspan="1" colspan="1" aria-sort="ascending"
-                          aria-label="committeename: activate to sort column descending">Responsável
-                      </th>
-                      <th class="sorting" tabindex="0"
-                          aria-controls="DataTables_Table_2" rowspan="1"
-                          colspan="1" aria-label="committeecellPhone: activate to sort column ascending"> Telefone
-                        Celular
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
-                          colspan="1" aria-label="committeecity: activate to sort column ascending">Localização
-                      </th>
-                      <th class="text-center sorting_disabled" rowspan="1"
-                          colspan="1">Registerd
-                      </th>
-                      <th class="text-center sorting_disabled" rowspan="1"
-                          colspan="1" aria-label="Actions" style="width: 100px;">Ações
-                      </th>
-                    </tr>
+                      <tr role="row">
+                        <th class="sorting_asc" tabindex="0"
+                            aria-controls="DataTables_Table_2"
+                            rowspan="1" colspan="1" aria-sort="ascending"
+                            aria-label="committeeidname: activate to sort column descending">Nome do Comitê
+                        </th>
+                        <th class="sorting_asc" tabindex="0"
+                            aria-controls="DataTables_Table_2"
+                            rowspan="1" colspan="1" aria-sort="ascending"
+                            aria-label="committeename: activate to sort column descending">Responsável
+                        </th>
+                        <th class="sorting" tabindex="0"
+                            aria-controls="DataTables_Table_2" rowspan="1"
+                            colspan="1" aria-label="committeecellPhone: activate to sort column ascending"> Telefone
+                          Celular
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1"
+                            colspan="1" aria-label="committeecity: activate to sort column ascending">Localização
+                        </th>
+                        <th class="text-center sorting_disabled" rowspan="1"
+                            colspan="1">Registerd
+                        </th>
+                        <th class="text-center sorting_disabled" rowspan="1"
+                            colspan="1" aria-label="Actions" style="width: 100px;">Ações
+                        </th>
+                      </tr>
                     </thead>
-                    <tbody>
-                    <tr role="row" class="odd">
-                      <td class="sorting_1">Comite lgualdade</td>
-                      <td>paulino</td>
-                      <td>(99) 99999-9999</td>
-                      <td>Curitiba/PR</td>
-                      <td><input title="" type="radio" value=""></td>
-                      <td class="text-center">
-                        <ul class="icons-list">
-                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <i class="icon-menu9"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                              <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
-                              <li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
-                              <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
-                              <!--Resend invitation -->
+                    <tbody id="committee_body">
+                      {% for item in committees %}
+                        <tr role="row" class="odd">
+                          <td class="sorting_1">{{ item.name }}</td>
+                          <td>{{ item.resonable_name }}</td>
+                          <td>{{ item.cell_phone }}</td>
+                          <td>{{ item.address }}</td>
+                          <td><input title="" type="radio" value=""></td>
+                          <td class="text-center">
+                            <ul class="icons-list">
+                              <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                  <i class="icon-menu9"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                  <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li>
+                                  <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                                  <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
+                                </ul>
+                              </li>
                             </ul>
-                          </li>
-                        </ul>
-                      </td>
-                    </tr>
-                    <tr role="row" class="even">
-                      <td class="sorting_1">Brasil Melhor</td>
-                      <td>Maria</td>
-                      <td>(99) 99999-9999</td>
-                      <td>Rio de Janerio/RJ</td>
-                      <td><input title="" type="radio" value=""></td>
-                      <td class="text-center">
-                        <ul class="icons-list">
-                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <i class="icon-menu9"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                              <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
-                              <li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
-                              <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
-                              <!--Resend invitation -->
-                            </ul>
-                          </li>
-                        </ul>
-                      </td>
-                    </tr>
-                    <tr role="row" class="odd">
-                      <td class="sorting_1">Conversa boa/td>
-                      <td>João</td>
-                      <td>(99) 99999-9999</td>
-                      <td>Curitiba/PR</td>
-                      <td><input title="" type="radio" value=""></td>
-                      <td class="text-center">
-                        <ul class="icons-list">
-                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <i class="icon-menu9"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                              <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
-                              <li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
-                              <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
-                              <!--Resend invitation -->
-                            </ul>
-                          </li>
-                        </ul>
-                      </td>
-                    </tr>
-                    <tr role="row" class="even">
-                      <td class="sorting_1">ABC Paulista</td>
-                      <td>fernando</td>
-                      <td>(99) 99999-9999</td>
-                      <td>Sao Paulo/SP</td>
-                      <td><input title="" type="radio" value=""></td>
-                      <td class="text-center">
-                        <ul class="icons-list">
-                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <i class="icon-menu9"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                              <li><a href="#"><i class="icon-eraser2"></i> Excluir</a></li> <!--delete -->
-                              <li><a href="#"><i class="icon-pencil"></i> Editar</a></li> <!-- Edit -->
-                              <li><a href="#"><i class="icon-envelope"></i> Reenviar Convite</a></li>
-                              <!--Resend invitation -->
-                            </ul>
-                          </li>
-                        </ul>
-                      </td>
-                    </tr>
+                          </td>
+                        </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                 </div>

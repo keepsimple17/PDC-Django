@@ -81,32 +81,34 @@
   <div class="col-md-2">
     <div class="form-group">
       <label>UF</label> <!-- Candidate State -->
-      <select title="" name="candidate_state" class="select" id="candidate_state">
-        <option></option>
-        {% for item in states %}
-          {% if candidate_form.candidate_state.value == item.0 %}
-            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
-          {% else %}
-            <option value="{{ item.0 }}">{{ item.1 }}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
+      {{ candidate_form.candidate_state }}
+{#      <select title="" name="candidate_state" class="select" id="candidate_state">#}
+{#        <option></option>#}
+{#        {% for item in states %}#}
+{#          {% if candidate_form.candidate_state.value == item.0 %}#}
+{#            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
+{#          {% else %}#}
+{#            <option value="{{ item.0 }}">{{ item.1 }}</option>#}
+{#          {% endif %}#}
+{#        {% endfor %}#}
+{#      </select>#}
     </div>
   </div>
 
   <div class="col-md-2">
     <div class="form-group">
       <label>Cidade</label> <!-- Candidate City -->
-      <select title="" name="candidate_city" class="select" id="candidate_city">
-        <option></option>
-        {% for item in candidate_cities %}
-          {% if candidate_form.candidate_city.value == item.0|slugify %}
-            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
-          {% else %}
-            <option value="{{ item.0 }}">{{ item.1 }}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
+      {{ candidate_form.candidate_city }}
+{#      <select title="" name="candidate_city" class="select" id="candidate_city">#}
+{#        <option></option>#}
+{#        {% for item in candidate_cities %}#}
+{#          {% if candidate_form.candidate_city.value == item.0|slugify %}#}
+{#            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
+{#          {% else %}#}
+{#            <option value="{{ item.0 }}">{{ item.1 }}</option>#}
+{#          {% endif %}#}
+{#        {% endfor %}#}
+{#      </select>#}
     </div>
   </div>
 </div>
@@ -221,7 +223,7 @@
           </a>
         </div>
       </div>
-      <label id="social_twitter-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <label id="social_twitter-error" class="validation-error-label media-right" for="social_twitter">Not Found</label>
       <input type="hidden" name="twitter_img" value="{{ candidate_form.twitter_img.value|default_if_none:"" }}">
       <input type="hidden" name="twitter_url" value="{{ candidate_form.twitter_url.value|default_if_none:"" }}">
     </div>
@@ -243,7 +245,7 @@
           </a>
         </div>
       </div>
-      <label id="social_facebook-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <label id="social_facebook-error" class="validation-error-label media-right" for="social_facebook">Not Found</label>
       <input type="hidden" name="facebook_img" value="{{ candidate_form.facebook_img.value|default_if_none:"" }}">
       <input type="hidden" name="facebook_url" value="{{ candidate_form.facebook_url.value|default_if_none:"" }}">
     </div>
@@ -266,7 +268,7 @@
           </a>
         </div>
       </div>
-      <label id="social_instagram-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <label id="social_instagram-error" class="validation-error-label media-right" for="social_instagram">Not Found</label>
       <input type="hidden" name="instagram_img" value="{{ candidate_form.instagram_img.value|default_if_none:"" }}">
       <input type="hidden" name="instagram_url" value="{{ candidate_form.instagram_url.value|default_if_none:"" }}">
     </div>
@@ -291,7 +293,7 @@
           </a>
         </div>
       </div>
-      <label id="social_googlep-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <label id="social_googlep-error" class="validation-error-label media-right" for="social_googleplus">Not Found</label>
       <input type="hidden" name="googlep_img" value="{{ candidate_form.googlep_img.value|default_if_none:"" }}">
       <input type="hidden" name="googlep_url" value="{{ candidate_form.googlep_url.value|default_if_none:"" }}">
     </div>
@@ -313,7 +315,7 @@
           </a>
         </div>
       </div>
-      <label id="social_youtube-error" class="validation-error-label media-right" for="team_member_name">Not Found</label>
+      <label id="social_youtube-error" class="validation-error-label media-right" for="social_youtube">Not Found</label>
       <input type="hidden" name="youtube_img" value="{{ candidate_form.youtube_img.value|default_if_none:"" }}">
       <input type="hidden" name="youtube_url" value="{{ candidate_form.youtube_url.value|default_if_none:"" }}">
     </div>
