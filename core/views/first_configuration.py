@@ -452,25 +452,6 @@ def account_accept_invite(request, uidb64=None):
         })
 
 
-def account_candidator_aprove_user(request, uidb64=None):
-    uid = force_text(urlsafe_base64_decode(uidb64))
-    invite = Usuario.objects.filter(pk=uid)
-    candidate = Candidate.objects.filter(campaign_email=invite.invitator_email)
-    if candidate:
-        candidate.save()
-    return HttpResponse("The Candidator approved your request")
-
-
-def account_accept_candidator_invite(request, uidb64=None):
-    uid = force_text(urlsafe_base64_decode(uidb64))
-    invite = Candidate.objects.filter(pk=uid)
-    candidate = Usuario.objects.filter(campaign_email=invite.invitator_email)
-    if candidate:
-        candidate.save()
-
-    return HttpResponse("You completed the invitation")
-
-
 @api_view(['GET', 'POST', ])
 def add_committee(request, format=None):
     try:
@@ -557,3 +538,22 @@ def add_committee(request, format=None):
                 'status': 'fail',
                 'message': 'You are not candidator.',
             }, status=status.HTTP_404_NOT_FOUND)
+
+
+def account_candidator_aprove_user(request, uidb64=None):
+    uid = force_text(urlsafe_base64_decode(uidb64))
+    invite = Usuario.objects.filter(pk=uid)
+    candidate = Candidate.objects.filter(campaign_email=invite.invitator_email)
+    if candidate:
+        candidate.save()
+    return HttpResponse("The Candidator approved your request")
+
+
+def account_accept_candidator_invite(request, uidb64=None):
+    uid = force_text(urlsafe_base64_decode(uidb64))
+    invite = Candidate.objects.filter(pk=uid)
+    candidate = Usuario.objects.filter(campaign_email=invite.invitator_email)
+    if candidate:
+        candidate.save()
+
+    return HttpResponse("You completed the invitation")

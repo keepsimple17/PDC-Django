@@ -127,20 +127,12 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
-        # super(ProfileForm, self).is_valid()
-        # print('testing now-->', args)
-        # print('testing now-->', kwargs)
-        # print('testing now-->', self.instance.estado)
-        # print('testing now-->', len(args))
-        # if len(args) > 0:
-        #     print('testing now-->', args[0]['estado'])
-        # print('testing now-->', self.data.get('estado'))
-        # print('test values', get_cities_by_state(self.fields['estado']))
         self.fields['cidade'].choices = get_cities_by_state()
-        # if len(args) == 0:
-        #     self.fields['cidade'].choices = get_cities_by_state()
-        # else:
-        #     self.fields['cidade'].choices = get_cities_by_state(args[0]['estado'])
+        if len(args) == 0:
+            self.fields['cidade'].choices = get_cities_by_state()
+        else:
+            self.fields['cidade'].choices = get_cities_by_state(args[0]['estado'])
+        self.fields['cidade'].choices = get_cities_by_state()
 
     choice_states = get_states()
     # choice_cities = get_cities()
