@@ -19,6 +19,7 @@ $(() => {
   const availCandidateIdList = [1, 3, 7];
 
   // utils
+  // should change notify type by receiving parameters
   function notify(message) {
     noty({
       width: 200,
@@ -453,6 +454,18 @@ $(() => {
 
   //// Team tab
   // user roles submit
+  // we can remove this function in the future
+  function renderInvites(invites) {
+    const inviteBody = $(".invites_body");
+    let htmlString = '';
+    for (const invite of invites) {
+      console.log(invite);
+      htmlString += changeVariable(invite.invited_name, invite.invited_email, invite.invite_status);
+    }
+    inviteBody.html('');
+    inviteBody.append(htmlString);
+  }
+
   Ladda.bind('.btn-user-roles-progress', {
     callback(instance) {
       // creating team member
@@ -558,17 +571,6 @@ $(() => {
       .catch((error) => {
         console.log(error);
       });
-  }
-
-  function renderInvites(invites) {
-    const inviteBody = $(".invites_body");
-    let htmlString = '';
-    for (const invite of invites) {
-      console.log(invite);
-      htmlString += changeVariable(invite.invited_name, invite.invited_email, invite.invite_status);
-    }
-    inviteBody.html('');
-    inviteBody.append(htmlString);
   }
 
   function changeVariable(name, email, status) {
