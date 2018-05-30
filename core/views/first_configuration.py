@@ -405,53 +405,6 @@ def add_team_member(request, format=None):
     }, status=status.HTTP_200_OK)
 
 
-# need to tweak by tulga, please don't change this.
-# team member invite
-def account_accept_invite(request, uidb64=None):
-    uid = force_text(urlsafe_base64_decode(uidb64))
-    invite = Invites.objects.get(pk=uid)
-    candidate = Candidate.objects.get(campaign_email=invite.invitator_email)
-    print('uid==>', candidate.usuarioes)
-    user_form = UserForm(initial={
-        'email': invite.invited_email,
-        'username': invite.invited_name,
-    })
-    candidate_form = CandidateForm(instance=candidate)
-
-    if request.method == 'GET':
-        return render(request, "first_configuration/new_member_accept_invite.html", {
-            'uid': uidb64,
-            'user_form': user_form,
-            'candidate_form': candidate_form,
-        })
-    else:
-        user_form = UserForm(request.POST)
-        if user_form.is_valid():
-            user = user_form.save(commit=False)
-            user.save()
-            usuario = Usuario.objects.get(user=user)
-
-            candidate.usuarioes.add(usuario)
-            candidate.save()
-
-            usuario.candidates.add(candidate)
-            usuario.save()
-
-            # should be added userroles table
-            user_role = UserRoles.objects.get(invite=invite)
-            user_role.user = usuario
-            user_role.candidate = candidate
-            user_role.save()
-
-            messages.success(request, _('Criei sua conta com sucesso.'))
-
-        return render(request, "first_configuration/new_member_accept_invite.html", {
-            'uid': uidb64,
-            'user_form': user_form,
-            'candidate_form': candidate_form,
-        })
-
-
 @api_view(['GET', 'POST', ])
 def add_committee(request, format=None):
     try:
@@ -538,6 +491,53 @@ def add_committee(request, format=None):
                 'status': 'fail',
                 'message': 'You are not candidator.',
             }, status=status.HTTP_404_NOT_FOUND)
+
+
+# need to tweak by tulga, please don't change this.
+# team member invite
+def account_accept_invite(request, uidb64=None):
+    uid = force_text(urlsafe_base64_decode(uidb64))
+    invite = Invites.objects.get(pk=uid)
+    candidate = Candidate.objects.get(campaign_email=invite.invitator_email)
+    print('uid==>', candidate.usuarioes)
+    user_form = UserForm(initial={
+        'email': invite.invited_email,
+        'username': invite.invited_name,
+    })
+    candidate_form = CandidateForm(instance=candidate)
+
+    if request.method == 'GET':
+        return render(request, "first_configuration/new_member_accept_invite.html", {
+            'uid': uidb64,
+            'user_form': user_form,
+            'candidate_form': candidate_form,
+        })
+    else:
+        user_form = UserForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save(commit=False)
+            user.save()
+            usuario = Usuario.objects.get(user=user)
+
+            candidate.usuarioes.add(usuario)
+            candidate.save()
+
+            usuario.candidates.add(candidate)
+            usuario.save()
+
+            # should be added userroles table
+            user_role = UserRoles.objects.get(invite=invite)
+            user_role.user = usuario
+            user_role.candidate = candidate
+            user_role.save()
+
+            messages.success(request, _('Criei sua conta com sucesso.'))
+
+        return render(request, "first_configuration/new_member_accept_invite.html", {
+            'uid': uidb64,
+            'user_form': user_form,
+            'candidate_form': candidate_form,
+        })
 
 
 def account_candidator_aprove_user(request, uidb64=None):
