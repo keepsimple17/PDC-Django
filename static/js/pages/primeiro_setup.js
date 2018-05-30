@@ -14,6 +14,9 @@ $(() => {
   const form = $(".steps-validation").show();
   const proposalSaveBtn = $('#save_proposal');
   const campaignTab = $('#campaign_tab');
+  const candidatorTab = $('#candidator_tab');
+  const availCampaignIdList = [1, 2, 3, 7];
+  const availCandidateIdList = [1, 3, 7];
 
   // utils
   function notify(message) {
@@ -35,6 +38,18 @@ $(() => {
     const isAvail = availCampaignIdList.includes(parseInt(campaignRole, 10));
     if (isAvail) {
       $('#campaign_tab').removeClass('disable_event');
+    } else {
+      $('#campaign_tab').addClass('disable_event');
+    }
+  };
+
+  const checkCandidatorAvaility = () => {
+    const campaignRole = $('select[name=user_roles_list]').val();
+    const isAvail = availCandidateIdList.includes(parseInt(campaignRole, 10));
+    if (isAvail) {
+      $('#candidator_tab').removeClass('disable_event');
+    } else {
+      $('#candidator_tab').addClass('disable_event');
     }
   };
 
@@ -52,7 +67,7 @@ $(() => {
   // page and plugins init
   // disable campaign tab as default
   campaignTab.addClass('disable_event');
-  const availCampaignIdList = [1, 2, 3, 7];
+  candidatorTab.addClass('disable_event');
 
   // global required message for validator
   jQuery.extend(jQuery.validator.messages, {
@@ -82,6 +97,10 @@ $(() => {
 
       if (newIndex === 3) {
         checkCampaignAvaility();
+      }
+
+      if (newIndex === 1) {
+        checkCandidatorAvaility();
       }
 
       if (currentIndex > newIndex) {

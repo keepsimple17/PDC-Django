@@ -49,7 +49,8 @@ class CandidateForm(forms.ModelForm):
     candidate_political_nickname = forms.CharField(max_length=40, required=False, help_text='Optional.')
     candidate_party = forms.CharField(max_length=40, required=False, help_text='Optional.')
     candidate_dispute_number = forms.CharField(max_length=40, required=False, help_text='Optional.')
-    campaign_email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    campaign_email = forms.EmailField(
+        max_length=254, help_text='Required. Inform a valid email address.', required=False)
     political_position = forms.CharField(max_length=40, required=False, help_text='Optional.')
     reelection = forms.CharField(required=False, max_length=4)
     holds_political_position = forms.CharField(required=False, max_length=4)

@@ -1,64 +1,30 @@
-# import json
-# from itertools import chain
-
+import json
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.utils import timezone
-import json
-import sys
-import datetime
-# from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
-from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list, get_political_parties,
-                               get_scope_template)
-from dashboard.models import (Usuario, Estado, Municipio, Candidate, GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
-from dashboard.serializers import UsuarioSerializer
-from candidato.models import (CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate, Committees,
-                              TempUser)
-from candidato.serializers import InvitesSerializer, CandidateSerializer
-from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
-from core.tokens import account_activation_token
-from django.conf import settings
-from django.contrib.auth import login, authenticate
-from django.core.mail import EmailMessage
-from smtplib import SMTPException
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 from django.utils.translation import ugettext_lazy as _
-from django.template.defaulttags import register
+from django.core.mail import EmailMessage
 from rest_framework.response import Response
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
-
-
-def get_committes(candidator):
-    committees = []
-    committees_list = Committees.objects.filter(candidate=candidator)
-    for committee in committees_list:
-        body = {
-            'name': committee.name,
-            'cell_phone': committee.cell_phone,
-            'address': committee.address,
-        }
-        # print('name', committee.name)
-        # print('cell_phone', committee.cell_phone)
-        # print('address', committee.address)
-        # print('resonable_name', committee.responsible_tmp.username)
-        if committee.responsible_tmp:
-            # print('resonable_name', committee.responsible_tmp.username)
-            body['resonable_name'] = committee.responsible_tmp.username
-        if committee.responsible:
-            # print('resonable_name', committee.responsible.username)
-            body['resonable_name'] = committee.responsible.username
-        committees.append(body)
-    return committees
+from smtplib import SMTPException
+from core.data_objects import (
+    get_cities_by_state, get_states, get_cities, get_user_roles_list, get_political_parties, get_scope_template)
+from dashboard.models import (Usuario, Estado, Municipio, Candidate, GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
+from dashboard.serializers import UsuarioSerializer
+from candidato.models import (
+    CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate, Committees, TempUser)
+from candidato.serializers import InvitesSerializer, CandidateSerializer
+from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
+from core.views.view_helper import (get_committes, avail_candidator_step)
 
 
 # It' the firstSetup, with updated template
@@ -114,10 +80,10 @@ def primeiro_setup(request):
 
         if profile_form.is_valid():
             user_roles_list_data = profile_form.cleaned_data.get('user_roles_list', None)
-            role_name = user_roles_list_data.role_name
             profile_form.save()
             profile_form = ProfileForm(instance=request.user.usuario)
-            if role_name == 'Candidato':
+            # if role_name == 'Candidato':
+            if avail_candidator_step(user_roles_list_data.id):
                 # start user is candidate
                 print('case candidator')
 
@@ -139,8 +105,6 @@ def primeiro_setup(request):
                     print('candidate_form is not valid')
                 # end user is candidate
             else:
-                # messages.warning(request, _('We are supporting only a Candidato. '
-                #                             'Please choose Candidato in Função na Campanha.'))
                 if candidate_form.is_valid():
                     campaign_email = candidate_form.cleaned_data['campaign_email']
                     candidate_request = CandidateRequests(

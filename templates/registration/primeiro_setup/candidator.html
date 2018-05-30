@@ -1,336 +1,338 @@
 {% load staticfiles %}
-<!-- /info alert -->
-<div class="alert bg-danger-400 alert-styled-left">
-  <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
-  </button>
-  <span class="text-semibold">Atenção!!!  </span> Insira os dados do <a href="#" class="alert-link">CANDIDATO</a>
-</div>
-
-<!-- Candidate Party, Nickname and Ballot-->
-<div class="row">
-  <div class="col-md-3">
-    <div class="form-group">
-      <label>Partido do <strong>Candidato</strong></label>
-      <select title="" class="form-control select" name="candidate_party">
-        <option selected></option>
-        {% for item in political_parties %}
-          {% if candidate_form.candidate_party.value == item.0 %}
-            <option value="{{ item.0 }}" selected>{{ item.0 }}</option>
-          {% else %}
-            <option value="{{ item.0 }}">{{ item.0 }}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
-    </div>
+<div id="candidator_tab">
+  <!-- /info alert -->
+  <div class="alert bg-danger-400 alert-styled-left">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+    </button>
+    <span class="text-semibold">Atenção!!!  </span> Insira os dados do <a href="#" class="alert-link">CANDIDATO</a>
   </div>
 
-  <div class="col-md-5">
-    <div class="form-group">
-      <label>Apelido Político do Candidato</label> <!-- Candidate nickname -->
-      <input title="" type="text" name="candidate_political_nickname" class="form-control"
-             value="{{ candidate_form.candidate_political_nickname.value|default_if_none:"" }}">
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="form-group">
-      <label>Pleito Eleitoral</label> <!-- Election Ballot -->
-      <input title="" type="text" name="canditate_Election_Ballot" class="form-control" placeholder="Eleições 2018"
-             value="{{ candidate_form.canditate_Election_Ballot.value|default_if_none:"" }}">
-    </div>
-  </div>
-</div>
-<!-- /Candidate Party, Nickname and Ballot-->
-
-<!-- desired position, dispute number, state and citie  -->
-<div class="row">
-
-  <div class="col-md-3">
-    <div class="form-group">
-      <label>Cargo Pretendido pelo Candidato</label> <!-- Candidate aspiration -->
-      <select title="" name="candidate_desired_position" class="select ">
-        <option></option>
-        <optgroup label="Cargo">
-          {% for item in CANDIDATE_POSITION_CHOICES %}
-            {% if candidate_form.candidate_desired_position.value == item.0 %}
-              <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+  <!-- Candidate Party, Nickname and Ballot-->
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Partido do <strong>Candidato</strong></label>
+        <select title="" class="form-control select" name="candidate_party">
+          <option selected></option>
+          {% for item in political_parties %}
+            {% if candidate_form.candidate_party.value == item.0 %}
+              <option value="{{ item.0 }}" selected>{{ item.0 }}</option>
             {% else %}
-              <option value="{{ item.0 }}">{{ item.1 }}</option>
+              <option value="{{ item.0 }}">{{ item.0 }}</option>
             {% endif %}
           {% endfor %}
-        </optgroup>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-2">
-    <div class="form-group">
-      <label>Nº Eleitoral</label> <!-- Candidate Dispute Number -->
-      <input title="" type="text" name="candidate_dispute_number" class="form-control"
-             value="{{ candidate_form.candidate_dispute_number.value|default_if_none:"" }}">
-    </div>
-  </div>
-
-  <div class="col-md-3">
-    <div class="form-group">
-      <label>Identificação</label> <!-- slug -->
-      <input title="" type="text" name="slug" class="form-control" placeholder="gerado automaticamente"
-             value="{{ candidate_form.slug.value|default_if_none:"" }}">
-    </div>
-  </div>
-
-  <div class="col-md-2">
-    <div class="form-group">
-      <label>UF</label> <!-- Candidate State -->
-      {{ candidate_form.candidate_state }}
-{#      <select title="" name="candidate_state" class="select" id="candidate_state">#}
-{#        <option></option>#}
-{#        {% for item in states %}#}
-{#          {% if candidate_form.candidate_state.value == item.0 %}#}
-{#            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
-{#          {% else %}#}
-{#            <option value="{{ item.0 }}">{{ item.1 }}</option>#}
-{#          {% endif %}#}
-{#        {% endfor %}#}
-{#      </select>#}
-    </div>
-  </div>
-
-  <div class="col-md-2">
-    <div class="form-group">
-      <label>Cidade</label> <!-- Candidate City -->
-      {{ candidate_form.candidate_city }}
-{#      <select title="" name="candidate_city" class="select" id="candidate_city">#}
-{#        <option></option>#}
-{#        {% for item in candidate_cities %}#}
-{#          {% if candidate_form.candidate_city.value == item.0|slugify %}#}
-{#            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
-{#          {% else %}#}
-{#            <option value="{{ item.0 }}">{{ item.1 }}</option>#}
-{#          {% endif %}#}
-{#        {% endfor %}#}
-{#      </select>#}
-    </div>
-  </div>
-</div>
-
-<!-- has position, current position, reelection, first election, resume -->
-<div class="row">
-  <div class="col-md-2">
-    <div class="form-group">
-      <label>Exerce Cargo?</label> <!-- holds political position -->
-      <select title="" name="holds_political_position" class="select" id="candidate__holds_political_position">
-        <option></option>
-        <optgroup label="Exerce Cargo Público?">
-          <option value="S" {% if candidate_form.holds_political_position.value == 'S' %} selected {% endif %}>Sim</option>
-          <option value="N" {% if candidate_form.holds_political_position.value == 'N' %} selected {% endif %}>Não</option>
-          <option value="O" {% if candidate_form.holds_political_position.value == 'O' %} selected {% endif %}>Já exerceu</option>
-        </optgroup>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-3">
-    <div class="form-group">
-      <label>Cargo que Exerce</label> <!-- Candidate current position -->
-      <select title="" name="candidate_current_position" class="form-control" id="candidate__candidate_current_position">
-        <option></option>
-        <optgroup label="Cargo">
-          {% for item in CANDIDATE_POSITION_CHOICES %}
-            {% if candidate_form.candidate_current_position.value == item.0 %}
-              <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
-            {% else %}
-              <option value="{{ item.0 }}">{{ item.1 }}</option>
-            {% endif %}
-          {% endfor %}
-        </optgroup>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-1">
-    <div class="form-group">
-      <label>Reeleição?</label> <!-- Reelection? -->
-      <select title="" name="reelection" class="select">
-        <option></option>
-        <option value="S" {% if candidate_form.reelection.value == 'S' %} selected {% endif %}>Sim</option>
-        <option value="N" {% if candidate_form.reelection.value == 'N' %} selected {% endif %}>Não</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-2">
-    <div class="form-group">
-      <label>Primeira Eleição?</label> <!-- First election? -->
-      <select title="" name="first_election" class="select">
-        <option></option>
-        <optgroup label="Primeira vez que concorre?">
-          <option value="S" {% if candidate_form.first_election.value == 'S' %} selected {% endif %}>Sim</option>
-          <option value="N" {% if candidate_form.first_election.value == 'N' %} selected {% endif %}>Não</option>
-        </optgroup>
-      </select>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="form-group">
-      <label>Currículo</label> <!-- Resume -->
-      <label class="form-control input-file" for="photo">Send File...</label>
-      <input title="" type="file" id="photo" name="resume" style="display: none" class="form-control">
-    </div>
-  </div>
-</div>
-
-<!-- candidate site, campaign email  -->
-<div class="row">
-  <div class="col-md-6">
-    <div class="form-group">
-      <label>Site do Candidato</label> <!-- Candidate Site -->
-      <input title="" type="text" name="candidate_site" class="form-control"
-             value="{{ candidate_form.candidate_site.value|default_if_none:"" }}"
-             placeholder="www.sitedocandidato.com.br">
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="form-group">
-      <label>Email da Campanha</label><!-- Campaign email -->
-      <input title="" type="email" name="campaign_email" class="form-control "
-             value="{{ candidate_form.campaign_email.value|default_if_none:"" }}"
-             placeholder="email@campanha.com.br">
-    </div>
-  </div>
-</div>
-
-<!-- Twitter, Facebook, Instagram  -->
-<div class="row">
-  <div class="col-md-4">
-    <div class="form-group">
-      <i class="icon-twitter"></i>
-      <label>Twitter</label> <!-- candidate Twitter -->
-      <div class="media no-margin-top">
-        <div class="media-body">
-          <input title="" type="text" name="twitter" class="form-control" id="social_twitter"
-             value="{{ candidate_form.twitter.value|default_if_none:"" }}">
-        </div>
-        <div class="media-right {% if candidate_form.twitter_url.value %} media-show {% endif %}" id="social_twitter__media">
-          <a href="{{ candidate_form.twitter_url.value|default_if_none:'#' }}" target="_blank">
-            <img src="{{ candidate_form.twitter_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
-                 onError="this.src='{% static '/images/avatar.png' %}'" alt="">
-          </a>
-        </div>
+        </select>
       </div>
-      <label id="social_twitter-error" class="validation-error-label media-right" for="social_twitter">Not Found</label>
-      <input type="hidden" name="twitter_img" value="{{ candidate_form.twitter_img.value|default_if_none:"" }}">
-      <input type="hidden" name="twitter_url" value="{{ candidate_form.twitter_url.value|default_if_none:"" }}">
+    </div>
+
+    <div class="col-md-5">
+      <div class="form-group">
+        <label>Apelido Político do Candidato</label> <!-- Candidate nickname -->
+        <input title="" type="text" name="candidate_political_nickname" class="form-control"
+               value="{{ candidate_form.candidate_political_nickname.value|default_if_none:"" }}">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Pleito Eleitoral</label> <!-- Election Ballot -->
+        <input title="" type="text" name="canditate_Election_Ballot" class="form-control" placeholder="Eleições 2018"
+               value="{{ candidate_form.canditate_Election_Ballot.value|default_if_none:"" }}">
+      </div>
+    </div>
+  </div>
+  <!-- /Candidate Party, Nickname and Ballot-->
+
+  <!-- desired position, dispute number, state and citie  -->
+  <div class="row">
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Cargo Pretendido pelo Candidato</label> <!-- Candidate aspiration -->
+        <select title="" name="candidate_desired_position" class="select ">
+          <option></option>
+          <optgroup label="Cargo">
+            {% for item in CANDIDATE_POSITION_CHOICES %}
+              {% if candidate_form.candidate_desired_position.value == item.0 %}
+                <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+              {% else %}
+                <option value="{{ item.0 }}">{{ item.1 }}</option>
+              {% endif %}
+            {% endfor %}
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Nº Eleitoral</label> <!-- Candidate Dispute Number -->
+        <input title="" type="text" name="candidate_dispute_number" class="form-control"
+               value="{{ candidate_form.candidate_dispute_number.value|default_if_none:"" }}">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Identificação</label> <!-- slug -->
+        <input title="" type="text" name="slug" class="form-control" placeholder="gerado automaticamente"
+               value="{{ candidate_form.slug.value|default_if_none:"" }}">
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>UF</label> <!-- Candidate State -->
+        {{ candidate_form.candidate_state }}
+  {#      <select title="" name="candidate_state" class="select" id="candidate_state">#}
+  {#        <option></option>#}
+  {#        {% for item in states %}#}
+  {#          {% if candidate_form.candidate_state.value == item.0 %}#}
+  {#            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
+  {#          {% else %}#}
+  {#            <option value="{{ item.0 }}">{{ item.1 }}</option>#}
+  {#          {% endif %}#}
+  {#        {% endfor %}#}
+  {#      </select>#}
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Cidade</label> <!-- Candidate City -->
+        {{ candidate_form.candidate_city }}
+  {#      <select title="" name="candidate_city" class="select" id="candidate_city">#}
+  {#        <option></option>#}
+  {#        {% for item in candidate_cities %}#}
+  {#          {% if candidate_form.candidate_city.value == item.0|slugify %}#}
+  {#            <option value="{{ item.0 }}" selected>{{ item.1 }}</option>#}
+  {#          {% else %}#}
+  {#            <option value="{{ item.0 }}">{{ item.1 }}</option>#}
+  {#          {% endif %}#}
+  {#        {% endfor %}#}
+  {#      </select>#}
+      </div>
     </div>
   </div>
 
-  <div class="col-md-4">
-    <div class="form-group">
-      <i class="icon-facebook2"></i>
-      <label>Facebook</label><!-- Candidate Facebook -->
-      <div class="media no-margin-top">
-        <div class="media-body">
-          <input title="" type="text" name="facebook" class="form-control" id="social_facebook"
-             value="{{ candidate_form.facebook.value|default_if_none:"" }}">
-        </div>
-        <div class="media-right {% if candidate_form.facebook_url.value %} media-show {% endif %}" id="social_facebook__media">
-          <a href="{{ candidate_form.facebook_url.value|default_if_none:"" }}" target="_blank">
-            <img src="{{ candidate_form.facebook_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
-                 alt="" onError="this.src='{% static '/images/avatar.png' %}'">
-          </a>
-        </div>
+  <!-- has position, current position, reelection, first election, resume -->
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Exerce Cargo?</label> <!-- holds political position -->
+        <select title="" name="holds_political_position" class="select" id="candidate__holds_political_position">
+          <option></option>
+          <optgroup label="Exerce Cargo Público?">
+            <option value="S" {% if candidate_form.holds_political_position.value == 'S' %} selected {% endif %}>Sim</option>
+            <option value="N" {% if candidate_form.holds_political_position.value == 'N' %} selected {% endif %}>Não</option>
+            <option value="O" {% if candidate_form.holds_political_position.value == 'O' %} selected {% endif %}>Já exerceu</option>
+          </optgroup>
+        </select>
       </div>
-      <label id="social_facebook-error" class="validation-error-label media-right" for="social_facebook">Not Found</label>
-      <input type="hidden" name="facebook_img" value="{{ candidate_form.facebook_img.value|default_if_none:"" }}">
-      <input type="hidden" name="facebook_url" value="{{ candidate_form.facebook_url.value|default_if_none:"" }}">
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Cargo que Exerce</label> <!-- Candidate current position -->
+        <select title="" name="candidate_current_position" class="form-control" id="candidate__candidate_current_position">
+          <option></option>
+          <optgroup label="Cargo">
+            {% for item in CANDIDATE_POSITION_CHOICES %}
+              {% if candidate_form.candidate_current_position.value == item.0 %}
+                <option value="{{ item.0 }}" selected>{{ item.1 }}</option>
+              {% else %}
+                <option value="{{ item.0 }}">{{ item.1 }}</option>
+              {% endif %}
+            {% endfor %}
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-1">
+      <div class="form-group">
+        <label>Reeleição?</label> <!-- Reelection? -->
+        <select title="" name="reelection" class="select">
+          <option></option>
+          <option value="S" {% if candidate_form.reelection.value == 'S' %} selected {% endif %}>Sim</option>
+          <option value="N" {% if candidate_form.reelection.value == 'N' %} selected {% endif %}>Não</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Primeira Eleição?</label> <!-- First election? -->
+        <select title="" name="first_election" class="select">
+          <option></option>
+          <optgroup label="Primeira vez que concorre?">
+            <option value="S" {% if candidate_form.first_election.value == 'S' %} selected {% endif %}>Sim</option>
+            <option value="N" {% if candidate_form.first_election.value == 'N' %} selected {% endif %}>Não</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Currículo</label> <!-- Resume -->
+        <label class="form-control input-file" for="photo">Send File...</label>
+        <input title="" type="file" id="photo" name="resume" style="display: none" class="form-control">
+      </div>
     </div>
   </div>
 
-  <div class="col-md-4">
-    <div class="form-group">
-      <i class="icon-instagram"></i>
-      <label>Instagram</label><!-- Candidate Instagram -->
-      <div class="media no-margin-top">
-        <div class="media-body">
-          <input title="" type="text" name="instagram" class="form-control" id="social_instagram"
-             value="{{ candidate_form.instagram.value|default_if_none:"" }}">
-        </div>
-        <div class="media-right {% if candidate_form.instagram_url.value %} media-show {% endif %}" id="social_instagram__media">
-          <a href="{{ candidate_form.instagram_url.value|default_if_none:"" }}" target="_blank">
-            <img src="{{ candidate_form.instagram_img.value|default_if_none:"" }}"
-                 style="width: 58px; height: 58px;" class="img-rounded"
-                 alt="" onError="this.src='{% static '/images/avatar.png' %}'">
-          </a>
-        </div>
+  <!-- candidate site, campaign email  -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Site do Candidato</label> <!-- Candidate Site -->
+        <input title="" type="text" name="candidate_site" class="form-control"
+               value="{{ candidate_form.candidate_site.value|default_if_none:"" }}"
+               placeholder="www.sitedocandidato.com.br">
       </div>
-      <label id="social_instagram-error" class="validation-error-label media-right" for="social_instagram">Not Found</label>
-      <input type="hidden" name="instagram_img" value="{{ candidate_form.instagram_img.value|default_if_none:"" }}">
-      <input type="hidden" name="instagram_url" value="{{ candidate_form.instagram_url.value|default_if_none:"" }}">
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Email da Campanha</label><!-- Campaign email -->
+        <input title="" type="email" name="campaign_email" class="form-control "
+               value="{{ candidate_form.campaign_email.value|default_if_none:"" }}"
+               placeholder="email@campanha.com.br">
+      </div>
     </div>
   </div>
+
+  <!-- Twitter, Facebook, Instagram  -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <i class="icon-twitter"></i>
+        <label>Twitter</label> <!-- candidate Twitter -->
+        <div class="media no-margin-top">
+          <div class="media-body">
+            <input title="" type="text" name="twitter" class="form-control" id="social_twitter"
+               value="{{ candidate_form.twitter.value|default_if_none:"" }}">
+          </div>
+          <div class="media-right {% if candidate_form.twitter_url.value %} media-show {% endif %}" id="social_twitter__media">
+            <a href="{{ candidate_form.twitter_url.value|default_if_none:'#' }}" target="_blank">
+              <img src="{{ candidate_form.twitter_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
+                   onError="this.src='{% static '/images/avatar.png' %}'" alt="">
+            </a>
+          </div>
+        </div>
+        <label id="social_twitter-error" class="validation-error-label media-right" for="social_twitter">Not Found</label>
+        <input type="hidden" name="twitter_img" value="{{ candidate_form.twitter_img.value|default_if_none:"" }}">
+        <input type="hidden" name="twitter_url" value="{{ candidate_form.twitter_url.value|default_if_none:"" }}">
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <i class="icon-facebook2"></i>
+        <label>Facebook</label><!-- Candidate Facebook -->
+        <div class="media no-margin-top">
+          <div class="media-body">
+            <input title="" type="text" name="facebook" class="form-control" id="social_facebook"
+               value="{{ candidate_form.facebook.value|default_if_none:"" }}">
+          </div>
+          <div class="media-right {% if candidate_form.facebook_url.value %} media-show {% endif %}" id="social_facebook__media">
+            <a href="{{ candidate_form.facebook_url.value|default_if_none:"" }}" target="_blank">
+              <img src="{{ candidate_form.facebook_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
+                   alt="" onError="this.src='{% static '/images/avatar.png' %}'">
+            </a>
+          </div>
+        </div>
+        <label id="social_facebook-error" class="validation-error-label media-right" for="social_facebook">Not Found</label>
+        <input type="hidden" name="facebook_img" value="{{ candidate_form.facebook_img.value|default_if_none:"" }}">
+        <input type="hidden" name="facebook_url" value="{{ candidate_form.facebook_url.value|default_if_none:"" }}">
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <i class="icon-instagram"></i>
+        <label>Instagram</label><!-- Candidate Instagram -->
+        <div class="media no-margin-top">
+          <div class="media-body">
+            <input title="" type="text" name="instagram" class="form-control" id="social_instagram"
+               value="{{ candidate_form.instagram.value|default_if_none:"" }}">
+          </div>
+          <div class="media-right {% if candidate_form.instagram_url.value %} media-show {% endif %}" id="social_instagram__media">
+            <a href="{{ candidate_form.instagram_url.value|default_if_none:"" }}" target="_blank">
+              <img src="{{ candidate_form.instagram_img.value|default_if_none:"" }}"
+                   style="width: 58px; height: 58px;" class="img-rounded"
+                   alt="" onError="this.src='{% static '/images/avatar.png' %}'">
+            </a>
+          </div>
+        </div>
+        <label id="social_instagram-error" class="validation-error-label media-right" for="social_instagram">Not Found</label>
+        <input type="hidden" name="instagram_img" value="{{ candidate_form.instagram_img.value|default_if_none:"" }}">
+        <input type="hidden" name="instagram_url" value="{{ candidate_form.instagram_url.value|default_if_none:"" }}">
+      </div>
+    </div>
+  </div>
+
+  <!-- Google+, Youtube, Blog  -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <i class="icon-google-plus"></i>
+        <label>Google+</label> <!-- candidate Google+ -->
+        <div class="media no-margin-top">
+          <div class="media-body">
+            <input title="" type="text" name="googlep" class="form-control" id="social_googleplus"
+               value="{{ candidate_form.google.value|default_if_none:"" }}">
+          </div>
+          <div class="media-right {% if candidate_form.googlep_url.value %} media-show {% endif %}" id="social_googleplus__media">
+            <a href="{{ candidate_form.googlep_url.value|default_if_none:"" }}" target="_blank">
+              <img src="{{ candidate_form.googlep_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
+                   alt="" onError="this.src='{% static '/images/avatar.png' %}'">
+            </a>
+          </div>
+        </div>
+        <label id="social_googlep-error" class="validation-error-label media-right" for="social_googleplus">Not Found</label>
+        <input type="hidden" name="googlep_img" value="{{ candidate_form.googlep_img.value|default_if_none:"" }}">
+        <input type="hidden" name="googlep_url" value="{{ candidate_form.googlep_url.value|default_if_none:"" }}">
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <i class="icon-youtube3"></i>
+        <label>Youtube</label><!-- Candidate Youtube -->
+        <div class="media no-margin-top">
+          <div class="media-body">
+            <input title="" type="text" name="youtube" class="form-control" id="social_youtube"
+               value="{{ candidate_form.youtube.value|default_if_none:"" }}">
+          </div>
+          <div class="media-right {% if candidate_form.youtube_url.value %} media-show {% endif %}" id="social_youtube__media">
+            <a href="{{ candidate_form.youtube_url.value|default_if_none:"" }}" target="_blank">
+              <img src="{{ candidate_form.youtube_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
+                   alt="" onError="this.src='{% static '/images/avatar.png' %}'">
+            </a>
+          </div>
+        </div>
+        <label id="social_youtube-error" class="validation-error-label media-right" for="social_youtube">Not Found</label>
+        <input type="hidden" name="youtube_img" value="{{ candidate_form.youtube_img.value|default_if_none:"" }}">
+        <input type="hidden" name="youtube_url" value="{{ candidate_form.youtube_url.value|default_if_none:"" }}">
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <i class="icon-blogger"></i>
+        <label>Blog/Rss</label><!-- Candidate Blog/Rss -->
+        <input title="" type="text" name="candidate_blog_rss" class="form-control"
+               value="{{ candidate_form.candidate_blog_rss.value|default_if_none:"" }}">
+      </div>
+    </div>
+  </div>
+  <style>
+    .media-right {
+      display: none;
+    }
+    .media-show {
+      display: table-cell!important;
+    }
+  </style>
 </div>
-
-<!-- Google+, Youtube, Blog  -->
-<div class="row">
-  <div class="col-md-4">
-    <div class="form-group">
-      <i class="icon-google-plus"></i>
-      <label>Google+</label> <!-- candidate Google+ -->
-      <div class="media no-margin-top">
-        <div class="media-body">
-          <input title="" type="text" name="googlep" class="form-control" id="social_googleplus"
-             value="{{ candidate_form.google.value|default_if_none:"" }}">
-        </div>
-        <div class="media-right {% if candidate_form.googlep_url.value %} media-show {% endif %}" id="social_googleplus__media">
-          <a href="{{ candidate_form.googlep_url.value|default_if_none:"" }}" target="_blank">
-            <img src="{{ candidate_form.googlep_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
-                 alt="" onError="this.src='{% static '/images/avatar.png' %}'">
-          </a>
-        </div>
-      </div>
-      <label id="social_googlep-error" class="validation-error-label media-right" for="social_googleplus">Not Found</label>
-      <input type="hidden" name="googlep_img" value="{{ candidate_form.googlep_img.value|default_if_none:"" }}">
-      <input type="hidden" name="googlep_url" value="{{ candidate_form.googlep_url.value|default_if_none:"" }}">
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="form-group">
-      <i class="icon-youtube3"></i>
-      <label>Youtube</label><!-- Candidate Youtube -->
-      <div class="media no-margin-top">
-        <div class="media-body">
-          <input title="" type="text" name="youtube" class="form-control" id="social_youtube"
-             value="{{ candidate_form.youtube.value|default_if_none:"" }}">
-        </div>
-        <div class="media-right {% if candidate_form.youtube_url.value %} media-show {% endif %}" id="social_youtube__media">
-          <a href="{{ candidate_form.youtube_url.value|default_if_none:"" }}" target="_blank">
-            <img src="{{ candidate_form.youtube_img.value|default_if_none:"" }}" style="width: 58px; height: 58px;" class="img-rounded"
-                 alt="" onError="this.src='{% static '/images/avatar.png' %}'">
-          </a>
-        </div>
-      </div>
-      <label id="social_youtube-error" class="validation-error-label media-right" for="social_youtube">Not Found</label>
-      <input type="hidden" name="youtube_img" value="{{ candidate_form.youtube_img.value|default_if_none:"" }}">
-      <input type="hidden" name="youtube_url" value="{{ candidate_form.youtube_url.value|default_if_none:"" }}">
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="form-group">
-      <i class="icon-blogger"></i>
-      <label>Blog/Rss</label><!-- Candidate Blog/Rss -->
-      <input title="" type="text" name="candidate_blog_rss" class="form-control"
-             value="{{ candidate_form.candidate_blog_rss.value|default_if_none:"" }}">
-    </div>
-  </div>
-</div>
-<style>
-  .media-right {
-    display: none;
-  }
-  .media-show {
-    display: table-cell!important;
-  }
-</style>
