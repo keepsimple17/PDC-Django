@@ -763,30 +763,6 @@ $(() => {
   };
 
   // Committee tab
-  $('#committee_telephone').keyup(phoneNumberMask);
-  $('#committee_landphone').keyup(landPhoneNumberMask);
-
-  function phoneNumberMask() {
-    var num = $(this).val().replace(/\D/g, '');
-    // console.log(num);
-    // console.log(num.length);
-    var telString = '';
-    if (num.length > 10) {
-      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 3) + ' ' + num.substring(3, 7) + '-' + num.substring(7, 11);
-    } else {
-      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 6) + '-' + num.substring(6, 10);
-    }
-    $(this).val(telString);
-  }
-
-  function landPhoneNumberMask() {
-    var num = $(this).val().replace(/\D/g, '');
-    // console.log(num);
-    // console.log(num.length);
-    var telString = `(${num.substring(0, 2)}) ${num.substring(2, 6)}-${num.substring(6, 10)}`;
-    $(this).val(telString);
-  }
-
   $('#committee_zip').change(function () {
     if ($(this).val() !== "") {
         $('#loading').show();
@@ -951,4 +927,29 @@ $(() => {
     `;
     $('#committee_body').append(tem);
   }
+
+  $('#committee_telephone').keyup(phoneNumberMask);
+  $('#committee_landphone').keyup(landPhoneNumberMask);
+
+  function phoneNumberMask() {
+    var num = $(this).val().replace(/\D/g, '');
+    // console.log(num);
+    // console.log(num.length);
+    var telString = '';
+    if (num.length > 10) {
+      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 3) + ' ' + num.substring(3, 7) + '-' + num.substring(7, 11);
+    } else {
+      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 6) + '-' + num.substring(6, 10);
+    }
+    $(this).val(telString);
+  }
+
+  function landPhoneNumberMask() {
+    var num = $(this).val().replace(/\D/g, '');
+    // console.log(num);
+    // console.log(num.length);
+    var telString = `(${num.substring(0, 2)}) ${num.substring(2, 6)}-${num.substring(6, 10)}`;
+    $(this).val(telString);
+  }
+
 });
