@@ -1,10 +1,10 @@
 # django
-from rest_framework import serializers
-from django.contrib.auth.models import User
-from django.contrib.auth import update_session_auth_hash
-# app
-from dashboard.models import (Usuario)
 from core.serializers import AccountSerializer
+# app
+from dashboard.models import Usuario
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.models import User
+from rest_framework import serializers
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
