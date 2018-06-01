@@ -158,13 +158,11 @@ class ProfileForm(forms.ModelForm):
     user_political_party = forms.CharField(max_length=50, required=False, help_text='Optional')
 
     user_roles_list = forms.ModelChoiceField(queryset=UserRolesList.objects.all(), required=False)
-    cep = forms.CharField(required=False, label=u"CEP",
-                          help_text="Format: XXXXX-XXX",
-                          widget=CEPInput(address={
-                                                 'state': 'id_estado',
-                                                 'city': 'id_cidade',
-                                                 'street': 'id_address',
-                                                 }))
+    cep = forms.CharField(
+        required=False, label=u"CEP", help_text="Format: XXXXX-XXX", widget=CEPInput(address={
+            'state': 'id_estado',
+            'city': 'id_cidade',
+            'street': 'id_address'}))
     user_profile_photo = forms.ImageField(required=False)
 
     class Meta:

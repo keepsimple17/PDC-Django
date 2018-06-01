@@ -1,9 +1,9 @@
 # django
-from rest_framework import serializers
-from django.contrib.auth.models import User
-from django.contrib.auth import update_session_auth_hash
 # app
-from candidato.models import (Invites, Proposal, ScopeList, Candidate, Keyword)
+from candidato.models import Candidate, Invites, Keyword, Proposal, ScopeList
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.models import User
+from rest_framework import serializers
 
 
 class InvitesSerializer(serializers.ModelSerializer):

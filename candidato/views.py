@@ -1,20 +1,17 @@
-from django.shortcuts import render, render_to_response
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from rest_framework import generics, permissions, filters, status, views, viewsets
-from candidato.models import (Invites, Proposal, Candidate, ScopeList, Keyword)
-from candidato.serializers import (InvitesSerializer, ProposalListSerializer, ScopeListSerializer, ProposalSerializer,
-                                   KeywordSerializer, KeywordListSerializer)
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 import json
 
-from django.contrib.auth import (
-    authenticate,
-    get_user_model,
-    login,
-    logout,
-)
+from candidato.models import Candidate, Invites, Keyword, Proposal, ScopeList
+from candidato.serializers import (
+    InvitesSerializer, KeywordListSerializer, KeywordSerializer, ProposalListSerializer, ProposalSerializer,
+    ScopeListSerializer)
+from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, render_to_response
+from rest_framework import (
+    filters, generics, permissions, status, views, viewsets)
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # It' the candidate environment setup
 
