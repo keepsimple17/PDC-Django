@@ -1,12 +1,13 @@
 from __future__ import unicode_literals
-from django.db import models
-from django.contrib.auth.models import User
+
 from candidato.models import Candidate
 from core.utils.model_utils import phone_validators
-from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+from django.db import models
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
-from django_extensions.db.models import (TitleSlugDescriptionModel, TimeStampedModel)
+from django_extensions.db.models import (TimeStampedModel,
+                                         TitleSlugDescriptionModel)
 
 event_hook_depth = 0
 

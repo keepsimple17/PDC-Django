@@ -1,41 +1,41 @@
-# import json
-# from itertools import chain
-
-from django.contrib import messages
-from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
-from django.utils import timezone
-import json
-import requests
 import datetime
-# from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.template.loader import render_to_string
-from django.utils.encoding import force_bytes, force_text
-from core.data_objects import (get_cities_by_state, get_states, get_cities, get_user_roles_list)
-from dashboard.models import (Usuario, Estado, Municipio, Candidate, POLITICAL_PARTY_CHOICES,
-                              GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
-from dashboard.serializers import UsuarioSerializer
-from candidato.models import CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests
-from candidato.serializers import InvitesSerializer
-from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
-from core.tokens import account_activation_token
-from django.conf import settings
-from django.contrib.auth import login, authenticate, logout
-from django.core.mail import EmailMessage
+import json
 from smtplib import SMTPException
-from django.contrib.auth.models import User
+
+import requests
+
+from candidato.models import (
+    CANDIDATE_POSITION_CHOICES, POLITICAL_PARTY_CHOICES, Candidate, CandidateRequests, Invites)
+from candidato.serializers import InvitesSerializer
+from core.data_objects import (
+    get_cities, get_cities_by_state, get_states, get_user_roles_list)
+from core.forms import CandidateForm, ProfileForm, UserForm, UserUpdateForm
+from core.tokens import account_activation_token
+from dashboard.models import (
+    ESTADO_CIVIL_CHOICES, GENDER_CHOICES, POLITICAL_PARTY_CHOICES, Candidate, Estado, Municipio, Usuario)
+from dashboard.serializers import UsuarioSerializer
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth import (
+    authenticate, login, logout, update_session_auth_hash)
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
-from candidato.models import Candidate, POLITICAL_PARTY_CHOICES
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
-from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render
 from django.template.defaulttags import register
-from rest_framework.response import Response
+from django.template.loader import render_to_string
+from django.utils import timezone
+from django.utils.encoding import force_bytes, force_text
+# from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 def index(request):

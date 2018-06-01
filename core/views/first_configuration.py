@@ -1,30 +1,32 @@
 import json
+from smtplib import SMTPException
+
+from candidato.models import (
+    CANDIDATE_POSITION_CHOICES, Candidate, CandidateRequests, Committees, Invites, TempUser, UserRoles)
+from candidato.serializers import CandidateSerializer, InvitesSerializer
+from core.data_objects import (
+    get_cities, get_cities_by_state, get_political_parties, get_scope_template, get_states, get_user_roles_list)
+from core.forms import CandidateForm, ProfileForm, UserForm, UserUpdateForm
+from core.views.view_helper import avail_candidator_step, get_committes
+from dashboard.models import (
+    ESTADO_CIVIL_CHOICES, GENDER_CHOICES, Candidate, Estado, Municipio, Usuario)
+from dashboard.serializers import UsuarioSerializer
 from django.contrib import messages
-from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.utils import timezone
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
+from django.utils import timezone
 from django.utils.encoding import force_bytes, force_text
-from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_protect
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.translation import ugettext_lazy as _
-from django.core.mail import EmailMessage
-from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_protect
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
-from smtplib import SMTPException
-from core.data_objects import (
-    get_cities_by_state, get_states, get_cities, get_user_roles_list, get_political_parties, get_scope_template)
-from dashboard.models import (Usuario, Estado, Municipio, Candidate, GENDER_CHOICES, ESTADO_CIVIL_CHOICES)
-from dashboard.serializers import UsuarioSerializer
-from candidato.models import (
-    CANDIDATE_POSITION_CHOICES, Invites, CandidateRequests, UserRoles, Candidate, Committees, TempUser)
-from candidato.serializers import InvitesSerializer, CandidateSerializer
-from core.forms import UserForm, ProfileForm, UserUpdateForm, CandidateForm
-from core.views.view_helper import (get_committes, avail_candidator_step)
+from rest_framework.response import Response
 
 
 # It' the firstSetup, with updated template

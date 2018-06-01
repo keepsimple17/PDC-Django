@@ -1,19 +1,17 @@
+import os
+from datetime import datetime
 from itertools import chain
+from time import gmtime, strftime
 
+from dashboard.models import Usuario
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from dashboard.models import Usuario
 from django.db import transaction
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render
 from django.utils.translation import ugettext_lazy as _
 
-import os
-from django.conf import settings
-
-from time import gmtime, strftime
-from datetime import datetime
 # Create your views here.
 
 
@@ -23,6 +21,7 @@ def index(request):
     # print(request.user)
     return render(request, 'index.html', {})
 
+
 @login_required
 def stats(request):
-    return  render(request,'stats/resumo.html')
+    return render(request, 'stats/resumo.html')
