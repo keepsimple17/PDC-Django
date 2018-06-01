@@ -454,7 +454,7 @@ $(() => {
 
   //// Team tab
   // user roles submit
-  // we can remove this function in the future
+  // can remove this function in the future
   function renderInvites(invites) {
     const inviteBody = $(".invites_body");
     let htmlString = '';
@@ -628,7 +628,7 @@ $(() => {
     inviteBody.append(newStr);
   }
 
-  // Campaign tab
+  //// Campaign tab
   // positive keywords
   $('.tokenfield-success').on('tokenfield:initialize', (e) => {
     $(e.currentTarget).parent().find('.token').addClass('bg-success');
@@ -761,6 +761,8 @@ $(() => {
         notify(`Occured any error ${_err}.`);
       });
   };
+
+  /* Location tab */
 
   // Committee tab
   $('#committee_zip').change(function () {
