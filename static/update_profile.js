@@ -10,6 +10,9 @@ $(function () {
     });
   });
 
+  $('#telephone').keyup(phoneNumberMask);
+  $('#landphone').keyup(landPhoneNumberMask);
+
   function updateCities(state, next) {
     var url = '/updateCities';
     // initialize an AJAX request
@@ -115,8 +118,6 @@ $(function () {
     $(this).val(telString);
   }
 
-  $('#telephone').keyup(phoneNumberMask);
-
   function landPhoneNumberMask() {
     var num = $(this).val().replace(/\D/g, '');
     if (num.length === 0) {
@@ -127,6 +128,4 @@ $(function () {
     var telString = `(${num.substring(0, 2)}) ${num.substring(2, 6)}-${num.substring(6, 10)}`;
     $(this).val(telString);
   }
-
-  $('#landphone').keyup(landPhoneNumberMask);
 });
