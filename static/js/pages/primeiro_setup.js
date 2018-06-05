@@ -34,14 +34,15 @@ $(() => {
     $('#team_member_role').removeClass('required');
   }
 
-  const checkCampaignAvaility = () => {
-    const campaignRole = $('select[name=user_roles_list]').val();
-    const isAvail = availCampaignIdList.includes(parseInt(campaignRole, 10));
-    if (isAvail) {
-      $('#campaign_tab').removeClass('disable_event');
-    } else {
-      $('#campaign_tab').addClass('disable_event');
-    }
+  const clearRequire = () => {
+    $('#team_member_name').removeClass('required');
+    $('#team_member_email').removeClass('required');
+    $('#team_member_role').removeClass('required');
+
+    $('#committee_res_name').removeClass('required');
+    $('#committee_res_email').removeClass('required');
+    $('#committee_name').removeClass('required');
+    $('#committee_zip').removeClass('required');
   };
 
   const checkCandidatorAvaility = () => {
@@ -54,15 +55,14 @@ $(() => {
     }
   };
 
-  const clearRequire = () => {
-    $('#team_member_name').removeClass('required');
-    $('#team_member_email').removeClass('required');
-    $('#team_member_role').removeClass('required');
-
-    $('#committee_res_name').removeClass('required');
-    $('#committee_res_email').removeClass('required');
-    $('#committee_name').removeClass('required');
-    $('#committee_zip').removeClass('required');
+  const checkCampaignAvaility = () => {
+    const campaignRole = $('select[name=user_roles_list]').val();
+    const isAvail = availCampaignIdList.includes(parseInt(campaignRole, 10));
+    if (isAvail) {
+      $('#campaign_tab').removeClass('disable_event');
+    } else {
+      $('#campaign_tab').addClass('disable_event');
+    }
   };
 
   // page and plugins init
