@@ -73,6 +73,31 @@ $(function () {
     });
   });
 
+  function phoneNumberMask() {
+    var num = $(this).val().replace(/\D/g, '');
+    // console.log(num);
+    // console.log(num.length);
+    var telString = '';
+    if (num.length > 10) {
+      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 3) + ' ' + num.substring(3, 7) + '-' + num.substring(7, 11);
+    } else {
+      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 6) + '-' + num.substring(6, 10);
+    }
+    $(this).val(telString);
+  }
+
+  function landPhoneNumberMask() {
+    var num = $(this).val().replace(/\D/g, '');
+    if (num.length === 0) {
+      $(this).val('');
+      return;
+    }
+    // console.log(num.length);
+    var telString = `(${num.substring(0, 2)}) ${num.substring(2, 6)}-${num.substring(6, 10)}`;
+    $(this).val(telString);
+  }
+
+  /*should check if this function is necessary really */
   function validateForm() {
     var state = document.forms["user-form"]["estado"].value;
     var city = document.forms["user-form"]["cidade"].value;
@@ -103,29 +128,5 @@ $(function () {
     } else {
       return true;
     }
-  }
-
-  function phoneNumberMask() {
-    var num = $(this).val().replace(/\D/g, '');
-    // console.log(num);
-    // console.log(num.length);
-    var telString = '';
-    if (num.length > 10) {
-      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 3) + ' ' + num.substring(3, 7) + '-' + num.substring(7, 11);
-    } else {
-      telString = '(' + num.substring(0, 2) + ') ' + num.substring(2, 6) + '-' + num.substring(6, 10);
-    }
-    $(this).val(telString);
-  }
-
-  function landPhoneNumberMask() {
-    var num = $(this).val().replace(/\D/g, '');
-    if (num.length === 0) {
-      $(this).val('');
-      return;
-    }
-    // console.log(num.length);
-    var telString = `(${num.substring(0, 2)}) ${num.substring(2, 6)}-${num.substring(6, 10)}`;
-    $(this).val(telString);
   }
 });
