@@ -162,7 +162,6 @@ $(function () {
     }, 2000);
   });
 
-
   // Light sidebar categories
   $('.sidebar-default .category-title [data-action=reload]').click(function (e) {
     e.preventDefault();
@@ -187,7 +186,6 @@ $(function () {
       $(block).unblock();
     }, 2000);
   });
-
 
   // Collapse elements
   // -------------------------
