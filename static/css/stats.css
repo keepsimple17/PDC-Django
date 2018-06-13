@@ -17,3 +17,16 @@
     margin: 0;
     padding: 0;
 }
+
+#Boxreport {
+    width: 100%;
+    height: 100%;
+    margin: 20px;
+}
+
+#imagem {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
