@@ -89,8 +89,8 @@
       <hr>
 
     <div class="row">
-        <div class="col-lg-6" style="height: 500px">
-
+        <!-- Funel Graph -->
+        <div class="col-md-6" style="height: 500px">
             <div id="Boxreport">
             <div class="panel panel-info panel-bordered">
                 <div class="panel-heading">
@@ -124,7 +124,43 @@
                 </div>
             </div>
             </div>
+        </div>
 
+        <div class="col-md-6" style="height: 500px">
+            <div id="Boxreport">
+                <div class="panel panel-info panel-bordered">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Funil Classificatório de Publicações</h3>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>
+                            </ul>
+                        </div>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                               <p>Índice de Relevância: <code> 87.4 % </code></p>
+                            </div>
+                            <div class="col-md-6">
+                               <p>Última Atualização: <code> Há 6 horas </code></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="imagem">
+                                <div class="col-md-6">
+                                    <img src="{% static 'images/stats/SocialNetworks.png' %}" width="250" alt="Social Networks">
+                                    <img src="{% static 'images/stats/funel.png' %}" width="350">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 
