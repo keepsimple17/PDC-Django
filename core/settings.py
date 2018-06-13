@@ -98,7 +98,7 @@ if os.environ.get('USER', '') == 'ubuntu':
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'pdc',
             'USER': 'paulrsilva',
-            'PASSWORD': '12341312iggb',
+            'PASSWORD': 'dwIypWEONnsvB',
             'HOST': 'pdc.clpcb1dffjfg.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
             'PORT': '3306',
         }
