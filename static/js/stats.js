@@ -346,7 +346,7 @@ $(function () {
   }
 });
 
-/* barchart */
+/* barchart, 3d funnel chart */
 $(function () {
 
   // Set paths
@@ -450,4 +450,36 @@ $(function () {
       };
     }
   );
+  const chart = AmCharts.makeChart("chartdiv", {
+    "type": "funnel",
+    "theme": "light",
+    "dataProvider": [{
+      "title": "Facebook",
+      "value": 200
+    }, {
+      "title": "Twitter",
+      "value": 170
+    }, {
+      "title": "Instagram",
+      "value": 130
+    }],
+    "balloon": {
+      "fixedPosition": true
+    },
+    "valueField": "value",
+    "titleField": "title",
+    "marginRight": 100,
+    "marginLeft": 20,
+    "startX": -100,
+    "depth3D": 70,
+    "angle": 80,
+    "outlineAlpha": 1,
+    "outlineColor": "#FFFFFF",
+    "outlineThickness": 5,
+    "labelPosition": "right",
+    "balloonText": "[[title]]: [[value]]n[[description]]",
+    "export": {
+      "enabled": true
+    }
+  });
 });

@@ -2,7 +2,7 @@
   width: 100%;
   height: 100%;
   margin: 0;
-  padding: 0;
+  /*padding: 0;*/
 }
 
 #gauge_container {
@@ -52,4 +52,8 @@
 }
 .social-group_item i {
   font-size: 30px;
+}
+#chartdiv {
+  width: 100%;
+  height: 500px;
 }
