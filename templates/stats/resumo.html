@@ -19,6 +19,11 @@
   {# tree map #}
   <script type="text/javascript" src="{% static 'js/plugins/anychart/anychart-treemap.min.js' %}"></script>
 
+  {# Limitless theme graphs #}
+  <script type="text/javascript" src="{% static 'js/plugins/visualization/echarts/echarts.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
+{#  <script type="text/javascript" src="{% static 'js/charts/echarts/bars_tornados.js' %}"></script>#}
+
   <script type="text/javascript" src="{% static 'js/stats.js' %}"></script>
   <!-- Page header -->
   <div class="page-header page-header-default">
@@ -92,8 +97,7 @@
     <hr>
 
     <div class="row">
-      <div class="col-lg-6" style="height: 500px">
-
+      <div class="col-md-6">
         <div id="Boxreport">
           <div class="panel panel-info panel-bordered">
             <div class="panel-heading">
@@ -105,7 +109,8 @@
                   <li><a data-action="close"></a></li>
                 </ul>
               </div>
-              <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
+              <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+            </div>
 
             <div class="panel-body">
               <div class="row">
@@ -116,24 +121,68 @@
                   <p>Última Atualização: <code> Há 6 horas </code></p>
                 </div>
               </div>
-              <div class="row social-group">
-                <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-facebook"></i></div>
-                <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-youtube3"></i></div>
-                <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-twitter"></i></div>
-                <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-google-plus"></i></div>
-                <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-instagram"></i></div>
-              </div>
+
               <div class="row">
-                <div id="imagem">
-                  <img src="{% static 'images/stats/funel_tem.png' %}" width="480">
+                <div class="col-md-6">
+                  <div class="row social-group">
+                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-facebook"></i>
+                    </div>
+                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-youtube3"></i>
+                    </div>
+                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-twitter"></i>
+                    </div>
+                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-google-plus"></i></div>
+                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-instagram"></i></div>
+                  </div>
+                  <div id="imagem">
+                    <img src="{% static 'images/stats/funel_tem.png' %}" width="300">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
+      <!-- Comparative candidates -->
+      <div class="col-md-6">
+        <div id="Boxreport">
+          <div class="panel panel-info panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title">Comparativo de Intençõe/Rejeição</h3>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                  <li><a data-action="close"></a></li>
+                </ul>
+              </div>
+              <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+            </div>
+
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Índice de Relevância: <code> 96.4 % </code></p>
+                </div>
+                <div class="col-md-6">
+                  <p>Última Atualização: <code> Há 7 horas </code></p>
+                </div>
+              </div>
+
+              <!-- Line bars -->
+              <div class="chart-container">
+								<div class="chart has-fixed-height" id="basic_bars"></div>
+							</div>
+              <!-- /line bars -->
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+      <!-- /Comparative candidates -->
+
 
     <div class="row">
       <div class="col-lg-6" style="height: 500px">
@@ -143,6 +192,7 @@
         <div id="svg_map_container"></div>
       </div>
     </div>
+
     <!-- /general overview -->
 
     <!-- Social Network Citations -->
@@ -151,6 +201,7 @@
         <div id="tree_map_container" style="height: 700px;"></div>
       </div>
     </div>
-    <!-- /social network citations -->
+    <!-- social network citations -->
   </div>
+
 {% endblock %}
