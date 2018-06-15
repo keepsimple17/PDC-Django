@@ -351,7 +351,7 @@ $(function () {
 
   // Set paths
   // ------------------------------
-
+  /* bar chart */
   require.config({
     paths: {
       echarts: '../../static/js/plugins/visualization/echarts'
@@ -450,6 +450,8 @@ $(function () {
       };
     }
   );
+
+  /* 3d funnel */
   const chart = AmCharts.makeChart("chartdiv", {
     "type": "funnel",
     "theme": "light",
