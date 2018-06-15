@@ -5,6 +5,7 @@ from rest_framework import serializers
 # app
 from core.serializers import AccountSerializer
 from elections.models import Ballot, Position, Dispute
+from candidato.serializers import CandidateSerializer
 from dashboard.models import Usuario
 
 
@@ -27,6 +28,8 @@ class PositionSerializer(serializers.ModelSerializer):
 
 
 class DisputeSerializer(serializers.ModelSerializer):
+    candidate = CandidateSerializer(many=False)
+    position = PositionSerializer(many=False)
 
     class Meta:
         model = Dispute
