@@ -19,6 +19,13 @@
   {# tree map #}
   <script type="text/javascript" src="{% static 'js/plugins/anychart/anychart-treemap.min.js' %}"></script>
 
+  {# amchart #}
+  <script type="text/javascript" src="{% static 'js/charts/amcharts/amcharts.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/charts/amcharts/funnel.js' %}"></script>
+{#  <script type="text/javascript" src="{% static 'js/charts/amcharts/export.min.js' %}"></script>#}
+  <link rel="stylesheet" href="{% static 'js/charts/amcharts/export.css' %}" type="text/css" media="all" />
+  <script type="text/javascript" src="{% static 'js/charts/amcharts/light.js' %}"></script>
+
   {# Limitless theme graphs #}
   <script type="text/javascript" src="{% static 'js/plugins/visualization/echarts/echarts.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
@@ -123,7 +130,7 @@
               </div>
 
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="row social-group">
                     <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-facebook"></i>
                     </div>
@@ -135,7 +142,8 @@
                     <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-instagram"></i></div>
                   </div>
                   <div id="imagem">
-                    <img src="{% static 'images/stats/funel_tem.png' %}" width="300">
+{#                    <img src="{% static 'images/stats/funel_tem.png' %}" width="300">#}
+                    <div id="chartdiv"></div>
                   </div>
                 </div>
               </div>
