@@ -14,10 +14,14 @@ from django.utils.translation import ugettext_lazy as _
 
 # Create your views here.
 
-candidato = {'candidato': "Beto Richa", 'candidato_UF': 'PR',
-             'candidato_city': 'Curitiba', 'candidato_intended_position': "Senador",
-             'ballot': "Eleições 2018"
-             }
+candidato = {
+    'candidato': "Beto Richa",
+    'candidato_UF': 'PR',
+    'candidato_city': 'Curitiba',
+    'candidato_intended_position': "Senador",
+    'ballot': "Eleições 2018"
+}
+
 
 @login_required
 def index(request):
