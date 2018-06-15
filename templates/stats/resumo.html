@@ -19,6 +19,12 @@
   {# tree map #}
   <script type="text/javascript" src="{% static 'js/plugins/anychart/anychart-treemap.min.js' %}"></script>
 
+  {# Limitless theme graphs #}
+  <script type="text/javascript" src="{% static 'js/plugins/visualization/echarts/echarts.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/core/app.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/charts/echarts/bars_tornados.js' %}"></script>
+
+
   <script type="text/javascript" src="{% static 'js/stats.js' %}"></script>
   <!-- Page header -->
   <div class="page-header page-header-default">
@@ -68,102 +74,140 @@
   </div>
   <!-- /page header -->
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="alert alert-danger alert-styled-left alert-bordered">
-                                                <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
-                                                <span class="text-semibold">MODO DE DEMONSTRAÇÃO - </span> Estatísticas com apenas 40% de Precisão. <a href="#" class="alert-link">Aumente agora para 99.7%</a>.
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="alert alert-danger alert-styled-left alert-bordered">
+        <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+        </button>
+        <span class="text-semibold">MODO DE DEMONSTRAÇÃO - </span> Estatísticas com apenas 40% de Precisão. <a href="#"
+                                                                                                               class="alert-link">Aumente
+        agora para 99.7%</a>.
+      </div>
     </div>
+  </div>
   <!-- Content Area -->
   <div class="content">
 
     <!-- General Overview -->
-     <div class="row">
-         <div class="col-lg-12">
-             <h1 align="center">Dados de Avaliação para {{ candidato_intended_position }} - {{ candidato_UF }} </h1>
-             <h4 align="center">Dados de Pesquisa para <strong>{{ candidato }}</strong> | Pleito: {{ ballot }} </h4>
-         </div>
-     </div>
-      <hr>
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 align="center">Dados de Avaliação para {{ candidato_intended_position }} - {{ candidato_UF }} </h1>
+        <h4 align="center">Dados de Pesquisa para <strong>{{ candidato }}</strong> | Pleito: {{ ballot }} </h4>
+      </div>
+    </div>
+    <hr>
 
     <div class="row">
-        <!-- Funel Graph -->
-        <div class="col-md-6" style="height: 500px">
-            <div id="Boxreport">
-            <div class="panel panel-info panel-bordered">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Funil Classificatório de Publicações</h3>
-                    <div class="heading-elements">
-                        <ul class="icons-list">
-                            <li><a data-action="collapse"></a></li>
-                            <li><a data-action="reload"></a></li>
-                            <li><a data-action="close"></a></li>
-                        </ul>
-                    </div>
-                <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
+      <div class="col-md-5" style="height: 500px">
+        <div id="Boxreport">
+          <div class="panel panel-info panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title">Funil Classificatório de Publicações</h3>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                  <li><a data-action="close"></a></li>
+                </ul>
+              </div>
+              <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
 
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                           <p>Índice de Relevância: <code> 87.4 % </code></p>
-                        </div>
-                        <div class="col-md-6">
-                           <p>Última Atualização: <code> Há 6 horas </code></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div id="imagem">
-                            <div class="col-md-6">
-                                <img src="{% static 'images/stats/SocialNetworks.png' %}" width="250" alt="Social Networks">
-                                <img src="{% static 'images/stats/funel.png' %}" width="350">
-                            </div>
-                        </div>
-                    </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Índice de Relevância: <code> 87.4 % </code></p>
                 </div>
-            </div>
-            </div>
-        </div>
-
-        <div class="col-md-6" style="height: 500px">
-            <div id="Boxreport">
-                <div class="panel panel-info panel-bordered">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Funil Classificatório de Publicações</h3>
-                        <div class="heading-elements">
-                            <ul class="icons-list">
-                                <li><a data-action="collapse"></a></li>
-                                <li><a data-action="reload"></a></li>
-                                <li><a data-action="close"></a></li>
-                            </ul>
-                        </div>
-                    <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
-
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                               <p>Índice de Relevância: <code> 87.4 % </code></p>
-                            </div>
-                            <div class="col-md-6">
-                               <p>Última Atualização: <code> Há 6 horas </code></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div id="imagem">
-                                <div class="col-md-6">
-                                    <img src="{% static 'images/stats/SocialNetworks.png' %}" width="250" alt="Social Networks">
-                                    <img src="{% static 'images/stats/funel.png' %}" width="350">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-6">
+                  <p>Última Atualização: <code> Há 6 horas </code></p>
                 </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="row social-group">
+                        <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-facebook"></i></div>
+                        <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-youtube3"></i></div>
+                        <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-twitter"></i></div>
+                        <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-google-plus"></i></div>
+                        <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-instagram"></i></div>
+                      </div>
+                      <div id="imagem">
+                        <img src="{% static 'images/stats/funel_tem.png' %}" width="480">
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Comparative candidates -->
+      <div class="col-md-5" style="height: 500px">
+          <div id="Boxreport">
+          <div class="panel panel-info panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title">Comparativo de Intençõe/Rejeição</h3>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                  <li><a data-action="close"></a></li>
+                </ul>
+              </div>
+              <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+            </div>
+
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Índice de Relevância: <code> 96.4 % </code></p>
+                </div>
+                <div class="col-md-6">
+                  <p>Última Atualização: <code> Há 7 horas </code></p>
+                </div>
+              </div>
+
+              <!-- Line bars -->
+                <div class="chart-container">
+                    <div class="chart has-fixed-height" id="basic_bars" _echarts_instance_="1529011924548"
+                         style="-webkit-user-select: none; background-color: rgba(0, 0, 0, 0); cursor: default;">
+                        <div style="position: relative; overflow: hidden; width: 1174px; height: 400px;">
+                            <div data-zr-dom-id="bg" class="zr-element" style="position: absolute; left: 0px;
+                             top: 0px; width: 1706px; height: 400px; -webkit-user-select: none;">
+
+                            </div><canvas width="1174" height="400" data-zr-dom-id="0" class="zr-element"
+                                          style="position: absolute; left: 0px; top: 0px; width: 1174px;
+                                          height: 400px; -webkit-user-select: none;">
+
+                        </canvas><canvas width="1174" height="400" data-zr-dom-id="1" class="zr-element"
+                                         style="position: absolute; left: 0px; top: 0px; width: 1174px; height: 400px;
+                                          -webkit-user-select: none;"></canvas><canvas width="1174" height="400"
+                                                                                       data-zr-dom-id="_zrender_hover_"
+                                                                                       class="zr-element"
+                                                                                       style="position: absolute;
+                                                                                       left: 0px; top: 0px; width: 1174px;
+                                                                                       height: 400px; -webkit-user-select: none;
+                                                                                       "></canvas>
+                            <div class="echarts-tooltip zr-element" style="position: absolute; display: none;
+                            border: 0px solid rgb(51, 51, 51); white-space: nowrap; transition: left 0.4s, top 0.4s;
+                            background-color: rgba(0, 0, 0, 0.8); border-top-left-radius: 4px; border-top-right-radius: 4px;
+                            border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; color: rgb(255, 255, 255);
+                            font-family: Roboto, sans-serif; padding: 8px 12px; left: 240px; top: 215.5px;">
+                                Spain<br>Year 2013 : 129,034<br>Year 2014 : 131,000</div></div></div>
+                </div>
+              <!-- /line bars -->
+
+             </div>
         </div>
+      </div>
     </div>
+    <!-- /Comparative candidates -->
 
+    <!--
     <div class="row">
       <div class="col-lg-6" style="height: 500px">
         <div id="gauge_container"></div>
@@ -172,9 +216,10 @@
         <div id="svg_map_container"></div>
       </div>
     </div>
+    -->
     <!-- /general overview -->
 
-    <!-- Social Network Citations -->
+    <!-- Social Network Citations
     <div class="row">
       <div class="col-lg-12">
         <div id="tree_map_container" style="height: 700px;"></div>
@@ -182,4 +227,5 @@
     </div>
     <!-- /social network citations -->
   </div>
+
 {% endblock %}
