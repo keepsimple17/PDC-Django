@@ -351,13 +351,12 @@ $(function () {
 
   // Set paths
   // ------------------------------
-
+  /* bar chart */
   require.config({
     paths: {
       echarts: '../../static/js/plugins/visualization/echarts'
     }
   });
-
 
   // Configuration
   // ------------------------------
@@ -370,9 +369,18 @@ $(function () {
       'echarts/chart/line'
     ],
 
-
     // Charts setup
     function (ec, limitless) {
+
+      axios.get('/elections/dispute/', {
+        params: {},
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
       const basic_bars = ec.init(document.getElementById('basic_bars'), limitless);
 
@@ -450,6 +458,8 @@ $(function () {
       };
     }
   );
+
+  /* 3d funnel */
   const chart = AmCharts.makeChart("chartdiv", {
     "type": "funnel",
     "theme": "light",

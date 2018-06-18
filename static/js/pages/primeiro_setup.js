@@ -515,6 +515,7 @@ $(() => {
       }
 
       console.log(permissionArray);
+
       axios.post('/account/add_team_member', {
         team_member_name,
         team_member_email,
