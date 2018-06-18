@@ -738,7 +738,7 @@ $(function () {
     },
     "valueField": "value",
     "titleField": "title",
-    "marginRight": 100,
+    "marginRight": 130,
     "marginLeft": 20,
     "startX": -100,
     "depth3D": 70,
