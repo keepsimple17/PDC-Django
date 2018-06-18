@@ -406,7 +406,7 @@ $(function () {
 
         // Add legend
         legend: {
-          data: ['Year 2013', 'Year 2014']
+          data: ['Taxa de Rejeição', 'Intenções de Voto']
         },
 
         // Enable drag recalculate
@@ -421,30 +421,31 @@ $(function () {
         // Vertical axis
         yAxis: [{
           type: 'category',
-          data: ['Germany', 'France', 'Spain', 'Netherlands', 'Belgium']
+          data: ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
+          'H. Meirelles', 'J. Bolsonaro', 'J. Almoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
         }],
 
         // Add series
         series: [
           {
-            name: 'Year 2013',
+            name: 'Taxa de Rejeição',
             type: 'bar',
             itemStyle: {
               normal: {
                 color: '#EF5350'
               }
             },
-            data: [38203, 73489, 129034, 204970, 331744]
+            data: [1 ,0.2, 14, 0.1, 0.7, 0.02, 4, 20.5, 0.2, 39.5, 16, 0, 0 ]
           },
           {
-            name: 'Year 2014',
+            name: 'Intenções de Voto',
             type: 'bar',
             itemStyle: {
               normal: {
                 color: '#66BB6A'
               }
             },
-            data: [39325, 83438, 131000, 221594, 334141]
+            data: [0.8 , 3, 12, 0.7, 0.9, 0.8, 1.1, 24.6, 1.7, 19, 5, 19, 12 ]
           }
         ]
       };
@@ -723,14 +724,14 @@ $(function () {
     "type": "funnel",
     "theme": "light",
     "dataProvider": [{
-      "title": "Facebook",
-      "value": 200
+      "title": "Public",
+      "value": 3678909
     }, {
-      "title": "Twitter",
-      "value": 170
+      "title": "Pessoas",
+      "value": 2345012
     }, {
-      "title": "Instagram",
-      "value": 130
+      "title": "Classificadas",
+      "value": 987765
     }],
     "balloon": {
       "fixedPosition": true
