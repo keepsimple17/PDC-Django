@@ -296,7 +296,6 @@ $(function () {
 
   // Left sidebar
   if ($('.navigation-main > .navigation-header > i').length > 0) {
-    console.log('test--->', $('.navigation-main > .navigation-header > i'));
     $('.navigation-main > .navigation-header > i').tooltip({
       placement: 'right',
       container: 'body'
@@ -332,7 +331,6 @@ $(function () {
       $(this).parent('li').not('.disabled').siblings(':has(.has-ul)').removeClass('active').children('ul').slideUp(200);
     }
   });
-
 
   // ========================================
   //

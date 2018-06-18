@@ -376,10 +376,10 @@ $(function () {
         params: {},
       })
         .then((res) => {
-          console.log(res);
+          console.log('dispute', res.data);
         })
         .catch((err) => {
-          console.log(err);
+          console.error('dispute', err);
         });
 
       const basic_bars = ec.init(document.getElementById('basic_bars'), limitless);

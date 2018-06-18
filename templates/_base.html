@@ -10,7 +10,7 @@
   <title>SCOPO - Sistema de Controle Político</title>
 
   <!-- Global stylesheets -->
-{#  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">#}
+  {#  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">#}
   <link href="{% static 'css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'css/core.css' %}" rel="stylesheet" type="text/css">
@@ -181,8 +181,9 @@
 
                 <li class="media">
                   <div class="media-left">
-                    <a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i
-                        class="icon-git-commit"></i></a>
+                    <a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm">
+                      <i class="icon-git-commit"></i>
+                    </a>
                   </div>
 
                   <div class="media-body">
@@ -234,23 +235,39 @@
               </div>
             </div>
           </li>
+          <li>
+            {% if request.user.is_staff %}
+              <p class="navbar-text"><span class="label bg-success">Online</span></p>
+            {% else %}
+              {#  <p class="navbar-text"><span class="label bg-warning">Waiting for Authorization</span></p>#}
+            {% endif %}
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle candidate-toggle" data-toggle="dropdown">
+              Paulino
+              <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu candidate-menu">
+              <li><a class="english">Paulino</a></li>
+              {% for item in usuario.candidates %}
+                <li><a class="english">item</a></li>
+              {% endfor %}
+            </ul>
+          </li>
         {% endif %}
       </ul>
 
-      {% if request.user.is_staff %}
-        <p class="navbar-text"><span class="label bg-success">Online</span></p>
-      {% else %}
-        {#			<p class="navbar-text"><span class="label bg-warning">Waiting for Authorization</span></p>#}
-      {% endif %}
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown language-switch">
-          <a class="dropdown-toggle" data-toggle="dropdown">
+          <a class="dropdown-toggle language-toggle" data-toggle="dropdown">
             <img src="{% static 'images/flags/br.png' %}" class="position-left" alt="">
             Português
             <span class="caret"></span>
           </a>
 
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu language-menu">
+            <li><a class="english"><img src="{% static 'images/flags/br.png' %}" alt=""> Português</a></li>
             <li><a class="english"><img src="{% static 'images/flags/gb.png' %}" alt=""> Inglês</a></li>
           </ul>
         </li>

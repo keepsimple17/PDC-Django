@@ -12,6 +12,7 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext_lazy as _
 
+from dashboard.serializers import UsuarioSerializer
 
 candidato = {
     'candidato': "Beto Richa",
@@ -24,9 +25,16 @@ candidato = {
 
 @login_required
 def index(request):
-    # excel_list = []
-    # print(request.user)
-    return render(request, 'index.html', candidato)
+    usuario = UsuarioSerializer(request.user.usuario).data
+
+    return render(request, 'index.html', {
+        'usuario': usuario,
+        'candidato': "Beto Richa",
+        'candidato_UF': 'PR',
+        'candidato_city': 'Curitiba',
+        'candidato_intended_position': "Senador",
+        'ballot': "Eleições 2018",
+    })
 
 
 @login_required
