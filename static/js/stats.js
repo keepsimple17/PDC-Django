@@ -366,14 +366,15 @@ $(function () {
       'echarts',
       'echarts/theme/limitless',
       'echarts/chart/bar',
-      'echarts/chart/line'
+      'echarts/chart/line',
+      'echarts/chart/pie'
     ],
 
     // Charts setup
     function (ec, limitless) {
 
       axios.get('/elections/dispute/', {
-        params: {},
+        params: {}
       })
         .then((res) => {
           console.log('dispute', res.data);
@@ -383,6 +384,7 @@ $(function () {
         });
 
       const basic_bars = ec.init(document.getElementById('basic_bars'), limitless);
+      const pie_timeline = ec.init(document.getElementById('pie_timeline'), limitless);
 
       const basic_bars_options = {
 
@@ -404,7 +406,7 @@ $(function () {
 
         // Add legend
         legend: {
-          data: ['Year 2013', 'Year 2014']
+          data: ['Taxa de Rejeição', 'Intenções de Voto']
         },
 
         // Enable drag recalculate
@@ -419,41 +421,299 @@ $(function () {
         // Vertical axis
         yAxis: [{
           type: 'category',
-          data: ['Germany', 'France', 'Spain', 'Netherlands', 'Belgium']
+          data: ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
+          'H. Meirelles', 'J. Bolsonaro', 'J. Almoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
         }],
 
         // Add series
         series: [
           {
-            name: 'Year 2013',
+            name: 'Taxa de Rejeição',
             type: 'bar',
             itemStyle: {
               normal: {
                 color: '#EF5350'
               }
             },
-            data: [38203, 73489, 129034, 204970, 331744]
+            data: [1 ,0.2, 14, 0.1, 0.7, 0.02, 4, 20.5, 0.2, 39.5, 16, 0, 0 ]
           },
           {
-            name: 'Year 2014',
+            name: 'Intenções de Voto',
             type: 'bar',
             itemStyle: {
               normal: {
                 color: '#66BB6A'
               }
             },
-            data: [39325, 83438, 131000, 221594, 334141]
+            data: [0.8 , 3, 12, 0.7, 0.9, 0.8, 1.1, 24.6, 1.7, 19, 5, 19, 12 ]
+          }
+        ]
+      };
+
+      var idx = 1;
+      pie_timeline_options = {
+
+        // Add timeline
+        timeline: {
+          x: 10,
+          x2: 10,
+          data: [
+            '2014-01-01', '2014-02-01', '2014-03-01', '2014-04-01', '2014-05-01',
+            {name: '2014-06-01', symbol: 'emptyStar2', symbolSize: 8},
+            '2014-07-01', '2014-08-01', '2014-09-01', '2014-10-01', '2014-11-01',
+            {name: '2014-12-01', symbol: 'star2', symbolSize: 8}
+          ],
+          label: {
+            formatter: function (s) {
+              return s.slice(0, 7);
+            }
+          },
+          autoPlay: true,
+          playInterval: 3000
+        },
+
+        // Set options
+        options: [
+          {
+
+            // Add title
+            title: {
+              text: 'Browser statistics',
+              subtext: 'Based on shared research',
+              x: 'center'
+            },
+
+            // Add tooltip
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+
+            // Add legend
+            legend: {
+              x: 'left',
+              orient: 'vertical',
+              data: ['Chrome', 'Firefox', 'Safari', 'IE9+', 'IE8-']
+            },
+
+            // Display toolbox
+            toolbox: {
+              show: true,
+              orient: 'vertical',
+              feature: {
+                mark: {
+                  show: true,
+                  title: {
+                    mark: 'Markline switch',
+                    markUndo: 'Undo markline',
+                    markClear: 'Clear markline'
+                  }
+                },
+                dataView: {
+                  show: true,
+                  readOnly: false,
+                  title: 'View data',
+                  lang: ['View chart data', 'Close', 'Update']
+                },
+                magicType: {
+                  show: true,
+                  title: {
+                    pie: 'Switch to pies',
+                    funnel: 'Switch to funnel'
+                  },
+                  type: ['pie', 'funnel'],
+                  option: {
+                    funnel: {
+                      x: '25%',
+                      width: '50%',
+                      funnelAlign: 'left',
+                      max: 1700
+                    }
+                  }
+                },
+                restore: {
+                  show: true,
+                  title: 'Restore'
+                },
+                saveAsImage: {
+                  show: true,
+                  title: 'Same as image',
+                  lang: ['Save']
+                }
+              }
+            },
+
+            // Add series
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              center: ['50%', '50%'],
+              radius: '60%',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
+          },
+          {
+            series: [{
+              name: 'Browser',
+              type: 'pie',
+              data: [
+                {value: idx * 128 + 80, name: 'Chrome'},
+                {value: idx * 64 + 160, name: 'Firefox'},
+                {value: idx * 32 + 320, name: 'Safari'},
+                {value: idx * 16 + 640, name: 'IE9+'},
+                {value: idx++ * 8 + 1280, name: 'IE8-'}
+              ]
+            }]
           }
         ]
       };
 
       basic_bars.setOption(basic_bars_options);
+      pie_timeline.setOption(pie_timeline_options);
       // Resize charts
       // ------------------------------
 
       window.onresize = function () {
         setTimeout(function () {
           basic_bars.resize();
+          pie_timeline.resize();
         }, 200);
       };
     }
@@ -464,14 +724,14 @@ $(function () {
     "type": "funnel",
     "theme": "light",
     "dataProvider": [{
-      "title": "Facebook",
-      "value": 200
+      "title": "Public",
+      "value": 3678909
     }, {
-      "title": "Twitter",
-      "value": 170
+      "title": "Pessoas",
+      "value": 2345012
     }, {
-      "title": "Instagram",
-      "value": 130
+      "title": "Classificadas",
+      "value": 987765
     }],
     "balloon": {
       "fixedPosition": true
