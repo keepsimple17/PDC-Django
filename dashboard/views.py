@@ -19,7 +19,15 @@ candidato = {
     'candidato_UF': 'BR',
     'candidato_city': 'Rio de Janeiro',
     'candidato_intended_position': "Presidente",
-    'ballot': "Eleições 2018"
+    'ballot': "Eleições 2018",
+    'tags': [
+        {'tag':'Partido Novo', 'size':10},
+        {'tag':'Impostos', 'size':7},
+        {'tag':'Renovação', 'size':5},
+        {'tag':'Eleições', 'size':1},
+        {'tag':'Fundo Partidário', 'size':4},
+        {'tag':'Lava-Jato', 'size':3},
+    ]
 }
 
 
