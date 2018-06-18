@@ -15,10 +15,10 @@ from django.utils.translation import ugettext_lazy as _
 from dashboard.serializers import UsuarioSerializer
 
 candidato = {
-    'candidato': "Beto Richa",
-    'candidato_UF': 'PR',
-    'candidato_city': 'Curitiba',
-    'candidato_intended_position': "Senador",
+    'candidato': "João Amoedo",
+    'candidato_UF': 'BR',
+    'candidato_city': 'Rio de Janeiro',
+    'candidato_intended_position': "Presidente",
     'ballot': "Eleições 2018"
 }
 
@@ -27,15 +27,7 @@ candidato = {
 def index(request):
     usuario = UsuarioSerializer(request.user.usuario).data
 
-    return render(request, 'index.html', {
-        'usuario': usuario,
-        'candidato': "Beto Richa",
-        'candidato_UF': 'PR',
-        'candidato_city': 'Curitiba',
-        'candidato_intended_position': "Senador",
-        'ballot': "Eleições 2018",
-    })
-
+    return render(request, 'index.html', candidato)
 
 @login_required
 def stats(request):
