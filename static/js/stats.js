@@ -358,7 +358,6 @@ $(function () {
     }
   });
 
-
   // Configuration
   // ------------------------------
 
@@ -370,6 +369,15 @@ $(function () {
       'echarts/chart/line'
     ],
 
+    axios.get('/elections/', {
+      params: {},
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // Charts setup
     function (ec, limitless) {

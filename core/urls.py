@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
     url(r'candidato/', include('candidato.urls', namespace='candidato')),
+    url(r'^elections/', include('elections.urls', namespace='elections')),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate'),
     url(r'^cep/', include('cep.urls')),
@@ -61,7 +62,6 @@ urlpatterns = [
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
-    url(r'^elections/', include('elections.urls', namespace='elections')),
     url(r'^teste404/', views.teste404),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
