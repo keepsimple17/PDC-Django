@@ -369,18 +369,18 @@ $(function () {
       'echarts/chart/line'
     ],
 
-    axios.get('/elections/', {
-      params: {},
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
     // Charts setup
     function (ec, limitless) {
+
+      axios.get('/elections/dispute/', {
+        params: {},
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
       const basic_bars = ec.init(document.getElementById('basic_bars'), limitless);
 
