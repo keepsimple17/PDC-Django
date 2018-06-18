@@ -458,10 +458,10 @@ $(function () {
           x: 10,
           x2: 10,
           data: [
-            '2014-01-01', '2014-02-01', '2014-03-01', '2014-04-01', '2014-05-01',
-            {name: '2014-06-01', symbol: 'emptyStar2', symbolSize: 8},
-            '2014-07-01', '2014-08-01', '2014-09-01', '2014-10-01', '2014-11-01',
-            {name: '2014-12-01', symbol: 'star2', symbolSize: 8}
+            '2018-01-01', '2018-01-15', '2018-02-01', '2018-02-15', '2018-03-01',
+            {name: '2018-03-15', symbol: 'emptyStar2', symbolSize: 8},
+            '2018-04-01', '2018-04-15', '2018-05-01', '2018-05-15', '2018-06-01',
+            {name: '2018-06-18', symbol: 'star2', symbolSize: 8}
           ],
           label: {
             formatter: function (s) {
@@ -478,8 +478,8 @@ $(function () {
 
             // Add title
             title: {
-              text: 'Browser statistics',
-              subtext: 'Based on shared research',
+              text: 'Estatística de Citações',
+              subtext: 'Baseada em temas relacionados ao Candidato',
               x: 'center'
             },
 
@@ -493,7 +493,7 @@ $(function () {
             legend: {
               x: 'left',
               orient: 'vertical',
-              data: ['Chrome', 'Firefox', 'Safari', 'IE9+', 'IE8-']
+              data: ['Facebook', 'Twitter', 'Google', 'Youtube', 'Instagram']
             },
 
             // Display toolbox
@@ -550,11 +550,11 @@ $(function () {
               center: ['50%', '50%'],
               radius: '60%',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -564,11 +564,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -577,11 +577,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -590,11 +590,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -603,11 +603,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -616,11 +616,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -629,11 +629,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -642,11 +642,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -655,11 +655,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -668,11 +668,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -681,11 +681,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           },
@@ -694,11 +694,11 @@ $(function () {
               name: 'Browser',
               type: 'pie',
               data: [
-                {value: idx * 128 + 80, name: 'Chrome'},
-                {value: idx * 64 + 160, name: 'Firefox'},
-                {value: idx * 32 + 320, name: 'Safari'},
-                {value: idx * 16 + 640, name: 'IE9+'},
-                {value: idx++ * 8 + 1280, name: 'IE8-'}
+                {value: idx * 128 + 80, name: 'Facebook'},
+                {value: idx * 64 + 160, name: 'Twitter'},
+                {value: idx * 32 + 320, name: 'Google'},
+                {value: idx * 16 + 640, name: 'Youtube'},
+                {value: idx++ * 8 + 1280, name: 'Instagram'}
               ]
             }]
           }
