@@ -108,8 +108,11 @@
     <hr>
 
     <div class="row">
+       <!-- Funnel -->
       <div class="col-md-6">
-        <div id="Boxreport">
+       <div class="row">
+        <div class="col-md-12">
+         <div id="Boxreport">
           <div class="panel panel-info panel-bordered">
             <div class="panel-heading">
               <h3 class="panel-title">Funil Classificatório de Publicações</h3>
@@ -154,7 +157,37 @@
             </div>
           </div>
         </div>
+        </div>
+        <div class="col-md-12">
+          <div id="Boxreport">
+            <div class="panel panel-info panel-bordered">
+              <div class="panel-heading">
+                 <h3 class="panel-title">Núvem de Palavras Chave</h3>
+                 <div class="heading-elements">
+                     <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                      <li><a data-action="close"></a></li>
+                    </ul>
+                 </div>
+                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+              </div>
+
+              <div class="panel-body">
+                  <div class="tag-cloud">
+                      {% for t in tags %}
+                          <a href="/data.scopo.online/tags/{{ t.tag }}/" class="size-{{ t.size }}">{{ t.tag }}</a>
+                      {% endfor %}
+                  </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        </div> <!--here-->
       </div>
+       <!-- /funnel -->
 
       <!-- Comparative candidates -->
       <div class="col-md-6">
@@ -189,6 +222,8 @@
                     <div class="chart has-fixed-height" id="basic_bars"></div>
                   </div>
                   <!-- /line bars -->
+
+
                 </div>
               </div>
             </div>
@@ -220,6 +255,8 @@
       </div>
     </div>
     <!-- /Comparative candidates -->
+
+
 
     <div class="row">
       <div class="col-lg-6" style="height: 500px">
