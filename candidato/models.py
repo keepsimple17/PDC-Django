@@ -108,7 +108,8 @@ class Candidate(models.Model):
     # user_id = models.IntegerField
     # the User ID of Candidate in the system | dashboard.profile
     candidate_political_nickname = models.CharField("Nome Eleitoral do Candidato", max_length=40, blank=True, null=True)
-    candidate_dispute_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
+    # candidate_dispute_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
+    candidate_dispute_party = models.ForeignKey('dashboard.PoliticalParties', blank=True, null=True)
     candidate_party = models.CharField(max_length=50, blank=True, null=True)
     # todo to get the positions depending of the ballot year
     # The year and ballot of electoral dispute
@@ -120,6 +121,7 @@ class Candidate(models.Model):
                                                   blank=True, null=True)
     candidate_current_position = models.CharField('Cargo Pretendido pelo Candidato', max_length=30,
                                                   blank=True, null=True)
+
     # todo depending od the desired position, state campaign or city campaign are not necessary
     # State of the electoral campaign
     state_campaign = models.CharField("UF de Campanha", max_length=2, blank=True, null=True)
