@@ -1,4 +1,7 @@
 from django.contrib import admin
-from dashboard.models import Usuario
+from django.apps import apps
 
-admin.site.register(Usuario)
+app = apps.get_app_config('dashboard')
+
+for model_name, model in app.models.items():
+    admin.site.register(model)
