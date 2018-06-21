@@ -22,8 +22,8 @@
   {# amchart #}
   <script type="text/javascript" src="{% static 'js/charts/amcharts/amcharts.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/charts/amcharts/funnel.js' %}"></script>
-{#  <script type="text/javascript" src="{% static 'js/charts/amcharts/export.min.js' %}"></script>#}
-  <link rel="stylesheet" href="{% static 'js/charts/amcharts/export.css' %}" type="text/css" media="all" />
+  {#  <script type="text/javascript" src="{% static 'js/charts/amcharts/export.min.js' %}"></script>#}
+  <link rel="stylesheet" href="{% static 'js/charts/amcharts/export.css' %}" type="text/css" media="all"/>
   <script type="text/javascript" src="{% static 'js/charts/amcharts/light.js' %}"></script>
 
   {# Limitless theme graphs #}
@@ -33,7 +33,7 @@
   <script type="text/javascript" src="{% static 'js/stats.js' %}"></script>
   <style>
     a[href='http://www.amcharts.com'] {
-      display: none!important;
+      display: none !important;
     }
   </style>
   <!-- Page header -->
@@ -93,9 +93,8 @@
       <div class="alert alert-danger alert-styled-left alert-bordered">
         <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
         </button>
-        <span class="text-semibold">MODO DE DEMONSTRAÇÃO - </span> Estatísticas com apenas 40% de Precisão. <a href="#"
-                                                                                                               class="alert-link">Aumente
-        agora para 99.7%</a>.
+        <span class="text-semibold">MODO DE DEMONSTRAÇÃO - </span> Estatísticas com apenas 40% de Precisão.
+        <a href="#" class="alert-link">Aumente agora para 99.7%</a>.
       </div>
     </div>
   </div>
@@ -112,86 +111,89 @@
     <hr>
 
     <div class="row">
-       <!-- Funnel -->
+      <!-- Funnel -->
       <div class="col-md-6">
-       <div class="row">
-        <div class="col-md-12">
-         <div id="Boxreport">
-          <div class="panel panel-info panel-bordered">
-            <div class="panel-heading">
-              <h3 class="panel-title">Funil Classificatório de Publicações</h3>
-              <div class="heading-elements">
-                <ul class="icons-list">
-                  <li><a data-action="collapse"></a></li>
-                  <li><a data-action="reload"></a></li>
-                  <li><a data-action="close"></a></li>
-                </ul>
-              </div>
-              <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-            </div>
-
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <p>Índice de Relevância: <code> 87.4 % </code></p>
-                </div>
-                <div class="col-md-6">
-                  <p>Última Atualização: <code> Há 6 horas </code></p>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="row social-group">
-                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-facebook"></i>
-                    </div>
-                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-youtube3"></i>
-                    </div>
-                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-twitter"></i>
-                    </div>
-                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-google-plus"></i></div>
-                    <div class="social-group_item" style="background: #333333;color: white;"><i class="icon-instagram"></i></div>
-                  </div>
-                  <div id="imagem">
-{#                    <img src="{% static 'images/stats/funel_tem.png' %}" width="300">#}
-                    <div id="chartdiv"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-        <div class="col-md-12">
-          <div id="Boxreport">
-            <div class="panel panel-info panel-bordered">
-              <div class="panel-heading">
-                 <h3 class="panel-title">Núvem de Palavras Chave</h3>
-                 <div class="heading-elements">
-                     <ul class="icons-list">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="Boxreport">
+              <div class="panel panel-info panel-bordered">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Funil Classificatório de Publicações</h3>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
                       <li><a data-action="collapse"></a></li>
                       <li><a data-action="reload"></a></li>
                       <li><a data-action="close"></a></li>
                     </ul>
-                 </div>
-                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-              </div>
+                  </div>
+                  <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
 
-              <div class="panel-body">
-                  <div class="tag-cloud">
-                      {% for t in tags %}
-                          <a href="/data.scopo.online/tags/{{ t.tag }}/" class="size-{{ t.size }}">{{ t.tag }}</a>
-                      {% endfor %}
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p>Índice de Relevância: <code> 87.4 % </code></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p>Última Atualização: <code> Há 6 horas </code></p>
+                    </div>
                   </div>
 
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="row social-group">
+                        <div class="social-group_item" style="background: #333333;color: white;"><i
+                            class="icon-facebook"></i>
+                        </div>
+                        <div class="social-group_item" style="background: #333333;color: white;"><i
+                            class="icon-youtube3"></i>
+                        </div>
+                        <div class="social-group_item" style="background: #333333;color: white;"><i
+                            class="icon-twitter"></i>
+                        </div>
+                        <div class="social-group_item" style="background: #333333;color: white;"><i
+                            class="icon-google-plus"></i></div>
+                        <div class="social-group_item" style="background: #333333;color: white;"><i
+                            class="icon-instagram"></i></div>
+                      </div>
+                      <div id="imagem">
+                        {#                    <img src="{% static 'images/stats/funel_tem.png' %}" width="300">#}
+                        <div id="chartdiv"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-
             </div>
           </div>
-        </div>
+          <div class="col-md-12">
+            <div id="Boxreport">
+              <div class="panel panel-info panel-bordered">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Núvem de Palavras Chave</h3>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                      <li><a data-action="close"></a></li>
+                    </ul>
+                  </div>
+                  <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+
+                <div class="panel-body">
+                  <div class="tag-cloud">
+                    {% for t in tags %}
+                      <a href="/data.scopo.online/tags/{{ t.tag }}/" class="size-{{ t.size }}">{{ t.tag }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div> <!--here-->
       </div>
-       <!-- /funnel -->
+      <!-- /funnel -->
 
       <!-- Comparative candidates -->
       <div class="col-md-6">
@@ -227,7 +229,6 @@
                   </div>
                   <!-- /line bars -->
 
-
                 </div>
               </div>
             </div>
@@ -249,8 +250,8 @@
 
                 <div class="panel-body">
                   <div class="chart-container has-scroll">
-										<div class="chart has-fixed-height has-minimum-width" id="pie_timeline"></div>
-									</div>
+                    <div class="chart has-fixed-height has-minimum-width" id="pie_timeline"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -281,7 +282,6 @@
         </div>
       </div>
     </div>
-
 
 
     <div class="row">

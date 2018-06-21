@@ -1,7 +1,23 @@
 from django.contrib import admin
-from django.apps import apps
 
-app = apps.get_app_config('elections')
+from elections.models import Ballot, Position, Dispute
 
-for model_name, model in app.models.items():
-    admin.site.register(model)
+
+class BallotAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'name', 'election_date', 'created')
+
+
+class PositionAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'ballot', 'position', 'kind_of_position', 'uf', 'citie', 'created')
+
+
+class DisputeAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'position', 'state', 'citie', 'candidate', 'created')
+
+
+admin.site.register(Ballot, BallotAdmin)
+admin.site.register(Position, PositionAdmin)
+admin.site.register(Dispute, DisputeAdmin)
