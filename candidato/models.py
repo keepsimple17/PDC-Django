@@ -108,8 +108,8 @@ class Candidate(models.Model):
     # user_id = models.IntegerField
     # the User ID of Candidate in the system | dashboard.profile
     candidate_political_nickname = models.CharField("Nome Eleitoral do Candidato", max_length=40, blank=True, null=True)
-    candidate_dispute_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
-    # candidate_dispute_party = models.ForeignKey('dashboard.PoliticalParties', blank=True, null=True)
+    # candidate_dispute_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
+    candidate_dispute_party = models.ForeignKey('dashboard.PoliticalParties', blank=True, null=True)
     candidate_party = models.CharField(max_length=50, blank=True, null=True)
     # todo to get the positions depending of the ballot year
     # The year and ballot of electoral dispute
