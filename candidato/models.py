@@ -113,14 +113,14 @@ class Candidate(models.Model):
     candidate_party = models.CharField(max_length=50, blank=True, null=True)
     # todo to get the positions depending of the ballot year
     # The year and ballot of electoral dispute
-    canditate_Election_Ballot = models.CharField("Pleito de Disputa Eleitoral", max_length=30,
-                                                 choices=ELECTION_BALLOTS, blank=True, null=True)
+    canditate_Election_Ballot = models.CharField(
+        "Pleito de Disputa Eleitoral", max_length=30, choices=ELECTION_BALLOTS, blank=True, null=True)
     # The desired position at Ballot
     campaign_desired_position = models.CharField("Cargo de Disputa", max_length=30, blank=True, null=True)
-    candidate_desired_position = models.CharField('Cargo Pretendido pelo Candidato', max_length=30,
-                                                  blank=True, null=True)
-    candidate_current_position = models.CharField('Cargo Pretendido pelo Candidato', max_length=30,
-                                                  blank=True, null=True)
+    candidate_desired_position = models.CharField(
+        'Cargo Pretendido pelo Candidato', max_length=30, blank=True, null=True)
+    candidate_current_position = models.CharField(
+        'Cargo Pretendido pelo Candidato', max_length=30, blank=True, null=True)
 
     # todo depending od the desired position, state campaign or city campaign are not necessary
     # State of the electoral campaign
