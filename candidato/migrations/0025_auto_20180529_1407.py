@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -40,5 +41,11 @@ class Migration(migrations.Migration):
             model_name='candidate',
             name='reelection',
             field=models.CharField(blank=True, max_length=40, null=True, verbose_name='Tentando Reeleição'),
+        ),
+        migrations.AlterField(
+            model_name='candidate',
+            name='candidate_dispute_party',
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                    to='dashboard.PoliticalParties'),
         ),
     ]
