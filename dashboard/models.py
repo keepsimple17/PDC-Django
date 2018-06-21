@@ -98,6 +98,9 @@ class PoliticalParties(models.Model):
     )
     objects = PoliticalPartiesManager()
 
+    def __str__(self):
+        return self.sigla
+
 
 # Table of Federal States in Brazil
 class Estado (models.Model):
@@ -108,6 +111,9 @@ class Estado (models.Model):
     Regiao = models.PositiveSmallIntegerField(blank=False)
     objects = EstadoManager
 
+    def __str__(self):
+        return self.Nome
+
 
 # This is the conties database. All cities in Brasil
 class Municipio(models.Model):
@@ -117,6 +123,9 @@ class Municipio(models.Model):
     Uf = models.CharField(max_length=2)
     objects = MunicipioManager()
 
+    def __str__(self):
+        return self.Nome
+
 
 # This is the Neiborhood locations, for the address forms and data location
 class Bairro(models.Model):
@@ -124,6 +133,9 @@ class Bairro(models.Model):
     Codigo = models.CharField(max_length=10, unique=True)
     Nome = models.CharField(max_length=255, null=False)
     Uf = models.CharField(max_length=2)
+
+    def __str__(self):
+        return self.Nome
 
 
 class RelationshipNetwork(models.Model):
@@ -133,6 +145,9 @@ class RelationshipNetwork(models.Model):
     secondary_actor = models.IntegerField()
     kind_of_relationship_to_secondary = models.CharField("Tipo de Relacionamento", max_length=40, blank=True, null=True)
     observations = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.kind_of_relationship
 
 
 GENDER_CHOICES = {
@@ -212,8 +227,8 @@ class Usuario(models.Model):
         'candidato.UserRolesList', blank=True, null=True, related_name='user_roles_list_in_usuario')
     candidates = models.ManyToManyField(Candidate, blank=True)
 
-    def __str__(self):              # __unicode__ on Python 2
-        return self.user.first_name+self.user.last_name
+    def __str__(self):
+        return self.user.username
 
 
 @receiver(post_save, sender=User)

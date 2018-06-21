@@ -15,6 +15,9 @@ class Ballot(models.Model):
     election_date = models.DateField('Data Pleito Eleitoral')
     created = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Position(models.Model):
     ballot = models.ForeignKey(Ballot)
@@ -28,6 +31,9 @@ class Position(models.Model):
     # city of desired position - get from dashboard_municipio
     citie = models.CharField(max_length=255, null=True, blank=True)
     created = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    def __str__(self):
+        return self.position
 
 
 class Dispute(models.Model):
@@ -53,3 +59,6 @@ class Dispute(models.Model):
     instagram_img = models.TextField(blank=True, null=True)
     instagram_url = models.URLField(blank=True, null=True)
     created = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    def __str__(self):
+        return self.candidate

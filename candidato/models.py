@@ -185,7 +185,8 @@ class Candidate(models.Model):
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
     updated_at = models.DateTimeField('Atualizado em', auto_now_add=True)
 
-# user = models.OneToOneField(User, null=False, blank=False)
+    def __str__(self):
+        return self.user.username
 
 
 # this is used to list the candidacy coalitions
@@ -196,6 +197,9 @@ class Coalitions(models.Model):
     # associated with the Political Partie Number
     political_partie_number = models.IntegerField
     political_partie_abbreviation = models.CharField("Sigla Partirária", max_length=20, null=True, blank=True)
+
+    def __str__(self):
+        return self.name_coligation
 
 
 # Group of Users from Candidate' Confidence, with
@@ -221,10 +225,13 @@ class Committees(models.Model):
     bairro = models.CharField("Bairro", max_length=255, blank=True, null=True)
     address = models.CharField("Endereço", max_length=255, blank=True, null=True)
     cell_phone = models.CharField(blank=True, null=True, max_length=17, validators=[phone_validators])
-    landline_phone = models.CharField("Telefone Fixo", max_length=17, blank=True,
-                                      null=True, validators=[phone_validators])
-    members = models.ManyToManyField('candidato.CommitteeMembers',
-                                     blank=True, related_name='committee_members_in_committee')
+    landline_phone = models.CharField(
+        "Telefone Fixo", max_length=17, blank=True, null=True, validators=[phone_validators])
+    members = models.ManyToManyField(
+        'candidato.CommitteeMembers', blank=True, related_name='committee_members_in_committee')
+
+    def __str__(self):
+        return self.name
 
 
 class CommitteeMembers(models.Model):
@@ -235,6 +242,9 @@ class CommitteeMembers(models.Model):
     # User assignments in Committee
     assignments = models.CharField("Atribuições", max_length=255, null=True, blank=True)
     observations = models.TextField('Observações', null=True, blank=True)
+
+    def __str__(self):
+        return self.usuario.user.username
 
 
 # This define the roles of user in the candidate environment
@@ -256,6 +266,9 @@ class UserRoles(models.Model):
     internetInteraction = models.PositiveSmallIntegerField('interação com outros membros', default=7)
     sendMessages = models.PositiveSmallIntegerField('Enviar Mensagens', default=6)
 
+    def __str__(self):
+        return self.role_name
+
 
 # Predefined list of user possibilites to the UserRoles table
 class UserRolesList(models.Model):
@@ -268,6 +281,8 @@ class UserRolesList(models.Model):
     internetInteraction = models.PositiveSmallIntegerField('interação com outros membros',
                                                            default=7)  # users Interaction
     sendMessages = models.PositiveSmallIntegerField('Enviar Mensagens', default=6)
+    def __str__(self):
+        return self.role_name
 
 
 # This is the invitation list of users to the candidate
@@ -282,6 +297,9 @@ class Invites(models.Model):
     candidate = models.ManyToManyField(Candidate)
     invite_status = models.CharField(max_length=10, choices=CANDIDATE_INVITE_CHOICES, blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.invited_name
 
 
 class CandidateRequests(models.Model):
@@ -300,6 +318,9 @@ class ScopeList(models.Model):
     updated_at = models.DateTimeField(blank=True, null=True)
     user = models.ForeignKey(User, blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Proposal(models.Model):
     name = models.CharField(max_length=60)
@@ -307,6 +328,9 @@ class Proposal(models.Model):
     scope = models.ForeignKey(ScopeList, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Keyword(models.Model):
@@ -317,6 +341,9 @@ class Keyword(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return self.keyword
+
 
 class TempUser(models.Model):
     username = models.TextField('User Name', blank=True, null=True)
@@ -325,3 +352,6 @@ class TempUser(models.Model):
     kind = models.TextField('Type', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.username
