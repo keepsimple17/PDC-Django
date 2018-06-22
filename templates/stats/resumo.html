@@ -105,8 +105,8 @@
     <!-- General Overview -->
     <div class="row">
       <div class="col-lg-12">
-        <h1 align="center">Dados de Avaliação para {{ candidato_intended_position }} - {{ candidato_UF }} </h1>
-        <h4 align="center">Dados de Pesquisa para <strong>{{ candidato }}</strong> | Pleito: {{ ballot }} </h4>
+        <h1 align="center">Dados de Avaliação para {{ candidato.candidato_intended_position }} - {{ candidato.candidato_UF }} </h1>
+        <h4 align="center">Dados de Pesquisa para <strong>{{ candidato.candidato }}</strong> | Pleito: {{ candidato.ballot }} </h4>
       </div>
     </div>
     <hr>
@@ -184,8 +184,8 @@
 
                 <div class="panel-body">
                   <div class="tag-cloud">
-                    {% for t in tags %}
-                      <a href="/data.scopo.online/tags/{{ t.tag }}/" class="size-{{ t.size }}">{{ t.tag }}</a>
+                    {% for item in candidato.tags %}
+                      <a href="/data.scopo.online/tags/{{ item.tag }}/" class="size-{{ item.size }}">{{ item.tag }}</a>
                     {% endfor %}
                   </div>
                 </div>

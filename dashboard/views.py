@@ -35,9 +35,17 @@ candidato = {
 def index(request):
     usuario = UsuarioSerializer(request.user.usuario).data
 
-    return render(request, 'index.html', candidato)
+    return render(request, 'index.html', {
+        'candidato': candidato,
+        'usuario': usuario,
+    })
 
 
 @login_required
 def stats(request):
-    return render(request, 'stats/resumo.html', candidato)
+    usuario = UsuarioSerializer(request.user.usuario).data
+
+    return render(request, 'stats/resumo.html', {
+        'candidato': candidato,
+        'usuario': usuario,
+    })

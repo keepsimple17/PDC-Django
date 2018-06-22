@@ -101,7 +101,7 @@ CANDIDATE_INVITE_CHOICES = (
 
 
 class Candidate(models.Model):
-    user = models.OneToOneField(User, null=True, blank=False)
+    user = models.OneToOneField(User, null=True, blank=True)
     reference_id = models.IntegerField
     # to associate to the user who invited the candidate
     # let's rethink about this field, if needed, it should be n:n relationship.
