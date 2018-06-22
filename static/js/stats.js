@@ -2,6 +2,12 @@
  * Created by paul on 03/05/2018.
  */
 $(function () {
+  /* candidate dropdown */
+  $('.candidate-menu li').on('click', function() {
+    console.log('changing candidate...', $(this));
+    $('.candidate-toggle').html($(this).find('a').html() + `<span class="caret"></span>`);
+  });
+
   // solid gauge start
   var names = ['Bolsonaro', 'Ciro Gomes', 'Alckmin', 'Marina Silva', 'Joaquim Barbosa', 'Collor', 'Paulino'];
   var data = [22, 15, 6, 5, 7, 10, 65];

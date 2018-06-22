@@ -233,14 +233,29 @@
               </div>
             </div>
           </li>
+          <li>
+            {% if request.user.is_staff %}
+              <p class="navbar-text"><span class="label bg-success">Online</span></p>
+            {% else %}
+              {#  <p class="navbar-text"><span class="label bg-warning">Waiting for Authorization</span></p>#}
+            {% endif %}
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle candidate-toggle" data-toggle="dropdown">
+              Paulino
+              <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu candidate-menu">
+              <li><a class="english">Paulino</a></li>
+              {% for item in usuario.candidates %}
+                <li><a class="english">item</a></li>
+              {% endfor %}
+            </ul>
+          </li>
         {% endif %}
       </ul>
 
-      {% if request.user.is_staff %}
-        <p class="navbar-text"><span class="label bg-success">Online</span></p>
-      {% else %}
-        {#			<p class="navbar-text"><span class="label bg-warning">Waiting for Authorization</span></p>#}
-      {% endif %}
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown language-switch">
           <a class="dropdown-toggle" data-toggle="dropdown">
@@ -385,12 +400,13 @@
           <div class="sidebar-user">
             <div class="category-content">
               <div class="media">
-                <a href="#" class="media-left"><img src="{% static '/images/placeholder.jpg' %}"
-                                                    class="img-circle img-sm" alt=""></a>
+                <a href="#" class="media-left">
+                  <img src="{% static '/images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
+                </a>
                 <div class="media-body">
-                  <span class="media-heading text-semibold">{{ candidato }}</span> <!--the Candidate -->
+                  <span class="media-heading text-semibold">{{ candidato.candidato }}</span> <!--the Candidate -->
                   <div class="text-size-mini text-muted">
-                    <i class="icon-pin text-size-small"></i> &nbsp;{{ candidato_city }}, {{ candidato_UF }}
+                    <i class="icon-pin text-size-small"></i> &nbsp;{{ candidato.candidato_city }}, {{ candidato.candidato_UF }}
                   </div>
                 </div>
 
