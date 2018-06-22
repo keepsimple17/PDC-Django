@@ -110,7 +110,7 @@ class Candidate(models.Model):
     candidate_political_nickname = models.CharField("Nome Eleitoral do Candidato", max_length=40, blank=True, null=True)
     # candidate_dispute_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
     candidate_dispute_party = models.ForeignKey(
-        'dashboard.PoliticalParties', blank=True, null=True,)
+        'dashboard.PoliticalParties', blank=True, null=True, verbose_name='Candidate Dispute Party')
     candidate_party = models.CharField(max_length=50, blank=True, null=True)
     # todo to get the positions depending of the ballot year
     # The year and ballot of electoral dispute
@@ -119,7 +119,8 @@ class Candidate(models.Model):
     # The desired position at Ballot
     # need to remove
     campaign_desired_position = models.ForeignKey(
-        'elections.Position', blank=True, null=True, related_name='position_in_campaign_desired_position')
+        'elections.Position', blank=True, null=True, related_name='position_in_campaign_desired_position',
+        verbose_name='Cargo de Disputa')
     # campaign_desired_position = models.CharField("Cargo de Disputa", max_length=30, blank=True, null=True)
     # candidate_desired_position = models.CharField(
     #     'Cargo Pretendido pelo Candidato', max_length=30, blank=True, null=True)
@@ -147,7 +148,8 @@ class Candidate(models.Model):
     # todo If the candidate does not holds political position, disable political position
     # political_position = models.CharField("Posição Politica que Exerce", max_length=40, null=True, blank=True)
     political_position = models.ForeignKey(
-        'elections.Position', null=True, blank=True, related_name='position_in_political_position')
+        'elections.Position', null=True, blank=True, related_name='position_in_political_position',
+        verbose_name='Posição Politica que Exerce')
 
     reelection = models.CharField("Tentando Reeleição", max_length=40, null=True, blank=True)
     first_political_campaign = models.CharField("Primeira Eleição", max_length=40, null=True, blank=True)
@@ -195,7 +197,10 @@ class Candidate(models.Model):
     updated_at = models.DateTimeField('Atualizado em', auto_now_add=True)
 
     def __str__(self):
-        return self.user.username
+        if self.user:
+            return self.user.username
+        else:
+            return str(self.id)
 
 
 # this is used to list the candidacy coalitions
