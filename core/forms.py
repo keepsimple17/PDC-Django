@@ -51,7 +51,7 @@ class CandidateForm(forms.ModelForm):
     candidate_dispute_number = forms.CharField(max_length=40, required=False, help_text='Optional.')
     campaign_email = forms.EmailField(
         max_length=254, help_text='Required. Inform a valid email address.', required=False)
-    political_position = forms.CharField(max_length=40, required=False, help_text='Optional.')
+    # political_position = forms.CharField(max_length=40, required=False, help_text='Optional.')
     reelection = forms.CharField(required=False, max_length=4)
     holds_political_position = forms.CharField(required=False, max_length=4)
     first_election = forms.CharField(required=False, max_length=4)
@@ -92,7 +92,7 @@ class CandidateForm(forms.ModelForm):
     class Meta:
         model = Candidate
         fields = (
-            'candidate_political_nickname', 'candidate_dispute_number', 'political_position', 'campaign_email',
+            'candidate_political_nickname', 'candidate_dispute_number', 'campaign_email',
             'reelection', 'candidate_site', 'facebook', 'facebook_img', 'facebook_url', 'twitter', 'twitter_img',
             'twitter_url', 'googlep', 'googlep_img', 'googlep_url', 'youtube', 'youtube_img', 'youtube_url',
             'instagram', 'instagram_img', 'instagram_url', 'candidate_blog_rss', 'candidate_blog_rss_img',
