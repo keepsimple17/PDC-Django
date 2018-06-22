@@ -109,25 +109,33 @@ class Candidate(models.Model):
     # the User ID of Candidate in the system | dashboard.profile
     candidate_political_nickname = models.CharField("Nome Eleitoral do Candidato", max_length=40, blank=True, null=True)
     # candidate_dispute_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
-    candidate_dispute_party = models.ForeignKey('dashboard.PoliticalParties', blank=True, null=True)
+    candidate_dispute_party = models.ForeignKey(
+        'dashboard.PoliticalParties', blank=True, null=True,)
     candidate_party = models.CharField(max_length=50, blank=True, null=True)
     # todo to get the positions depending of the ballot year
     # The year and ballot of electoral dispute
     canditate_Election_Ballot = models.CharField(
         "Pleito de Disputa Eleitoral", max_length=30, choices=ELECTION_BALLOTS, blank=True, null=True)
     # The desired position at Ballot
-    campaign_desired_position = models.CharField("Cargo de Disputa", max_length=30, blank=True, null=True)
-    candidate_desired_position = models.CharField(
-        'Cargo Pretendido pelo Candidato', max_length=30, blank=True, null=True)
-    candidate_current_position = models.CharField(
-        'Cargo Pretendido pelo Candidato', max_length=30, blank=True, null=True)
+    # need to remove
+    campaign_desired_position = models.ForeignKey(
+        'elections.Position', blank=True, null=True, related_name='position_in_campaign_desired_position')
+    # campaign_desired_position = models.CharField("Cargo de Disputa", max_length=30, blank=True, null=True)
+    # candidate_desired_position = models.CharField(
+    #     'Cargo Pretendido pelo Candidato', max_length=30, blank=True, null=True)
+    # candidate_current_position = models.CharField(
+    #     'Cargo Pretendido pelo Candidato', max_length=30, blank=True, null=True)
 
     # todo depending od the desired position, state campaign or city campaign are not necessary
     # State of the electoral campaign
     state_campaign = models.CharField("UF de Campanha", max_length=2, blank=True, null=True)
     candidate_state = models.CharField("UF", max_length=2, blank=True, null=True)
     candidate_city = models.CharField("Cidade", max_length=255, blank=True, null=True)
-    holds_position = models.CharField("Exerce Cargo", max_length=255, blank=True, null=True)
+    # need to remove
+    # holds_position = models.CharField("Exerce Cargo", max_length=255, blank=True, null=True)
+    # holds_political_position = models.CharField("Detém Cargo Político", max_length=4, blank=True, null=True)
+    # first_political_campaign = models.BooleanField("Detém Cargo Político", default="False")
+
     # City of the electoral campaign
     city_campaign = models.CharField("Cidade de Campanha", max_length=255, blank=True, null=True)
     # todo the number should sugest to begins with the dispute_party number
@@ -136,12 +144,13 @@ class Candidate(models.Model):
     # candidate' Slug used to create map url
     slug = models.SlugField('Atalho', blank=True)
 
-    holds_political_position = models.CharField("Detém Cargo Político", max_length=4, blank=True, null=True)
     # todo If the candidate does not holds political position, disable political position
-    political_position = models.CharField("Posição Politica que Exerce", max_length=40, null=True, blank=True)
+    # political_position = models.CharField("Posição Politica que Exerce", max_length=40, null=True, blank=True)
+    political_position = models.ForeignKey(
+        'elections.Position', null=True, blank=True, related_name='position_in_political_position')
+
     reelection = models.CharField("Tentando Reeleição", max_length=40, null=True, blank=True)
-    first_election = models.CharField("Primeira Eleição", max_length=40, null=True, blank=True)
-    first_political_campaign = models.BooleanField("Detém Cargo Político", default="False")
+    first_political_campaign = models.CharField("Primeira Eleição", max_length=40, null=True, blank=True)
 
     # Candidate web site
     candidate_site = models.CharField("Site do Candidate", max_length=50, blank=True, null=True)
