@@ -481,5 +481,5 @@ def get_item(dictionary, key):
     return dictionary.get(key)
 
 
-def teste404(request):
+def test404(request):
     return render(request, "pag404.html")
