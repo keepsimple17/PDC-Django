@@ -154,6 +154,9 @@ class Candidate(models.Model):
     # reelection = models.CharField("Tentando Reeleição", max_length=40, null=True, blank=True)
     # first_political_campaign = models.CharField("Primeira Eleição", max_length=40, null=True, blank=True)
 
+    reelection = models.BooleanField("Tentando Reeleição", blank=True, default=False)
+    first_political_campaign = models.BooleanField("Primeira Eleição", blank=True, default=False)
+
     # Candidate web site
     candidate_site = models.CharField("Site do Candidate", max_length=50, blank=True, null=True)
     # Campaign Email (if diferent from the candidate email)
