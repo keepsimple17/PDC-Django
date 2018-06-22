@@ -44,11 +44,14 @@ urlpatterns = [
     url(r'^account/add_team_member', fc_views.add_team_member, name='account_add_user_roles'),
     url(r'^account/add_committee', fc_views.add_committee, name='account_add_committee'),
     # email confirmation
-    url(r'^account/account_accept_invite/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_accept_invite,
+    url(r'^account/account_accept_invite/(?P<uidb64>[0-9A-Za-z_\-]+)',
+        fc_views.account_accept_invite,
         name='account_accept_invite'),
-    url(r'^account/account_candidator_aprove_user/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_candidator_aprove_user,
+    url(r'^account/account_candidator_aprove_user/(?P<uidb64>[0-9A-Za-z_\-]+)',
+        fc_views.account_candidator_aprove_user,
         name='account_candidator_aprove_user'),
-    url(r'^account/account_accept_candidator_invite/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_accept_candidator_invite,
+    url(r'^account/account_accept_candidator_invite/(?P<uidb64>[0-9A-Za-z_\-]+)',
+        fc_views.account_accept_candidator_invite,
         name='account_accept_candidator_invite'),
     # apis
     url(r'^account/check_username', views.check_username, name='check_username'),
