@@ -21,12 +21,12 @@ candidato = {
     'candidato_intended_position': "Presidente",
     'ballot': "Eleições 2018",
     'tags': [
-        {'tag':'Partido Novo', 'size':10},
-        {'tag':'Impostos', 'size':7},
-        {'tag':'Renovação', 'size':5},
-        {'tag':'Eleições', 'size':1},
-        {'tag':'Fundo Partidário', 'size':4},
-        {'tag':'Lava-Jato', 'size':3},
+        {'tag': 'Partido Novo', 'size': 10},
+        {'tag': 'Impostos', 'size': 7},
+        {'tag': 'Renovação', 'size': 5},
+        {'tag': 'Eleições', 'size': 1},
+        {'tag': 'Fundo Partidário', 'size': 4},
+        {'tag': 'Lava-Jato', 'size': 3},
     ]
 }
 
@@ -36,6 +36,7 @@ def index(request):
     usuario = UsuarioSerializer(request.user.usuario).data
 
     return render(request, 'index.html', candidato)
+
 
 @login_required
 def stats(request):
