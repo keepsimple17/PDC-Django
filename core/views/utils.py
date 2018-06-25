@@ -3,9 +3,11 @@ import json
 import csv
 import codecs
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.template.defaultfilters import slugify
+from django.utils.crypto import get_random_string
 from rest_framework import permissions, status, views, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -83,8 +85,16 @@ class UtilView(views.APIView):
                 candidate = Candidate.objects.filter(candidate_political_nickname=line[1])
                 if candidate:
                     candidate = candidate.first()
-                    candidate.experience = line[5]
-                    candidate.save()
+                    if not candidate.user:
+                        username = slugify(line[1])
+                        if not User.objects.filter(username=username).exists():
+                            password = get_random_string(length=10)
+                            email = None
+                            user = User.objects.create_user(username, email, password)
+                            user.is_staff = True
+                            user.save()
+                            candidate.user = user
+                            candidate.save()
 
             return Response({
                 'status': 'Status',
