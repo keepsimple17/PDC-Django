@@ -78,6 +78,7 @@ class UtilView(views.APIView):
                 'status': 'Status',
                 'message': 'This is message body.',
             }, status=status.HTTP_202_ACCEPTED)
+
         if kind == 'update_candidate':
             reader = self.read_csv(request)
             for line in reader:
