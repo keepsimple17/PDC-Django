@@ -118,6 +118,11 @@ class Candidate(models.Model):
         "Pleito de Disputa Eleitoral", max_length=30, choices=ELECTION_BALLOTS, blank=True, null=True)
     # The desired position at Ballot
     # need to remove
+
+    # Experience - Previous experience of the candidate
+    # political or not
+    experience = models.CharField(max_length=255, null=True, blank=True)
+
     campaign_desired_position = models.ForeignKey(
         'elections.Position', blank=True, null=True, related_name='position_in_campaign_desired_position',
         verbose_name='Cargo de Disputa')
