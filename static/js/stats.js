@@ -428,7 +428,7 @@ $(function () {
         yAxis: [{
           type: 'category',
           data: ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
-          'H. Meirelles', 'J. Bolsonaro', 'J. Almoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
+          'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
         }],
 
         // Add series
