@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib import admin
 import django.contrib.auth.views as auth_views
 import core.views.index as views
+import core.views.utils as util_views
 import core.views.first_configuration as fc_views
 
 urlpatterns = [
@@ -66,6 +67,7 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^test404/', views.test404),
+    url(r'^util/update$', util_views.UtilView.as_view(), name='login'),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
