@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib import admin
 import django.contrib.auth.views as auth_views
 import core.views.index as views
+import core.views.utils as util_views
 import core.views.first_configuration as fc_views
 
 urlpatterns = [
@@ -44,11 +45,14 @@ urlpatterns = [
     url(r'^account/add_team_member', fc_views.add_team_member, name='account_add_user_roles'),
     url(r'^account/add_committee', fc_views.add_committee, name='account_add_committee'),
     # email confirmation
-    url(r'^account/account_accept_invite/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_accept_invite,
+    url(r'^account/account_accept_invite/(?P<uidb64>[0-9A-Za-z_\-]+)',
+        fc_views.account_accept_invite,
         name='account_accept_invite'),
-    url(r'^account/account_candidator_aprove_user/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_candidator_aprove_user,
+    url(r'^account/account_candidator_aprove_user/(?P<uidb64>[0-9A-Za-z_\-]+)',
+        fc_views.account_candidator_aprove_user,
         name='account_candidator_aprove_user'),
-    url(r'^account/account_accept_candidator_invite/(?P<uidb64>[0-9A-Za-z_\-]+)', fc_views.account_accept_candidator_invite,
+    url(r'^account/account_accept_candidator_invite/(?P<uidb64>[0-9A-Za-z_\-]+)',
+        fc_views.account_accept_candidator_invite,
         name='account_accept_candidator_invite'),
     # apis
     url(r'^account/check_username', views.check_username, name='check_username'),
@@ -63,6 +67,7 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^test404/', views.test404),
+    url(r'^util/update/$', util_views.UtilView.as_view(), name='utils'),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
