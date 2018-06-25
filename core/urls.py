@@ -67,7 +67,7 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^test404/', views.test404),
-    url(r'^util/update$', util_views.UtilView.as_view(), name='login'),
+    url(r'^util/update/$', util_views.UtilView.as_view(), name='utils'),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
