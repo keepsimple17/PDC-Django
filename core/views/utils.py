@@ -25,8 +25,6 @@ from dashboard.serializers import UsuarioSerializer
 
 
 class UtilView(views.APIView):
-
-    # renderer_classes = (JSONPRenderer, JSONRenderer)
     def read_csv(self, request):
         csv_file = request.FILES["csv_file"]
         if not csv_file.name.endswith('.csv'):
