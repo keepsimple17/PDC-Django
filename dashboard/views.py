@@ -33,7 +33,7 @@ candidato = {
 }
 
 available_candidator_nick_names = [
-    'João Amoêdo', 'Jair Bolsonaro', 'Beto Richa', 'Ratinho Junior', 'Leandro Lyra', 'João Doria', 'Marcelo Trindade']
+    'João Amoêdo', 'Jair Bolsonaro', 'Beto Richa', 'Ratinho Jr.', 'Leandro Lyra', 'João Doria', 'Marcelo Trindade']
 
 
 @login_required
@@ -55,6 +55,8 @@ def stats(request):
         candidate = Candidate.objects.filter(candidate_political_nickname__contains=nick_name)
         if candidate:
             candidates.append(candidate.first())
+
+    print('candidator len...', len(candidates))
 
     # for candidate in candidates:
     #     candidator_datas.append(CandidateSerializer(candidate).data)
