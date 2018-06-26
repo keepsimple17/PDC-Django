@@ -1,7 +1,6 @@
 import datetime
 import json
 import csv
-import codecs
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -25,8 +24,6 @@ from dashboard.serializers import UsuarioSerializer
 
 
 class UtilView(views.APIView):
-
-    # renderer_classes = (JSONPRenderer, JSONRenderer)
     def read_csv(self, request):
         csv_file = request.FILES["csv_file"]
         if not csv_file.name.endswith('.csv'):
@@ -78,6 +75,7 @@ class UtilView(views.APIView):
                 'status': 'Status',
                 'message': 'This is message body.',
             }, status=status.HTTP_202_ACCEPTED)
+
         if kind == 'update_candidate':
             reader = self.read_csv(request)
             for line in reader:
