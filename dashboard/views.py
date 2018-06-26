@@ -13,6 +13,8 @@ from django.shortcuts import redirect, render
 from django.utils.translation import ugettext_lazy as _
 
 from dashboard.serializers import UsuarioSerializer
+from candidato.models import Candidate
+from candidato.serializers import CandidateSerializer
 
 candidato = {
     'candidato': "João Amoedo",
@@ -30,6 +32,9 @@ candidato = {
     ]
 }
 
+available_candidator_nick_names = [
+    'João Amoêdo', 'Jair Bolsonaro', 'Beto Richa', 'Ratinho Junior', 'Leandro Lyra', 'João Doria', 'Marcelo Trindade']
+
 
 @login_required
 def index(request):
@@ -44,8 +49,18 @@ def index(request):
 @login_required
 def stats(request):
     usuario = UsuarioSerializer(request.user.usuario).data
+    candidates = []
+    candidator_datas = []
+    for nick_name in available_candidator_nick_names:
+        candidate = Candidate.objects.filter(candidate_political_nickname__contains=nick_name)
+        if candidate:
+            candidates.append(candidate.first())
+
+    # for candidate in candidates:
+    #     candidator_datas.append(CandidateSerializer(candidate).data)
 
     return render(request, 'stats/resumo.html', {
         'candidato': candidato,
         'usuario': usuario,
+        'candidates': candidator_datas,
     })
