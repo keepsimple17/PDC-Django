@@ -59,7 +59,7 @@ $(function () {
   };
 
   anychart.onDocumentReady(function () {
-    var gauge = anychart.gauges.circular();
+    const gauge = anychart.gauges.circular();
     gauge.data(dataSet);
     gauge.fill('#fff')
       .stroke(null)
@@ -68,7 +68,7 @@ $(function () {
       .startAngle(0)
       .sweepAngle(270);
 
-    var axis = gauge.axis().radius(100).width(1).fill(null);
+    const axis = gauge.axis().radius(100).width(1).fill(null);
     axis.scale()
       .minimum(0)
       .maximum(100)
@@ -102,7 +102,7 @@ $(function () {
 $(function () {
   // brazil map start
   anychart.onDocumentReady(function () {
-    var dataSet = [
+    const dataSet = [
       {
         'id': 'BR.GO',
         'value': 0
@@ -214,11 +214,11 @@ $(function () {
     ];
 
     //
-    var map = anychart.map();
+    const map = anychart.map();
     map.geoData(anychart.maps.brazil);
 
     // set the series
-    var series = map.choropleth(dataSet);
+    const series = map.choropleth(dataSet);
 
     // disable labels
     series.labels(false);
