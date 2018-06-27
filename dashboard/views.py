@@ -52,14 +52,14 @@ def stats(request):
     candidates = []
     candidator_datas = []
     for nick_name in available_candidator_nick_names:
-        candidate = Candidate.objects.filter(candidate_political_nickname__contains=nick_name)
+        candidate = Candidate.objects.filter(candidate_political_nickname=nick_name)
         if candidate:
             candidates.append(candidate.first())
 
-    print('candidator len...', len(candidates))
+    for candidate in candidates:
+        candidator_datas.append(CandidateSerializer(candidate).data)
 
-    # for candidate in candidates:
-    #     candidator_datas.append(CandidateSerializer(candidate).data)
+    print('candidator len...', len(candidator_datas))
 
     return render(request, 'stats/resumo.html', {
         'candidato': candidato,
