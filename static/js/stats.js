@@ -10,8 +10,13 @@ $(function () {
   });
 
   const onChangeCandidato = (jsonStr) => {
-    // const candidator = JSON.parse(jsonStr);
-    console.log(jsonStr);
+    const candidator = JSON.parse(jsonStr);
+    console.log(candidator);
+    $('#candidate_nickname').html(candidator.candidate_political_nickname);
+    const facebookid = candidator.facebook.startsWith('@')? candidator.facebook.substr(1) : candidator.facebook;
+    const iframe_src = `http://18.218.2.246/topic_modeling/api/v1.0/posts?name=${facebookid}&type=facebook`;
+    document.getElementById('segment_iframe').src = iframe_src;
+    // $('#segment_iframe').src = iframe_src;
   };
 
   // solid gauge start

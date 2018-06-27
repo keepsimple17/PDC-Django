@@ -29,10 +29,12 @@ from django.template.defaulttags import register
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.encoding import force_bytes, force_text
+from django.core.serializers import serialize
 # from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.db.models.query import QuerySet
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -479,6 +481,13 @@ def update_user_configuration(request):
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
+
+
+@register.filter(is_safe=True)
+def jsonify(object):
+    if isinstance(object, QuerySet):
+        return serialize('json', object)
+    return json.dumps(object)
 
 
 def test404(request):

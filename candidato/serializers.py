@@ -67,7 +67,7 @@ class CandidateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Candidate
         fields = (
-            'id', 'user', 'reference_id', 'candidate_political_nickname', 'candidate_dispute_party', 'candidate_party',
+            'id', 'user', 'candidate_political_nickname', 'candidate_dispute_party', 'candidate_party',
             'canditate_Election_Ballot', 'experience', 'campaign_desired_position', 'state_campaign', 'candidate_state',
             'candidate_city', 'city_campaign', 'candidate_dispute_number', 'slug', 'political_position', 'reelection',
             'first_political_campaign',  'candidate_site', 'campaign_email', 'facebook', 'facebook_img', 'facebook_url',
