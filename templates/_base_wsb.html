@@ -248,7 +248,7 @@
 
             <ul class="dropdown-menu candidate-menu">
               {% for item in candidates %}
-                <li data-json="{{ item|escapejs }}"><a class="dropdown-item">{{ item.candidate_political_nickname }}</a></li>
+                <li data-json="{{ item|jsonify }}"><a class="dropdown-item">{{ item.candidate_political_nickname }}</a></li>
               {% endfor %}
             </ul>
           </li>
@@ -403,7 +403,7 @@
                   <img src="{% static '/images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
                 </a>
                 <div class="media-body">
-                  <span class="media-heading text-semibold">{{ candidato.candidato }}</span> <!--the Candidate -->
+                  <span class="media-heading text-semibold" id="candidate_nickname">{{ candidato.candidato }}</span> <!--the Candidate -->
                   <div class="text-size-mini text-muted">
                     <i class="icon-pin text-size-small"></i> &nbsp;{{ candidato.candidato_city }}, {{ candidato.candidato_UF }}
                   </div>
