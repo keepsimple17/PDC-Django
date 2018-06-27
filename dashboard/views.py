@@ -52,7 +52,7 @@ def stats(request):
     candidates = []
     candidator_datas = []
     for nick_name in available_candidator_nick_names:
-        candidate = Candidate.objects.filter(candidate_political_nickname__contains=nick_name)
+        candidate = Candidate.objects.filter(candidate_political_nickname=nick_name)
         if candidate:
             candidates.append(candidate.first())
 

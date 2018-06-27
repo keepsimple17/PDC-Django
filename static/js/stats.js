@@ -5,7 +5,7 @@ $(function () {
   /* candidate dropdown */
   $('.candidate-menu li').on('click', function() {
     console.log('changing candidate...', $(this));
-    $('.candidate-toggle').html($(this).find('a').html() + `<span class="caret"></span>`);
+    $('.candidate-toggle').html($(this).find('a').html() + ` <span class="caret"></span>`);
   });
 
   // solid gauge start
