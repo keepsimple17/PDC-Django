@@ -56,10 +56,10 @@ def stats(request):
         if candidate:
             candidates.append(candidate.first())
 
-    print('candidator len...', len(candidates))
+    for candidate in candidates:
+        candidator_datas.append(CandidateSerializer(candidate).data)
 
-    # for candidate in candidates:
-    #     candidator_datas.append(CandidateSerializer(candidate).data)
+    print('candidator len...', len(candidator_datas))
 
     return render(request, 'stats/resumo.html', {
         'candidato': candidato,
