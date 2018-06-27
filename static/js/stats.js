@@ -4,18 +4,24 @@
 $(function () {
   /* candidate dropdown */
   $('.candidate-menu li').on('click', function() {
-    console.log('changing candidate...', $(this));
+    console.log('changing candidate...');
+    onChangeCandidato($(this).attr('data-json'));
     $('.candidate-toggle').html($(this).find('a').html() + ` <span class="caret"></span>`);
   });
 
-  // solid gauge start
-  var names = ['Bolsonaro', 'Ciro Gomes', 'Alckmin', 'Marina Silva', 'Joaquim Barbosa', 'Collor', 'Paulino'];
-  var data = [22, 15, 6, 5, 7, 10, 65];
-  var dataSet = anychart.data.set(data);
-  var palette = anychart.palettes.distinctColors().items(['#64b5f6', '#1976d2', '#ef6c00', '#ffd54f', '#455a64', '#96a6a6', '#dd2c00', '#00838f', '#00bfa5', '#ffa000']);
+  const onChangeCandidato = (jsonStr) => {
+    // const candidator = JSON.parse(jsonStr);
+    console.log(jsonStr);
+  };
 
-  var makeBarWithBar = function (gauge, radius, i, width, without_stroke) {
-    var stroke = '1 #e5e4e4';
+  // solid gauge start
+  const names = ['Bolsonaro', 'Ciro Gomes', 'Alckmin', 'Marina Silva', 'Joaquim Barbosa', 'Collor', 'Paulino'];
+  const data = [22, 15, 6, 5, 7, 10, 65];
+  const dataSet = anychart.data.set(data);
+  const palette = anychart.palettes.distinctColors().items(['#64b5f6', '#1976d2', '#ef6c00', '#ffd54f', '#455a64', '#96a6a6', '#dd2c00', '#00838f', '#00bfa5', '#ffa000']);
+
+  const makeBarWithBar = function (gauge, radius, i, width, without_stroke) {
+    let stroke = '1 #e5e4e4';
     if (without_stroke) {
       stroke = null;
       gauge.label(i)

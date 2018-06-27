@@ -248,7 +248,7 @@
 
             <ul class="dropdown-menu candidate-menu">
               {% for item in candidates %}
-                <li><a class="dropdown-item" data-json="{{ item|escapejs }}">{{ item.candidate_political_nickname }}</a></li>
+                <li data-json="{{ item|escapejs }}"><a class="dropdown-item">{{ item.candidate_political_nickname }}</a></li>
               {% endfor %}
             </ul>
           </li>
