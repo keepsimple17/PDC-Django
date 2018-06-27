@@ -234,7 +234,7 @@ $(function () {
   anychart.onDocumentReady(function () {
 
     // get data
-    var data = getData();
+    const data = getData();
     // create a storage for the data tree
     treeData = anychart.data.tree(data, "as-tree");
 
@@ -251,7 +251,7 @@ $(function () {
     and add the drilldown path to the chart title */
     chart.listen("chartDraw", function () {
       // get the drilldown path and convert it to a string
-      var text = printPath(chart.getDrilldownPath());
+      const text = printPath(chart.getDrilldownPath());
       // set the chart title
       chart.title().useHtml(true);
       chart.title("Treemap: Interactivity (Drilling Down and Up)<br><br>Path: " +
@@ -269,7 +269,7 @@ $(function () {
   // a function for getting data
   function getData() {
     // create data
-    var data = [
+    const data = [
       {
         name:
           "Root", children: [
@@ -341,8 +341,8 @@ $(function () {
   function printPath(path) {
     /* go through the array of data items
     and use the get() method to obtain the "name" field */
-    var text = "";
-    for (var i = 0; i < path.length; i++) {
+    let text = "";
+    for (let i = 0; i < path.length; i++) {
       text += path[i].get("name") + "\\";
     }
     return text;
@@ -352,7 +352,7 @@ $(function () {
   function drillToItem() {
     /* locate an item in the data tree
     and get it as an object */
-    var item = treeData.search("name", "Item 3-4");
+    const item = treeData.search("name", "Item 3-4");
     // drill down to the item
     chart.drillTo(item);
   }
@@ -371,7 +371,7 @@ $(function () {
   /* bar chart */
   require.config({
     paths: {
-      echarts: '../../static/js/plugins/visualization/echarts'
+      echarts: '../../static/js/plugins/visualization/echarts',
     }
   });
 
@@ -467,7 +467,7 @@ $(function () {
         ]
       };
 
-      var idx = 1;
+      let idx = 1;
       pie_timeline_options = {
 
         // Add timeline
