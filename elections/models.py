@@ -20,7 +20,7 @@ class Ballot(models.Model):
 
 
 class Position(models.Model):
-    ballot = models.ForeignKey(Ballot)
+    ballot = models.ForeignKey(Ballot, on_delete=models.CASCADE)
     position = models.CharField(max_length=50)
     kind_of_position = models.CharField(
         "Tipo de Cargo", max_length=30, choices=KIND_OF_POSITION, null=False)
@@ -37,10 +37,10 @@ class Position(models.Model):
 
 
 class Dispute(models.Model):
-    position = models.ForeignKey(Position, blank=True, null=True)
+    position = models.ForeignKey(Position, blank=True, null=True, on_delete=models.CASCADE)
     state = models.CharField(max_length=40, blank=True, null=True)
     citie = models.CharField(max_length=40, blank=True, null=True)
-    candidate = models.ForeignKey('candidato.Candidate', blank=True)
+    candidate = models.ForeignKey('candidato.Candidate', blank=True, on_delete=models.CASCADE)
     political_party = models.ManyToManyField('dashboard.PoliticalParties', blank=True)
     is_user = models.BooleanField(default=False)
     facebook = models.CharField(max_length=40, blank=True, null=True)

@@ -196,7 +196,7 @@ USER_ROLES_CHOICES = (
 
 # This will represent an user account profile entity (will substitute the Profile Model bellow)
 class Usuario(models.Model):
-    user = models.OneToOneField(User, null=False, blank=False)
+    user = models.OneToOneField(User, null=False, blank=False, on_delete=models.CASCADE)
     gender = models.CharField('Gênero', max_length=1, choices=GENDER_CHOICES['physical'] + GENDER_CHOICES['legal'],
                               null=True)
     marital_status = models.CharField("Estado Civil", max_length=1, choices=ESTADO_CIVIL_CHOICES, null=True)
@@ -224,7 +224,8 @@ class Usuario(models.Model):
     user_status = models.CharField("Status", max_length=40, choices=USER_STATUS_CHOICES)
     # user_role = models.CharField("Tipo de Acesso", max_length=40, choices=USER_ROLES_CHOICES)
     user_roles_list = models.ForeignKey(
-        'candidato.UserRolesList', blank=True, null=True, related_name='user_roles_list_in_usuario')
+        'candidato.UserRolesList', blank=True, null=True, related_name='user_roles_list_in_usuario',
+        on_delete=models.CASCADE)
     candidates = models.ManyToManyField(Candidate, blank=True)
 
     def __str__(self):
