@@ -7,7 +7,7 @@ from candidato.models import (
 class CandidateAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'user', 'candidate_political_nickname', 'created_at', 'updated_at')
-    filter_horizontal = ('positive_keywords', 'proposals')
+    filter_horizontal = ('proposals', )
 
 
 class CoalitionsAdmin(admin.ModelAdmin):
