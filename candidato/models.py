@@ -101,7 +101,7 @@ CANDIDATE_INVITE_CHOICES = (
 
 
 class Candidate(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     reference_id = models.IntegerField
     # to associate to the user who invited the candidate
     # let's rethink about this field, if needed, it should be n:n relationship.
@@ -110,7 +110,8 @@ class Candidate(models.Model):
     candidate_political_nickname = models.CharField("Nome Eleitoral do Candidato", max_length=40, blank=True, null=True)
     # candidate_dispute_party = models.CharField(max_length=50, choices=POLITICAL_PARTY_CHOICES, blank=True, null=True)
     candidate_dispute_party = models.ForeignKey(
-        'dashboard.PoliticalParties', blank=True, null=True, verbose_name='Candidate Dispute Party')
+        'dashboard.PoliticalParties', blank=True, null=True, verbose_name='Candidate Dispute Party',
+        on_delete=models.CASCADE)
     candidate_party = models.CharField(max_length=50, blank=True, null=True)
     # todo to get the positions depending of the ballot year
     # The year and ballot of electoral dispute
@@ -125,7 +126,7 @@ class Candidate(models.Model):
 
     campaign_desired_position = models.ForeignKey(
         'elections.Position', blank=True, null=True, related_name='position_in_campaign_desired_position',
-        verbose_name='Cargo de Disputa')
+        verbose_name='Cargo de Disputa', on_delete=models.CASCADE)
     # campaign_desired_position = models.CharField("Cargo de Disputa", max_length=30, blank=True, null=True)
     # candidate_desired_position = models.CharField(
     #     'Cargo Pretendido pelo Candidato', max_length=30, blank=True, null=True)
@@ -154,7 +155,7 @@ class Candidate(models.Model):
     # political_position = models.CharField("Posição Politica que Exerce", max_length=40, null=True, blank=True)
     political_position = models.ForeignKey(
         'elections.Position', null=True, blank=True, related_name='position_in_political_position',
-        verbose_name='Posição Politica que Exerce')
+        verbose_name='Posição Politica que Exerce', on_delete=models.CASCADE)
 
     # reelection = models.CharField("Tentando Reeleição", max_length=40, null=True, blank=True)
     # first_political_campaign = models.CharField("Primeira Eleição", max_length=40, null=True, blank=True)
@@ -233,10 +234,10 @@ class Staff(models.Model):
 class Committees(models.Model):
     name = models.TextField(blank=True, null=True)
     # the Candidate who owns the Commitee
-    candidate = models.ForeignKey('candidato.Candidate', blank=True, null=True)
+    candidate = models.ForeignKey('candidato.Candidate', blank=True, null=True, on_delete=models.CASCADE)
     # the staff user responsible in Commitee
-    responsible = models.ForeignKey('dashboard.Usuario', blank=True, null=True)
-    responsible_tmp = models.ForeignKey('candidato.TempUser', blank=True, null=True)
+    responsible = models.ForeignKey('dashboard.Usuario', blank=True, null=True, on_delete=models.CASCADE)
+    responsible_tmp = models.ForeignKey('candidato.TempUser', blank=True, null=True, on_delete=models.CASCADE)
     # The Brazilian zipCode
     cep = models.CharField("CEP", max_length=17, blank=True, null=True)
     # Federal State (in dashboard_estado table)
@@ -258,9 +259,9 @@ class Committees(models.Model):
 
 class CommitteeMembers(models.Model):
     # the Commitee id
-    commitee = models.ForeignKey('candidato.Committees', blank=True, null=True)
+    commitee = models.ForeignKey('candidato.Committees', blank=True, null=True, on_delete=models.CASCADE)
     # the user ID of the User in commitee (dashboard.models.Profile)
-    usuario = models.ForeignKey('dashboard.Usuario', blank=True, null=True)
+    usuario = models.ForeignKey('dashboard.Usuario', blank=True, null=True, on_delete=models.CASCADE)
     # User assignments in Committee
     assignments = models.CharField("Atribuições", max_length=255, null=True, blank=True)
     observations = models.TextField('Observações', null=True, blank=True)
@@ -274,10 +275,13 @@ class CommitteeMembers(models.Model):
 # The Budget managment in this class is to the Candidate Cashback. Users will have their own cashback control
 class UserRoles(models.Model):
     # candidate_id = models.IntegerField
-    candidate = models.ForeignKey(Candidate, blank=True, null=True, related_name='candidate_in_user_roles')
+    candidate = models.ForeignKey(
+        Candidate, blank=True, null=True, related_name='candidate_in_user_roles', on_delete=models.CASCADE)
     # user_ir = models.IntegerField
-    user = models.ForeignKey('dashboard.Usuario', blank=True, null=True, related_name='usuario_in_user_roles')
-    invite = models.ForeignKey('candidato.Invites', blank=True, null=True, related_name='usuario_in_user_roles')
+    user = models.ForeignKey(
+        'dashboard.Usuario', blank=True, null=True, related_name='usuario_in_user_roles', on_delete=models.CASCADE)
+    invite = models.ForeignKey(
+        'candidato.Invites', blank=True, null=True, related_name='usuario_in_user_roles', on_delete=models.CASCADE)
     role_name = models.CharField('Regras das Funções', max_length=40, default="Geral")
     budget_managment = models.PositiveSmallIntegerField('Controle Financeiro', default=0)
     members_managment = models.PositiveSmallIntegerField('Gestão de Usuários', default=4)
@@ -339,7 +343,7 @@ class ScopeList(models.Model):
     is_template = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, null=True)
-    user = models.ForeignKey(User, blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -348,7 +352,7 @@ class ScopeList(models.Model):
 class Proposal(models.Model):
     name = models.CharField(max_length=60)
     description = models.CharField(max_length=255, null=True, blank=True)
-    scope = models.ForeignKey(ScopeList, blank=True, null=True)
+    scope = models.ForeignKey(ScopeList, blank=True, null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 

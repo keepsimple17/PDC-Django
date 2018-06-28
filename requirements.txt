@@ -1,4 +1,4 @@
-Django==1.11.2
+Django
 django-filter
 mysqlclient
 social-auth-app-django
