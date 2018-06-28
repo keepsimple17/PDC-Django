@@ -124,10 +124,11 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
             return redirect('primeiro_setup')
         else:
             logout(request)
-            return render(request, "registration/firstsetup.html", {'form': form,
-                                                                    'uid': uidb64,
-                                                                    'token': token,
-                                                                    'valid': False})
+            return render(request, "registration/firstsetup.html", {
+                'form': form,
+                'uid': uidb64,
+                'token': token,
+                'valid': False})
     else:
         # Requesting token again.
         data = request.POST
@@ -168,9 +169,10 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
                                                                         'uid': uidb64,
                                                                         'token': token})
             messages.success(request, _('Por favor, confirme seu email para completar seu cadastro.'))
-            return render(request, "registration/firstsetup.html", {'valid': False,
-                                                                    'uid': uidb64,
-                                                                    'token': token})
+            return render(request, "registration/firstsetup.html", {
+                'valid': False,
+                'uid': uidb64,
+                'token': token})
         else:
             messages.warning(request, _('Not Authorized.'))
             return render(request, "registration/firstsetup.html", {'valid': False,
