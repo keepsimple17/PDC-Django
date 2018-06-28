@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django import forms
 
 from candidato.models import (
     Candidate, Coalitions, Committees, CommitteeMembers, UserRoles, UserRolesList, ScopeList, Proposal, Keyword)
