@@ -1,7 +1,6 @@
 import datetime
 import json
 from smtplib import SMTPException
-
 import requests
 
 from candidato.models import (
