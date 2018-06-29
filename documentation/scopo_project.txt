@@ -14,3 +14,4 @@ For example, if a department wants to make an event, it can be put in the agenda
 the budget will be directed to the financial,
 the demands for people and promotional items will go to the agency, and so on.
 Few meetings and more decisions will be possible.
+
