@@ -6,6 +6,7 @@ from elections.models import Ballot, Position, Dispute
 class BallotAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'name', 'election_date', 'created')
+    filter_horizontal = ('political_party', )
 
 
 class PositionAdmin(admin.ModelAdmin):
