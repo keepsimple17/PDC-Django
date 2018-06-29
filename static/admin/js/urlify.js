@@ -58,6 +58,14 @@
         'ů': 'u', 'ž': 'z', 'Č': 'C', 'Ď': 'D', 'Ě': 'E', 'Ň': 'N', 'Ř': 'R',
         'Š': 'S', 'Ť': 'T', 'Ů': 'U', 'Ž': 'Z'
     };
+    var SLOVAK_MAP = {
+        'á': 'a', 'ä': 'a', 'č': 'c', 'ď': 'd', 'é': 'e', 'í': 'i', 'ľ': 'l',
+        'ĺ': 'l', 'ň': 'n', 'ó': 'o', 'ô': 'o', 'ŕ': 'r', 'š': 's', 'ť': 't',
+        'ú': 'u', 'ý': 'y', 'ž': 'z',
+        'Á': 'a', 'Ä': 'A', 'Č': 'C', 'Ď': 'D', 'É': 'E', 'Í': 'I', 'Ľ': 'L',
+        'Ĺ': 'L', 'Ň': 'N', 'Ó': 'O', 'Ô': 'O', 'Ŕ': 'R', 'Š': 'S', 'Ť': 'T',
+        'Ú': 'U', 'Ý': 'Y', 'Ž': 'Z'
+    };
     var POLISH_MAP = {
         'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n', 'ó': 'o', 'ś': 's',
         'ź': 'z', 'ż': 'z',
@@ -91,6 +99,13 @@
         'ç': 'c', 'ə': 'e', 'ğ': 'g', 'ı': 'i', 'ö': 'o', 'ş': 's', 'ü': 'u',
         'Ç': 'C', 'Ə': 'E', 'Ğ': 'G', 'İ': 'I', 'Ö': 'O', 'Ş': 'S', 'Ü': 'U'
     };
+    var GEORGIAN_MAP = {
+        'ა': 'a', 'ბ': 'b', 'გ': 'g', 'დ': 'd', 'ე': 'e', 'ვ': 'v', 'ზ': 'z',
+        'თ': 't', 'ი': 'i', 'კ': 'k', 'ლ': 'l', 'მ': 'm', 'ნ': 'n', 'ო': 'o',
+        'პ': 'p', 'ჟ': 'j', 'რ': 'r', 'ს': 's', 'ტ': 't', 'უ': 'u', 'ფ': 'f',
+        'ქ': 'q', 'ღ': 'g', 'ყ': 'y', 'შ': 'sh', 'ჩ': 'ch', 'ც': 'c', 'ძ': 'dz',
+        'წ': 'w', 'ჭ': 'ch', 'ხ': 'x', 'ჯ': 'j', 'ჰ': 'h'
+    };
 
     var ALL_DOWNCODE_MAPS = [
         LATIN_MAP,
@@ -101,12 +116,14 @@
         RUSSIAN_MAP,
         UKRAINIAN_MAP,
         CZECH_MAP,
+        SLOVAK_MAP,
         POLISH_MAP,
         LATVIAN_MAP,
         ARABIC_MAP,
         LITHUANIAN_MAP,
         SERBIAN_MAP,
-        AZERBAIJANI_MAP
+        AZERBAIJANI_MAP,
+        GEORGIAN_MAP
     ];
 
     var Downcoder = {
@@ -164,8 +181,9 @@
         }
         s = s.replace(/^\s+|\s+$/g, '');   // trim leading/trailing spaces
         s = s.replace(/[-\s]+/g, '-');     // convert spaces to hyphens
-        s = s.toLowerCase();               // convert to lowercase
-        return s.substring(0, num_chars);  // trim to first num_chars chars
+        s = s.substring(0, num_chars);     // trim to first num_chars chars
+        s = s.replace(/-+$/g, '');         // trim any trailing hyphens
+        return s.toLowerCase();            // convert to lowercase
     }
     window.URLify = URLify;
 })();
