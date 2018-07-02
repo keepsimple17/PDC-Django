@@ -73,7 +73,7 @@ class CandidateSerializer(serializers.ModelSerializer):
             'first_political_campaign',  'candidate_site', 'campaign_email', 'facebook', 'facebook_img', 'facebook_url',
             'twitter', 'twitter_img', 'twitter_url', 'googlep', 'googlep_img', 'googlep_url', 'youtube', 'youtube_img',
             'youtube_url', 'instagram', 'instagram_img', 'instagram_url', 'candidate_blog_rss',
-            'candidate_blog_rss_img', 'candidate_blog_rss_url', 'usuarioes', 'proposals', 'foto',  'resume', 'obs',
+            'candidate_blog_rss_img', 'candidate_blog_rss_url', 'proposals', 'foto',  'resume', 'obs',
             'candidate_situation', 'positive_keywords', 'negative_keywords', 'created_at', 'updated_at',
         )
 
