@@ -16,6 +16,7 @@ class PositionAdmin(admin.ModelAdmin):
 class DisputeAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'position', 'state', 'citie', 'candidate', 'created')
+    filter_horizontal = ('political_party',)
 
 
 admin.site.register(Ballot, BallotAdmin)

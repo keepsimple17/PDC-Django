@@ -76,7 +76,6 @@ def signup(request, uidb64=None):
                         mail_subject, message, to=[to_email]
             )
             email.content_subtype = "html"
-            print('to_email', to_email)
             try:
                 email.send()
             except SMTPException as e:
@@ -94,13 +93,12 @@ def signup(request, uidb64=None):
             # return HttpResponse('Por favor confirme o enviado para sua caixa-postal para prosseguir com o registro!')
             return render(request, "registration/token_confirmation.html")
         else:
-            print('form not valid')
+            print('user form not valid')
             # messages.error(request, "Error")
             # form = UserForm()
             return render(request, "registration/signup.html", {'form': form})
 
     else:
-        print('this is get request')
         form = UserForm()
 
     return render(request, "registration/signup.html", {'form': form})
@@ -157,9 +155,11 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
                 # when occurring any exception, remove the user from user table.
                 user.delete()
                 messages.warning(request, _('There was an SMTPException: ' + str(e)))
-                return render(request, "registration/firstsetup.html", {'valid': False,
-                                                                        'uid': uidb64,
-                                                                        'token': token})
+                return render(request, "registration/firstsetup.html", {
+                    'valid': False,
+                    'uid': uidb64,
+                    'token': token})
+
             except Exception as e:
                 print('There was an error sending an email: ', e)
                 user.delete()
@@ -174,9 +174,10 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
                 'token': token})
         else:
             messages.warning(request, _('Not Authorized.'))
-            return render(request, "registration/firstsetup.html", {'valid': False,
-                                                                    'uid': uidb64,
-                                                                    'token': token})
+            return render(request, "registration/firstsetup.html", {
+                'valid': False,
+                'uid': uidb64,
+                'token': token})
 
 
 @csrf_protect

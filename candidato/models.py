@@ -185,7 +185,7 @@ class Candidate(models.Model):
     candidate_blog_rss = models.CharField(max_length=40, blank=True, null=True)
     candidate_blog_rss_img = models.TextField(blank=True, null=True)
     candidate_blog_rss_url = models.URLField(blank=True, null=True)
-    usuarioes = models.ManyToManyField('dashboard.Usuario', blank=True)
+    # usuarioes = models.ManyToManyField('dashboard.Usuario', blank=True)
     proposals = models.ManyToManyField('candidato.Proposal', blank=True)
 
     foto = models.ImageField(
