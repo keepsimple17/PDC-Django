@@ -1,11 +1,32 @@
 # django
 # app
 from candidato.models import Candidate, Invites, Keyword, Proposal, ScopeList
+from elections.models import Ballot, Position
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
 
+# duplicated serializer
+class BallotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ballot
+        fields = ('id', 'name', 'election_date', 'created')
+
+        read_only_fields = ('created', )
+
+
+class PositionSerializer(serializers.ModelSerializer):
+    ballot = BallotSerializer(many=False)
+
+    class Meta:
+        model = Position
+        fields = ('id', 'ballot', 'position', 'kind_of_position', 'uf', 'citie', 'created')
+
+        read_only_fields = ('created', )
+
+
+# serializers for election app
 class InvitesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invites
@@ -63,6 +84,7 @@ class CandidateSerializer(serializers.ModelSerializer):
     proposals = ProposalSerializer(many=True)
     positive_keywords = KeywordSerializer(many=True)
     negative_keywords = KeywordSerializer(many=True)
+    campaign_desired_position = PositionSerializer(many=False)
 
     class Meta:
         model = Candidate
