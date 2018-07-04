@@ -277,58 +277,61 @@ $(function () {
         name:
           "Root", children: [
           {
-            name: "Item 1", children: [
+            name: "Nenhum", children: [
               {
-                name: "Item 1-1", children: [
-                  {name: "Item 1-1-1", value: 1000},
-                  {name: "Item 1-1-2", value: 600},
-                  {name: "Item 1-1-3", value: 550},
-                  {name: "Item 1-1-4", value: 300},
-                  {name: "Item 1-1-5", value: 150}
+                name: "Homens", children: [
+                  {name: "18 - 25 anos", value: 1800},
+                  {name: "26 - 45 anos", value: 6000},
+                  {name: "46 - 65 anos", value: 5570},
+                  {name: "+65 anos", value: 700},
                 ]
               },
-              {name: "Item 1-2", value: 2300},
-              {name: "Item 1-3", value: 1500}
+              {
+                name: "Mulheres", children: [
+                  {name: "18 - 25 anos", value: 3000},
+                  {name: "26 - 45 anos", value: 1600},
+                  {name: "46 - 65 anos", value: 3550},
+                  {name: "+65 anos", value: 1300},
+                ]
+              }
             ]
           },
           {
-            name: "Item 2", children: [
+            name: "Brancos", children: [
               {
-                name: "Item 2-1", children: [
-                  {name: "Item 2-1-1", value: 2100},
-                  {name: "Item 2-1-2", value: 1000},
-                  {name: "Item 2-1-3", value: 800},
-                  {name: "Item 2-1-4", value: 750}
+                name: "Homens", children: [
+                  {name: "18 - 25 anos", value: 5000},
+                  {name: "26 - 45 anos", value: 950},
+                  {name: "46 - 65 anos", value: 8550},
+                  {name: "+65 anos", value: 300},
                 ]
               },
               {
-                name: "Item 2-2", children: [
-                  {name: "Item 2-2-1", value: 560},
-                  {name: "Item 2-2-2", value: 300},
-                  {name: "Item 2-2-3", value: 150},
-                  {name: "Item 2-2-4", value: 90}
+                name: "Mulheres", children: [
+                  {name: "18 - 25 anos", value: 1200},
+                  {name: "26 - 45 anos", value: 8700},
+                  {name: "46 - 65 anos", value: 5150},
+                  {name: "+65 anos", value: 9800},
                 ]
-              },
-              {name: "Item 2-3", value: 400}
+              }
             ]
           },
           {
-            name: "Item 3", children: [
+            name: "Nulos", children: [
               {
-                name: "Item 3-1", children: [
-                  {name: "Item 3-1-1", value: 850},
-                  {name: "Item 3-1-2", value: 400},
-                  {name: "Item 3-1-3", value: 150}
+                name: "Homens", children: [
+                  {name: "18 - 25 anos", value: 5800},
+                  {name: "26 - 45 anos", value: 1500},
+                  {name: "46 - 65 anos", value: 950},
+                  {name: "+65 anos", value: 800},
                 ]
               },
-              {name: "Item 3-2", value: 1350},
-              {name: "Item 3-3", value: 1300},
               {
-                name: "Item 3-4", children: [
-                  {name: "Item 3-4-1", value: 400},
-                  {name: "Item 3-4-2", value: 300},
-                  {name: "Item 3-4-3", value: 250},
-                  {name: "Item 3-4-4", value: 150}
+                name: "Mulheres", children: [
+                  {name: "18 - 25 anos", value: 1900},
+                  {name: "26 - 45 anos", value: 5600},
+                  {name: "46 - 65 anos", value: 3550},
+                  {name: "+65 anos", value: 5300},
                 ]
               }
             ]
