@@ -104,8 +104,13 @@
     <!-- General Overview -->
     <div class="row">
       <div class="col-lg-12">
-        <h1 align="center">Dados de Avaliação para {{ candidato.candidato_intended_position }} - {{ candidato.candidato_UF }} </h1>
-        <h4 align="center">Dados de Pesquisa para <strong>{{ candidato.candidato }}</strong> | Pleito: {{ candidato.ballot }} </h4>
+        <h1 align="center">
+          Dados de Avaliação para <span id="candidate_desited_position">{{ candidates.0.campaign_desired_position.position }}</span> -
+          <span id="candidate_state_campaign">{{ candidates.0.state_campaign|default:"PR" }}</span>
+        </h1>
+        <h4 align="center">
+          Dados de Pesquisa para <strong>{{ candidato.candidato }}</strong> | Pleito: {{ candidato.ballot }}
+        </h4>
       </div>
     </div>
     <hr>

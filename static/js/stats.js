@@ -17,6 +17,9 @@ $(function () {
     const iframe_src = `http://18.218.2.246/topic_modeling/api/v1.0/posts?name=${facebookid}&type=facebook`;
     document.getElementById('segment_iframe').src = iframe_src;
     // $('#segment_iframe').src = iframe_src;
+    // change candidate info
+    $('#candidate_desited_position').html(candidator.campaign_desired_position.position);
+    $('#candidate_state_campaign').html(candidator.state_campaign || 'PR');
   };
 
   // solid gauge start
@@ -366,8 +369,16 @@ $(function () {
 /* barchart, 3d funnel chart */
 $(function () {
 
-  // Set paths
-  // ------------------------------
+  const candidates = [];
+  const nick_name_list = [];
+  $('.candidate-menu li').each((index, item) => {
+    candidates.push(JSON.parse($(item).attr('data-json')));
+  });
+  console.log(candidates);
+  for (const item of candidates) {
+    nick_name_list.push(item.candidate_political_nickname);
+  }
+  console.log('nick_name_list', nick_name_list);
   /* bar chart */
   require.config({
     paths: {
@@ -438,8 +449,9 @@ $(function () {
         // Vertical axis
         yAxis: [{
           type: 'category',
-          data: ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
-          'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
+          data: nick_name_list.reverse(),
+          // data:   ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
+          // 'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
         }],
 
         // Add series
@@ -452,7 +464,8 @@ $(function () {
                 color: '#EF5350'
               }
             },
-            data: [1 ,0.2, 14, 0.1, 0.7, 0.02, 4, 20.5, 0.2, 39.5, 16, 0, 0 ]
+            data: [1 ,0.2, 14, 0.1, 0.7]
+            // data: [1 ,0.2, 14, 0.1, 0.7, 0.02, 4, 20.5, 0.2, 39.5, 16, 0, 0 ]
           },
           {
             name: 'Intenções de Voto',
@@ -462,7 +475,8 @@ $(function () {
                 color: '#66BB6A'
               }
             },
-            data: [0.8 , 3, 12, 0.7, 0.9, 0.8, 1.1, 24.6, 1.7, 19, 5, 19, 12 ]
+            data: [0.8 , 3, 12, 0.7, 0.9]
+            // data: [0.8 , 3, 12, 0.7, 0.9, 0.8, 1.1, 24.6, 1.7, 19, 5, 19, 12 ]
           }
         ]
       };
