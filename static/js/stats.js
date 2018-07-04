@@ -257,7 +257,7 @@ $(function () {
       const text = printPath(chart.getDrilldownPath());
       // set the chart title
       chart.title().useHtml(true);
-      chart.title("Treemap: Interactivity (Drilling Down and Up)<br><br>Path: " +
+      chart.title("Conversão: Lista (Nenhum/Brancos e Nulos)<br><br>Lista: " +
         "<span style = 'color:#990000; font-style:italic'>" +
         text + "</span>");
     });
@@ -275,7 +275,7 @@ $(function () {
     const data = [
       {
         name:
-          "Root", children: [
+          "Todos", children: [
           {
             name: "Nenhum", children: [
               {
