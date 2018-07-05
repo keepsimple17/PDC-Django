@@ -274,8 +274,8 @@ $(function () {
     // create data
     const data = [
       {
-        name:
-          "Root", children: [
+        name: "Root",
+        children: [
           {
             name: "Nenhum", children: [
               {
