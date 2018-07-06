@@ -100,9 +100,7 @@ $(function () {
     gauge.draw();
   });
   // solid gauge end
-});
 
-$(function () {
   // brazil map start
   anychart.onDocumentReady(function () {
     const dataSet = [
@@ -231,9 +229,7 @@ $(function () {
     map.draw();
   });
   // brazil map end
-});
-
-$(function () {
+  /* tree chart start */
   anychart.onDocumentReady(function () {
 
     // get data
@@ -367,6 +363,7 @@ $(function () {
   function drillUpALevel() {
     chart.drillUp();
   }
+  /* tree chart end */
 });
 
 /* barchart, 3d funnel chart */
