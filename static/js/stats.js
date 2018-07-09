@@ -17,6 +17,9 @@ $(function () {
     const iframe_src = `http://18.218.2.246/topic_modeling/api/v1.0/posts?name=${facebookid}&type=facebook`;
     document.getElementById('segment_iframe').src = iframe_src;
     // $('#segment_iframe').src = iframe_src;
+    // change candidate info
+    $('#candidate_desited_position').html(candidator.campaign_desired_position.position);
+    $('#candidate_state_campaign').html(candidator.state_campaign || 'PR');
   };
 
   // solid gauge start
@@ -86,7 +89,7 @@ $(function () {
 
     gauge.margin(50);
     gauge.title().text('Lideranças em Pesquisas de Voto' +
-      '<br/><span style="color:#929292; font-size: 12px;">(Densidade de Citações - 94.6% precisão       )</span>').useHtml(true);
+      '<br/><span style="color:#929292; font-size: 12px;">(Densidade de Citações - 97.3% precisão       )</span>').useHtml(true);
     gauge.title()
       .enabled(true)
       .hAlign('center')
@@ -254,7 +257,7 @@ $(function () {
       const text = printPath(chart.getDrilldownPath());
       // set the chart title
       chart.title().useHtml(true);
-      chart.title("Treemap: Interactivity (Drilling Down and Up)<br><br>Path: " +
+      chart.title("Conversão: Lista (Nenhum/Brancos e Nulos)<br><br>Lista: " +
         "<span style = 'color:#990000; font-style:italic'>" +
         text + "</span>");
     });
@@ -272,60 +275,63 @@ $(function () {
     const data = [
       {
         name:
-          "Root", children: [
+          "Todos", children: [
           {
-            name: "Item 1", children: [
+            name: "Nenhum", children: [
               {
-                name: "Item 1-1", children: [
-                  {name: "Item 1-1-1", value: 1000},
-                  {name: "Item 1-1-2", value: 600},
-                  {name: "Item 1-1-3", value: 550},
-                  {name: "Item 1-1-4", value: 300},
-                  {name: "Item 1-1-5", value: 150}
+                name: "Homens", children: [
+                  {name: "18 - 25 anos", value: 1800},
+                  {name: "26 - 45 anos", value: 6000},
+                  {name: "46 - 65 anos", value: 5570},
+                  {name: "+65 anos", value: 700},
                 ]
               },
-              {name: "Item 1-2", value: 2300},
-              {name: "Item 1-3", value: 1500}
+              {
+                name: "Mulheres", children: [
+                  {name: "18 - 25 anos", value: 3000},
+                  {name: "26 - 45 anos", value: 1600},
+                  {name: "46 - 65 anos", value: 3550},
+                  {name: "+65 anos", value: 1300},
+                ]
+              }
             ]
           },
           {
-            name: "Item 2", children: [
+            name: "Brancos", children: [
               {
-                name: "Item 2-1", children: [
-                  {name: "Item 2-1-1", value: 2100},
-                  {name: "Item 2-1-2", value: 1000},
-                  {name: "Item 2-1-3", value: 800},
-                  {name: "Item 2-1-4", value: 750}
+                name: "Homens", children: [
+                  {name: "18 - 25 anos", value: 5000},
+                  {name: "26 - 45 anos", value: 950},
+                  {name: "46 - 65 anos", value: 8550},
+                  {name: "+65 anos", value: 300},
                 ]
               },
               {
-                name: "Item 2-2", children: [
-                  {name: "Item 2-2-1", value: 560},
-                  {name: "Item 2-2-2", value: 300},
-                  {name: "Item 2-2-3", value: 150},
-                  {name: "Item 2-2-4", value: 90}
+                name: "Mulheres", children: [
+                  {name: "18 - 25 anos", value: 1200},
+                  {name: "26 - 45 anos", value: 8700},
+                  {name: "46 - 65 anos", value: 5150},
+                  {name: "+65 anos", value: 9800},
                 ]
-              },
-              {name: "Item 2-3", value: 400}
+              }
             ]
           },
           {
-            name: "Item 3", children: [
+            name: "Nulos", children: [
               {
-                name: "Item 3-1", children: [
-                  {name: "Item 3-1-1", value: 850},
-                  {name: "Item 3-1-2", value: 400},
-                  {name: "Item 3-1-3", value: 150}
+                name: "Homens", children: [
+                  {name: "18 - 25 anos", value: 5800},
+                  {name: "26 - 45 anos", value: 1500},
+                  {name: "46 - 65 anos", value: 950},
+                  {name: "+65 anos", value: 800},
                 ]
               },
-              {name: "Item 3-2", value: 1350},
-              {name: "Item 3-3", value: 1300},
               {
-                name: "Item 3-4", children: [
-                  {name: "Item 3-4-1", value: 400},
-                  {name: "Item 3-4-2", value: 300},
-                  {name: "Item 3-4-3", value: 250},
-                  {name: "Item 3-4-4", value: 150}
+                name: "Mulheres", children: [
+                  {name: "18 - 25 anos", value: 1900},
+                  {name: "26 - 45 anos", value: 5600},
+                  {name: "46 - 65 anos", value: 3550},
+                  {name: "+65 anos", value: 5300},
                 ]
               }
             ]
@@ -366,8 +372,16 @@ $(function () {
 /* barchart, 3d funnel chart */
 $(function () {
 
-  // Set paths
-  // ------------------------------
+  const candidates = [];
+  const nick_name_list = [];
+  $('.candidate-menu li').each((index, item) => {
+    candidates.push(JSON.parse($(item).attr('data-json')));
+  });
+  console.log(candidates);
+  for (const item of candidates) {
+    nick_name_list.push(item.candidate_political_nickname);
+  }
+  console.log('nick_name_list', nick_name_list);
   /* bar chart */
   require.config({
     paths: {
@@ -438,8 +452,10 @@ $(function () {
         // Vertical axis
         yAxis: [{
           type: 'category',
-          data: ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'G. Alckmin', 'Flávio Rocha',
-          'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
+          data: nick_name_list.reverse(),
+          // data:   ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
+          // 'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
+
         }],
 
         // Add series
@@ -452,7 +468,10 @@ $(function () {
                 color: '#EF5350'
               }
             },
-            data: [1 ,0.2, 14, 0.1, 2.03, 0.02, 4, 19.92, 0.2, 39.8, 11.7, 0, 0 ]
+
+            data: [1 ,0.2, 14, 0.1, 0.7]
+            // data: [1 ,0.2, 14, 0.1, 0.7, 0.02, 4, 20.5, 0.2, 39.5, 16, 0, 0 ]
+
           },
           {
             name: 'Intenções de Voto',
@@ -462,7 +481,9 @@ $(function () {
                 color: '#66BB6A'
               }
             },
-            data: [0.8 , 3, 12, 0.7, 3.78, 0.8, 1.1, 23.8, 1.7, 18.76, 7.02, 19, 12 ]
+
+            data: [0.8 , 3, 12, 0.7, 0.9]
+            // data: [0.8 , 3, 12, 0.7, 0.9, 0.8, 1.1, 24.6, 1.7, 19, 5, 19, 12 ]
           }
         ]
       };
