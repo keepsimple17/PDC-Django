@@ -483,7 +483,7 @@ $(function () {
       };
 
       let idx = 1;
-      pie_timeline_options = {
+      const pie_timeline_options = {
 
         // Add timeline
         timeline: {
