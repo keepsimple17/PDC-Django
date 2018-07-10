@@ -414,7 +414,6 @@ $(function () {
       const pie_basic_element = ec.init(document.getElementById('pie_basic'), limitless);
 
       const basic_bars_options = {
-
         // Setup grid
         grid: {
           x: 75,
