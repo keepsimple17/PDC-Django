@@ -857,7 +857,7 @@ $(function () {
 
         // Add series
         series: [{
-          name: 'Browsers',
+          name: 'Posts',
           type: 'pie',
           radius: '70%',
           center: ['50%', '57.5%'],
