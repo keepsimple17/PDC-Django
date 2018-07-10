@@ -3,7 +3,7 @@
  */
 $(function () {
   /* candidate dropdown */
-  $('.candidate-menu li').on('click', function() {
+  $('.candidate-menu li').on('click', function () {
     console.log('changing candidate...');
     onChangeCandidato($(this).attr('data-json'));
     $('.candidate-toggle').html($(this).find('a').html() + ` <span class="caret"></span>`);
@@ -13,7 +13,7 @@ $(function () {
     const candidator = JSON.parse(jsonStr);
     console.log(candidator);
     $('#candidate_nickname').html(candidator.candidate_political_nickname);
-    const facebookid = candidator.facebook.startsWith('@')? candidator.facebook.substr(1) : candidator.facebook;
+    const facebookid = candidator.facebook.startsWith('@') ? candidator.facebook.substr(1) : candidator.facebook;
     const iframe_src = `http://18.218.2.246/topic_modeling/api/v1.0/posts?name=${facebookid}&type=facebook`;
     document.getElementById('segment_iframe').src = iframe_src;
     // $('#segment_iframe').src = iframe_src;
@@ -135,7 +135,6 @@ $(function () {
       }
     ];
 
-    //
     const map = anychart.map();
     map.geoData(anychart.maps.brazil);
 
@@ -155,7 +154,8 @@ $(function () {
   const names = ['Bolsonaro', 'Ciro Gomes', 'Alckmin', 'Marina Silva', 'Joaquim Barbosa', 'Collor', 'Paulino'];
   const data = [22, 15, 6, 5, 7, 10, 65];
   const dataSet = anychart.data.set(data);
-  const palette = anychart.palettes.distinctColors().items(['#64b5f6', '#1976d2', '#ef6c00', '#ffd54f', '#455a64', '#96a6a6', '#dd2c00', '#00838f', '#00bfa5', '#ffa000']);
+  const palette = anychart.palettes.distinctColors().items(
+    ['#64b5f6', '#1976d2', '#ef6c00', '#ffd54f', '#455a64', '#96a6a6', '#dd2c00', '#00838f', '#00bfa5', '#ffa000']);
 
   const makeBarWithBar = function (gauge, radius, i, width, without_stroke) {
     let stroke = '1 #e5e4e4';
@@ -280,7 +280,7 @@ $(function () {
                   {name: "18 - 25 anos", value: 1800},
                   {name: "26 - 45 anos", value: 6000},
                   {name: "46 - 65 anos", value: 5570},
-                  {name: "+65 anos", value: 700},
+                  {name: "+65 anos", value: 700}
                 ]
               },
               {
@@ -288,7 +288,7 @@ $(function () {
                   {name: "18 - 25 anos", value: 3000},
                   {name: "26 - 45 anos", value: 1600},
                   {name: "46 - 65 anos", value: 3550},
-                  {name: "+65 anos", value: 1300},
+                  {name: "+65 anos", value: 1300}
                 ]
               }
             ]
@@ -300,7 +300,7 @@ $(function () {
                   {name: "18 - 25 anos", value: 5000},
                   {name: "26 - 45 anos", value: 950},
                   {name: "46 - 65 anos", value: 8550},
-                  {name: "+65 anos", value: 300},
+                  {name: "+65 anos", value: 300}
                 ]
               },
               {
@@ -308,7 +308,7 @@ $(function () {
                   {name: "18 - 25 anos", value: 1200},
                   {name: "26 - 45 anos", value: 8700},
                   {name: "46 - 65 anos", value: 5150},
-                  {name: "+65 anos", value: 9800},
+                  {name: "+65 anos", value: 9800}
                 ]
               }
             ]
@@ -320,7 +320,7 @@ $(function () {
                   {name: "18 - 25 anos", value: 5800},
                   {name: "26 - 45 anos", value: 1500},
                   {name: "46 - 65 anos", value: 950},
-                  {name: "+65 anos", value: 800},
+                  {name: "+65 anos", value: 800}
                 ]
               },
               {
@@ -328,7 +328,7 @@ $(function () {
                   {name: "18 - 25 anos", value: 1900},
                   {name: "26 - 45 anos", value: 5600},
                   {name: "46 - 65 anos", value: 3550},
-                  {name: "+65 anos", value: 5300},
+                  {name: "+65 anos", value: 5300}
                 ]
               }
             ]
@@ -364,6 +364,7 @@ $(function () {
   function drillUpALevel() {
     chart.drillUp();
   }
+
   /* tree chart end */
 });
 
@@ -383,7 +384,7 @@ $(function () {
   /* bar chart */
   require.config({
     paths: {
-      echarts: '../../static/js/plugins/visualization/echarts',
+      echarts: '../../static/js/plugins/visualization/echarts'
     }
   });
 
@@ -393,7 +394,8 @@ $(function () {
       'echarts/theme/limitless',
       'echarts/chart/bar',
       'echarts/chart/line',
-      'echarts/chart/pie'
+      'echarts/chart/pie',
+      'echarts/chart/funnel'
     ],
 
     // Charts setup
@@ -407,6 +409,16 @@ $(function () {
         })
         .catch((err) => {
           console.error('dispute', err);
+        });
+
+      axios.post('http://18.218.2.246/postagens/api/v1.0/get/', {
+        type: 'twitter',
+      })
+        .then((res) => {
+          console.log('pie chart', res.data);
+        })
+        .catch((err) => {
+          console.error('pie chart', err);
         });
 
       const basic_bars = ec.init(document.getElementById('basic_bars'), limitless);
@@ -447,7 +459,7 @@ $(function () {
         // Vertical axis
         yAxis: [{
           type: 'category',
-          data: nick_name_list.reverse(),
+          data: nick_name_list.reverse()
           // data:   ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
           // 'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
         }],
@@ -462,7 +474,7 @@ $(function () {
                 color: '#EF5350'
               }
             },
-            data: [1 ,0.2, 14, 0.1, 0.7]
+            data: [1, 0.2, 14, 0.1, 0.7]
             // data: [1 ,0.2, 14, 0.1, 0.7, 0.02, 4, 20.5, 0.2, 39.5, 16, 0, 0 ]
           },
           {
@@ -473,7 +485,7 @@ $(function () {
                 color: '#66BB6A'
               }
             },
-            data: [0.8 , 3, 12, 0.7, 0.9]
+            data: [0.8, 3, 12, 0.7, 0.9]
             // data: [0.8 , 3, 12, 0.7, 0.9, 0.8, 1.1, 24.6, 1.7, 19, 5, 19, 12 ]
           }
         ]
@@ -734,56 +746,79 @@ $(function () {
         ]
       };
 
-      const pie_basic_options = {
-        // Colors
-        color: [
-          '#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
-          '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
-          '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
-          '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
-        ],
-
-        // Global text styles
-        textStyle: {
-          fontFamily: 'Roboto, Arial, Verdana, sans-serif',
-          fontSize: 13
-        },
+      const basic_pie_options = {
 
         // Add title
         title: {
           text: 'Browser popularity',
           subtext: 'Open source information',
-          left: 'center',
-          textStyle: {
-              fontSize: 17,
-              fontWeight: 500
-          },
-          subtextStyle: {
-              fontSize: 12
-          }
+          x: 'center'
         },
 
         // Add tooltip
         tooltip: {
           trigger: 'item',
-          backgroundColor: 'rgba(0,0,0,0.75)',
-          padding: [10, 15],
-          textStyle: {
-              fontSize: 13,
-              fontFamily: 'Roboto, sans-serif'
-          },
           formatter: "{a} <br/>{b}: {c} ({d}%)"
         },
 
         // Add legend
         legend: {
           orient: 'vertical',
-          top: 'center',
-          left: 0,
-          data: ['IE', 'Opera', 'Safari', 'Firefox', 'Chrome'],
-          itemHeight: 8,
-          itemWidth: 8
+          x: 'left',
+          data: ['IE', 'Opera', 'Safari', 'Firefox', 'Chrome']
         },
+
+        // Display toolbox
+        toolbox: {
+          show: true,
+          orient: 'vertical',
+          feature: {
+            mark: {
+              show: true,
+              title: {
+                mark: 'Markline switch',
+                markUndo: 'Undo markline',
+                markClear: 'Clear markline'
+              }
+            },
+            dataView: {
+              show: true,
+              readOnly: false,
+              title: 'View data',
+              lang: ['View chart data', 'Close', 'Update']
+            },
+            magicType: {
+              show: true,
+              title: {
+                pie: 'Switch to pies',
+                funnel: 'Switch to funnel'
+              },
+              type: ['pie', 'funnel'],
+              option: {
+                funnel: {
+                  x: '25%',
+                  y: '20%',
+                  width: '50%',
+                  height: '70%',
+                  funnelAlign: 'left',
+                  max: 1548
+                }
+              }
+            },
+            restore: {
+              show: true,
+              title: 'Restore'
+            },
+            saveAsImage: {
+              show: true,
+              title: 'Same as image',
+              lang: ['Save']
+            }
+          }
+        },
+
+        // Enable drag recalculate
+        calculable: true,
 
         // Add series
         series: [{
@@ -791,25 +826,20 @@ $(function () {
           type: 'pie',
           radius: '70%',
           center: ['50%', '57.5%'],
-          itemStyle: {
-            normal: {
-              borderWidth: 1,
-              borderColor: '#fff'
-            }
-          },
           data: [
             {value: 335, name: 'IE'},
             {value: 310, name: 'Opera'},
             {value: 234, name: 'Safari'},
             {value: 135, name: 'Firefox'},
             {value: 1548, name: 'Chrome'}
-          ]
+          ],
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
         }]
       };
 
       basic_bars.setOption(basic_bars_options);
       pie_timeline.setOption(pie_timeline_options);
-      pie_basic_element.setOption(pie_basic_options);
+      pie_basic_element.setOption(basic_pie_options);
       // Resize charts
       // ------------------------------
 
@@ -829,13 +859,16 @@ $(function () {
     "theme": "light",
     "dataProvider": [{
       "title": "Public",
-      "value": 3678909
+      "value": 3678909,
+      "description": "Pessoas ...",
     }, {
       "title": "Pessoas",
-      "value": 2345012
+      "value": 2345012,
+      "description": "Pessoas ...",
     }, {
       "title": "Classificadas",
-      "value": 987765
+      "value": 987765,
+      "description": "Pessoas ...",
     }],
     "balloon": {
       "fixedPosition": true
@@ -856,4 +889,5 @@ $(function () {
       "enabled": true
     }
   });
+  console.log('chart...', chart);
 });
