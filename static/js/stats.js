@@ -387,9 +387,6 @@ $(function () {
     }
   });
 
-  // Configuration
-  // ------------------------------
-
   require(
     [
       'echarts',
@@ -730,7 +727,7 @@ $(function () {
                 {value: idx * 64 + 160, name: 'Twitter'},
                 {value: idx * 32 + 320, name: 'Google'},
                 {value: idx * 16 + 640, name: 'Youtube'},
-                {value: idx++ * 8 + 1280, name: 'Instagram'}
+                {value: (idx + 2) * 8 + 1280, name: 'Instagram'}
               ]
             }]
           }
