@@ -269,7 +269,7 @@ $(function () {
   // a function for getting data
   function getData() {
     // create data
-    const data = [
+    return [
       {
         name: "Root",
         children: [
@@ -336,7 +336,6 @@ $(function () {
         ]
       }
     ];
-    return data;
   }
 
   /* a function for converting the current
