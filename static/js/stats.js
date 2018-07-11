@@ -338,8 +338,7 @@ $(function () {
     ];
   }
 
-  /* a function for converting the current
-  drilldown path to a string */
+  /* a function for converting the current drilldown path to a string */
   function printPath(path) {
     /* go through the array of data items
     and use the get() method to obtain the "name" field */
