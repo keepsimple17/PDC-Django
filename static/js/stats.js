@@ -349,21 +349,6 @@ $(function () {
     return text;
   }
 
-  // drill down to a data item
-  function drillToItem() {
-    /* locate an item in the data tree
-    and get it as an object */
-    const item = treeData.search("name", "Item 3-4");
-    // drill down to the item
-    chart.drillTo(item);
-  }
-
-  // drill up a level
-  function drillUpALevel() {
-    chart.drillUp();
-  }
-
-  /* tree chart end */
 });
 
 /* barchart, 3d funnel chart */
