@@ -193,7 +193,8 @@ $(function () {
     }
   );
 
-  trafficSources('#traffic-sources', 330); // initialize chart
+  // traffic chart init
+  trafficSources('#traffic-sources', 330);
 
   // Chart setup
   function trafficSources(element, height) {
