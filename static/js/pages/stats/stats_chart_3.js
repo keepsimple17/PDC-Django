@@ -18,7 +18,7 @@ $(function () {
   /* bar chart */
   require.config({
     paths: {
-      echarts: '../../static/js/plugins/visualization/echarts'
+      echarts: '../../../../static/js/plugins/visualization/echarts'
     }
   });
 
@@ -45,19 +45,8 @@ $(function () {
           console.error('dispute', err);
         });
 
-      axios.post('http://18.218.2.246/postagens/api/v1.0/get/', {
-        type: 'twitter',
-      })
-        .then((res) => {
-          console.log('pie chart', res.data);
-        })
-        .catch((err) => {
-          console.error('pie chart', err);
-        });
-
       const basic_bars = ec.init(document.getElementById('basic_bars'), limitless);
       const pie_timeline = ec.init(document.getElementById('pie_timeline'), limitless);
-      const pie_basic_element = ec.init(document.getElementById('pie_basic'), limitless);
 
       const basic_bars_options = {
         // Setup grid
@@ -380,171 +369,13 @@ $(function () {
         ]
       };
 
-      const basic_pie_options = {
-
-        // Add title
-        title: {
-          text: "Candidator's posts",
-          subtext: 'twitter information',
-          x: 'center'
-        },
-
-        // Add tooltip
-        tooltip: {
-          trigger: 'item',
-          formatter: "{a} <br/>{b}: {c} ({d}%)"
-        },
-
-        // Add legend
-        legend: {
-          orient: 'vertical',
-          x: 'left',
-          data: [
-            'coronai',
-            'jairbolsonaro',
-            'alvarodias_',
-            'FrejatOficial',
-            'joaoamoedonovo',
-            'BetoRicha',
-            'paulrs',
-            'wildermorais',
-            'requiaopmdb',
-            'ratinho_jr',
-            'Collor',
-            'gleisi',
-            'PRabello',
-            'romerojuca',
-            'GuilhermeBoulos',
-            'Ciro2018',
-            'jdoriajr',
-            'cidaborghetti_',
-            'paulobauer45',
-            'kimpkat',
-            'cirogomes',
-            'neyleprevost',
-            'deputado_aureo',
-            'PaulOOctavioDF',
-            'Sen_JoseSarney',
-            'Francischini_',
-            'IzalciLucas',
-            'EderMauroPA',
-            'alexandrefdf',
-            'partidonovo30',
-            'jbolsonaro2018',
-            'democratas',
-            'leandrolyra30',
-            'mtrindadenovo',
-          ]
-        },
-
-        // Display toolbox
-        toolbox: {
-          show: true,
-          orient: 'vertical',
-          feature: {
-            mark: {
-              show: true,
-              title: {
-                mark: 'Markline switch',
-                markUndo: 'Undo markline',
-                markClear: 'Clear markline'
-              }
-            },
-            dataView: {
-              show: true,
-              readOnly: false,
-              title: 'View data',
-              lang: ['View chart data', 'Close', 'Update']
-            },
-            magicType: {
-              show: true,
-              title: {
-                pie: 'Switch to pies',
-                funnel: 'Switch to funnel'
-              },
-              type: ['pie', 'funnel'],
-              option: {
-                funnel: {
-                  x: '25%',
-                  y: '20%',
-                  width: '50%',
-                  height: '70%',
-                  funnelAlign: 'left',
-                  max: 1548
-                }
-              }
-            },
-            restore: {
-              show: true,
-              title: 'Restore'
-            },
-            saveAsImage: {
-              show: true,
-              title: 'Same as image',
-              lang: ['Save']
-            }
-          }
-        },
-
-        // Enable drag recalculate
-        calculable: true,
-
-        // Add series
-        series: [{
-          name: 'Posts',
-          type: 'pie',
-          radius: '70%',
-          center: ['50%', '57.5%'],
-          data: [
-            {value: 178, name: 'coronai'},
-            {value: 3496, name: 'jairbolsonaro'},
-            {value: 84920, name: 'alvarodias_'},
-            {value: 61, name: 'FrejatOficial'},
-            {value: 3233, name: 'joaoamoedonovo'},
-            {value: 19128, name: 'BetoRicha'},
-            {value: 6402, name: 'paulrs'},
-            {value: 2907, name: 'wildermorais'},
-            {value: 416, name: 'requiaopmdb'},
-            {value: 5064, name: 'ratinho_jr'},
-            {value: 2905, name: 'Collor'},
-            {value: 8479, name: 'gleisi'},
-            {value: 365, name: 'PRabello'},
-            {value: 4135, name: 'romerojuca'},
-            {value: 1378, name: 'GuilhermeBoulos'},
-            {value: 1749, name: 'Ciro2018'},
-            {value: 17921, name: 'jdoriajr'},
-            {value: 1211, name: 'cidaborghetti_'},
-            {value: 4704, name: 'paulobauer45'},
-            {value: 0, name: 'kimpkat'},
-            {value: 318, name: 'cirogomes'},
-            {value: 21137, name: 'neyleprevost'},
-            {value: 3554, name: 'deputado_aureo'},
-            {value: 349, name: 'PaulOOctavioDF'},
-            {value: 7, name: 'Sen_JoseSarney'},
-            {value: 13877, name: 'Francischini_'},
-            {value: 2704, name: 'IzalciLucas'},
-            {value: 819, name: 'EderMauroPA'},
-            {value: 22, name: 'alexandrefdf'},
-            {value: 5937, name: 'partidonovo30'},
-            {value: 173, name: 'jbolsonaro2018'},
-            {value: 612, name: 'democratas'},
-            {value: 0, name: 'leandrolyra30'},
-            {value: 14, name: 'mtrindadenovo'},
-          ],
-        }]
-      };
-
       basic_bars.setOption(basic_bars_options);
       pie_timeline.setOption(pie_timeline_options);
-      pie_basic_element.setOption(basic_pie_options);
-      // Resize charts
-      // ------------------------------
 
       window.onresize = function () {
         setTimeout(function () {
           basic_bars.resize();
           pie_timeline.resize();
-          pie_basic_element.resize();
         }, 200);
       };
     }
@@ -586,5 +417,4 @@ $(function () {
       "enabled": true
     }
   });
-  console.log('chart...', chart);
 });
