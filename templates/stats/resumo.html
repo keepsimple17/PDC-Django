@@ -30,7 +30,6 @@
   {# Limitless theme graphs #}
   <script type="text/javascript" src="{% static 'js/plugins/visualization/echarts/echarts.js' %}"></script>
 
-  <script type="text/javascript" src="{% static 'js/stats.js' %}"></script>
   <style>
     a[href='http://www.amcharts.com'] {
       display: none !important;
@@ -333,5 +332,9 @@
     </div>
     <!-- social network citations -->
   </div>
+  <script type="text/javascript" src="{% static 'js/pages/stats/stats_common.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_1.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_2.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_3.js' %}"></script>
 
 {% endblock %}
