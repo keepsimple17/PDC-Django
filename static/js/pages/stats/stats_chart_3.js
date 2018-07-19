@@ -35,84 +35,17 @@ $(function () {
     // Charts setup
     function (ec, limitless) {
 
-      axios.get('/elections/dispute/', {
-        params: {}
-      })
-        .then((res) => {
-          console.log('dispute', res.data);
-        })
-        .catch((err) => {
-          console.error('dispute', err);
-        });
+      // axios.get('/elections/dispute/', {
+      //   params: {}
+      // })
+      //   .then((res) => {
+      //     console.log('dispute', res.data);
+      //   })
+      //   .catch((err) => {
+      //     console.error('dispute', err);
+      //   });
 
-      const basic_bars = ec.init(document.getElementById('basic_bars'), limitless);
       const pie_timeline = ec.init(document.getElementById('pie_timeline'), limitless);
-
-      const basic_bars_options = {
-        // Setup grid
-        grid: {
-          x: 75,
-          x2: 35,
-          y: 35,
-          y2: 25
-        },
-
-        // Add tooltip
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-
-        // Add legend
-        legend: {
-          data: ['Taxa de Rejeição', 'Intenções de Voto']
-        },
-
-        // Enable drag recalculate
-        calculable: true,
-
-        // Horizontal axis
-        xAxis: [{
-          type: 'value',
-          boundaryGap: [0, 0.01]
-        }],
-
-        // Vertical axis
-        yAxis: [{
-          type: 'category',
-          data: nick_name_list.reverse()
-          // data:   ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
-          // 'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
-        }],
-
-        // Add series
-        series: [
-          {
-            name: 'Taxa de Rejeição',
-            type: 'bar',
-            itemStyle: {
-              normal: {
-                color: '#EF5350'
-              }
-            },
-            data: [1, 0.2, 14, 0.1, 0.7]
-            // data: [1 ,0.2, 14, 0.1, 0.7, 0.02, 4, 20.5, 0.2, 39.5, 16, 0, 0 ]
-          },
-          {
-            name: 'Intenções de Voto',
-            type: 'bar',
-            itemStyle: {
-              normal: {
-                color: '#66BB6A'
-              }
-            },
-            data: [0.8, 3, 12, 0.7, 0.9]
-            // data: [0.8 , 3, 12, 0.7, 0.9, 0.8, 1.1, 24.6, 1.7, 19, 5, 19, 12 ]
-          }
-        ]
-      };
 
       let idx = 1;
       const pie_timeline_options = {
@@ -369,12 +302,10 @@ $(function () {
         ]
       };
 
-      basic_bars.setOption(basic_bars_options);
       pie_timeline.setOption(pie_timeline_options);
 
       window.onresize = function () {
         setTimeout(function () {
-          basic_bars.resize();
           pie_timeline.resize();
         }, 200);
       };
