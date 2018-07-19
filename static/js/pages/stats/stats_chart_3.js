@@ -35,15 +35,15 @@ $(function () {
     // Charts setup
     function (ec, limitless) {
 
-      axios.get('/elections/dispute/', {
-        params: {}
-      })
-        .then((res) => {
-          console.log('dispute', res.data);
-        })
-        .catch((err) => {
-          console.error('dispute', err);
-        });
+      // axios.get('/elections/dispute/', {
+      //   params: {}
+      // })
+      //   .then((res) => {
+      //     console.log('dispute', res.data);
+      //   })
+      //   .catch((err) => {
+      //     console.error('dispute', err);
+      //   });
 
       const basic_bars = ec.init(document.getElementById('basic_bars'), limitless);
       const pie_timeline = ec.init(document.getElementById('pie_timeline'), limitless);
