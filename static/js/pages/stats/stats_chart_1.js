@@ -145,6 +145,7 @@ $(function () {
       gauge.label(i)
         .text(names[i] + ', <span style="">' + data[i] + '%</span>')// color: #7c868e
         .useHtml(true);
+
       gauge.label(i)
         .hAlign('center')
         .vAlign('middle')
@@ -161,6 +162,7 @@ $(function () {
       .fill(palette.itemAt(i))
       .stroke(null)
       .zIndex(5);
+
     gauge.bar(i + 100).dataIndex(5)
       .radius(radius)
       .width(width)
