@@ -2,6 +2,7 @@
  * Created by paul on 03/05/2018.
  */
 $(function () {
+
   /* candidate dropdown */
   $('.candidate-menu li').on('click', function () {
     console.log('changing candidate...');
@@ -21,4 +22,124 @@ $(function () {
     $('#candidate_desited_position').html(candidator.campaign_desired_position.position);
     $('#candidate_state_campaign').html(candidator.state_campaign || 'PR');
   };
+
+  const candidates = [];
+  const nick_name_list = [];
+  $('.candidate-menu li').each((index, item) => {
+    candidates.push(JSON.parse($(item).attr('data-json')));
+  });
+
+  // console.log(candidates);
+  getCandidates(candidates[0])
+    .then(res => {
+      console.log('candiate res...', res.data);
+    })
+    .catch(err => {});
+
+  for (const item of candidates) {
+    nick_name_list.push(item.candidate_political_nickname);
+  }
+
+  function getCandidates(candidate) {
+    console.log('getCandidates', candidate);
+    if (candidate.campaign_desired_position.kind_of_position === 'Federal') {
+      const position = candidate.campaign_desired_position.position;
+      return axios.get('/candidato/candidate/', {
+        params: {campaign_desired_position__position: position}
+      });
+    }
+  }
+
+  /* bar chart */
+  require.config({
+    paths: {
+      echarts: '../../../../static/js/plugins/visualization/echarts'
+    }
+  });
+
+  require(
+    [
+      'echarts',
+      'echarts/theme/limitless',
+      'echarts/chart/bar',
+    ],
+
+    // Charts setup
+    function (ec, limitless) {
+      const basic_bars = ec.init(document.getElementById('basic_bars'), limitless);
+      const basic_bars_options = {
+        // Setup grid
+        grid: {
+          x: 75,
+          x2: 35,
+          y: 35,
+          y2: 25
+        },
+
+        // Add tooltip
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+
+        // Add legend
+        legend: {
+          data: ['Taxa de Rejeição', 'Intenções de Voto']
+        },
+
+        // Enable drag recalculate
+        calculable: true,
+
+        // Horizontal axis
+        xAxis: [{
+          type: 'value',
+          boundaryGap: [0, 0.01]
+        }],
+
+        // Vertical axis
+        yAxis: [{
+          type: 'category',
+          data: nick_name_list.reverse()
+          // data:   ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
+          // 'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
+        }],
+
+        // Add series
+        series: [
+          {
+            name: 'Taxa de Rejeição',
+            type: 'bar',
+            itemStyle: {
+              normal: {
+                color: '#EF5350'
+              }
+            },
+            data: [1, 0.2, 14, 0.1, 0.7]
+            // data: [1 ,0.2, 14, 0.1, 0.7, 0.02, 4, 20.5, 0.2, 39.5, 16, 0, 0 ]
+          },
+          {
+            name: 'Intenções de Voto',
+            type: 'bar',
+            itemStyle: {
+              normal: {
+                color: '#66BB6A'
+              }
+            },
+            data: [0.8, 3, 12, 0.7, 0.9]
+            // data: [0.8 , 3, 12, 0.7, 0.9, 0.8, 1.1, 24.6, 1.7, 19, 5, 19, 12 ]
+          }
+        ]
+      };
+
+      basic_bars.setOption(basic_bars_options);
+
+      window.onresize = function () {
+        setTimeout(function () {
+          basic_bars.resize();
+        }, 200);
+      };
+    }
+  );
 });

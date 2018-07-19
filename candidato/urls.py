@@ -9,6 +9,8 @@ router.register(r'scope_list', CandidateViews.ScopeListViewSet)
 router.register(r'proposal_list', CandidateViews.ProposalListViewSet)
 router.register(r'keyword', CandidateViews.KeywordViewSet)
 router.register(r'keyword_list', CandidateViews.KeywordListViewSet)
+router.register(r'candidate', CandidateViews.CandidateViewSet)
+router.register(r'candidate_list', CandidateViews.CandidateListViewSet)
 
 urlpatterns = [
     url(r'', include(router.urls), name='api'),

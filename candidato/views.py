@@ -3,7 +3,7 @@ import json
 from candidato.models import Candidate, Invites, Keyword, Proposal, ScopeList
 from candidato.serializers import (
     InvitesSerializer, KeywordListSerializer, KeywordSerializer, ProposalListSerializer, ProposalSerializer,
-    ScopeListSerializer)
+    ScopeListSerializer, CandidateSerializer, CandidateListSerializer)
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -170,3 +170,22 @@ class KeywordListViewSet(viewsets.ModelViewSet):
     ordering_fields = ('-id',)
     ordering = ('-id',)
     filter_fields = ('id', 'type', 'keyword')
+
+
+class CandidateViewSet(viewsets.ModelViewSet):
+    queryset = Candidate.objects.all()
+    serializer_class = CandidateSerializer
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter, )
+    ordering_fields = ('-id',)
+    ordering = ('-id',)
+    filter_fields = (
+        'id', 'campaign_desired_position', 'campaign_desired_position__position', 'state_campaign')
+
+
+class CandidateListViewSet(viewsets.ModelViewSet):
+    queryset = Candidate.objects.all()
+    serializer_class = CandidateListSerializer
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter, )
+    ordering_fields = ('-id',)
+    ordering = ('-id',)
+    filter_fields = ('id', 'campaign_desired_position', 'campaign_desired_position__position')
