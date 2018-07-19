@@ -189,4 +189,5 @@ class CandidateListViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend)
     ordering_fields = ('-id',)
     ordering = ('-id',)
-    filter_fields = ('id', 'campaign_desired_position', 'campaign_desired_position__position')
+    filter_fields = (
+        'id', 'campaign_desired_position', 'campaign_desired_position__position', 'state_campaign')
