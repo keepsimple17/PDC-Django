@@ -12,6 +12,7 @@ from rest_framework import (
     filters, generics, permissions, status, views, viewsets)
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 
 # It' the candidate environment setup
 
@@ -175,7 +176,7 @@ class KeywordListViewSet(viewsets.ModelViewSet):
 class CandidateViewSet(viewsets.ModelViewSet):
     queryset = Candidate.objects.all()
     serializer_class = CandidateSerializer
-    filter_backends = (filters.SearchFilter, filters.OrderingFilter, )
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend)
     ordering_fields = ('-id',)
     ordering = ('-id',)
     filter_fields = (
@@ -185,7 +186,7 @@ class CandidateViewSet(viewsets.ModelViewSet):
 class CandidateListViewSet(viewsets.ModelViewSet):
     queryset = Candidate.objects.all()
     serializer_class = CandidateListSerializer
-    filter_backends = (filters.SearchFilter, filters.OrderingFilter, )
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend)
     ordering_fields = ('-id',)
     ordering = ('-id',)
     filter_fields = ('id', 'campaign_desired_position', 'campaign_desired_position__position')
