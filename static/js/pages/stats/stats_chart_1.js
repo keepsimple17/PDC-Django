@@ -138,7 +138,7 @@ $(function () {
   const palette = anychart.palettes.distinctColors().items(
     ['#64b5f6', '#1976d2', '#ef6c00', '#ffd54f', '#455a64', '#96a6a6', '#dd2c00', '#00838f', '#00bfa5', '#ffa000']);
 
-  const makeBarWithBar = function (gauge, radius, i, width, without_stroke) {
+  const makeBarWithBar = (gauge, radius, i, width, without_stroke) => {
     let stroke = '1 #e5e4e4';
     if (without_stroke) {
       stroke = null;
@@ -205,8 +205,10 @@ $(function () {
 
     gauge.margin(50);
 
-    gauge.title().text('Lideranças em Pesquisas de Voto' +
-      '<br/><span style="color:#929292; font-size: 12px;">(Densidade de Citações - 94.6% precisão       )</span>').useHtml(true);
+    gauge.title().text(`
+      Lideranças em Pesquisas de Voto'
+      '<br/><span style="color:#929292; font-size: 12px;">(Densidade de Citações - 94.6% precisão)</span>`
+    ).useHtml(true);
 
     gauge.title()
       .enabled(true)
