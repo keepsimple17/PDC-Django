@@ -138,13 +138,14 @@ $(function () {
   const palette = anychart.palettes.distinctColors().items(
     ['#64b5f6', '#1976d2', '#ef6c00', '#ffd54f', '#455a64', '#96a6a6', '#dd2c00', '#00838f', '#00bfa5', '#ffa000']);
 
-  const makeBarWithBar = function (gauge, radius, i, width, without_stroke) {
+  const makeBarWithBar = (gauge, radius, i, width, without_stroke) => {
     let stroke = '1 #e5e4e4';
     if (without_stroke) {
       stroke = null;
       gauge.label(i)
         .text(names[i] + ', <span style="">' + data[i] + '%</span>')// color: #7c868e
         .useHtml(true);
+
       gauge.label(i)
         .hAlign('center')
         .vAlign('middle')
@@ -161,6 +162,7 @@ $(function () {
       .fill(palette.itemAt(i))
       .stroke(null)
       .zIndex(5);
+
     gauge.bar(i + 100).dataIndex(5)
       .radius(radius)
       .width(width)
@@ -182,6 +184,7 @@ $(function () {
       .sweepAngle(270);
 
     const axis = gauge.axis().radius(100).width(1).fill(null);
+
     axis.scale()
       .minimum(0)
       .maximum(100)
@@ -189,8 +192,11 @@ $(function () {
       .minorTicks({interval: 1});
 
     axis.labels().enabled(false);
+
     axis.ticks().enabled(false);
+
     axis.minorTicks().enabled(false);
+
     makeBarWithBar(gauge, 100, 0, 17, true);
     makeBarWithBar(gauge, 80, 1, 17, true);
     makeBarWithBar(gauge, 60, 2, 17, true);
@@ -198,8 +204,12 @@ $(function () {
     makeBarWithBar(gauge, 20, 4, 17, true);
 
     gauge.margin(50);
-    gauge.title().text('Lideranças em Pesquisas de Voto' +
-      '<br/><span style="color:#929292; font-size: 12px;">(Densidade de Citações - 94.6% precisão       )</span>').useHtml(true);
+
+    gauge.title().text(`
+      Lideranças em Pesquisas de Voto'
+      '<br/><span style="color:#929292; font-size: 12px;">(Densidade de Citações - 94.6% precisão)</span>`
+    ).useHtml(true);
+
     gauge.title()
       .enabled(true)
       .hAlign('center')
@@ -207,6 +217,7 @@ $(function () {
       .margin([0, 0, 20, 0]);
 
     gauge.container('gauge_container');
+
     gauge.draw();
   });
   // solid gauge end
