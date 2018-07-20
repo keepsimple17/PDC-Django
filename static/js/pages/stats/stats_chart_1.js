@@ -205,9 +205,8 @@ $(function () {
 
     gauge.margin(50);
 
-    gauge.title().text(`
-      Lideranças em Pesquisas de Voto'
-      '<br/><span style="color:#929292; font-size: 12px;">(Densidade de Citações - 94.6% precisão)</span>`
+    gauge.title().text(
+      `Lideranças em Pesquisas de Voto<br/><span style="color:#929292; font-size: 12px;">(Densidade de Citações - 94.6% precisão)</span>`
     ).useHtml(true);
 
     gauge.title()
