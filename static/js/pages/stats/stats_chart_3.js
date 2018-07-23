@@ -321,7 +321,7 @@ $(function () {
       "description": "Pessoas ...",
     }],
     "balloon": {
-      "fixedPosition": true
+      "fixedPosition": true,
     },
     "valueField": "value",
     "titleField": "title",
@@ -336,7 +336,7 @@ $(function () {
     "labelPosition": "right",
     "balloonText": "[[title]]: [[value]]n[[description]]",
     "export": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   });
 });
