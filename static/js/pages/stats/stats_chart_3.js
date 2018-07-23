@@ -48,7 +48,6 @@ $(function () {
 
       let idx = 1;
       const pie_timeline_options = {
-
         // Add timeline
         timeline: {
           x: 10,
@@ -67,31 +66,26 @@ $(function () {
           autoPlay: true,
           playInterval: 3000
         },
-
         // Set options
         options: [
           {
-
             // Add title
             title: {
               text: 'Estatística de Citações',
               subtext: 'Baseada em temas relacionados ao Candidato',
               x: 'center'
             },
-
             // Add tooltip
             tooltip: {
               trigger: 'item',
               formatter: "{a} <br/>{b}: {c} ({d}%)"
             },
-
             // Add legend
             legend: {
               x: 'left',
               orient: 'vertical',
               data: ['Facebook', 'Twitter', 'Google', 'Youtube', 'Instagram']
             },
-
             // Display toolbox
             toolbox: {
               show: true,
@@ -138,7 +132,6 @@ $(function () {
                 }
               }
             },
-
             // Add series
             series: [{
               name: 'Browser',
@@ -154,7 +147,6 @@ $(function () {
               ]
             }]
           },
-
           {
             series: [{
               name: 'Browser',
