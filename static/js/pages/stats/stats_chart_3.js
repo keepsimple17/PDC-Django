@@ -4,7 +4,6 @@
 
 /* barchart, 3d funnel chart */
 $(function () {
-
   const candidates = [];
   const nick_name_list = [];
   $('.candidate-menu li').each((index, item) => {
