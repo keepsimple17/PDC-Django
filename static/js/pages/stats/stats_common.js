@@ -1,8 +1,8 @@
 /**
  * Created by paul on 03/05/2018.
  */
-$(function () {
 
+$(function () {
   /* candidate dropdown */
   $('.candidate-menu li').on('click', function () {
     console.log('changing candidate...');
@@ -110,21 +110,17 @@ $(function () {
               type: 'shadow'
             }
           },
-
           // Add legend
           legend: {
             data: ['Taxa de Rejeição', 'Intenções de Voto']
           },
-
           // Enable drag recalculate
           calculable: true,
-
           // Horizontal axis
           xAxis: [{
             type: 'value',
             boundaryGap: [0, 0.01]
           }],
-
           // Vertical axis
           yAxis: [{
             type: 'category',
@@ -132,7 +128,6 @@ $(function () {
             // data:   ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
             // 'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
           }],
-
           // Add series
           series: [
             {
