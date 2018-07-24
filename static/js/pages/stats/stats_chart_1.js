@@ -223,7 +223,6 @@ $(function () {
 
   /* tree chart start */
   anychart.onDocumentReady(function () {
-
     // get data
     const data = getData();
     // create a storage for the data tree
@@ -245,9 +244,7 @@ $(function () {
       const text = printPath(chart.getDrilldownPath());
       // set the chart title
       chart.title().useHtml(true);
-      chart.title("Treemap: Interactivity (Drilling Down and Up)<br><br>Path: " +
-        "<span style = 'color:#990000; font-style:italic'>" +
-        text + "</span>");
+      chart.title(`Treemap: Interactivity (Drilling Down and Up)<br><br>Path: <span style = 'color:#990000; font-style:italic'>${text}</span>`);
     });
 
     // set the container id
@@ -259,7 +256,6 @@ $(function () {
 
   // a function for getting data
   function getData() {
-    // create data
     return [
       {
         name: "Root",
