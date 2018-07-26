@@ -4,132 +4,267 @@
 
 $(function () {
   // brazil map start
-  anychart.onDocumentReady(function () {
-    const dataSet = [
-      {
-        'id': 'BR.GO',
-        'value': 0
-      },
-      {
-        'id': 'BR.SP',
-        'value': 1
-      },
-      {
-        'id': 'BR.PE',
-        'value': 2
-      },
-      {
-        'id': 'BR.1099',
-        'value': 3
-      },
-      {
-        'id': 'BR.AM',
-        'value': 4
-      },
-      {
-        'id': 'BR.MA',
-        'value': 5
-      },
-      {
-        'id': 'BR.PA',
-        'value': 6
-      },
-      {
-        'id': 'BR.153',
-        'value': 7
-      },
-      {
-        'id': 'BR.TO',
-        'value': 8
-      },
-      {
-        'id': 'BR.DF',
-        'value': 9
-      },
-      {
-        'id': 'BR.MS',
-        'value': 10
-      },
-      {
-        'id': 'BR.MG',
-        'value': 11
-      },
-      {
-        'id': 'BR.MT',
-        'value': 12
-      },
-      {
-        'id': 'BR.RS',
-        'value': 13
-      },
-      {
-        'id': 'BR.PR',
-        'value': 14
-      },
-      {
-        'id': 'BR.SC',
-        'value': 15
-      },
-      {
-        'id': 'BR.CE',
-        'value': 16
-      },
-      {
-        'id': 'BR.PI',
-        'value': 17
-      },
-      {
-        'id': 'BR.AL',
-        'value': 18
-      },
-      {
-        'id': 'BR.BA',
-        'value': 19
-      },
-      {
-        'id': 'BR.ES',
-        'value': 20
-      },
-      {
-        'id': 'BR.PB',
-        'value': 21
-      },
-      {
-        'id': 'BR.RJ',
-        'value': 22
-      },
-      {
-        'id': 'BR.RN',
-        'value': 23
-      },
-      {
-        'id': 'BR.SE',
-        'value': 24
-      },
-      {
-        'id': 'BR.RR',
-        'value': 25
-      },
-      {
-        'id': 'BR.AP',
-        'value': 26
-      }
-    ];
-
-    const map = anychart.map();
-    map.geoData(anychart.maps.brazil);
-
-    // set the series
-    const series = map.choropleth(dataSet);
-
-    // disable labels
-    series.labels(false);
-
-    // set the container
-    map.container('svg_map_container');
-    map.draw();
-  });
+  // anychart.onDocumentReady(function () {
+  //   const dataSet = [
+  //     {
+  //       'id': 'BR.GO',
+  //       'value': 0
+  //     },
+  //     {
+  //       'id': 'BR.SP',
+  //       'value': 1
+  //     },
+  //     {
+  //       'id': 'BR.PE',
+  //       'value': 2
+  //     },
+  //     {
+  //       'id': 'BR.1099',
+  //       'value': 3
+  //     },
+  //     {
+  //       'id': 'BR.AM',
+  //       'value': 4
+  //     },
+  //     {
+  //       'id': 'BR.MA',
+  //       'value': 5
+  //     },
+  //     {
+  //       'id': 'BR.PA',
+  //       'value': 6
+  //     },
+  //     {
+  //       'id': 'BR.153',
+  //       'value': 7
+  //     },
+  //     {
+  //       'id': 'BR.TO',
+  //       'value': 8
+  //     },
+  //     {
+  //       'id': 'BR.DF',
+  //       'value': 9
+  //     },
+  //     {
+  //       'id': 'BR.MS',
+  //       'value': 10
+  //     },
+  //     {
+  //       'id': 'BR.MG',
+  //       'value': 11
+  //     },
+  //     {
+  //       'id': 'BR.MT',
+  //       'value': 12
+  //     },
+  //     {
+  //       'id': 'BR.RS',
+  //       'value': 13
+  //     },
+  //     {
+  //       'id': 'BR.PR',
+  //       'value': 14
+  //     },
+  //     {
+  //       'id': 'BR.SC',
+  //       'value': 15
+  //     },
+  //     {
+  //       'id': 'BR.CE',
+  //       'value': 16
+  //     },
+  //     {
+  //       'id': 'BR.PI',
+  //       'value': 17
+  //     },
+  //     {
+  //       'id': 'BR.AL',
+  //       'value': 18
+  //     },
+  //     {
+  //       'id': 'BR.BA',
+  //       'value': 19
+  //     },
+  //     {
+  //       'id': 'BR.ES',
+  //       'value': 20
+  //     },
+  //     {
+  //       'id': 'BR.PB',
+  //       'value': 21
+  //     },
+  //     {
+  //       'id': 'BR.RJ',
+  //       'value': 22
+  //     },
+  //     {
+  //       'id': 'BR.RN',
+  //       'value': 23
+  //     },
+  //     {
+  //       'id': 'BR.SE',
+  //       'value': 24
+  //     },
+  //     {
+  //       'id': 'BR.RR',
+  //       'value': 25
+  //     },
+  //     {
+  //       'id': 'BR.AP',
+  //       'value': 26
+  //     }
+  //   ];
+  //
+  //   const map = anychart.map();
+  //   map.geoData(anychart.maps.brazil);
+  //
+  //   // set the series
+  //   const series = map.choropleth(dataSet);
+  //
+  //   // disable labels
+  //   series.labels(false);
+  //
+  //   // set the container
+  //   map.container('svg_map_container');
+  //   map.draw();
+  // });
   // brazil map end
+
+  const map = AmCharts.makeChart("svg_map_container", {
+    "type": "map",
+    "theme": "light",
+    "colorSteps": 10,
+
+    "dataProvider": {
+      "map": "brazilLow",
+      "areas": [
+        {
+					"id":"BR-AC",
+					"value": 7,
+				},
+				{
+					"id":"BR-AL",
+					"value": 3,
+				},
+				{
+					"id":"BR-AM",
+					"value": 6,
+				},
+				{
+					"id":"BR-AP",
+					"value": 2,
+				},
+				{
+					"id":"BR-BA",
+					"value": 0,
+				},
+				{
+					"id":"BR-CE",
+					"value": 6,
+				},
+				{
+					"id":"BR-DF",
+					"value": 1,
+				},
+				{
+					"id":"BR-ES",
+					"value": 0,
+				},
+				{
+					"id":"BR-GO",
+					"value": 0,
+				},
+				{
+					"id":"BR-MA",
+					"value": 9,
+				},
+				{
+					"id":"BR-MG",
+					"value": 8,
+				},
+				{
+					"id":"BR-MS",
+					"value": 7,
+				},
+				{
+					"id":"BR-MT",
+					"value": 3,
+				},
+				{
+					"id":"BR-PA",
+					"value": 7,
+				},
+				{
+					"id":"BR-PB",
+					"value": 8,
+				},
+				{
+					"id":"BR-PE",
+					"value": 0,
+				},
+				{
+					"id":"BR-PI",
+					"value": 0,
+				},
+				{
+					"id":"BR-PR",
+					"value": 7,
+				},
+				{
+					"id":"BR-RJ",
+					"value": 5,
+				},
+				{
+					"id":"BR-RN",
+					"value": 0,
+				},
+				{
+					"id":"BR-RO",
+					"value": 4,
+				},
+				{
+					"id":"BR-RR",
+					"value": 0,
+				},
+				{
+					"id":"BR-RS",
+					"value": 1,
+				},
+				{
+					"id":"BR-SC",
+					"value": 8,
+				},
+				{
+					"id":"BR-SE",
+					"value": 6,
+				},
+				{
+					"id":"BR-SP",
+					"value": 2,
+				},
+				{
+					"id":"BR-TO",
+					"value": 0,
+				}
+      ]
+    },
+
+    "areasSettings": {
+      "autoZoom": true
+    },
+
+    "valueLegend": {
+      "right": 10,
+      "minValue": "little",
+      "maxValue": "a lot!"
+    },
+
+    "export": {
+      "enabled": true
+    }
+
+  });
 
   // solid gauge start
   const names = ['Bolsonaro', 'Ciro Gomes', 'Alckmin', 'Marina Silva', 'Joaquim Barbosa', 'Collor', 'Paulino'];
