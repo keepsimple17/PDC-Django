@@ -272,7 +272,8 @@ $(function () {
       theme: 'light',
       colorSteps: 10,
       dataProvider: {
-        map: 'brazilLow',
+        // map: 'brazilLow',
+        map: 'brazilHigh',
         areas: heatmapDataSet,
       },
       areasSettings: {
