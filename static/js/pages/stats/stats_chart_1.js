@@ -1,5 +1,5 @@
 /**
- * Created by paul on 07/18/2018.
+ * Created by Paul on 07/18/2018.
  */
 
 $(function () {
@@ -131,14 +131,22 @@ $(function () {
   // });
   // brazil map end
 
-  const map = AmCharts.makeChart("svg_map_container", {
-    "type": "map",
-    "theme": "light",
-    "colorSteps": 10,
+  axios.get('http://18.218.2.246/sentiment/api/v1.0/posts', {
+    params: {name: 'partidonovo30'}
+  })
+    .then(res => {
+      console.log('heat map data', res.data);
+    })
+    .catch(err => {});
 
-    "dataProvider": {
-      "map": "brazilLow",
-      "areas": [
+  const map = AmCharts.makeChart("svg_map_container", {
+    type: 'map',
+    theme: 'light',
+    colorSteps: 10,
+
+    dataProvider: {
+      map: 'brazilLow',
+      areas: [
         {
 					"id":"BR-AC",
 					"value": 7,
@@ -249,21 +257,18 @@ $(function () {
 				}
       ]
     },
-
-    "areasSettings": {
-      "autoZoom": true
+    areasSettings: {
+      autoZoom: true
     },
-
-    "valueLegend": {
-      "right": 10,
-      "minValue": "little",
-      "maxValue": "a lot!"
+    valueLegend: {
+      right: 10,
+      minValue: 'Low',
+      maxValue: 'High'
     },
-
-    "export": {
-      "enabled": true
-    }
-
+    export: {
+      enabled: true
+    },
+    balloonText: '[[id]]: [[value]]',
   });
 
   // solid gauge start
