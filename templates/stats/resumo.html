@@ -22,7 +22,12 @@
 
   {# amchart #}
   <script type="text/javascript" src="{% static 'js/charts/amcharts/amcharts.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/charts/amcharts/ammap.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/charts/amcharts/funnel.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/charts/amcharts/maps/js/brazilHigh.js' %}"></script>
+{#  <script type="text/javascript" src="{% static 'js/charts/amcharts/maps/js/brazilLow.js' %}"></script>#}
+{#  <script type="text/javascript" src="{% static 'js/charts/amcharts/maps/js/usaLow.js' %}"></script>#}
+
   {#  <script type="text/javascript" src="{% static 'js/charts/amcharts/export.min.js' %}"></script>#}
   <link rel="stylesheet" href="{% static 'js/charts/amcharts/export.css' %}" type="text/css" media="all"/>
   <script type="text/javascript" src="{% static 'js/charts/amcharts/light.js' %}"></script>
@@ -30,9 +35,11 @@
   {# Limitless theme graphs #}
   <script type="text/javascript" src="{% static 'js/plugins/visualization/echarts/echarts.js' %}"></script>
 
-  <script type="text/javascript" src="{% static 'js/stats.js' %}"></script>
   <style>
     a[href='http://www.amcharts.com'] {
+      display: none !important;
+    }
+    a[href="http://www.amcharts.com/javascript-maps/"] {
       display: none !important;
     }
     .anychart-credits {
@@ -267,6 +274,29 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-info panel-bordered">
+          <div class="panel-heading">
+            <h3 class="panel-title">Posts</h3>
+            <div class="heading-elements">
+              <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+              </ul>
+            </div>
+            <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+          </div>
+
+          <div class="panel-body">
+            <div class="chart-container has-scroll">
+              <div class="chart has-fixed-height has-minimum-width" id="pie_basic" style="height: 550px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- /Comparative candidates -->
     <div class="row">
       <div class="col-md-12">
@@ -284,22 +314,21 @@
           </div>
 
           <div class="panel-body">
-            <iframe src="http://data.scopo.online/topic_modeling/api/v1.0/posts?name=colloralagoas&type=facebook"
-                    style="width: 100%;border: none;height: 900px" id="segment_iframe"></iframe>
+{#            <iframe src="http://data.scopo.online/topic_modeling/api/v1.0/posts?name=JoaoAmoedoNOVO&type=facebook"#}
+{#                    style="width: 100%;border: none;height: 900px" id="segment_iframe"></iframe>#}
           </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-6" style="height: 500px">
+      <div class="col-lg-6" style="height: 600px">
         <div id="gauge_container"></div>
       </div>
-      <div class="col-lg-6" style="height: 500px">
+      <div class="col-lg-6" style="height: 600px">
         <div id="svg_map_container"></div>
       </div>
     </div>
-
     <!-- /general overview -->
 
     <!-- Social Network Citations -->
@@ -308,7 +337,17 @@
         <div id="tree_map_container" style="height: 700px;"></div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="position-relative" id="traffic-sources"></div>
+      </div>
+    </div>
     <!-- social network citations -->
   </div>
+  <script type="text/javascript" src="{% static 'js/pages/stats/stats_common.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_1.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_2.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_3.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_4.js' %}"></script>
 
 {% endblock %}
