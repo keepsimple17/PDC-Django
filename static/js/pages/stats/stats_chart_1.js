@@ -1,5 +1,5 @@
 /**
- * Created by paul on 07/18/2018.
+ * Created by Paul on 07/18/2018.
  */
 
 $(function () {
@@ -131,140 +131,165 @@ $(function () {
   // });
   // brazil map end
 
-  const map = AmCharts.makeChart("svg_map_container", {
-    "type": "map",
-    "theme": "light",
-    "colorSteps": 10,
-
-    "dataProvider": {
-      "map": "brazilLow",
-      "areas": [
-        {
-					"id":"BR-AC",
-					"value": 7,
-				},
-				{
-					"id":"BR-AL",
-					"value": 3,
-				},
-				{
-					"id":"BR-AM",
-					"value": 6,
-				},
-				{
-					"id":"BR-AP",
-					"value": 2,
-				},
-				{
-					"id":"BR-BA",
-					"value": 0,
-				},
-				{
-					"id":"BR-CE",
-					"value": 6,
-				},
-				{
-					"id":"BR-DF",
-					"value": 1,
-				},
-				{
-					"id":"BR-ES",
-					"value": 0,
-				},
-				{
-					"id":"BR-GO",
-					"value": 0,
-				},
-				{
-					"id":"BR-MA",
-					"value": 9,
-				},
-				{
-					"id":"BR-MG",
-					"value": 8,
-				},
-				{
-					"id":"BR-MS",
-					"value": 7,
-				},
-				{
-					"id":"BR-MT",
-					"value": 3,
-				},
-				{
-					"id":"BR-PA",
-					"value": 7,
-				},
-				{
-					"id":"BR-PB",
-					"value": 8,
-				},
-				{
-					"id":"BR-PE",
-					"value": 0,
-				},
-				{
-					"id":"BR-PI",
-					"value": 0,
-				},
-				{
-					"id":"BR-PR",
-					"value": 7,
-				},
-				{
-					"id":"BR-RJ",
-					"value": 5,
-				},
-				{
-					"id":"BR-RN",
-					"value": 0,
-				},
-				{
-					"id":"BR-RO",
-					"value": 4,
-				},
-				{
-					"id":"BR-RR",
-					"value": 0,
-				},
-				{
-					"id":"BR-RS",
-					"value": 1,
-				},
-				{
-					"id":"BR-SC",
-					"value": 8,
-				},
-				{
-					"id":"BR-SE",
-					"value": 6,
-				},
-				{
-					"id":"BR-SP",
-					"value": 2,
-				},
-				{
-					"id":"BR-TO",
-					"value": 0,
-				}
-      ]
+  const heatmapDataSet = [
+    {
+      "id":"BR-AC",
+      "value": 0,
     },
-
-    "areasSettings": {
-      "autoZoom": true
+    {
+      "id":"BR-AL",
+      "value": 0,
     },
-
-    "valueLegend": {
-      "right": 10,
-      "minValue": "little",
-      "maxValue": "a lot!"
+    {
+      "id":"BR-AM",
+      "value": 0,
     },
-
-    "export": {
-      "enabled": true
+    {
+      "id":"BR-AP",
+      "value": 0,
+    },
+    {
+      "id":"BR-BA",
+      "value": 0,
+    },
+    {
+      "id":"BR-CE",
+      "value": 0,
+    },
+    {
+      "id":"BR-DF",
+      "value": 0,
+    },
+    {
+      "id":"BR-ES",
+      "value": 0,
+    },
+    {
+      "id":"BR-GO",
+      "value": 0,
+    },
+    {
+      "id":"BR-MA",
+      "value": 0,
+    },
+    {
+      "id":"BR-MG",
+      "value": 0,
+    },
+    {
+      "id":"BR-MS",
+      "value": 0,
+    },
+    {
+      "id":"BR-MT",
+      "value": 0,
+    },
+    {
+      "id":"BR-PA",
+      "value": 0,
+    },
+    {
+      "id":"BR-PB",
+      "value": 0,
+    },
+    {
+      "id":"BR-PE",
+      "value": 0,
+    },
+    {
+      "id":"BR-PI",
+      "value": 0,
+    },
+    {
+      "id":"BR-PR",
+      "value": 0,
+    },
+    {
+      "id":"BR-RJ",
+      "value": 0,
+    },
+    {
+      "id":"BR-RN",
+      "value": 0,
+    },
+    {
+      "id":"BR-RO",
+      "value": 0,
+    },
+    {
+      "id":"BR-RR",
+      "value": 0,
+    },
+    {
+      "id":"BR-RS",
+      "value": 0,
+    },
+    {
+      "id":"BR-SC",
+      "value": 0,
+    },
+    {
+      "id":"BR-SE",
+      "value": 0,
+    },
+    {
+      "id":"BR-SP",
+      "value": 0,
+    },
+    {
+      "id":"BR-TO",
+      "value": 0,
     }
+  ];
 
-  });
+  axios.get('http://18.218.2.246/sentiment/api/v1.0/posts', {
+    params: {name: 'partidonovo30'}
+  })
+    .then(res => {
+      console.log('heat map data', res.data.data.by_location);
+      renderHeatMap(res.data.data.by_location);
+    })
+    .catch(err => {});
+  function renderHeatMap(itemList) {
+    console.log('redering heat map', itemList);
+
+    for (const item of itemList) {
+      const index = heatmapDataSet.findIndex(x => x.id === `BR-${item[0]}`);
+      if (index > -1) {
+        heatmapDataSet[index].value = item[1];
+      }
+    }
+    const map = AmCharts.makeChart("svg_map_container", {
+      titles: [
+        {
+          text: 'HeatMap for partidonovo30',
+          size: 15,
+          color: '#333333',
+        }
+      ],
+      type: 'map',
+      theme: 'light',
+      colorSteps: 10,
+      dataProvider: {
+        map: 'brazilLow',
+        areas: heatmapDataSet,
+      },
+      areasSettings: {
+        autoZoom: true,
+        balloonText: '[[title]]: [[value]]',
+      },
+      valueLegend: {
+        right: 10,
+        minValue: 'Low',
+        maxValue: 'High'
+      },
+      export: {
+        enabled: true
+      },
+      smallMap: {},
+    });
+  }
+  // heat map end
 
   // solid gauge start
   const names = ['Bolsonaro', 'Ciro Gomes', 'Alckmin', 'Marina Silva', 'Joaquim Barbosa', 'Collor', 'Paulino'];
