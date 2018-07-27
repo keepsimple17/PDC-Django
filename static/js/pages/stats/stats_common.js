@@ -23,11 +23,11 @@ $(function () {
     $('#candidate_state_campaign').html(candidator.state_campaign || 'PR');
 
     getCandidates(candidator)
-    .then(res => {
-      console.log('candiate res...', res.data);
-      renderBarChart(res.data.results);
-    })
-    .catch(err => {});
+      .then(res => {
+        console.log('candiate res...', res.data);
+        renderBarChart(res.data.results);
+      })
+      .catch(err => {});
   };
 
   const candidates = [];
