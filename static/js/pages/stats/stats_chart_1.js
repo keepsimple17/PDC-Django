@@ -290,6 +290,7 @@ $(function () {
       },
       smallMap: {},
     });
+    console.log('map', map);
   }
   // heat map end
 
