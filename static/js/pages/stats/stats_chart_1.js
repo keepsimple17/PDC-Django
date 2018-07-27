@@ -250,6 +250,7 @@ $(function () {
       renderHeatMap(res.data.data.by_location);
     })
     .catch(err => {});
+
   function renderHeatMap(itemList) {
     console.log('redering heat map', itemList);
 
