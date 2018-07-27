@@ -243,13 +243,14 @@ $(function () {
   ];
 
   axios.get('http://18.218.2.246/sentiment/api/v1.0/posts', {
-    params: {name: 'partidonovo30'}
+    params: {name: 'jairbolsonaro'}
   })
     .then(res => {
       console.log('heat map data', res.data.data.by_location);
       renderHeatMap(res.data.data.by_location);
     })
     .catch(err => {});
+
   function renderHeatMap(itemList) {
     console.log('redering heat map', itemList);
 
@@ -262,7 +263,7 @@ $(function () {
     const map = AmCharts.makeChart("svg_map_container", {
       titles: [
         {
-          text: 'HeatMap for partidonovo30',
+          text: 'HeatMap for jairbolsonaro',
           size: 15,
           color: '#333333',
         }
