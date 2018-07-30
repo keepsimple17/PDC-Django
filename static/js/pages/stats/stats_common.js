@@ -80,8 +80,9 @@ $(function () {
     const name_list = [];
     const x_list = [];
     const y_list = [];
+    const usefulList = candidate_list.slice(0, 7);
 
-    for (const candidate of candidate_list) {
+    for (const candidate of usefulList) {
       name_list.push(candidate.candidate_political_nickname);
       x_list.push(Math.floor(Math.random() * 30));
       y_list.push(Math.floor(Math.random() * 30));
