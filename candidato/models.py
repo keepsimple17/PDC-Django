@@ -187,6 +187,8 @@ class Candidate(models.Model):
     candidate_blog_rss_url = models.URLField(blank=True, null=True)
     # usuarioes = models.ManyToManyField('dashboard.Usuario', blank=True)
     proposals = models.ManyToManyField('candidato.Proposal', blank=True)
+    rejection_rate = models.FloatField(default=0.0)
+    intention_rate = models.FloatField(default=0.0)
 
     foto = models.ImageField(
         # if diferent from the user photo in the dashboard.profile
