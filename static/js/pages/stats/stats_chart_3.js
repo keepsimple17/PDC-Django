@@ -1,6 +1,7 @@
 /**
  * Created by paul on 07/18/2018.
  */
+const testClass = new TestClass();
 
 /* barchart, 3d funnel chart */
 $(function () {
