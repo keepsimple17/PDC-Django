@@ -43,6 +43,7 @@ def index(request):
     return render(request, 'index.html', {
         'candidato': candidato,
         'usuario': usuario,
+        'profile_form': usuario,
     })
 
 
@@ -62,5 +63,6 @@ def stats(request):
     return render(request, 'stats/resumo.html', {
         'candidato': candidato,
         'usuario': usuario,
+        'profile_form': usuario,
         'candidates': candidator_datas,
     })
