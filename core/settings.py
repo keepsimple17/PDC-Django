@@ -210,7 +210,7 @@ DEFAULT_FROM_EMAIL = 'scopo@scopoonline.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtpi.uni5.net'
 EMAIL_HOST_USER = 'scopo@scopoonline.com'
-EMAIL_HOST_PASSWORD = 'Scopo@2018'
+EMAIL_HOST_PASSWORD = 'SMScopo@Online'
 EMAIL_PORT = 587
 
 # AWS configuration
