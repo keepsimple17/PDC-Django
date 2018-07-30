@@ -25,13 +25,14 @@ class Posts {
     } else {
       renderPosts();
     }
-    const getTwitterName = (name) => {
+
+    function getTwitterName(name) {
       if (name.startsWith('@')) {
         return name.slice(1)
       } else {
         return name;
       }
-    };
+    }
 
     function renderPosts() {
       require.config({
