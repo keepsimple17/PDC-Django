@@ -71,8 +71,9 @@ class Posts {
             const nameList = [];
             const dataList = [];
             for (const item of usefulList) {
-              nameList.push(item.name);
-              dataList.push({name: item.name, value: item.count});
+              // nameList.push(item.name);
+              nameList.push(item.nick_name);
+              dataList.push({name: item.nick_name, value: item.count});
             }
 
             const basic_pie_options = {
