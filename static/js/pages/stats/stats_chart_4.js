@@ -53,9 +53,7 @@ class Posts {
         function (ec, limitless) {
           const dataList = [];
           for (const candidate of candidates) {
-            console.log(candidate.twitter);
             const twittername = getTwitterName(candidate.twitter);
-            console.log(twittername, candidate.twitter);
             for (const item of This.fullList) {
               if (twittername === item.name) {
                 dataList.push(item);
@@ -172,6 +170,53 @@ class Posts {
           }
         }
       );
+    }
+  }
+}
+
+class TagCloud {
+  constructor() {}
+
+  render(candidator) {
+    console.log('tag cloud render');
+    const twitterName = getTwitterName(candidator.twitter);
+
+    axios.post('http://18.218.2.246/topic_modeling/api/v1.0/posts', {
+      // name: 'requiaopmdb',
+      name: twitterName,
+      type: 'twitter',
+    })
+      .then((res) => {
+        console.log('tag cloud response', res.data.response);
+        renderTagCloud(res.data.response);
+      })
+      .catch((err) => {
+        console.error('tag cloud error', err);
+      });
+
+    function getTwitterName(name) {
+      if (name.startsWith('@')) {
+        return name.slice(1)
+      } else {
+        return name;
+      }
+    }
+
+    function renderTagCloud(dataList) {
+      const wordList = [];
+      for (const item of dataList) {
+        wordList.push({
+          text: item.name,
+          weight: item.freqs,
+        })
+      }
+      // var word_list = [
+      //   {text: "Lorem", weight: 13, link: "https://github.com/DukeLeNoir/jQCloud"},
+      //   {text: "Ipsum", weight: 10.5, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},
+      //   {text: "Dolor", weight: 9.4},
+      // ];
+      $('#scopo_tag_cloud').html('');
+      $('#scopo_tag_cloud').jQCloud(wordList);
     }
   }
 }

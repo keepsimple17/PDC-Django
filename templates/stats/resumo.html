@@ -200,10 +200,11 @@
                 </div>
 
                 <div class="panel-body">
-                  <div class="tag-cloud">print
-                    {% for item in candidato.tags %}
-                      <a href="/data.scopo.online/tags/{{ item.tag }}/" class="size-{{ item.size }}">{{ item.tag }}</a>
-                    {% endfor %}
+                  <div class="tag-cloud">
+                    <div id="scopo_tag_cloud" style="height: 260px"></div>
+{#                    {% for item in candidato.tags %}#}
+{#                      <a href="/data.scopo.online/tags/{{ item.tag }}/" class="size-{{ item.size }}">{{ item.tag }}</a>#}
+{#                    {% endfor %}#}
                   </div>
                 </div>
               </div>

@@ -4,6 +4,7 @@
 
 $(function () {
   const posts = new Posts();
+  const tagCloud = new TagCloud();
 
   /* candidate dropdown */
   $('.candidate-menu li').on('click', function () {
@@ -14,6 +15,7 @@ $(function () {
 
   const onChangeCandidato = (jsonStr) => {
     const candidator = JSON.parse(jsonStr);
+    tagCloud.render(candidator);
     console.log(candidator);
     $('#candidate_nickname').html(candidator.candidate_political_nickname);
     const facebookid = candidator.facebook.startsWith('@') ? candidator.facebook.substr(1) : candidator.facebook;
@@ -42,6 +44,7 @@ $(function () {
 
   // console.log(candidates);
   // first candidate init
+  tagCloud.render(candidates[0]);
   getCandidates(candidates[0])
     .then(res => {
       console.log('candiate res...', res.data);
