@@ -3,6 +3,8 @@
  */
 
 $(function () {
+  const posts = new Posts();
+
   /* candidate dropdown */
   $('.candidate-menu li').on('click', function () {
     console.log('changing candidate...');
@@ -25,7 +27,9 @@ $(function () {
     getCandidates(candidator)
       .then(res => {
         console.log('candiate res...', res.data);
-        renderBarChart(res.data.results);
+        const candidates = res.data.results;
+        renderBarChart(candidates);
+        posts.render(candidates);
       })
       .catch(err => {});
   };
@@ -37,10 +41,13 @@ $(function () {
   });
 
   // console.log(candidates);
+  // first candidate init
   getCandidates(candidates[0])
     .then(res => {
       console.log('candiate res...', res.data);
-      renderBarChart(res.data.results);
+      const candidates = res.data.results;
+      renderBarChart(candidates);
+      posts.render(candidates);
     })
     .catch(err => {});
 

@@ -2,143 +2,182 @@
  * Created by paul on 07/18/2018.
  */
 
-/* barchart, 3d funnel chart */
-$(function () {
-  require.config({
-    paths: {
-      echarts: '../../../../static/js/plugins/visualization/echarts'
-    }
-  });
+class Posts {
+  constructor() {
+    this.fullList = [];
+  }
 
-  require(
-    [
-      'echarts',
-      'echarts/theme/limitless',
-      'echarts/chart/pie',
-      'echarts/chart/funnel'
-    ],
-
-    // Charts setup
-    function (ec, limitless) {
+  render(candidates) {
+    console.log('posts render');
+    const This = this;
+    if (this.fullList.length === 0) {
       axios.post('http://18.218.2.246/postagens/api/v1.0/get/', {
         type: 'twitter',
       })
         .then((res) => {
-          // console.log('pie chart', res.data.response);
-          renderPieChart(res.data.response)
+          console.log('posts response', res.data.response);
+          this.fullList = res.data.response;
+          renderPosts();
         })
         .catch((err) => {
           console.error('pie chart', err);
         });
+    } else {
+      renderPosts();
+    }
+    const getTwitterName = (name) => {
+      if (name.startsWith('@')) {
+        return name.slice(1)
+      } else {
+        return name;
+      }
+    };
 
-      function renderPieChart(lists) {
-        const pie_basic_element = ec.init(document.getElementById('pie_basic'), limitless);
-
-        const sortedList = lists.sort((a, b) => b.count - a.count);
-        const usefulList = sortedList.slice(0, 10);
-        const nameList = [];
-        const dataList = [];
-        for (const item of usefulList) {
-          nameList.push(item.name);
-          dataList.push({name: item.name, value: item.count});
+    function renderPosts() {
+      console.log('render posts');
+      require.config({
+        paths: {
+          echarts: '../../../../static/js/plugins/visualization/echarts'
         }
+      });
 
-        const basic_pie_options = {
-          // Add title
-          title: {
-            text: "Candidator's posts",
-            subtext: 'twitter information',
-            x: 'center'
-          },
+      require(
+        [
+          'echarts',
+          'echarts/theme/limitless',
+          'echarts/chart/pie',
+          'echarts/chart/funnel'
+        ],
 
-          // Add tooltip
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b}: {c} ({d}%)"
-          },
+        // Charts setup
+        function (ec, limitless) {
+          const dataList = [];
+          for (const candidate of candidates) {
+            console.log(candidate.twitter);
+            const twittername = getTwitterName(candidate.twitter);
+            console.log(twittername, candidate.twitter);
+            for (const item of This.fullList) {
+              if (twittername === item.name) {
+                dataList.push(item);
+              }
+            }
+          }
 
-          // Add legend
-          legend: {
-            orient: 'vertical',
-            x: 'left',
-            // data: ['coronai',]
-            data: nameList,
-          },
+          renderPieChart(dataList);
 
-          // Display toolbox
-          toolbox: {
-            show: true,
-            orient: 'vertical',
-            feature: {
-              mark: {
-                show: true,
-                title: {
-                  mark: 'Markline switch',
-                  markUndo: 'Undo markline',
-                  markClear: 'Clear markline'
-                }
+          function renderPieChart(lists) {
+            const pie_basic_element = ec.init(document.getElementById('pie_basic'), limitless);
+
+            const sortedList = lists.sort((a, b) => b.count - a.count);
+            const usefulList = sortedList.slice(0, 10);
+            const nameList = [];
+            const dataList = [];
+            for (const item of usefulList) {
+              nameList.push(item.name);
+              dataList.push({name: item.name, value: item.count});
+            }
+
+            const basic_pie_options = {
+              // Add title
+              title: {
+                text: "Candidator's posts",
+                subtext: 'twitter information',
+                x: 'center'
               },
-              dataView: {
-                show: true,
-                readOnly: false,
-                title: 'View data',
-                lang: ['View chart data', 'Close', 'Update']
+
+              // Add tooltip
+              tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
               },
-              magicType: {
+
+              // Add legend
+              legend: {
+                orient: 'vertical',
+                x: 'left',
+                // data: ['coronai',]
+                data: nameList,
+              },
+
+              // Display toolbox
+              toolbox: {
                 show: true,
-                title: {
-                  pie: 'Switch to pies',
-                  funnel: 'Switch to funnel'
-                },
-                type: ['pie', 'funnel'],
-                option: {
-                  funnel: {
-                    x: '25%',
-                    y: '20%',
-                    width: '50%',
-                    height: '70%',
-                    funnelAlign: 'left',
-                    max: 1548
+                orient: 'vertical',
+                feature: {
+                  mark: {
+                    show: true,
+                    title: {
+                      mark: 'Markline switch',
+                      markUndo: 'Undo markline',
+                      markClear: 'Clear markline'
+                    }
+                  },
+                  dataView: {
+                    show: true,
+                    readOnly: false,
+                    title: 'View data',
+                    lang: ['View chart data', 'Close', 'Update']
+                  },
+                  magicType: {
+                    show: true,
+                    title: {
+                      pie: 'Switch to pies',
+                      funnel: 'Switch to funnel'
+                    },
+                    type: ['pie', 'funnel'],
+                    option: {
+                      funnel: {
+                        x: '25%',
+                        y: '20%',
+                        width: '50%',
+                        height: '70%',
+                        funnelAlign: 'left',
+                        max: 1548
+                      }
+                    }
+                  },
+                  restore: {
+                    show: true,
+                    title: 'Restore'
+                  },
+                  saveAsImage: {
+                    show: true,
+                    title: 'Same as image',
+                    lang: ['Save']
                   }
                 }
               },
-              restore: {
-                show: true,
-                title: 'Restore'
-              },
-              saveAsImage: {
-                show: true,
-                title: 'Same as image',
-                lang: ['Save']
-              }
-            }
-          },
 
-          // Enable drag recalculate
-          calculable: true,
+              // Enable drag recalculate
+              calculable: true,
 
-          // Add series
-          series: [{
-            name: 'Posts',
-            type: 'pie',
-            radius: '70%',
-            center: ['50%', '57.5%'],
-            // data: [{value: 178, name: 'coronai'},],
-            data: dataList,
-          }]
-        };
+              // Add series
+              series: [{
+                name: 'Posts',
+                type: 'pie',
+                radius: '70%',
+                center: ['50%', '57.5%'],
+                // data: [{value: 178, name: 'coronai'},],
+                data: dataList,
+              }]
+            };
 
-        pie_basic_element.setOption(basic_pie_options);
+            pie_basic_element.setOption(basic_pie_options);
 
-        window.onresize = function () {
-          setTimeout(function () {
-            pie_basic_element.resize();
-          }, 200);
-        };
-      }
-    }
-  );
+            window.onresize = function () {
+              setTimeout(function () {
+                pie_basic_element.resize();
+              }, 200);
+            };
+          }
+        }
+      );
+    };
+  }
+}
 
+/* barchart, 3d funnel chart */
+$(function () {
   // traffic chart init
   trafficSources('#traffic-sources', 330);
 
