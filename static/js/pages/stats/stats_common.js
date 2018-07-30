@@ -18,6 +18,7 @@ $(function () {
     tagCloud.render(candidator);
     console.log(candidator);
     $('#candidate_nickname').html(candidator.candidate_political_nickname);
+    $('#candidate_political_nickname').html(candidator.candidate_political_nickname);
     const facebookid = candidator.facebook.startsWith('@') ? candidator.facebook.substr(1) : candidator.facebook;
     const iframe_src = `http://18.218.2.246/topic_modeling/api/v1.0/posts?name=${facebookid}&type=facebook`;
     document.getElementById('segment_iframe').src = iframe_src;
