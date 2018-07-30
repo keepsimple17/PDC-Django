@@ -101,253 +101,265 @@
   </div>
   <!-- /page header -->
 
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <div class="alert alert-danger alert-styled-left alert-bordered">
-        <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
-        </button>
-        <span class="text-semibold">MODO DE DEMONSTRAÇÃO - </span> Estatísticas com apenas 40% de Precisão.
-        <a href="#" class="alert-link">Aumente agora para 99.7%</a>.
-      </div>
-    </div>
-  </div>
   <!-- Content Area -->
-  <div class="content">
-
-    <!-- General Overview -->
+  {% if candidates %}
     <div class="row">
-      <div class="col-lg-12">
-        <h1 align="center">
-          Dados de Avaliação para <span id="candidate_desited_position">{{ candidates.0.campaign_desired_position.position }}</span> -
-          <span id="candidate_state_campaign">{{ candidates.0.state_campaign|default:"PR" }}</span>
-        </h1>
-        <h4 align="center">
-          Dados de Pesquisa para <strong id="candidate_political_nickname">{{ candidates.0.candidate_political_nickname|default:"" }}</strong> | Pleito: {{ candidato.ballot }}
-        </h4>
+      <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-danger alert-styled-left alert-bordered">
+          <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+          </button>
+          <span class="text-semibold">MODO DE DEMONSTRAÇÃO - </span> Estatísticas com apenas 40% de Precisão.
+          <a href="#" class="alert-link">Aumente agora para 99.7%</a>.
+        </div>
       </div>
     </div>
-    <hr>
+    <div class="content">
 
-    <div class="row">
-      <!-- Funnel -->
-      <div class="col-md-6">
-        <div class="row">
-          <div class="col-md-12">
-            <div id="Boxreport">
-              <div class="panel panel-info panel-bordered">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Funil Classificatório de Publicações</h3>
-                  <div class="heading-elements">
-                    <ul class="icons-list">
-                      <li><a data-action="collapse"></a></li>
-                      <li><a data-action="reload"></a></li>
-                      <li><a data-action="close"></a></li>
-                    </ul>
-                  </div>
-                  <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                </div>
+      <!-- General Overview -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 align="center">
+            Dados de Avaliação para <span id="candidate_desited_position">{{ candidates.0.campaign_desired_position.position }}</span> -
+            <span id="candidate_state_campaign">{{ candidates.0.state_campaign|default:"PR" }}</span>
+          </h1>
+          <h4 align="center">
+            Dados de Pesquisa para <strong id="candidate_political_nickname">{{ candidates.0.candidate_political_nickname|default:"" }}</strong> | Pleito: {{ candidato.ballot }}
+          </h4>
+        </div>
+      </div>
+      <hr>
 
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <p>Índice de Relevância: <code> 88.9 % </code></p>
+      <div class="row">
+        <!-- Funnel -->
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="Boxreport">
+                <div class="panel panel-info panel-bordered">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Funil Classificatório de Publicações</h3>
+                    <div class="heading-elements">
+                      <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                        <li><a data-action="reload"></a></li>
+                        <li><a data-action="close"></a></li>
+                      </ul>
                     </div>
-                    <div class="col-md-6">
-                      <p>Última Atualização: <code> Há 5 horas </code></p>
-                    </div>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
                   </div>
 
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="row social-group">
-                        <div class="social-group_item" style="background: #333333;color: white;"><i
-                            class="icon-facebook"></i>
-                        </div>
-                        <div class="social-group_item" style="background: #333333;color: white;"><i
-                            class="icon-youtube3"></i>
-                        </div>
-                        <div class="social-group_item" style="background: #333333;color: white;"><i
-                            class="icon-twitter"></i>
-                        </div>
-                        <div class="social-group_item" style="background: #333333;color: white;"><i
-                            class="icon-google-plus"></i></div>
-                        <div class="social-group_item" style="background: #333333;color: white;"><i
-                            class="icon-instagram"></i></div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p>Índice de Relevância: <code> 88.9 % </code></p>
                       </div>
-                      <div id="imagem">
-                        {# <img src="{% static 'images/stats/funel_tem.png' %}" width="300">#}
-                        <div id="chartdiv"></div>
+                      <div class="col-md-6">
+                        <p>Última Atualização: <code> Há 5 horas </code></p>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div id="Boxreport">
-              <div class="panel panel-info panel-bordered">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Nuvem de Palavras Chave</h3>
-                  <div class="heading-elements">
-                    <ul class="icons-list">
-                      <li><a data-action="collapse"></a></li>
-                      <li><a data-action="reload"></a></li>
-                      <li><a data-action="close"></a></li>
-                    </ul>
-                  </div>
-                  <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                </div>
 
-                <div class="panel-body">
-                  <div class="tag-cloud">
-                    <div id="scopo_tag_cloud" style="height: 260px"></div>
-{#                    {% for item in candidato.tags %}#}
-{#                      <a href="/data.scopo.online/tags/{{ item.tag }}/" class="size-{{ item.size }}">{{ item.tag }}</a>#}
-{#                    {% endfor %}#}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> <!--here-->
-      </div>
-      <!-- /funnel -->
-
-      <!-- Comparative candidates -->
-      <div class="col-md-6">
-        <div class="row">
-          <div class="col-md-12">
-            <div id="Boxreport">
-              <div class="panel panel-info panel-bordered">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Comparativo de Intenção/Rejeição</h3>
-                  <div class="heading-elements">
-                    <ul class="icons-list">
-                      <li><a data-action="collapse"></a></li>
-                      <li><a data-action="reload"></a></li>
-                      <li><a data-action="close"></a></li>
-                    </ul>
-                  </div>
-                  <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                </div>
-
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <p>Índice de Relevância: <code> 96.9 % </code></p>
-                    </div>
-                    <div class="col-md-6">
-                      <p>Última Atualização: <code> Há 6 horas </code></p>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="row social-group">
+                          <div class="social-group_item" style="background: #333333;color: white;"><i
+                              class="icon-facebook"></i>
+                          </div>
+                          <div class="social-group_item" style="background: #333333;color: white;"><i
+                              class="icon-youtube3"></i>
+                          </div>
+                          <div class="social-group_item" style="background: #333333;color: white;"><i
+                              class="icon-twitter"></i>
+                          </div>
+                          <div class="social-group_item" style="background: #333333;color: white;"><i
+                              class="icon-google-plus"></i></div>
+                          <div class="social-group_item" style="background: #333333;color: white;"><i
+                              class="icon-instagram"></i></div>
+                        </div>
+                        <div id="imagem">
+                          {# <img src="{% static 'images/stats/funel_tem.png' %}" width="300">#}
+                          <div id="chartdiv"></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <!-- Line bars -->
-                  <div class="chart-container">
-                    <div class="chart has-fixed-height" id="basic_bars"></div>
-                  </div>
-                  <!-- /line bars -->
-
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-12">
-            <div id="Boxreport">
-              <div class="panel panel-info panel-bordered">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Densidade de Citações em Redes Sociais</h3>
-                  <div class="heading-elements">
-                    <ul class="icons-list">
-                      <li><a data-action="collapse"></a></li>
-                      <li><a data-action="reload"></a></li>
-                      <li><a data-action="close"></a></li>
-                    </ul>
+            <div class="col-md-12">
+              <div id="Boxreport">
+                <div class="panel panel-info panel-bordered">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Nuvem de Palavras Chave</h3>
+                    <div class="heading-elements">
+                      <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                        <li><a data-action="reload"></a></li>
+                        <li><a data-action="close"></a></li>
+                      </ul>
+                    </div>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
                   </div>
-                  <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                </div>
 
-                <div class="panel-body">
-                  <div class="chart-container has-scroll">
-                    <div class="chart has-fixed-height has-minimum-width" id="pie_timeline"></div>
+                  <div class="panel-body">
+                    <div class="tag-cloud">
+                      <div id="scopo_tag_cloud" style="height: 260px"></div>
+  {#                    {% for item in candidato.tags %}#}
+  {#                      <a href="/data.scopo.online/tags/{{ item.tag }}/" class="size-{{ item.size }}">{{ item.tag }}</a>#}
+  {#                    {% endfor %}#}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div> <!--here-->
+        </div>
+        <!-- /funnel -->
+
+        <!-- Comparative candidates -->
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="Boxreport">
+                <div class="panel panel-info panel-bordered">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Comparativo de Intenção/Rejeição</h3>
+                    <div class="heading-elements">
+                      <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                        <li><a data-action="reload"></a></li>
+                        <li><a data-action="close"></a></li>
+                      </ul>
+                    </div>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                  </div>
+
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p>Índice de Relevância: <code> 96.9 % </code></p>
+                      </div>
+                      <div class="col-md-6">
+                        <p>Última Atualização: <code> Há 6 horas </code></p>
+                      </div>
+                    </div>
+
+                    <!-- Line bars -->
+                    <div class="chart-container">
+                      <div class="chart has-fixed-height" id="basic_bars"></div>
+                    </div>
+                    <!-- /line bars -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div id="Boxreport">
+                <div class="panel panel-info panel-bordered">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Densidade de Citações em Redes Sociais</h3>
+                    <div class="heading-elements">
+                      <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                        <li><a data-action="reload"></a></li>
+                        <li><a data-action="close"></a></li>
+                      </ul>
+                    </div>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                  </div>
+
+                  <div class="panel-body">
+                    <div class="chart-container has-scroll">
+                      <div class="chart has-fixed-height has-minimum-width" id="pie_timeline"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-info panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Posts</h3>
-            <div class="heading-elements">
-              <ul class="icons-list">
-                <li><a data-action="collapse"></a></li>
-                <li><a data-action="reload"></a></li>
-                <li><a data-action="close"></a></li>
-              </ul>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-info panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title">Posts</h3>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                  <li><a data-action="close"></a></li>
+                </ul>
+              </div>
+              <a class="heading-elements-toggle"><i class="icon-more"></i></a>
             </div>
-            <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-          </div>
 
-          <div class="panel-body">
-            <div class="chart-container has-scroll">
-              <div class="chart has-fixed-height has-minimum-width" id="pie_basic" style="height: 550px"></div>
+            <div class="panel-body">
+              <div class="chart-container has-scroll">
+                <div class="chart has-fixed-height has-minimum-width" id="pie_basic" style="height: 550px"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- /Comparative candidates -->
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-info panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Analysis result</h3>
-            <div class="heading-elements">
-              <ul class="icons-list">
-                <li><a data-action="collapse"></a></li>
-                <li><a data-action="reload"></a></li>
-                <li><a data-action="close"></a></li>
-              </ul>
+      <!-- /Comparative candidates -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-info panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title">Analysis result</h3>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                  <li><a data-action="close"></a></li>
+                </ul>
+              </div>
+              <a class="heading-elements-toggle"><i class="icon-more"></i></a>
             </div>
-            <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-          </div>
 
-          <div class="panel-body">
-            <iframe src="http://data.scopo.online/topic_modeling/api/v1.0/posts?name=JoaoAmoedoNOVO&type=facebook"
-                    style="width: 100%;border: none;height: 900px" id="segment_iframe"></iframe>
+            <div class="panel-body">
+              <iframe src="http://data.scopo.online/topic_modeling/api/v1.0/posts?name=JoaoAmoedoNOVO&type=facebook"
+                      style="width: 100%;border: none;height: 900px" id="segment_iframe"></iframe>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-lg-6" style="height: 600px">
-        <div id="gauge_container"></div>
+      <div class="row">
+        <div class="col-lg-6" style="height: 600px">
+          <div id="gauge_container"></div>
+        </div>
+        <div class="col-lg-6" style="height: 600px">
+          <div id="svg_map_container"></div>
+        </div>
       </div>
-      <div class="col-lg-6" style="height: 600px">
-        <div id="svg_map_container"></div>
-      </div>
-    </div>
-    <!-- /general overview -->
+      <!-- /general overview -->
 
-    <!-- Social Network Citations -->
+      <!-- Social Network Citations -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div id="tree_map_container" style="height: 700px;"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="position-relative" id="traffic-sources"></div>
+        </div>
+      </div>
+      <!-- social network citations -->
+    </div>
+  {% else %}
     <div class="row">
-      <div class="col-lg-12">
-        <div id="tree_map_container" style="height: 700px;"></div>
+      <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-danger alert-styled-left alert-bordered">
+          <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+          </button>
+          <span class="text-semibold">You don't have candidates</span>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="position-relative" id="traffic-sources"></div>
-      </div>
-    </div>
-    <!-- social network citations -->
-  </div>
+  {% endif %}
   <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_1.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_2.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/pages/stats/stats_chart_3.js' %}"></script>

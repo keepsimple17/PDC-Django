@@ -204,20 +204,22 @@ class TagCloud {
     }
 
     function renderTagCloud(dataList) {
-      const wordList = [];
-      for (const item of dataList) {
-        wordList.push({
-          text: item.name,
-          weight: item.freqs,
-        })
-      }
-      // var word_list = [
-      //   {text: "Lorem", weight: 13, link: "https://github.com/DukeLeNoir/jQCloud"},
-      //   {text: "Ipsum", weight: 10.5, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},
-      //   {text: "Dolor", weight: 9.4},
-      // ];
       $('#scopo_tag_cloud').html('');
-      $('#scopo_tag_cloud').jQCloud(wordList);
+      if (dataList && dataList.length > 0) {
+        const wordList = [];
+        for (const item of dataList) {
+          wordList.push({
+            text: item.name,
+            weight: item.freqs,
+          })
+        }
+        // var word_list = [
+        //   {text: "Lorem", weight: 13, link: "https://github.com/DukeLeNoir/jQCloud"},
+        //   {text: "Ipsum", weight: 10.5, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},
+        //   {text: "Dolor", weight: 9.4},
+        // ];
+        $('#scopo_tag_cloud').jQCloud(wordList);
+      }
     }
   }
 }

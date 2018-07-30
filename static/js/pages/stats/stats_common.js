@@ -45,15 +45,18 @@ $(function () {
 
   // console.log(candidates);
   // first candidate init
-  tagCloud.render(candidates[0]);
-  getCandidates(candidates[0])
-    .then(res => {
-      console.log('candiate res...', res.data);
-      const candidates = res.data.results;
-      renderBarChart(candidates);
-      posts.render(candidates);
-    })
-    .catch(err => {});
+  if (candidates.length > 0) {
+    tagCloud.render(candidates[0]);
+    getCandidates(candidates[0])
+      .then(res => {
+        console.log('candiate res...', res.data);
+        const candidates = res.data.results;
+        renderBarChart(candidates);
+        posts.render(candidates);
+      })
+      .catch(err => {});
+  }
+
 
   for (const item of candidates) {
     nick_name_list.push(item.candidate_political_nickname);
