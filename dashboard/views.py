@@ -50,6 +50,12 @@ def index(request):
 @login_required
 def stats(request):
     usuario = UsuarioSerializer(request.user.usuario).data
+    if not request.user.is_staff:
+        return render(request, 'index.html', {
+            'candidato': candidato,
+            'usuario': usuario,
+            'profile_form': usuario,
+        })
     candidates = []
     candidator_datas = []
     for nick_name in available_candidator_nick_names:

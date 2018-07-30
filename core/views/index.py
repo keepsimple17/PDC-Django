@@ -115,7 +115,8 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
             user = None
         if user is not None and account_activation_token.check_token(user, token):
             user.is_active = True
-            user.is_staff = True
+            user.is_staff = False
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             user.save()
 
             return redirect('primeiro_setup')
