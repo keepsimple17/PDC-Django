@@ -85,8 +85,10 @@ $(function () {
 
     for (const candidate of usefulList) {
       name_list.push(candidate.candidate_political_nickname);
-      x_list.push(Math.floor(Math.random() * 30));
-      y_list.push(Math.floor(Math.random() * 30));
+      // x_list.push(Math.floor(Math.random() * 100));
+      // y_list.push(Math.floor(Math.random() * 100));
+      x_list.push(candidate.intention_rate);
+      y_list.push(candidate.rejection_rate);
     }
 
     /* bar chart */
@@ -109,10 +111,10 @@ $(function () {
         const basic_bars_options = {
           // Setup grid
           grid: {
-            x: 75,
-            x2: 35,
-            y: 35,
-            y2: 25
+            x: 130,
+            x2: 20,
+            y: 30,
+            y2: 20,
           },
 
           // Add tooltip
