@@ -34,7 +34,6 @@ class Posts {
     };
 
     function renderPosts() {
-      console.log('render posts');
       require.config({
         paths: {
           echarts: '../../../../static/js/plugins/visualization/echarts'
