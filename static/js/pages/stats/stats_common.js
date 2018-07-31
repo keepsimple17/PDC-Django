@@ -50,9 +50,9 @@ $(function () {
     getCandidates(candidates[0])
       .then(res => {
         console.log('candiate res...', res.data);
-        const candidates = res.data.results;
-        renderBarChart(candidates, candidates[0]);
-        posts.render(candidates);
+        const selectedcandidates = res.data.results;
+        renderBarChart(selectedcandidates, candidates[0]);
+        posts.render(selectedcandidates);
       })
       .catch(err => {});
   }
