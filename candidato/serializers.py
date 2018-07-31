@@ -94,8 +94,8 @@ class CandidateSerializer(serializers.ModelSerializer):
             'candidate_city', 'city_campaign', 'candidate_dispute_number', 'slug', 'political_position', 'reelection',
             'first_political_campaign',  'candidate_site', 'campaign_email', 'facebook', 'facebook_img', 'facebook_url',
             'twitter', 'twitter_img', 'twitter_url', 'googlep', 'googlep_img', 'googlep_url', 'youtube', 'youtube_img',
-            'youtube_url', 'instagram', 'instagram_img', 'instagram_url', 'candidate_blog_rss',
-            'candidate_blog_rss_img', 'candidate_blog_rss_url', 'proposals', 'foto',  'resume', 'obs',
+            'youtube_url', 'instagram', 'instagram_img', 'instagram_url', 'candidate_blog_rss', 'rejection_rate',
+            'intention_rate', 'candidate_blog_rss_img', 'candidate_blog_rss_url', 'proposals', 'foto',  'resume', 'obs',
             'candidate_situation', 'positive_keywords', 'negative_keywords', 'created_at', 'updated_at',
         )
 
@@ -109,10 +109,10 @@ class CandidateListSerializer(serializers.ModelSerializer):
             'id', 'user', 'candidate_political_nickname', 'candidate_dispute_party', 'candidate_party',
             'canditate_Election_Ballot', 'experience', 'campaign_desired_position', 'state_campaign', 'candidate_state',
             'candidate_city', 'city_campaign', 'candidate_dispute_number', 'slug', 'political_position', 'reelection',
-            'first_political_campaign',  'candidate_site', 'campaign_email', 'facebook', 'facebook_img', 'facebook_url',
+            'first_political_campaign', 'candidate_site', 'campaign_email', 'facebook', 'facebook_img', 'facebook_url',
             'twitter', 'twitter_img', 'twitter_url', 'googlep', 'googlep_img', 'googlep_url', 'youtube', 'youtube_img',
-            'youtube_url', 'instagram', 'instagram_img', 'instagram_url', 'candidate_blog_rss',
-            'candidate_blog_rss_img', 'candidate_blog_rss_url', 'proposals', 'foto',  'resume', 'obs',
+            'youtube_url', 'instagram', 'instagram_img', 'instagram_url', 'candidate_blog_rss', 'rejection_rate',
+            'intention_rate', 'candidate_blog_rss_img', 'candidate_blog_rss_url', 'proposals', 'foto', 'resume', 'obs',
             'candidate_situation', 'positive_keywords', 'negative_keywords', 'created_at', 'updated_at',
         )
 

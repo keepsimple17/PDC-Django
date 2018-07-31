@@ -84,7 +84,8 @@ $(function () {
     const name_list = [];
     const x_list = [];
     const y_list = [];
-    const usefulList = candidate_list.slice(0, 7);
+    let usefulList = candidate_list.slice(0, 7);
+    usefulList = usefulList.sort((a, b) => b.intention_rate - a.intention_rate);
 
     for (const candidate of usefulList) {
       name_list.push(candidate.candidate_political_nickname);
