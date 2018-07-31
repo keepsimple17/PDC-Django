@@ -31,7 +31,7 @@ $(function () {
       .then(res => {
         console.log('candiate res...', res.data);
         const candidates = res.data.results;
-        renderBarChart(candidates);
+        renderBarChart(candidates, candidator);
         posts.render(candidates);
       })
       .catch(err => {});
@@ -51,7 +51,7 @@ $(function () {
       .then(res => {
         console.log('candiate res...', res.data);
         const candidates = res.data.results;
-        renderBarChart(candidates);
+        renderBarChart(candidates, candidates[0]);
         posts.render(candidates);
       })
       .catch(err => {});
@@ -80,12 +80,15 @@ $(function () {
     }
   }
 
-  function renderBarChart(candidate_list) {
+  function renderBarChart(candidate_list, candidate) {
     const name_list = [];
     const x_list = [];
     const y_list = [];
+    candidate_list = candidate_list.filter(x => x.id !== candidate.id);
     candidate_list = candidate_list.sort((a, b) => b.intention_rate - a.intention_rate);
     let usefulList = candidate_list.slice(0, 7);
+    usefulList = usefulList.reverse();
+    usefulList.push(candidate);
 
     for (const candidate of usefulList) {
       name_list.push(candidate.candidate_political_nickname);
