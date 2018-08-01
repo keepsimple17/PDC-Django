@@ -57,7 +57,6 @@ $(function () {
       .catch(err => {});
   }
 
-
   for (const item of candidates) {
     nick_name_list.push(item.candidate_political_nickname);
   }
