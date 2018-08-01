@@ -6,4 +6,6 @@ class TestClass {
   constructor() {
     console.log('this is test class constructor...');
   }
+
+  render() {}
 }
