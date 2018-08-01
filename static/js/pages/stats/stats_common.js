@@ -5,10 +5,10 @@
 $(function () {
   const posts = new Posts();
   const tagCloud = new TagCloud();
+  const appService = new AppService();
 
   /* candidate dropdown */
   $('.candidate-menu li').on('click', function () {
-    console.log('changing candidate...');
     onChangeCandidato($(this).attr('data-json'));
     $('.candidate-toggle').html($(this).find('a').html() + ` <span class="caret"></span>`);
   });
@@ -16,7 +16,6 @@ $(function () {
   const onChangeCandidato = (jsonStr) => {
     const candidator = JSON.parse(jsonStr);
     tagCloud.render(candidator);
-    console.log(candidator);
     $('#candidate_nickname').html(candidator.candidate_political_nickname);
     $('#candidate_political_nickname').html(candidator.candidate_political_nickname);
     const facebookid = candidator.facebook.startsWith('@') ? candidator.facebook.substr(1) : candidator.facebook;
@@ -29,7 +28,6 @@ $(function () {
 
     getCandidates(candidator)
       .then(res => {
-        console.log('candiate res...', res.data);
         const candidates = res.data.results;
         renderBarChart(candidates, candidator);
         posts.render(candidates);
@@ -49,7 +47,6 @@ $(function () {
     tagCloud.render(candidates[0]);
     getCandidates(candidates[0])
       .then(res => {
-        console.log('candiate res...', res.data);
         const selectedcandidates = res.data.results;
         renderBarChart(selectedcandidates, candidates[0]);
         posts.render(selectedcandidates);
