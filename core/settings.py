@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'social_django',
     'storages',
+    'django_filters',
 
     # scopo apps
     'core',
