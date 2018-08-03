@@ -90,8 +90,8 @@ $(function () {
       name_list.push(candidate.candidate_political_nickname);
       // x_list.push(Math.floor(Math.random() * 100));
       // y_list.push(Math.floor(Math.random() * 100));
-      x_list.push(candidate.intention_rate);
-      y_list.push(candidate.rejection_rate);
+      x_list.push(candidate.rejection_rate);
+      y_list.push(candidate.intention_rate);
     }
 
     /* bar chart */
