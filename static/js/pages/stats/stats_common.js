@@ -6,6 +6,7 @@ $(function () {
   const posts = new Posts();
   const tagCloud = new TagCloud();
   const appService = new AppService();
+  const heatmap = new HeatMap();
 
   /* candidate dropdown */
   $('.candidate-menu li').on('click', function () {
@@ -16,6 +17,7 @@ $(function () {
   const onChangeCandidato = (jsonStr) => {
     const candidator = JSON.parse(jsonStr);
     tagCloud.render(candidator);
+    heatmap.render(candidator)
     $('#candidate_nickname').html(candidator.candidate_political_nickname);
     $('#candidate_political_nickname').html(candidator.candidate_political_nickname);
     const facebookid = candidator.facebook.startsWith('@') ? candidator.facebook.substr(1) : candidator.facebook;
@@ -45,6 +47,7 @@ $(function () {
   // first candidate init
   if (candidates.length > 0) {
     tagCloud.render(candidates[0]);
+    heatmap.render(candidates[0])
     getCandidates(candidates[0])
       .then(res => {
         const selectedcandidates = res.data.results;

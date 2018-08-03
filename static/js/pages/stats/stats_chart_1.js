@@ -2,170 +2,186 @@
  * Created by Paul on 07/18/2018.
  */
 
-$(function () {
-  const heatmapDataSet = [
-    {
-      "id":"BR-AC",
-      "value": 0,
-    },
-    {
-      "id":"BR-AL",
-      "value": 0,
-    },
-    {
-      "id":"BR-AM",
-      "value": 0,
-    },
-    {
-      "id":"BR-AP",
-      "value": 0,
-    },
-    {
-      "id":"BR-BA",
-      "value": 0,
-    },
-    {
-      "id":"BR-CE",
-      "value": 0,
-    },
-    {
-      "id":"BR-DF",
-      "value": 0,
-    },
-    {
-      "id":"BR-ES",
-      "value": 0,
-    },
-    {
-      "id":"BR-GO",
-      "value": 0,
-    },
-    {
-      "id":"BR-MA",
-      "value": 0,
-    },
-    {
-      "id":"BR-MG",
-      "value": 0,
-    },
-    {
-      "id":"BR-MS",
-      "value": 0,
-    },
-    {
-      "id":"BR-MT",
-      "value": 0,
-    },
-    {
-      "id":"BR-PA",
-      "value": 0,
-    },
-    {
-      "id":"BR-PB",
-      "value": 0,
-    },
-    {
-      "id":"BR-PE",
-      "value": 0,
-    },
-    {
-      "id":"BR-PI",
-      "value": 0,
-    },
-    {
-      "id":"BR-PR",
-      "value": 0,
-    },
-    {
-      "id":"BR-RJ",
-      "value": 0,
-    },
-    {
-      "id":"BR-RN",
-      "value": 0,
-    },
-    {
-      "id":"BR-RO",
-      "value": 0,
-    },
-    {
-      "id":"BR-RR",
-      "value": 0,
-    },
-    {
-      "id":"BR-RS",
-      "value": 0,
-    },
-    {
-      "id":"BR-SC",
-      "value": 0,
-    },
-    {
-      "id":"BR-SE",
-      "value": 0,
-    },
-    {
-      "id":"BR-SP",
-      "value": 0,
-    },
-    {
-      "id":"BR-TO",
-      "value": 0,
-    }
-  ];
+class HeatMap {
+  constructor() {}
 
-  axios.get('http://18.218.2.246/sentiment/api/v1.0/posts', {
-    params: {name: 'jairbolsonaro'}
-  })
-    .then(res => {
-      console.log('heat map data', res.data.data.by_location);
-      renderHeatMap(res.data.data.by_location);
-    })
-    .catch(err => {});
-
-  function renderHeatMap(itemList) {
-    console.log('redering heat map', itemList);
-
-    for (const item of itemList) {
-      const index = heatmapDataSet.findIndex(x => x.id === `BR-${item[0]}`);
-      if (index > -1) {
-        heatmapDataSet[index].value = item[1];
+  render(candidator) {
+    function getTwitterName(name) {
+      if (name.startsWith('@')) {
+        return name.slice(1)
+      } else {
+        return name;
       }
     }
-    const map = AmCharts.makeChart("svg_map_container", {
-      titles: [
-        {
-          text: 'HeatMap for jairbolsonaro',
-          size: 15,
-          color: '#333333',
-        }
-      ],
-      type: 'map',
-      theme: 'light',
-      colorSteps: 10,
-      dataProvider: {
-        // map: 'brazilLow',
-        map: 'brazilHigh',
-        areas: heatmapDataSet,
+    const twitterName = getTwitterName(candidator.twitter);
+    const candidate_political_nickname = candidator.candidate_political_nickname
+    const heatmapDataSet = [
+      {
+        "id":"BR-AC",
+        "value": 0,
       },
-      areasSettings: {
-        autoZoom: true,
-        balloonText: '[[title]]: [[value]]',
+      {
+        "id":"BR-AL",
+        "value": 0,
       },
-      valueLegend: {
-        right: 10,
-        minValue: 'Low',
-        maxValue: 'High'
+      {
+        "id":"BR-AM",
+        "value": 0,
       },
-      export: {
-        enabled: true
+      {
+        "id":"BR-AP",
+        "value": 0,
       },
-      smallMap: {},
-    });
-    console.log('map', map);
-  }
-  // heat map end
+      {
+        "id":"BR-BA",
+        "value": 0,
+      },
+      {
+        "id":"BR-CE",
+        "value": 0,
+      },
+      {
+        "id":"BR-DF",
+        "value": 0,
+      },
+      {
+        "id":"BR-ES",
+        "value": 0,
+      },
+      {
+        "id":"BR-GO",
+        "value": 0,
+      },
+      {
+        "id":"BR-MA",
+        "value": 0,
+      },
+      {
+        "id":"BR-MG",
+        "value": 0,
+      },
+      {
+        "id":"BR-MS",
+        "value": 0,
+      },
+      {
+        "id":"BR-MT",
+        "value": 0,
+      },
+      {
+        "id":"BR-PA",
+        "value": 0,
+      },
+      {
+        "id":"BR-PB",
+        "value": 0,
+      },
+      {
+        "id":"BR-PE",
+        "value": 0,
+      },
+      {
+        "id":"BR-PI",
+        "value": 0,
+      },
+      {
+        "id":"BR-PR",
+        "value": 0,
+      },
+      {
+        "id":"BR-RJ",
+        "value": 0,
+      },
+      {
+        "id":"BR-RN",
+        "value": 0,
+      },
+      {
+        "id":"BR-RO",
+        "value": 0,
+      },
+      {
+        "id":"BR-RR",
+        "value": 0,
+      },
+      {
+        "id":"BR-RS",
+        "value": 0,
+      },
+      {
+        "id":"BR-SC",
+        "value": 0,
+      },
+      {
+        "id":"BR-SE",
+        "value": 0,
+      },
+      {
+        "id":"BR-SP",
+        "value": 0,
+      },
+      {
+        "id":"BR-TO",
+        "value": 0,
+      }
+    ];
 
+    axios.get('http://18.218.2.246/sentiment/api/v1.0/posts', {
+      // params: {name: 'jairbolsonaro'}
+      params: {name: twitterName}
+    })
+      .then(res => {
+        console.log('heat map data', res.data.data.by_location);
+        renderHeatMap(res.data.data.by_location);
+      })
+      .catch(err => {});
+
+    function renderHeatMap(itemList) {
+      console.log('redering heat map', itemList);
+
+      for (const item of itemList) {
+        const index = heatmapDataSet.findIndex(x => x.id === `BR-${item[0]}`);
+        if (index > -1) {
+          heatmapDataSet[index].value = item[1];
+        }
+      }
+      const map = AmCharts.makeChart("svg_map_container", {
+        titles: [
+          {
+            text: `HeatMap for ${candidate_political_nickname}`,
+            size: 15,
+            color: '#333333',
+          }
+        ],
+        type: 'map',
+        theme: 'light',
+        colorSteps: 10,
+        dataProvider: {
+          // map: 'brazilLow',
+          map: 'brazilHigh',
+          areas: heatmapDataSet,
+        },
+        areasSettings: {
+          autoZoom: true,
+          balloonText: '[[title]]: [[value]]',
+        },
+        valueLegend: {
+          right: 10,
+          minValue: 'Low',
+          maxValue: 'High'
+        },
+        export: {
+          enabled: true
+        },
+        smallMap: {},
+      });
+      console.log('map', map);
+    }
+    // heat map end
+  }
+}
+
+$(function () {
   // solid gauge start
   const names = ['Bolsonaro', 'Ciro Gomes', 'Alckmin', 'Marina Silva', 'Joaquim Barbosa', 'Collor', 'Paulino'];
   const data = [22, 15, 6, 5, 7, 10, 65];
