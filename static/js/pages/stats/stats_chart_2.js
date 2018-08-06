@@ -59,7 +59,7 @@ class Demography {
     const demography_35_59 = AmCharts.makeChart( "demography_35_59", {
       "type": "pie",
       "theme": "light",
-      "dataProvider": [ {
+      "dataProvider": [{
         "title": "YES",
         "value": 326
       }, {
