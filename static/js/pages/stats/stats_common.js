@@ -19,6 +19,7 @@ $(function () {
 
   const onChangeCandidato = (jsonStr) => {
     const candidator = JSON.parse(jsonStr);
+    console.log('current candidato', candidator);
     tagCloud.render(candidator);
     heatmap.render(candidator)
     $('#candidate_nickname').html(candidator.candidate_political_nickname);
@@ -72,9 +73,18 @@ $(function () {
     console.log('getCandidates', candidate);
     const position = candidate.campaign_desired_position.position;
     const state_campaign = candidate.state_campaign;
-    if (candidate.campaign_desired_position.kind_of_position === 'Federal') {
+    const city_campaign = candidate.city_campaign;
+    const kind_of_position = candidate.campaign_desired_position.kind_of_position;
+    if (kind_of_position === 'Federal') {
       return axios.get('/candidato/candidate/', {
         params: {campaign_desired_position__position: position}
+      });
+    } else if (kind_of_position === 'municipal') {
+      return axios.get('/candidato/candidate/', {
+        params: {
+          campaign_desired_position__position: position,
+          city_campaign: city_campaign,
+        }
       });
     } else {
       return axios.get('/candidato/candidate/', {
