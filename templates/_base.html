@@ -271,14 +271,13 @@
           </li>
           <li class="dropdown">
             <a class="dropdown-toggle candidate-toggle" data-toggle="dropdown">
-              Paulino
+              {{ candidates.0.candidate_political_nickname }}
               <span class="caret"></span>
             </a>
 
             <ul class="dropdown-menu candidate-menu">
-              <li><a class="english">Paulino</a></li>
-              {% for item in usuario.candidates %}
-                <li><a class="english">item</a></li>
+              {% for item in candidates %}
+                <li data-json="{{ item|jsonify }}"><a class="dropdown-item">{{ item.candidate_political_nickname }}</a></li>
               {% endfor %}
             </ul>
           </li>

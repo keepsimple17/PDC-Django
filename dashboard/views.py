@@ -39,11 +39,12 @@ available_candidator_nick_names = [
 @login_required
 def index(request):
     usuario = UsuarioSerializer(request.user.usuario).data
-
+    candidator_datas = usuario['candidates']
     return render(request, 'index.html', {
         'candidato': candidato,
         'usuario': usuario,
         'profile_form': usuario,
+        'candidates': candidator_datas,
     })
 
 
