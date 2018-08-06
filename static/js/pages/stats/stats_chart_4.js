@@ -79,8 +79,8 @@ class Posts {
             const basic_pie_options = {
               // Add title
               title: {
-                text: "Candidator's posts",
-                subtext: 'twitter information',
+                text: "Publicações de Candidatos",
+                subtext: 'Avaliação no Twitter',
                 x: 'center'
               },
 
