@@ -100,7 +100,7 @@ class Posts {
 
               // Display toolbox
               toolbox: {
-                show: true,s
+                show: true,
                 orient: 'vertical',
                 feature: {
                   mark: {
