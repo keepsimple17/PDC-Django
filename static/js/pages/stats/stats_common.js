@@ -7,6 +7,9 @@ $(function () {
   const tagCloud = new TagCloud();
   const appService = new AppService();
   const heatmap = new HeatMap();
+  const demography = new Demography();
+
+  demography.render();
 
   /* candidate dropdown */
   $('.candidate-menu li').on('click', function () {

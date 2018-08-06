@@ -24,6 +24,7 @@
 
   {# amchart #}
   <script type="text/javascript" src="{% static 'js/charts/amcharts/amcharts.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/charts/amcharts/pie.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/charts/amcharts/ammap.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/charts/amcharts/funnel.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/charts/amcharts/maps/js/brazilHigh.js' %}"></script>
@@ -273,6 +274,52 @@
                       <div class="chart has-fixed-height has-minimum-width" id="pie_timeline"></div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-info panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title">Demography</h3>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                  <li><a data-action="close"></a></li>
+                </ul>
+              </div>
+              <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+            </div>
+
+            <div class="panel-body">
+              <div class="row demography">
+                <div class="col-lg-3">
+                  <div>
+                    <img src="{% static 'images/stats/selection_18_24.png' %}">
+                  </div>
+                  <div id="demography_28_24" style="height: 200px;"></div>
+                </div>
+                <div class="col-lg-3">
+                  <div>
+                    <img src="{% static 'images/stats/selection_25_34.png' %}">
+                  </div>
+                  <div id="demography_25_34" style="height: 200px;"></div>
+                </div>
+                <div class="col-lg-3">
+                  <div>
+                    <img src="{% static 'images/stats/selection_35_59.png' %}">
+                  </div>
+                  <div id="demography_35_59" style="height: 200px;"></div>
+                </div>
+                <div class="col-lg-3">
+                  <div>
+                    <img src="{% static 'images/stats/selection_60.png' %}">
+                  </div>
+                  <div id="demography_60" style="height: 200px;"></div>
                 </div>
               </div>
             </div>
