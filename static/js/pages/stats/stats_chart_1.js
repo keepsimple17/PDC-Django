@@ -7,14 +7,14 @@ class HeatMap {
 
   render(candidator) {
     function getTwitterName(name) {
-      if (name.startsWith('@')) {
+      if (name && name.startsWith('@')) {
         return name.slice(1)
       } else {
         return name;
       }
     }
     const twitterName = getTwitterName(candidator.twitter);
-    const candidate_political_nickname = candidator.candidate_political_nickname
+    const candidate_political_nickname = candidator.candidate_political_nickname;
     const heatmapDataSet = [
       {
         "id":"BR-AC",
