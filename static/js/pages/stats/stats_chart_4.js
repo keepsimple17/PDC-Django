@@ -196,7 +196,7 @@ class TagCloud {
       });
 
     function getTwitterName(name) {
-      if (name.startsWith('@')) {
+      if (name && name.startsWith('@')) {
         return name.slice(1)
       } else {
         return name;
