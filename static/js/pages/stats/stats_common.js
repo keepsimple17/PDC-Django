@@ -5,14 +5,16 @@
 $(function () {
   const posts = new Posts();
   const tagCloud = new TagCloud();
-  const appService = new AppService();
+  // const appService = new AppService();
   const heatmap = new HeatMap();
   const demography = new Demography();
+
+  const candidateLis = $('.candidate-menu li');
 
   demography.render();
 
   /* candidate dropdown */
-  $('.candidate-menu li').on('click', function () {
+  candidateLis.on('click', function () {
     onChangeCandidato($(this).attr('data-json'));
     $('.candidate-toggle').html($(this).find('a').html() + ` <span class="caret"></span>`);
   });
@@ -21,7 +23,7 @@ $(function () {
     const candidator = JSON.parse(jsonStr);
     console.log('current candidato', candidator);
     tagCloud.render(candidator);
-    heatmap.render(candidator)
+    heatmap.render(candidator);
     $('#candidate_nickname').html(candidator.candidate_political_nickname);
     $('#candidate_political_nickname').html(candidator.candidate_political_nickname);
     const facebookid = (candidator.facebook && candidator.facebook.startsWith('@')) ? candidator.facebook.substr(1) : candidator.facebook;
@@ -46,8 +48,8 @@ $(function () {
   };
 
   const candidates = [];
-  const nick_name_list = [];
-  $('.candidate-menu li').each((index, item) => {
+  let nick_name_list = [];
+  candidateLis.each((index, item) => {
     candidates.push(JSON.parse($(item).attr('data-json')));
   });
 
@@ -117,7 +119,7 @@ $(function () {
     /* bar chart */
     require.config({
       paths: {
-        echarts: '../../../../static/js/plugins/visualization/echarts'
+        echarts: '../../../../static/js/plugins/visualization/echarts',
       }
     });
 
