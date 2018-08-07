@@ -55,7 +55,7 @@ $(function () {
   // first candidate init
   if (candidates.length > 0) {
     tagCloud.render(candidates[0]);
-    heatmap.render(candidates[0])
+    heatmap.render(candidates[0]);
     getCandidates(candidates[0])
       .then(res => {
         const selectedcandidates = res.data.results;
