@@ -4,11 +4,11 @@
 
 class Posts {
   constructor() {
+    this.appService = new AppService();
     this.fullList = [];
   }
 
   render(candidates) {
-    console.log('posts render');
     const This = this;
     if (this.fullList.length === 0) {
       axios.post('http://18.218.2.246/postagens/api/v1.0/get/', {
@@ -26,13 +26,6 @@ class Posts {
       renderPosts();
     }
 
-    function getTwitterName(name) {
-      if (name && name.startsWith('@')) {
-        return name.slice(1)
-      } else {
-        return name;
-      }
-    }
 
     function renderPosts() {
       require.config({
@@ -53,7 +46,7 @@ class Posts {
         function (ec, limitless) {
           const dataList = [];
           for (const candidate of candidates) {
-            const twittername = getTwitterName(candidate.twitter);
+            const twittername = This.appService.getTwitterName(candidate.twitter);
             for (const item of This.fullList) {
               if (twittername === item.name) {
                 dataList.push(item);
@@ -176,11 +169,13 @@ class Posts {
 }
 
 class TagCloud {
-  constructor() {}
+  constructor() {
+    this.appService = new AppService();
+  }
 
   render(candidator) {
     console.log('tag cloud render');
-    const twitterName = getTwitterName(candidator.twitter);
+    const twitterName = this.appService.getTwitterName(candidator.twitter);
 
     axios.post('http://18.218.2.246/topic_modeling/api/v1.0/posts', {
       // name: 'requiaopmdb',
@@ -194,14 +189,6 @@ class TagCloud {
       .catch((err) => {
         console.error('tag cloud error', err);
       });
-
-    function getTwitterName(name) {
-      if (name && name.startsWith('@')) {
-        return name.slice(1)
-      } else {
-        return name;
-      }
-    }
 
     function renderTagCloud(dataList) {
       $('#scopo_tag_cloud').html('');

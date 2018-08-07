@@ -3,17 +3,12 @@
  */
 
 class HeatMap {
-  constructor() {}
+  constructor() {
+    this.appService = new AppService();
+  }
 
   render(candidator) {
-    function getTwitterName(name) {
-      if (name && name.startsWith('@')) {
-        return name.slice(1)
-      } else {
-        return name;
-      }
-    }
-    const twitterName = getTwitterName(candidator.twitter);
+    const twitterName = this.appService.getTwitterName(candidator.twitter);
     const candidate_political_nickname = candidator.candidate_political_nickname;
     const heatmapDataSet = [
       {
