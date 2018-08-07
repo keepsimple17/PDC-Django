@@ -162,10 +162,7 @@ $(function () {
           yAxis: [{
             type: 'category',
             data: name_list,
-            // data:   ['Aldo Rebelo','Alvaro Dias', 'Ciro Gomes', 'C. Buarque', 'Collor', 'Flávio Rocha',
-            // 'H. Meirelles', 'J. Bolsonaro', 'J. Amoedo', 'Lula', 'Marina Silva', 'Bcos/Nulos', 'Nenhum']
           }],
-          // Add series
           series: [
             {
               name: 'Taxa de Rejeição',
@@ -176,7 +173,6 @@ $(function () {
                 }
               },
               data: x_list,
-              // data: [1 ,0.2, 14, 0.1, 0.7, 0.02, 4, 20.5, 0.2, 39.5, 16, 0, 0 ]
             },
             {
               name: 'Intenções de Voto',
