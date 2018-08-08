@@ -1,6 +1,7 @@
 import datetime
 import json
 import csv
+from pymongo import MongoClient
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -109,3 +110,23 @@ class UtilView(views.APIView):
             'status': 'Status',
             'message': 'This is message body.',
         }, status=status.HTTP_202_ACCEPTED)
+
+
+is_copying = False
+
+
+class CopyMongoDBView(views.APIView):
+    def get(self, request, format=None):
+        global is_copying
+        # client = MongoClient('mongodb://localhost:27017/')
+        if is_copying:
+            return Response({
+                'status': 'success',
+                'message': 'copying...',
+            }, status=status.HTTP_202_ACCEPTED)
+        else:
+            is_copying = True
+            return Response({
+                'status': 'success',
+                'message': 'received request successfully',
+            }, status=status.HTTP_202_ACCEPTED)
