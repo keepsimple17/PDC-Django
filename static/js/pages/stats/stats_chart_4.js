@@ -191,7 +191,8 @@ class TagCloud {
       });
 
     function renderTagCloud(dataList) {
-      $('#scopo_tag_cloud').html('');
+      const tagCloud = $('#scopo_tag_cloud');
+      tagCloud.html('');
       if (dataList && dataList.length > 0) {
         const wordList = [];
         for (const item of dataList) {
@@ -205,7 +206,7 @@ class TagCloud {
         //   {text: "Ipsum", weight: 10.5, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},
         //   {text: "Dolor", weight: 9.4},
         // ];
-        $('#scopo_tag_cloud').jQCloud(wordList);
+        tagCloud.jQCloud(wordList);
       }
     }
   }
