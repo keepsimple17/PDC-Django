@@ -118,13 +118,13 @@ is_copying = False
 class CopyMongoDBView(views.APIView):
     def get(self, request, format=None):
         atlas_uri = 'mongodb://superuser:Uaw7TOJgSDQ77gsh@pdcdeep-shard-00-00-nho8i.mongodb.net:27017,pdcdeep-shard-00-01-nho8i.mongodb.net:27017,pdcdeep-shard-00-02-nho8i.mongodb.net:27017/test?ssl=true&replicaSet=PdcDeep-shard-0&authSource=admin&retryWrites=true'
-        atlas_host = 'pdcdeep-shard-00-00-nho8i.mongodb.net'
-        atlas_username = 'superuser'
-        atlas_password = 'Uaw7TOJgSDQ77gsh'
+        # atlas_host = 'pdcdeep-shard-00-00-nho8i.mongodb.net'
+        # atlas_username = 'superuser'
+        # atlas_password = 'Uaw7TOJgSDQ77gsh'
         ec2_uri = 'mongodb://deepsuperuser:ZUUPFQ9GJkm%7DU@18.218.2.246:27017/admin'
-        ec2_host = '18.218.2.246'
-        ec2_username = 'deepsuperuser'
-        ec2_password = 'ZUUPFQ9GJkm%7DU'
+        # ec2_host = '18.218.2.246'
+        # ec2_username = 'deepsuperuser'
+        # ec2_password = 'ZUUPFQ9GJkm%7DU'
         global is_copying
         if is_copying:
             return Response({
@@ -133,27 +133,20 @@ class CopyMongoDBView(views.APIView):
             }, status=status.HTTP_202_ACCEPTED)
         else:
             is_copying = True
-            # atlas_client = MongoClient(atlas_uri)
-            # atlas_item = atlas_client['local']['me'].find_one()
-            # print(atlas_item)
-            # atlas_client.admin.command(
-            #     'copydb',
-            #     fromdb='local',
-            #     todb='localtest',
-            #     fromhost=ec2_host,
-            #     username=ec2_username,
-            #     password=ec2_password)
+            atlas_client = MongoClient(atlas_uri)
+            atlas_collection = atlas_client['scope_db']['twitter_tweets']
 
             ec2_client = MongoClient(ec2_uri)
-            ect_item = ec2_client['admin']['twitter_users'].find_one()
-            print(ect_item)
-            ec2_client.admin.command(
-                'copydb',
-                fromdb='local',
-                todb='todb',
-                fromhost=atlas_host,
-                username=atlas_username,
-                password=atlas_password)
+            ect_collection = ec2_client['scope_db']['twitter_tweets']
+            while True:
+                entity = ect_collection.find_one({'$or': [{'copied': False}, {'copied': {'$ne': True}}]})
+                if entity:
+                    print('find..')
+                    atlas_collection.update_one({'id': entity['id']}, {'$set': entity}, upsert=True)
+                    ect_collection.update_one({'id': entity['id']}, {'$set': {'copied': True}}, upsert=True)
+                else:
+                    break
+            # atlas_collection.insert_one(entity)
 
             return Response({
                 'status': 'success',
