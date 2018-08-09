@@ -24,6 +24,7 @@ import core.views.first_configuration as fc_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='home'),
+    #url(r'^index2/', views.index2, name='home2'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^cors_request/$', views.cors_request, name='cors_request'),
     url(r'^updateCities', views.update_cities, name='updateCities'),
@@ -69,6 +70,7 @@ urlpatterns = [
     url(r'^test404/', views.test404),
     url(r'^util/update/$', util_views.UtilView.as_view(), name='utils_candidate'),
     url(r'^util/copy_mongodb/$', util_views.CopyMongoDBView.as_view(), name='utils_copy_mongodb'),
+    url(r'^test500/', views.test500),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
