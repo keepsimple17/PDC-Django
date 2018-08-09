@@ -1,6 +1,7 @@
 import datetime
 import json
 import csv
+import time
 from pymongo import MongoClient
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -145,6 +146,7 @@ class CopyMongoDBView(views.APIView):
                     print('find..', entity.get('copied'), entity.get('id'))
                     atlas_collection.update({'id': entity['id']}, {'$set': entity}, upsert=True)
                     ect_collection.update({'id': entity['id']}, {'$set': {'copied': True}}, upsert=False)
+                    time.sleep(0.1)
                 else:
                     break
             # atlas_collection.insert_one(entity)
