@@ -141,9 +141,10 @@ class CopyMongoDBView(views.APIView):
             while True:
                 entity = ect_collection.find_one({'$or': [{'copied': False}, {'copied': {'$ne': True}}]})
                 if entity:
-                    print('find..')
-                    atlas_collection.update_one({'id': entity['id']}, {'$set': entity}, upsert=True)
-                    ect_collection.update_one({'id': entity['id']}, {'$set': {'copied': True}}, upsert=True)
+                    del entity['_id']
+                    print('find..', entity.get('copied'), entity.get('id'))
+                    atlas_collection.update({'id': entity['id']}, {'$set': entity}, upsert=True)
+                    ect_collection.update({'id': entity['id']}, {'$set': {'copied': True}}, upsert=False)
                 else:
                     break
             # atlas_collection.insert_one(entity)
