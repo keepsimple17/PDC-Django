@@ -2,9 +2,10 @@ import datetime
 import json
 import csv
 import time
+import sys
+import traceback
 from pymongo import MongoClient
-from multiprocessing.dummy import Pool as ThreadPool
-pool = ThreadPool(1)
+from concurrent import futures
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -131,7 +132,6 @@ def start_thread(_id):
     ec2_client = MongoClient(ec2_uri)
     ect_collection = ec2_client['scope_db']['twitter_tweets']
     old_id = ''
-    current_id = ''
 
     while True:
         entity = ect_collection.find_one({'$or': [{'copied': False}, {'copied': {'$ne': True}}]})
@@ -149,14 +149,16 @@ def start_thread(_id):
                 time.sleep(0.1)
         else:
             break
-    pool.close()
-    pool.join()
 
 
 class CopyMongoDBView(views.APIView):
     def get(self, request, format=None):
-        results = pool.map(start_thread, [1])
-        print(results)
+        with futures.ThreadPoolExecutor(max_workers=1) as executor:
+            try:
+                executor.map(start_thread, [1])
+            except Exception as e:
+                print('Error in the worker: {} \n {}'.format(e, sys.exc_info()[0](traceback.format_exc())))
+
 
         # atlas_collection.insert_one(entity)
 
