@@ -24,6 +24,7 @@ import core.views.first_configuration as fc_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='home'),
+    #url(r'^index2/', views.index2, name='home2'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^cors_request/$', views.cors_request, name='cors_request'),
     url(r'^updateCities', views.update_cities, name='updateCities'),
@@ -67,6 +68,7 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^test404/', views.test404),
+    url(r'^test500/', views.test500),
     url(r'^util/update/$', util_views.UtilView.as_view(), name='utils'),
 ] + static('settings.STATIC_URL', document_root=settings.STATIC_ROOT)
 

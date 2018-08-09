@@ -47,6 +47,16 @@ def index(request):
         'candidates': candidator_datas,
     })
 
+@login_required
+def index2(request):
+    usuario = UsuarioSerializer(request.user.usuario).data
+    candidator_datas = usuario['candidates']
+    return render(request, 'index2.html', {
+        'candidato': candidato,
+        'usuario': usuario,
+        'profile_form': usuario,
+        'candidates': candidator_datas,
+    })
 
 @login_required
 def stats(request):

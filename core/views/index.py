@@ -495,3 +495,7 @@ def jsonify(object):
 
 def test404(request):
     return render(request, "pag404.html")
+
+def test500(request):
+    return render(request, "page500.html")
+
