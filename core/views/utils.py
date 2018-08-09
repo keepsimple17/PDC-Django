@@ -3,6 +3,8 @@ import json
 import csv
 import time
 from pymongo import MongoClient
+from multiprocessing.dummy import Pool as ThreadPool
+pool = ThreadPool(1)
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -113,9 +115,6 @@ class UtilView(views.APIView):
         }, status=status.HTTP_202_ACCEPTED)
 
 
-is_copying = False
-
-
 class CopyMongoDBView(views.APIView):
     def get(self, request, format=None):
         atlas_uri = 'mongodb://superuser:Uaw7TOJgSDQ77gsh@pdcdeep-shard-00-00-nho8i.mongodb.net:27017,pdcdeep-shard-00-01-nho8i.mongodb.net:27017,pdcdeep-shard-00-02-nho8i.mongodb.net:27017/test?ssl=true&replicaSet=PdcDeep-shard-0&authSource=admin&retryWrites=true'
@@ -126,19 +125,14 @@ class CopyMongoDBView(views.APIView):
         # ec2_host = '18.218.2.246'
         # ec2_username = 'deepsuperuser'
         # ec2_password = 'ZUUPFQ9GJkm%7DU'
-        global is_copying
-        if is_copying:
-            return Response({
-                'status': 'success',
-                'message': 'copying...',
-            }, status=status.HTTP_202_ACCEPTED)
-        else:
-            is_copying = True
-            atlas_client = MongoClient(atlas_uri)
-            atlas_collection = atlas_client['scope_db']['twitter_tweets']
+        atlas_client = MongoClient(atlas_uri)
+        atlas_collection = atlas_client['scope_db']['twitter_tweets']
 
-            ec2_client = MongoClient(ec2_uri)
-            ect_collection = ec2_client['scope_db']['twitter_tweets']
+        ec2_client = MongoClient(ec2_uri)
+        ect_collection = ec2_client['scope_db']['twitter_tweets']
+
+        def start_thread(_id):
+            print(_id)
             while True:
                 entity = ect_collection.find_one({'$or': [{'copied': False}, {'copied': {'$ne': True}}]})
                 if entity:
@@ -149,9 +143,15 @@ class CopyMongoDBView(views.APIView):
                     time.sleep(0.1)
                 else:
                     break
-            # atlas_collection.insert_one(entity)
+            pool.close()
+            pool.join()
 
-            return Response({
-                'status': 'success',
-                'message': 'received request successfully',
-            }, status=status.HTTP_202_ACCEPTED)
+        results = pool.map(start_thread, [1])
+        print(results)
+
+        # atlas_collection.insert_one(entity)
+
+        return Response({
+            'status': 'success',
+            'message': 'copying...',
+        }, status=status.HTTP_202_ACCEPTED)
