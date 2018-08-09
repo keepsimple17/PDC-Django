@@ -24,7 +24,7 @@ import core.views.first_configuration as fc_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='home'),
-    #url(r'^index2/', views.index2, name='home2'),
+    # url(r'^index2/', views.index2, name='home2'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^cors_request/$', views.cors_request, name='cors_request'),
     url(r'^updateCities', views.update_cities, name='updateCities'),

@@ -56,15 +56,16 @@ $(function () {
   // console.log(candidates);
   // first candidate init
   if (candidates.length > 0) {
-    tagCloud.render(candidates[0]);
-    heatmap.render(candidates[0]);
-    getCandidates(candidates[0])
-      .then(res => {
-        const selectedcandidates = res.data.results;
-        renderBarChart(selectedcandidates, candidates[0]);
-        posts.render(selectedcandidates);
-      })
-      .catch(err => {});
+    onChangeCandidato(JSON.stringify(candidates[0]));
+    // tagCloud.render(candidates[0]);
+    // heatmap.render(candidates[0]);
+    // getCandidates(candidates[0])
+    //   .then(res => {
+    //     const selectedcandidates = res.data.results;
+    //     renderBarChart(selectedcandidates, candidates[0]);
+    //     posts.render(selectedcandidates);
+    //   })
+    //   .catch(err => {});
   }
 
   for (const item of candidates) {
