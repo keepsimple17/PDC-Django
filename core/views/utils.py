@@ -4,6 +4,7 @@ import csv
 import time
 import sys
 import traceback
+import threading
 from pymongo import MongoClient
 from concurrent import futures
 from django.conf import settings
@@ -116,7 +117,7 @@ class UtilView(views.APIView):
         }, status=status.HTTP_202_ACCEPTED)
 
 
-def start_thread(_id):
+def start_thread(_id=1):
     print(_id)
     atlas_uri = 'mongodb://superuser:Uaw7TOJgSDQ77gsh@pdcdeep-shard-00-00-nho8i.mongodb.net:27017,pdcdeep-shard-00-01-nho8i.mongodb.net:27017,pdcdeep-shard-00-02-nho8i.mongodb.net:27017/test?ssl=true&replicaSet=PdcDeep-shard-0&authSource=admin&retryWrites=true'
     # atlas_host = 'pdcdeep-shard-00-00-nho8i.mongodb.net'
@@ -153,12 +154,14 @@ def start_thread(_id):
 
 class CopyMongoDBView(views.APIView):
     def get(self, request, format=None):
-        with futures.ThreadPoolExecutor(max_workers=1) as executor:
-            try:
-                executor.map(start_thread, [1])
-            except Exception as e:
-                print('Error in the worker: {} \n {}'.format(e, sys.exc_info()[0](traceback.format_exc())))
-
+        db_copy_thread = threading.Thread(target=start_thread, name='thread_total_4', args=())
+        db_copy_thread.setDaemon(True)
+        db_copy_thread.start()
+        # with futures.ThreadPoolExecutor(max_workers=1) as executor:
+        #     try:
+        #         executor.map(start_thread, [1])
+        #     except Exception as e:
+        #         print('Error in the worker: {} \n {}'.format(e, sys.exc_info()[0](traceback.format_exc())))
 
         # atlas_collection.insert_one(entity)
 
