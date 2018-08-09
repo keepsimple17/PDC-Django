@@ -179,18 +179,21 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="icon-megaphone"></i>
               <span class="visible-xs-inline-block position-right">Alertas do Candidato</span>
-              <span class="badge bg-warning-400">9</span>
+              <span class="badge bg-warning-400">0</span> <!--todo Count the Candidate Alerts -->
             </a>
 
             <div class="dropdown-menu dropdown-content">
               <div class="dropdown-content-heading">
-                Git updates
+                Alertas para o Candidato
+                <!-- Here we must include a candidate alerts -->
                 <ul class="icons-list">
                   <li><a href="#"><i class="icon-sync"></i></a></li>
                 </ul>
               </div>
-              <!-- Those information should comes from the candidate alerts, in app activities (been developed) -->
+              <!-- Those information should comes from the candidate alerts, in app activities (been developed)-->
               <ul class="media-list dropdown-content-body width-350">
+
+                 <!--
                 <li class="media">
                   <div class="media-left">
                     <a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i
@@ -251,6 +254,7 @@
                     <div class="media-annotation">Jan 12, 05:46</div>
                   </div>
                 </li>
+                -->
               </ul>
 
               <div class="dropdown-content-footer">
@@ -258,6 +262,10 @@
               </div>
             </div>
           </li>
+
+
+          <!-- End Candidate Alerts -->
+
           <li>
             {% if request.user.is_staff %}
               <p class="navbar-text"><span class="label bg-success">Online</span></p>
@@ -297,12 +305,12 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="icon-bubbles4"></i>
             <span class="visible-xs-inline-block position-right">Mensagens</span>
-            <span class="badge bg-warning-400">2</span>
+            <span class="badge bg-warning-400">0</span>
           </a>
 
           <div class="dropdown-menu dropdown-content width-350">
             <div class="dropdown-content-heading">
-              Messages
+              Mensagens
               <ul class="icons-list">
                 <li><a href="#"><i class="icon-compose"></i></a></li>
               </ul>
