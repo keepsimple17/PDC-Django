@@ -147,7 +147,7 @@ def start_thread(_id=1):
                 atlas_collection.update({'id': entity['id']}, {'$set': entity}, upsert=True)
                 ect_collection.update({'id': entity['id']}, {'$set': {'copied': True}}, upsert=False)
                 old_id = current_id
-                time.sleep(0.1)
+                # time.sleep(0.01)
         else:
             break
 
