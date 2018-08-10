@@ -24,8 +24,15 @@ $(function () {
     console.log('current candidato', candidator);
     tagCloud.render(candidator);
     heatmap.render(candidator);
-    $('#candidate_nickname').html(candidator.candidate_political_nickname);
-    $('#candidate_political_nickname').html(candidator.candidate_political_nickname);
+    const candidate_political_nickname = candidator.candidate_political_nickname;
+    const candidato_city = candidator.candidato_city || '';
+    const candidato_uf = candidator.candidato_UF || '';
+
+    $('#candidate_nickname').html(candidate_political_nickname);
+    $('#candidate_political_nickname').html(candidate_political_nickname);
+    $('#candidato_city').html(candidato_city);
+    $('#candidato_uf').html(candidato_uf);
+
     const facebookid = (candidator.facebook && candidator.facebook.startsWith('@')) ? candidator.facebook.substr(1) : candidator.facebook;
     const twitterid = (candidator.twitter && candidator.twitter.startsWith('@')) ? candidator.twitter.substr(1) : candidator.twitter;
     let iframe_src = `http://18.218.2.246/topic_modeling/api/v1.0/posts?name=${twitterid}&type=twitter`;

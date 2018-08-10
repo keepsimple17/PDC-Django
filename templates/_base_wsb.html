@@ -433,9 +433,10 @@
                   <img src="{% static '/images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
                 </a>
                 <div class="media-body">
-                  <span class="media-heading text-semibold" id="candidate_nickname">{{ candidato.candidato }}</span> <!--the Candidate -->
+                  <span class="media-heading text-semibold" id="candidate_nickname">{{ candidates.0.candidate_political_nickname|default_if_none:'' }}</span>
                   <div class="text-size-mini text-muted">
-                    <i class="icon-pin text-size-small"></i> &nbsp;{{ candidato.candidato_city }}, {{ candidato.candidato_UF }}
+                    <i class="icon-pin text-size-small"></i> &nbsp;<span id="candidato_city ">{{ candidates.0.candidato_city|default_if_none:'' }}</span> ,
+                    <span id="candidato_uf">{{ candidates.0.candidato_UF|default_if_none:'' }}</span>
                   </div>
                 </div>
 
