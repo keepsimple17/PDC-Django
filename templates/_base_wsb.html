@@ -430,7 +430,15 @@
             <div class="category-content">
               <div class="media">
                 <a href="#" class="media-left">
-                  <img src="{% static '/images/placeholder.jpg' %}" class="img-circle img-sm" alt="">
+                  {% if candidates.0.foto %}
+                    <img id="candidate_foto" src="{% media_uri candidates.0.foto %}" class="img-circle img-sm" alt="">
+                  {% elif candidates.0.user.gender == 'M' %}
+                    <img id="candidate_foto" src="{% static '/images/imagem_avatar_homem.png' %}" class="img-circle img-sm" alt="">
+                  {% elif candidates.0.user.gender == 'F' %}
+                    <img id="candidate_foto" src="{% static '/images/imagem_avatar_mulher.png' %}" class="img-circle img-sm" alt="">
+                  {% else %}
+                    <img id="candidate_foto" src="{% static '/images/unknown-avatar.png' %}" class="img-circle img-sm" alt="">
+                  {% endif %}
                 </a>
                 <div class="media-body">
                   <span class="media-heading text-semibold" id="candidate_nickname">{{ candidates.0.candidate_political_nickname|default_if_none:'' }}</span>

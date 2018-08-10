@@ -5,7 +5,7 @@
 $(function () {
   const posts = new Posts();
   const tagCloud = new TagCloud();
-  // const appService = new AppService();
+  const appService = new AppService();
   const heatmap = new HeatMap();
   const demography = new Demography();
 
@@ -27,11 +27,13 @@ $(function () {
     const candidate_political_nickname = candidator.candidate_political_nickname;
     const candidato_city = candidator.candidato_city || '';
     const candidato_uf = candidator.candidato_UF || '';
+    const candidato_foto = candidator.foto;
 
     $('#candidate_nickname').html(candidate_political_nickname);
     $('#candidate_political_nickname').html(candidate_political_nickname);
     $('#candidato_city').html(candidato_city);
     $('#candidato_uf').html(candidato_uf);
+    $('#candidate_foto').attr('src', appService.getPhotoPath(candidato_foto, candidator.user));
 
     const facebookid = (candidator.facebook && candidator.facebook.startsWith('@')) ? candidator.facebook.substr(1) : candidator.facebook;
     const twitterid = (candidator.twitter && candidator.twitter.startsWith('@')) ? candidator.twitter.substr(1) : candidator.twitter;

@@ -14,4 +14,16 @@ class AppService {
       return name;
     }
   }
+
+  getPhotoPath(photo, user) {
+    if (photo) {
+      return photo
+    } else if (user.gender === 'M') {
+      return '/static/images/imagem_avatar_homem.png';
+    } else if (user.gender === 'M') {
+      return '/static/images/imagem_avatar_mulher.png';
+    } else {
+      return '/static/images/unknown-avatar.png';
+    }
+  }
 }

@@ -12,7 +12,8 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext_lazy as _
 
-from dashboard.serializers import UsuarioSerializer
+from dashboard.models import Usuario
+from dashboard.serializers import UsuarioSerializer, UsuarioListSerializer
 from candidato.models import Candidate
 from candidato.serializers import CandidateSerializer
 
@@ -47,6 +48,7 @@ def index(request):
         'candidates': candidator_datas,
     })
 
+
 @login_required
 def index2(request):
     usuario = UsuarioSerializer(request.user.usuario).data
@@ -58,10 +60,15 @@ def index2(request):
         'candidates': candidator_datas,
     })
 
+
 @login_required
 def stats(request):
     usuario = UsuarioSerializer(request.user.usuario).data
     candidator_datas = usuario['candidates']
+    for candidate in candidator_datas:
+        candidate_usuario = Usuario.objects.filter(id=candidate['user'])
+        if candidate_usuario:
+            candidate['user'] = UsuarioListSerializer(candidate_usuario.first()).data
     if not request.user.is_staff:
         return render(request, 'index.html', {
             'candidato': candidato,
