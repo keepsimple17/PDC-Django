@@ -106,15 +106,6 @@ class NoticeQueueBatch(models.Model):
     pickled_data = models.TextField()
 
 
-def get_notification_language(user):
-    pass
-    """
-    Returns site-specific notification language for this user. Raises
-    LanguageStoreNotAvailable if this site does not use translated
-    notifications.
-    """
-
-
 def send_now(users, label, extra_context=None, sender=None, scoping=None):
     """
     Creates a new notice.
@@ -132,17 +123,6 @@ def send_now(users, label, extra_context=None, sender=None, scoping=None):
 
     current_language = get_language()
 
-    for user in users:
-        # get user language for user from language store defined in
-        # NOTIFICATION_LANGUAGE_MODULE setting
-        try:
-            language = get_notification_language(user)
-        except LanguageStoreNotAvailable:
-            language = None
-
-        if language is not None:
-            # activate the user's language
-            activate(language)
 
     # reset environment to original language
     activate(current_language)
