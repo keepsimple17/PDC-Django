@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'candidato',
     'cep',
     'elections',
+    'notification',
 ]
 
 MIDDLEWARE = [
