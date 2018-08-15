@@ -39,6 +39,9 @@
   <script type="text/javascript" src="{% static 'js/plugins/visualization/echarts/echarts.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/plugins/jqcloud/jqcloud.min.js' %}"></script>
 
+  {#  google trends#}
+  <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1513_RC03/embed_loader.js"></script>
+
   <style>
     a[href='http://www.amcharts.com'] {
       display: none !important;
@@ -320,6 +323,33 @@
                     <img src="{% static 'images/stats/selection_60.png' %}">
                   </div>
                   <div id="demography_60" style="height: 200px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-info panel-bordered">
+            <div class="panel-heading">
+              <h3 class="panel-title">Google Trends</h3>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                  <li><a data-action="close"></a></li>
+                </ul>
+              </div>
+              <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+            </div>
+
+            <div class="panel-body">
+              <div class="chart-container has-scroll">
+                <div class="chart has-fixed-height has-minimum-width">
+                  <script type="text/javascript">
+                    trends.embed.renderExploreWidget("GEO_MAP", {"comparisonItem":[{"keyword":"Marcio França","geo":"BR","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"geo=BR&q=Marcio%20Fran%C3%A7a&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"});
+                  </script>
                 </div>
               </div>
             </div>
