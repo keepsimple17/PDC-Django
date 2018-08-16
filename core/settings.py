@@ -219,7 +219,8 @@ EMAIL_PORT = 587
 AWS_ACCESS_KEY_ID = 'AKIAIPSKZRJTJWUYB7ZQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'dash.scopo.online'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = 's3-sa-east-1.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
@@ -236,7 +237,6 @@ AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
 PRIVATE_FILE_STORAGE = 'core.s3_storage.PrivateMediaStorage'
 
 AWS_MEDIA_URL = 'http://' + AWS_S3_CUSTOM_DOMAIN
-
 
 STATIC_URL = '/static/'
 
