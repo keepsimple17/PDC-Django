@@ -100,9 +100,9 @@ if os.environ.get('USER', '') == 'ubuntu':
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'pdc',
-            'USER': 'paulrsilva',
-            'PASSWORD': 'dwIypWEONnsvB',
-            'HOST': 'pdc.clpcb1dffjfg.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',   # Or an IP Address that your DB is hosted on
             'PORT': '3306',
         }
     }
@@ -173,10 +173,8 @@ CSRF_COOKIE_NAME = 'XSRF-TOKEN'
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
 
-# TIME_ZONE = 'UTC'
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -200,25 +198,25 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 
 # Social Authentication Paul
-SOCIAL_AUTH_FACEBOOK_KEY = '555229794846219'  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '06a7fbeab80f5c3ab99dbc4d1797a5ce'  # App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = ''  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = ''  # App Secret
 
 # Social Authentication from someone
 # SOCIAL_AUTH_FACEBOOK_KEY = '1464725153656586'  # App ID
 # SOCIAL_AUTH_FACEBOOK_SECRET = 'b66a8fd11e1d435cf53d0074e6379508'  # App Secret
 
 # Please use the company smtp to send emails
-DEFAULT_FROM_EMAIL = 'scopo@scopoonline.com'
+DEFAULT_FROM_EMAIL = ''
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtpi.uni5.net'
-EMAIL_HOST_USER = 'scopo@scopoonline.com'
-EMAIL_HOST_PASSWORD = 'SMScopo@Online'
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 
 # AWS configuration
-AWS_ACCESS_KEY_ID = 'AKIAIPSKZRJTJWUYB7ZQ'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'dash.scopo.online'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
 # AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_CUSTOM_DOMAIN = 's3-sa-east-1.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
@@ -230,11 +228,11 @@ AWS_S3_RESION = 's3-sa-east-1'
 
 # STATICFILES_STORAGE = 'core.s3_storage.StaticStorage'
 
-DEFAULT_FILE_STORAGE = 'core.s3_storage.PublicMediaStorage'
+DEFAULT_FILE_STORAGE = ''
 
 AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
 AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
-PRIVATE_FILE_STORAGE = 'core.s3_storage.PrivateMediaStorage'
+PRIVATE_FILE_STORAGE = ''
 
 AWS_MEDIA_URL = 'http://' + AWS_S3_CUSTOM_DOMAIN
 
